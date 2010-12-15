@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en"> <head>
+<base href="http://bytes.com/" /><!--[if IE]></base><![endif]--> <title>absolute x,y coordinates of an image? - JavaScript / Ajax / DHTML  answers</title> <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> <meta name="keywords" content="absolute,x,y,coordinates,image, absolute x,y coordinates of an image?, questions, insights, articles, development, programming, business, it, technology, small business" /> <meta name="description" content="absolute x,y coordinates of an image?. Ask JavaScript / Ajax / DHTML questions and get answers from our community of JavaScript / Ajax / DHTML experts and professionals on BYTES." /> <link rel="canonical" href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image" />  <style type="text/css" id="vbulletin_css">
+/**
+* vBulletin 3.7.6 CSS
+* Style: 'bytes.answers'; Style ID: 18
+*/
+@import url("/clientscript/vbulletin_css/style-94eb1e9e-00018.css");
+</style> <link rel="stylesheet" type="text/css" href="/clientscript/vbulletin_important.css?v=376" />  <script type="text/javascript" src="/clientscript/yui/yahoo-dom-event/yahoo-dom-event.js?v=376"></script> <script type="text/javascript" src="/clientscript/yui/connection/connection-min.js?v=376"></script> <script type="text/javascript" src="/clientscript/navMenu.js"></script> <script type="text/javascript" src="/clientscript/CodeTags.js"></script> <script type="text/javascript"> <!--
+var SESSIONURL = "s=2523e6c05735aa4bfbc9e767d9b5967a&";
+var SECURITYTOKEN = "guest";
+var IMGDIR_MISC = "/images/misc";
+var vb_disable_ajax = parseInt("0", 10);
+window.onload = navMenuExp; 
+// --> </script> <script type="text/javascript" src="/clientscript/vbulletin_global.js?v=376"></script> <link rel="alternate" type="application/rss+xml" title="Bytes RSS Feed" href="/external.php?type=RSS2" /> <link rel="alternate" type="application/rss+xml" title="Bytes - answers - RSS Feed" href="/external.php?type=RSS2&amp;forumids=286" /> <script type="text/javascript" src="http://bytes.com/clientscript/helpfulanswers.js"></script> <script type="text/javascript" src="http://bytes.com/clientscript/vbulletin_post_loader.js?v=376"></script> <style type="text/css" id="vbulletin_showthread_css"> <!--
+	
+	#links div { white-space: nowrap; }
+	#links img { vertical-align: middle; }
+	--> </style> </head> <body> <div class="codeBlur" id="codeBlur">&nbsp;</div> <div class="codeAbs" id="codeAbs">&nbsp;</div> <div style="margin: 0px 0px 0px 0px; padding:0px 0px 0px 0px; background-color:#2A5DB0; width: 100%; z-index: 10; border-bottom: 3px solid #CCC;"> <table class="tempwrapper"> <tr> <td width="325px;"> <div > <ul id="navbar"> <li id="navbartitle"><a href="/topic/" id="channeltitle"><strong>All Topics</strong></a></li> <li id="channel"><a href='http://bytes.com/business/' id="channeltitle">Business</a><ul><li><a href='http://bytes.com/topic/careers/'>Careers and Education</a></li><li><a href='http://bytes.com/topic/consulting/'>Consulting</a></li><li><a href='http://bytes.com/topic/finance/'>Finance</a></li><li><a href='http://bytes.com/topic/management/'>Management</a></li><li><a href='http://bytes.com/topic/marketing/'>Marketing</a></li></ul></li><li id="channel"><a href='http://bytes.com/it/' id="channeltitle">IT</a><ul><li><a href='http://bytes.com/topic/apache/'>Apache Web Server</a></li><li><a href='http://bytes.com/topic/computer-hardware/'>Computer Hardware</a></li><li><a href='http://bytes.com/topic/cms/'>Content Management Systems</a></li><li><a href='http://bytes.com/topic/data-management/'>Data Management</a></li><li><a href='http://bytes.com/topic/desktop-software/'>Desktop Software</a></li><li><a href='http://bytes.com/topic/iis/'>IIS / Internet Information Server</a></li><li><a href='http://bytes.com/topic/macosx/'>Mac OS X</a></li><li><a href='http://bytes.com/topic/windows/'>Microsoft Windows / Windows 7 / Vista / XP</a></li><li><a href='http://bytes.com/topic/mobile/'>Mobile Phones and PDAs</a></li><li><a href='http://bytes.com/topic/networking/'>Networking - Hardware / Configuration</a></li><li><a href='http://bytes.com/topic/security/'>Security</a></li><li><a href='http://bytes.com/topic/unix/'>Unix / Linux / BSD</a></li><li><a href='http://bytes.com/topic/web-applications/'>Web Applications</a></li><li><a href='http://bytes.com/topic/windows-server/'>Windows Server 2003 / 2008</a></li></ul></li><li id="channel"><a href='http://bytes.com/development/' id="channeltitle">Development</a><ul><li><a href='http://bytes.com/topic/net/'>.NET Framework</a></li><li><a href='http://bytes.com/topic/apis/'>APIs</a></li><li><a href='http://bytes.com/topic/asp-classic/'>ASP / Active Server Pages</a></li><li><a href='http://bytes.com/topic/asp-net/'>ASP.NET</a></li><li><a href='http://bytes.com/topic/algorithms/'>Algorithms / Advanced Math</a></li><li><a href='http://bytes.com/topic/c/'>C / C++</a></li><li><a href='http://bytes.com/topic/c-sharp/'>C# / C Sharp</a></li><li><a href='http://bytes.com/topic/coldfusion/'>ColdFusion</a></li><li><a href='http://bytes.com/topic/db2/'>DB2 Database</a></li><li><a href='http://bytes.com/topic/flash/'>Flash / Actionscript</a></li><li><a href='http://bytes.com/topic/html-css/'>HTML / CSS</a></li><li><a href='http://bytes.com/topic/java/'>Java</a></li><li><a href='http://bytes.com/topic/javascript/'>JavaScript / Ajax / DHTML</a></li><li><a href='http://bytes.com/topic/access/'>Microsoft Access / VBA</a></li><li><a href='http://bytes.com/topic/sql-server/'>Microsoft SQL Server</a></li><li><a href='http://bytes.com/topic/mobile-development/'>Mobile Development</a></li><li><a href='http://bytes.com/topic/mysql/'>MySQL Database</a></li><li><a href='http://bytes.com/topic/oracle/'>Oracle Database</a></li><li><a href='http://bytes.com/topic/php/'>PHP</a></li><li><a href='http://bytes.com/topic/perl/'>Perl</a></li><li><a href='http://bytes.com/topic/postgresql/'>PostgreSQL Database</a></li><li><a href='http://bytes.com/topic/python/'>Python</a></li><li><a href='http://bytes.com/topic/ruby/'>Ruby / Ruby on Rails</a></li><li><a href='http://bytes.com/topic/software-development/'>Software Development</a></li><li><a href='http://bytes.com/topic/visual-basic-net/'>Visual Basic .NET</a></li><li><a href='http://bytes.com/topic/visual-basic/'>Visual Basic 4 / 5 / 6</a></li><li><a href='http://bytes.com/topic/xaml/'>XAML / WPF / Silverlight</a></li><li><a href='http://bytes.com/topic/xml/'>XML</a></li></ul></li> </ul> </div> </td> <td align="right"> <div id="login_box"> <ul> <li> <a href="/register/">sign up</a> </li> <li> <a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#" onclick="showlayer('login_menu')">login</a> </li> <div id="login_menu" style="display:none;"> <div id="new-user-col">new member:<br /><br /> <a href="/register/" class="green-button" rel="nofollow">Register</a> </div> <div id="signup-user-col">
+						member login:<br /><br /> <form action="http://bytes.com/login.php?do=login" method="post" onsubmit="md5hash(vb_login_password, vb_login_md5password, vb_login_md5password_utf, 0)"> <ul> <li> <label for="navbar_password">Email Address:</label> <input type="text" class="bginput" style="font-size: 9pt" name="vb_login_username" id="navbar_username" size="10" accesskey="u" tabindex="101"/> </li> <li> <label for="navbar_password">Password:</label> <input type="password" class="bginput" style="font-size: 9pt" name="vb_login_password" id="navbar_password" size="10" tabindex="102" /> </li> <input type="submit" class="button" value="Log in" tabindex="104" title="Enter your username and password in the boxes provided to login, or click the 'register' button to create a profile for yourself." accesskey="s" /> </ul> <input type="hidden" name="s" value="2523e6c05735aa4bfbc9e767d9b5967a" /> <input type="hidden" name="do" value="login" /> <input type="hidden" name="vb_login_md5password" /> <input type="hidden" name="vb_login_md5password_utf" /> <input type="hidden" name="cookieuser" value="1" /> </form> <br /> <a href="http://bytes.com/login.php?do=lostpw" rel="nofollow">lost password?</a> </div> <div class="spacer"></div> </div> </ul> </div> </td> </tr> </table> </div> <div style="margin: 5px 0px 5px 0px; padding:0px 0px 0px 0px; width: 100%; z-index: 10;"> <table class="tempwrapper"> <tr> <td align="left" width="140px;"> <A HREF="http://bytes.com"><IMG SRC="/images/logo4.gif" WIDTH="120px" HEIGHT="30px" BORDER="0" ALT="Connect with Expertise | Find Experts, Get Answers, Share Insights"></A> </td> <td align="left">  <form style="display:inline;" method="POST" action="/submit/question" name="ask_question"> <input type="hidden" name="topic" value="0" /> <input type="submit" value=" Ask your Question " name="ask_a_question" class="btn_hdr" title="Get help, ask your question now!"> </form> <form  style="display:inline;"  method="POST" action="/submit/insight" name="share_insight"> <input type="hidden" name="topic" value="0" /> <input type="submit" value=" Write an Article " name="share_an_insight" class="btn_hdr" title="Share your insights by writing an Article"> </form> <form  style="display:inline;"  method="POST" action="/experts" name="share_insight"> <input type="hidden" name="topic" value="0" /> <input type="submit" value=" Our Experts " name="share_an_insight" class="btn_expert" title="Find an Expert, Consultant "> </form>  </td> <td width="325px" align="right"> <form action="http://bytes.com/search.php" method="post" name="search"> <input type="hidden" name="do" value="process" /> <input type="hidden" name="showposts" value="0" /> <input type="hidden" name="quicksearch" value="1" /> <input type="hidden" name="forumchoice[]" value="" /> <input type="text" name="query" size="20" value="" onfocus="this.value=''" style="font-size: 17px; vertical-align: middle;"/> <input type="submit" value="Search" name="gobutton" style="font-size: 15px; height: 1.85em; vertical-align: middle;"> </form> </td> </tr> </table> </div>  <div class="navtable"> <div class="navbar_box"> <a href="/" accesskey="1">bytes</a> <span class="navbar">&gt; <a href="http://bytes.com/topic/javascript/">javascript / ajax / dhtml</a></span> <span class="navbar">&gt; <a href="http://bytes.com/topic/javascript/answers/">javascript / ajax / dhtml questions</a></span> </div> </div> <table class="maintable"> <tr> <td valign="top"> <h1 style="font-size: 15pt; padding: 0px 0px 5px 0px; margin-bottom: 10px; border-bottom: 1px solid #ccc;">absolute x,y coordinates of an image?</h1> <table border="0" cellspacing="0" cellpadding="0"> <tr> <td height="1000px" valign="top" width="745px">  <a name="poststop" id="poststop"></a>    <div style="margin-left: auto; margin-right: auto; margin-bottom: 8px;  margin-top: 0px; padding: 0px;" id="d_ad_1"> <div style="float:right; width: 1px; height: 90px; margin: 0px; padding: 0px;"></div> </div> <div style="clear:both;"></div> <div id="posts">  <div id="edit643637" style="padding:0px 0px 6px 0px">  <table class="tborder" id="post643637" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="margin-bottom: 10px; clear:both;"> <tr> <td class="alt2" style="padding:0px">  <table cellpadding="0" cellspacing="6" border="0" width="100%"> <tr> <td nowrap="nowrap"> <div id="postmenu_643637">
+					
+					laredotornado@zipmail.com
+					
+				</div> </td> <td width="100%">&nbsp;</td> <td valign="top" nowrap="nowrap"> <div style="line-height: 13px; font-size: 8pt; color: #999999;"> <div>
+						Posts: n/a
+					</div> <div> </div>  <div> <a name="post643637"></a>
+					#<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#post643637"  id="postcount643637" name="1" title="permalink">1</a>: 
+					
+						Oct 7 '05
+					
+					
+					</div> </div> </td> </tr> </table>  </td> </tr> <tr> <td class="alt1" id="td_post_643637">   <div id="post_message_643637"> <p style="margin-right: 75px;">	
+                 Hello,<br />
+Is it possible to find out the absolute coordinates of the upper<br />
+left corner of an image on my html page?  I need to use javascript to<br />
+overlay something next to it exactly 50 pixels to the right of it.<br /> <br />
+Much thanks for your help, - Dave<br /> <br /> </p> <div class="btn_share"> <p> <strong>Get more answers. </strong>
+Share this question on:
+</p> <a href="http://twitter.com/share?text=absolute+x%2Cy+coordinates+of+an+image%3F&amp;url=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;via=bytes" rel="nofollow" target="_blank"> Twitter</a> <a href="http://www.facebook.com/share.php?u=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;t=absolute+x%2Cy+coordinates+of+an+image%3F" rel="nofollow" target="_blank"> Facebook</a> <a href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;title=absolute+x%2Cy+coordinates+of+an+image%3F" rel="nofollow" target="_blank">StumbleUpon</a> <a href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;title=absolute+x%2Cy+coordinates+of+an+image%3F" rel="nofollow" target="_blank"> Digg</a> <!--VBSEO_BOOKMARKS--> </div> </div>   </td> </tr> </table> </div>  <br>  <div id="edit643791" style="padding:0px 0px 6px 0px">  <table class="tborder" id="post643791" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="margin-bottom: 10px; clear:both;"> <tr> <td class="alt2" style="padding:0px">  <table cellpadding="0" cellspacing="6" border="0" width="100%"> <tr> <td nowrap="nowrap"> <div id="postmenu_643791">
+					
+					michael elias
+					
+				</div> </td> <td width="100%">&nbsp;</td> <td valign="top" nowrap="nowrap"> <div style="line-height: 13px; font-size: 8pt; color: #999999;"> <div>
+						Posts: n/a
+					</div> <div> </div>  <div> <a name="post643791"></a>
+					#<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#post643791"  id="postcount643791" name="2" title="permalink">2</a>: 
+					
+						Oct 7 '05
+					
+					
+					</div> </div> </td> </tr> </table>  </td> </tr> <tr> <td class="alt1" id="td_post_643791">   <div> <h2 style="margin: 0px; padding: 0px; color: #a8a8a8; font-size: 9pt;">re: absolute x,y coordinates of an image?</h2> </div> <hr size="1" style="color:#eee; background-color: #eee;" />   <div id="post_message_643791"> <p style="margin-right: 75px;">	
+                 Sure:<br /> <br />
+function measureLeft(oElement){<br />
+var iLeft = oElement.offsetLeft;<br />
+var oParent = oElement.offsetParent;<br />
+while(oParent.nodeName != 'BODY'){<br />
+iLeft += oParent.offsetLeft;<br />
+oParent = oParent.offsetParent;<br />
+}<br />
+return iLeft;<br />
+}<br /> <br />
+function measureTop(oElement){<br />
+var iTop = oElement.offsetTop;<br />
+var oParent = oElement.offsetParent;<br />
+while(oParent.nodeName != 'BODY'){<br />
+iTop += oParent.offsetTop;<br />
+oParent = oParent.offsetParent;<br />
+}<br />
+return iTop;<br />
+}<br /> <br /> </p> </div>   </td> </tr> </table> </div>  <div id="edit643952" style="padding:0px 0px 6px 0px">  <table class="tborder" id="post643952" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="margin-bottom: 10px; clear:both;"> <tr> <td class="alt2" style="padding:0px">  <table cellpadding="0" cellspacing="6" border="0" width="100%"> <tr> <td nowrap="nowrap"> <div id="postmenu_643952">
+					
+					Matt Kruse
+					
+				</div> </td> <td width="100%">&nbsp;</td> <td valign="top" nowrap="nowrap"> <div style="line-height: 13px; font-size: 8pt; color: #999999;"> <div>
+						Posts: n/a
+					</div> <div> </div>  <div> <a name="post643952"></a>
+					#<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#post643952"  id="postcount643952" name="3" title="permalink">3</a>: 
+					
+						Oct 7 '05
+					
+					
+					</div> </div> </td> </tr> </table>  </td> </tr> <tr> <td class="alt1" id="td_post_643952">   <div> <h2 style="margin: 0px; padding: 0px; color: #a8a8a8; font-size: 9pt;">re: absolute x,y coordinates of an image?</h2> </div> <hr size="1" style="color:#eee; background-color: #eee;" />   <div id="post_message_643952"> <p style="margin-right: 75px;">	
+                 Note that the code below may fail under various conditions, such as IE<br />
+running in strict mode, or if there are scrollable elements such as DIVs<br />
+within the page.<br /> <br />
+See <a rel="nofollow" href="http://www.mattkruse.com/javascript/ObjectPositionTest.php" target="_blank">http://www.mattkruse.com/javascript/...sitionTest.php</a> for my<br />
+attempt at a more generalized position-finding function. It's not complete<br />
+yet, but is more reliable than the method used by most (like the one below).<br /> <br />
+michael elias wrote:[color=blue]<br />
+&gt; Sure:<br />
+&gt;<br />
+&gt; function measureLeft(oElement){<br />
+&gt;        var iLeft = oElement.offsetLeft;<br />
+&gt; var oParent = oElement.offsetParent;<br />
+&gt; while(oParent.nodeName != 'BODY'){<br />
+&gt; iLeft += oParent.offsetLeft;<br />
+&gt; oParent = oParent.offsetParent;<br />
+&gt; }<br />
+&gt; return iLeft;<br />
+&gt; }<br />
+&gt;<br />
+&gt; function measureTop(oElement){<br />
+&gt;        var iTop = oElement.offsetTop;<br />
+&gt; var oParent = oElement.offsetParent;<br />
+&gt; while(oParent.nodeName != 'BODY'){<br />
+&gt; iTop += oParent.offsetTop;<br />
+&gt; oParent = oParent.offsetParent;<br />
+&gt; }<br />
+&gt; return iTop;<br />
+&gt; }[/color]<br /> <br />
+(top-posted for easier reading)<br /> <br />
+--<br />
+Matt Kruse<br /> <a rel="nofollow" href="http://www.JavascriptToolbox.com" target="_blank">http://www.JavascriptToolbox.com</a><br /> <a rel="nofollow" href="http://www.AjaxToolbox.com" target="_blank">http://www.AjaxToolbox.com</a><br /> <br /> <br /> </p> </div>   </td> </tr> </table> </div>  <div id="edit644020" style="padding:0px 0px 6px 0px">  <table class="tborder" id="post644020" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="margin-bottom: 10px; clear:both;"> <tr> <td class="alt2" style="padding:0px">  <table cellpadding="0" cellspacing="6" border="0" width="100%"> <tr> <td nowrap="nowrap"> <div id="postmenu_644020">
+					
+					Gérard Talbot
+					
+				</div> </td> <td width="100%">&nbsp;</td> <td valign="top" nowrap="nowrap"> <div style="line-height: 13px; font-size: 8pt; color: #999999;"> <div>
+						Posts: n/a
+					</div> <div> </div>  <div> <a name="post644020"></a>
+					#<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#post644020"  id="postcount644020" name="4" title="permalink">4</a>: 
+					
+						Oct 8 '05
+					
+					
+					</div> </div> </td> </tr> </table>  </td> </tr> <tr> <td class="alt1" id="td_post_644020">   <div> <h2 style="margin: 0px; padding: 0px; color: #a8a8a8; font-size: 9pt;">re: absolute x,y coordinates of an image?</h2> </div> <hr size="1" style="color:#eee; background-color: #eee;" />   <div id="post_message_644020"> <p style="margin-right: 75px;">	
+                 michael elias a écrit :[color=blue]<br />
+&gt; Sure:<br />
+&gt;<br />
+&gt; function measureLeft(oElement){<br />
+&gt;         var iLeft = oElement.offsetLeft;<br />
+&gt; 	var oParent = oElement.offsetParent;<br />
+&gt; 	while(oParent.nodeName != 'BODY'){<br />
+&gt; 		iLeft += oParent.offsetLeft;<br />
+&gt; 		oParent = oParent.offsetParent;<br />
+&gt; 	}<br />
+&gt; 	return iLeft;<br />
+&gt; }<br />
+&gt;<br />
+&gt; function measureTop(oElement){<br />
+&gt;         var iTop = oElement.offsetTop;<br />
+&gt; 	var oParent = oElement.offsetParent;<br />
+&gt; 	while(oParent.nodeName != 'BODY'){<br />
+&gt; 		iTop += oParent.offsetTop;<br />
+&gt; 		oParent = oParent.offsetParent;<br />
+&gt; 	}<br />
+&gt; 	return iTop;<br />
+&gt; }<br />
+&gt;[/color]<br /> <br />
+This won't work in MSIE 6 if the image is absolutely positioned.<br /> <br />
+Gérard<br />
+--<br />
+remove blah to email me<br /> </p> </div>   </td> </tr> </table> </div>  <div id="edit644064" style="padding:0px 0px 6px 0px">  <table class="tborder" id="post644064" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="margin-bottom: 10px; clear:both;"> <tr> <td class="alt2" style="padding:0px">  <table cellpadding="0" cellspacing="6" border="0" width="100%"> <tr> <td nowrap="nowrap"> <div id="postmenu_644064">
+					
+					RobG
+					
+				</div> </td> <td width="100%">&nbsp;</td> <td valign="top" nowrap="nowrap"> <div style="line-height: 13px; font-size: 8pt; color: #999999;"> <div>
+						Posts: n/a
+					</div> <div> </div>  <div> <a name="post644064"></a>
+					#<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#post644064"  id="postcount644064" name="5" title="permalink">5</a>: 
+					
+						Oct 8 '05
+					
+					
+					</div> </div> </td> </tr> </table>  </td> </tr> <tr> <td class="alt1" id="td_post_644064">   <div> <h2 style="margin: 0px; padding: 0px; color: #a8a8a8; font-size: 9pt;">re: absolute x,y coordinates of an image?</h2> </div> <hr size="1" style="color:#eee; background-color: #eee;" />   <div id="post_message_644064"> <p style="margin-right: 75px;"> <a href="mailto:laredotornado@zipmail.com">laredotornado@zipmail.com</a> wrote:[color=blue]<br />
+&gt; Hello,<br />
+&gt;    Is it possible to find out the absolute coordinates of the upper<br />
+&gt; left corner of an image on my html page?  I need to use javascript to<br />
+&gt; overlay something next to it exactly 50 pixels to the right of it.<br />
+&gt;<br />
+&gt; Much thanks for your help, - Dave<br />
+&gt;[/color]<br /> <br />
+Everything you need is here:<br /> <br />
+&lt;URL:http://www.quirksmode.org/js/findpos.html&gt;<br /> <br /> <br />
+--<br />
+Rob<br /> </p> </div>   </td> </tr> </table> </div>  <div id="edit644119" style="padding:0px 0px 6px 0px">  <table class="tborder" id="post644119" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="margin-bottom: 10px; clear:both;"> <tr> <td class="alt2" style="padding:0px">  <table cellpadding="0" cellspacing="6" border="0" width="100%"> <tr> <td nowrap="nowrap"> <div id="postmenu_644119">
+					
+					Evertjan.
+					
+				</div> </td> <td width="100%">&nbsp;</td> <td valign="top" nowrap="nowrap"> <div style="line-height: 13px; font-size: 8pt; color: #999999;"> <div>
+						Posts: n/a
+					</div> <div> </div>  <div> <a name="post644119"></a>
+					#<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#post644119"  id="postcount644119" name="6" title="permalink">6</a>: 
+					
+						Oct 8 '05
+					
+					
+					</div> </div> </td> </tr> </table>  </td> </tr> <tr> <td class="alt1" id="td_post_644119">   <div> <h2 style="margin: 0px; padding: 0px; color: #a8a8a8; font-size: 9pt;">re: absolute x,y coordinates of an image?</h2> </div> <hr size="1" style="color:#eee; background-color: #eee;" />   <div id="post_message_644119"> <p style="margin-right: 75px;">	
+                 RobG wrote on 08 okt 2005 in comp.lang.javascript<b></b>:[color=blue]<br />
+&gt; Everything you need is here:<br />
+&gt;<br />
+&gt;     &lt;URL:http://www.quirksmode.org/js/findpos.html&gt;[/color]<br /> <br />
+All you need is love?<br /> <br />
+--<br />
+Evertjan.<br />
+The Netherlands.<br />
+(Replace all crosses with dots in my emailaddress)<br /> <br /> </p> </div>   </td> </tr> </table> </div>  <div id="edit644261" style="padding:0px 0px 6px 0px"> <table class="tborder" id="post644261" cellpadding="6" cellspacing="1" border="0" width="100%" align="center" style="margin-bottom: 10px; clear:both;"> <tr> <td class="alt2" style="padding:0px">  <table cellpadding="0" cellspacing="6" border="0" width="100%"> <tr> <td nowrap="nowrap"> <div id="postmenu_644261">
+					
+					laredotornado@zipmail.com
+					
+				</div> </td> <td width="100%">&nbsp;</td> <td valign="top" nowrap="nowrap"> <div style="line-height: 13px; font-size: 8pt; color: #999999;"> <div>
+						Posts: n/a
+					</div> <div> </div>  <div> <a name="post644261"></a>
+					#<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image#post644261"  id="postcount644261" name="7" title="permalink">7</a>: 
+					
+						Oct 8 '05
+					
+					
+					</div> </div> </td> </tr> </table>  </td> </tr> <tr> <td class="alt1" id="td_post_644261">   <div> <h2 style="margin: 0px; padding: 0px; color: #a8a8a8; font-size: 9pt;">re: absolute x,y coordinates of an image?</h2> </div> <hr size="1" style="color:#eee; background-color: #eee;" />   <div id="post_message_644261"> <p style="margin-right: 75px;">	
+                 Sadly, this doesn't work for me on IE 6.0 (Win 2000).  IE always<br />
+returns 0 when I call findPosX(document.getElementById('navImg'));<br /> <br />
+Is my HTML formatted incorrectly?<br /> <br />
+&lt;tr&gt;<br />
+&lt;td&gt;&lt;img id=&quot;navImg&quot; name=&quot;navImg&quot; src=&quot;images/NAV_07.gif&quot; alt=&quot;&quot;<br />
+border=&quot;0&quot;&gt;&lt;/td&gt;<br /> <br />
+&lt;td&gt;<br /> <br />
+Andt he JS is use is<br /> <br />
+function calculateLeftCoords() {<br />
+leftPos = findPosX(document.getElementById('navImg')) + 45;<br /> <br />
+Any help is appreciated, - Dave<br /> <br /> </p> </div>   </td> </tr> </table> </div>  <div id="lastpost"></div> </div>    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:-3px"> <tr valign="top"> </tr> </table>   <br /> <div class="smallfont" align="center"> <strong>&laquo;</strong> <a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image/prev">previous question</a>
+			|
+			<a href="http://bytes.com/topic/javascript/answers/166430-absolute-x-y-coordinates-image/next">next question</a> <strong>&raquo;</strong> </div>     <table cellpadding="0" cellspacing="0" border="0" width="100%" align="center"> <tr valign="bottom"> <td width="100%" valign="top"> </td> <td class="smallfont" align="right"> <table cellpadding="0" cellspacing="0" border="0"> <tr> <td> </td> </tr> </table> </td> </tr> </table>  <br /> <div class="similar"> <h3>Similar topics</h3> <ul> <li> <a href="http://bytes.com/topic/javascript/answers/741011-math-coordinates" title="Hi all, 
+ 
+I've got a bit of a challenge. I've got a script which displays the mouse coodinates if you click on an image. Now I would like to convert...">Math with coordinates</a> <span> ( <a href="http://bytes.com/topic/javascript/answers/">JavaScript / Ajax / DHTML answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/net/answers/645830-getting-x-y-coordinates-picturebox-image" title="I have a picturebox on my C# .NET form. The picturebox size mode is set to 
+zoom. I then load an image into that form and display it. As the user...">Getting the x:y coordinates of the PictureBox Image</a> <span> ( <a href="http://bytes.com/topic/net/answers/">.NET Framework answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/javascript/answers/527139-x-y-coordinates-input-type-image" title="QUESTION: 
+I have a web page containing a form that contains an image instead of a 
+submit button, e.g. 
+&lt;form name='myform' action='get'...">x,y coordinates from an &lt;input type='image'&gt;</a> <span> ( <a href="http://bytes.com/topic/javascript/answers/">JavaScript / Ajax / DHTML answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/c-sharp/answers/463397-how-get-coordinates-node-treeview" title="I'm trying to implement a custom TreeView that shows a ghost image while 
+dragging.  But the form I'm using is different from the sample code found...">How to get coordinates of node in TreeView?</a> <span> ( <a href="http://bytes.com/topic/c-sharp/answers/">C# / C Sharp answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/visual-basic-net/answers/379428-get-mouse-coordinates-image-picturebox" title="I have a picturebox on my VB.NET form. The picturebox size mode is set to 
+stretched. I then load an image into that form and display it. As the user...">Get Mouse coordinates of Image in PictureBox</a> <span> ( <a href="http://bytes.com/topic/visual-basic-net/answers/">Visual Basic .NET answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/c-sharp/answers/224386-coordinates-panel-image" title="Hi, 
+ 
+I'm using a panel to show an image. 
+The Image could be bigger or smaller than the panel. 
+I want to show the pixel coordinates of the image...">coordinates in panel and image</a> <span> ( <a href="http://bytes.com/topic/c-sharp/answers/">C# / C Sharp answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/javascript/answers/145203-coordinates-divs-tables-without-absolute-positioning" title="I want to implement drag and drop for tables, divs, spans. The problem is 
+that I don't know how wide or long my tables, divs and spans are going to...">Coordinates of divs and tables without absolute positioning?</a> <span> ( <a href="http://bytes.com/topic/javascript/answers/">JavaScript / Ajax / DHTML answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/javascript/answers/145525-capturing-client-side-image-coordinates" title="I'm using my browser (Mozilla/5.0 Linux i686 Gecko/20031007 Firebird/0.7) 
+to do some client-side image processing. I want to capture the sequence of...">Capturing client-side image coordinates</a> <span> ( <a href="http://bytes.com/topic/javascript/answers/">JavaScript / Ajax / DHTML answers</a> ) </span> </li> <li> <a href="http://bytes.com/topic/javascript/answers/89632-relative-absolute-position" title="Here's my situation.  I have a statically positioned table that has an image 
+in a cell.  I also have some layers, defined by absolute-positioned...">Relative Absolute Position</a> <span> ( <a href="http://bytes.com/topic/javascript/answers/">JavaScript / Ajax / DHTML answers</a> ) </span> </li> </ul> </div>   </td> <td width="12" class="spacer"></td> <td width="180px" height="1000px" valign="top"> <img src="/images/sidecolumn.gif" width="180px" height="1px" border="0" style="margin: 0px; padding: 0px;"> <div style="margin-left: auto; margin-right: auto; margin-bottom: 8px;  margin-top: 0px; padding: 0px;" id="d_ad_4"> <div style="float:right; width: 1px; height: 90px; margin: 0px; padding: 0px;"></div> </div> <div style="clear:both;"></div> <div class="navbox"> <h3>More</h3> <ul> <li><a href="/answers/">Latest Questions</a></li> <li><a href="/insights/">Latest Expert Insights</a></li> <li><a href="/faq.php">Need Help with Bytes? (FAQ)</a></li> </ul> <div style="clear:both"></div> </div>   </td> </tr> </table> </td> </tr> </table> <table class="maintable footer"> <tr> <td>
+	
+	 Copyright 1995-2010 BYTES. All rights Reserved 
+<A HREF="/about_us.html">About Bytes</A> | <a href="/faq.php">Help</a> <br /> <a href="/topic/">Latest Expert Topics</a> | <a href="/tags/">Popular Tags</a> <br /> <a href="/sitemap/">Sitemap</a> 
+
+ | <a href="/sitemap/f-286.html">JavaScript / Ajax / DHTML Answers Sitemap</a> | <a href="/sitemap/f-287.html">JavaScript / Ajax / DHTML Insights Sitemap</a> <div class="smallfont" align="center">   </div> </td> </tr> </table> <script type="text/javascript"> <!--
+	// Main vBulletin Javascript Initialization
+	vBulletin_init();
+//--> </script> <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script> <script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-90111-7");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>  <div id="h_ad_1" style="display: none; margin-left:auto; margin-right: auto; padding: 0px; margin-top: 0px; margin-bottom:0px;">  <script language="javascript"  type="text/javascript"> <!--
+var browName = navigator.appName;
+var SiteID = 1;
+var ZoneID = 1;
+var browDateTime = (new Date()).getTime();
+var Keywords = escape('development,javascript,answers');
+if (browName=='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://please-support.bytes.com/a.aspx?ZoneID=' + ZoneID + '&amp;Task=Get&amp;IFR=False&amp;Browser=NETSCAPE4&amp;PageID=65924&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime  + '&amp;Keywords=' + Keywords  + '">'); document.write('</'+'scr'+'ipt>');
+}
+if (browName!='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://please-support.bytes.com/a.aspx?ZoneID=' + ZoneID + '&amp;Task=Get&amp;IFR=False&amp;PageID=65924&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime  + '&amp;Keywords=' + Keywords  + '">'); document.write('</'+'scr'+'ipt>');
+}
+// --> </script> <noscript> <a href="http://please-support.bytes.com/a.aspx?ZoneID=1&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=65924&amp;Keywords=development,javascript,answers" target="_blank"> <img src="http://please-support.bytes.com/a.aspx?ZoneID=1&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&amp;PageID=65924&amp;Keywords=development,javascript,answers" width="728" height="90" border="0"  alt=""></a> </noscript>  </div> <div id="h_ad_4" style="display: none; margin-left:auto; margin-right: auto; padding: 0px; margin-top: 0px; margin-bottom:0px;">  <script language="javascript"  type="text/javascript"> <!--
+var browName = navigator.appName;
+var SiteID = 1;
+var ZoneID = 4;
+var browDateTime = (new Date()).getTime();
+var Keywords = escape('development,javascript,answers');
+if (browName=='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://please-support.bytes.com/a.aspx?ZoneID=' + ZoneID + '&amp;Task=Get&amp;IFR=False&amp;Browser=NETSCAPE4&amp;PageID=70841&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime  + '&amp;Keywords=' + Keywords  + '">'); document.write('</'+'scr'+'ipt>');
+}
+if (browName!='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://please-support.bytes.com/a.aspx?ZoneID=' + ZoneID + '&amp;Task=Get&amp;IFR=False&amp;PageID=70841&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime  + '&amp;Keywords=' + Keywords  + '">'); document.write('</'+'scr'+'ipt>');
+}
+// --> </script> <noscript> <a href="http://please-support.bytes.com/a.aspx?ZoneID=1&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=65924&amp;Keywords=development,javascript,answers" target="_blank"> <img src="http://please-support.bytes.com/a.aspx?ZoneID=1&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&amp;PageID=65924&amp;Keywords=development,javascript,answers" width="728" height="90" border="0"  alt=""></a> </noscript>  </div> <script type="text/javascript">
+
+                    window.orig_onload2 = window.onload;
+window.onload = function() {
+
+
+document.getElementById('d_ad_1').appendChild(document.getElementById('h_ad_1'));
+document.getElementById('h_ad_1').style.display = '';
+
+
+document.getElementById('d_ad_4').appendChild(document.getElementById('h_ad_4'));
+document.getElementById('h_ad_4').style.display = '';
+
+
+
+
+
+
+if(typeof window.orig_onload2 == "function") window.orig_onload2();
+}
+
+		</script> <div class="vbmenu_popup" id="linkbacktools_menu" style="display:none"> <table cellpadding="4" cellspacing="1" border="0"> <tr> <td class="thead">LinkBack<a name="goto_linkback"></a></td> </tr> <tr> <td class="vbmenu_option"><img class="inlineimg" src="http://bytes.com/images/vbseo/linkback_url.gif" alt="LinkBack URL" /> <a href="http://bytes.com/" onclick="prompt('Use the following URL when referencing this thread from another forum or blog.','');return false;">LinkBack URL</a></td> </tr> <tr> <td class="vbmenu_option"><img class="inlineimg" src="http://bytes.com/images/vbseo/linkback_about.gif" alt="About LinkBacks" /> <a href="http://bytes.com/misc.php?do=linkbacks">About LinkBacks</a></td> </tr> <tr> <td class="thead">Bookmark &amp; Share</td> </tr> <div><img class="inlineimg" src="http://bytes.com/images/vbseo/twitter.png" alt="Twitter" /> <a href="http://twitter.com/share?text=absolute+x%2Cy+coordinates+of+an+image%3F&amp;url=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;via=bytes" target="_blank">Twitter</a><a name="vbseodm_0"></a></div><div><img class="inlineimg" src="http://bytes.com/images/vbseo/facebook.gif" alt="Facebook" /> <a href="http://www.facebook.com/share.php?u=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;t=absolute+x%2Cy+coordinates+of+an+image%3F" target="_blank">Facebook</a><a name="vbseodm_1"></a></div><div><img class="inlineimg" src="http://bytes.com/images/vbseo/icon_su.gif" alt="StumbleUpon" /> <a href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;title=absolute+x%2Cy+coordinates+of+an+image%3F" target="_blank">StumbleUpon</a><a name="vbseodm_2"></a></div><div><img class="inlineimg" src="http://bytes.com/images/vbseo/digg.gif" alt="Digg" /> <a href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fbytes.com%2Ftopic%2Fjavascript%2Fanswers%2F166430-absolute-x-y-coordinates-image&amp;title=absolute+x%2Cy+coordinates+of+an+image%3F" target="_blank">Digg</a><a name="vbseodm_3"></a></div> </table> </div> 
+<script type="text/javascript">
+
+window.orig_onload = window.onload;
+window.onload = function() {
+var cpost=document.location.hash;if(cpost){ if(cobj = fetch_object(cpost.substring(1,cpost.length)))cobj.scrollIntoView(true);else {cpostno = cpost.substring(5,cpost.length);if(parseInt(cpostno)>0 && (cpost.substring(1,5)=='post')){location.replace('http://bytes.com/showthread.php?p='+cpostno);};} }
+
+if(typeof window.orig_onload == "function") window.orig_onload();
+}
+
+</script>
+</body> </html>

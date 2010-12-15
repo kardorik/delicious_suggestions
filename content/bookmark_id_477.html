@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Born Geek   &raquo; Firefox Toolbar Tutorial</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Jonah Bishop" />
+	<meta name="copyright" content="Copyright (c) 2004-2010 Jonah Bishop" />
+	<meta name="robots" content="index,follow" />
+	
+	<link rel="stylesheet" href="http://www.borngeek.com/wp-content/themes/clean-red/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="http://www.borngeek.com/wp-content/themes/clean-red/extended.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="http://www.borngeek.com/wp-content/themes/clean-red/print.css" type="text/css" media="print" />
+
+	<link rel="alternate" type="application/rss+xml" title="Born Geek RSS Feed" href="http://www.borngeek.com/feed/" />
+	<link rel="pingback" href="http://www.borngeek.com/xmlrpc.php" />
+</head>
+
+
+<body>
+
+<div id="wrapper">
+
+<p class="hidden"><a href="#content">Skip to main content</a></p>
+
+<div id="header">
+	<a href="http://www.borngeek.com/" title="Born Geek"><img src="/images/bg-logo.png" alt="Born Geek" height="90" width="350" /></a>
+</div>
+<div id="search-area">
+	<form id="searchform" method="get" action="http://www.borngeek.com/">
+		<div>
+		<input type="text" name="s" id="s" />
+		<input type="submit" name="submit" value="Search" id="go-button" />
+		</div>
+	</form>
+</div>
+
+<div id="navbar">
+	<ul>
+		<li><a  href="/">Home</a></li>
+		<li><a class="current" href="/firefox/">Firefox</a></li>
+		<li><a  href="/software/">Software</a></li>
+		<li><a  href="/code/">Code</a></li>
+		<li><a  href="/contact/">Contact</a></li>
+		<li><a  href="/about/">About</a></li>
+		<li><a href="http://blog.borngeek.com/">Blog</a></li>
+	</ul>
+</div>
+
+
+<div id="content" class="article">
+<h1 class="pagetitle">Firefox Toolbar Tutorial</h1>
+<p>This tutorial explains how to create a toolbar extension for the <a href="http://www.mozilla.com/firefox/">Firefox</a> web browser (specifically for version 1.5 and later). It provides an overview of how extensions are developed, the tools required to create an extension, and  details on how toolbars are created. Please note that this tutorial is lengthy; I recommend spending time with it over the course of a few days (it makes for a good weekend read).</p>
+<p>Extension development isn&#8217;t difficult, although some basic programming knowledge is required. There are three basic areas I recommend that you should be somewhat familiar with: <acronym title="Extensible Markup Language">XML</acronym>, JavaScript, and <acronym title="Cascading Style Sheets">CSS</acronym>. None of these topics are difficult to pick up, and there are a number of excellent tutorials on each around the web (I will highlight some as we continue).</p>
+<h2>Table of Contents</h2>
+<div id="table-of-contents">
+<div class="col-left">
+<h4><a href="/firefox/toolbar-tutorial/chapter-1/">Chapter 1: Getting Started</a></h4>
+<ul>
+<li>Before We Start</li>
+<li>Tools You Will Need</li>
+<li>File Structure Layout</li>
+</ul>
+<h4><a href="/firefox/toolbar-tutorial/chapter-2/">Chapter 2: Creating the Framework</a></h4>
+<ul>
+<li>Installer Manifest</li>
+<li>Chrome Manifest</li>
+</ul>
+<h4><a href="/firefox/toolbar-tutorial/chapter-3/">Chapter 3: Structuring the Toolbar</a></h4>
+<ul>
+<li>The Toolbox and Toolbar</li>
+<li>Toolbar Buttons</li>
+<li>Drop Down Edit Box</li>
+<li>Resizing Gripper</li>
+</ul>
+<h4><a href="/firefox/toolbar-tutorial/chapter-4/">Chapter 4: Dynamic Development</a></h4>
+<ul>
+<li>A Word of Warning</li>
+<li>How to Develop Dynamically</li>
+<li>The Development Process</li>
+</ul>
+<h4><a href="/firefox/toolbar-tutorial/chapter-5/">Chapter 5: Skinning the Toolbar</a></h4>
+<ul>
+<li>Updating the File Structure</li>
+<li>Updating the Chrome Manifest</li>
+<li>Creating the Image Files</li>
+<li>Applying the Images with CSS</li>
+<li>Using the Style Sheet</li>
+</ul>
+</div>
+<div class="col-right">
+<h4><a href="/firefox/toolbar-tutorial/chapter-6/">Chapter 6: Scripting the Toolbar</a></h4>
+<ul>
+<li>Tying XUL to JavaScript</li>
+<li>Adding Functionality to the Buttons</li>
+<li>Adding Functionality to the Search Box</li>
+<li>Dynamically Populating a Menu</li>
+<li>Dynamically Adding Toolbar Buttons</li>
+<li>Disabling and Enabling Buttons</li>
+<li>Dynamically Showing and Hiding Buttons</li>
+<li>Reading and Storing User Preferences</li>
+</ul>
+<h4><a href="/firefox/toolbar-tutorial/chapter-7/">Chapter 7: Packaging the Toolbar</a></h4>
+<ul>
+<li>Updating the Chrome Manifest</li>
+<li>Creating the JAR File</li>
+<li>Creating the XPI File</li>
+<li>Test Installing Your Extension</li>
+<li>Speeding Up the Packaging Process</li>
+<li>Ant Support</li>
+</ul>
+<h4><a href="/firefox/toolbar-tutorial/chapter-8/">Chapter 8: Testing Our Extension</a></h4>
+<ul>
+<li>What to Do if Firefox Breaks</li>
+<li>Useful Browser Settings</li>
+<li>Logging to the JavaScript Console</li>
+<li>Logging to the Standard Console</li>
+<li>The DOM Inspector</li>
+</ul>
+</div>
+<div class="spacer">&nbsp;</div>
+</div>
+
+
+</div> <!-- End content -->
+
+
+<div id="footer">
+Copyright &copy; 2004 - 2010 Jonah Bishop.<br />
+<a href="http://validator.w3.org/check/referer" title="This page validates as XHTML 1.0 Strict">XHTML</a>, <a href="http://jigsaw.w3.org/css-validator/check/referer" title="This page uses valid Cascading Style Sheets">CSS</a>. Happily Hosted by <a href="http://www.dreamhost.com/r.cgi?69883">DreamHost</a>. Powered by <a href="http://wordpress.org/">WordPress</a>.
+</div>
+
+</div> <!-- End of wrapper -->
+
+</body>
+</html>
+

@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+<title>JavaScript - Find position</title>
+<link rel="stylesheet" href="../quirksmode.css" />
+<link rel="up" href="contents.html" />
+<link rel="intro" href="introdh.html" />
+<script type="text/javascript" src="../quirksmode.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+
+<h2>Find position</h2>
+
+<div id="header"></div>
+
+<div class="floater">
+<p>See section 9G of <a href="/book/">the book</a>. However, the script on this page is a newer version
+than the one in the book, and it's supposed to work better than the old one.</p>
+</div>
+
+<div id="testlayer">The test layer</div>
+
+<p class="intro">On this page I give the necessary code to find out where an element
+is on the page. This script finds the <em>real</em> position, so if you resize the page
+and run the script again, it points to the correct new position of the element.</p>
+
+<h3>offset</h3>
+
+<p>In all browsers it's necessary to use the <code>offsetTop</code> and <code>offsetLeft</code>
+of the element. These properties give the coordinates relative to the <code>offsetParent</code>
+of the element.</p>
+
+<p>The script moves up the tree of <code>offsetParent</code>s and adds the <code>offsetTop</code> and <code>offsetLeft</code>
+of each. Eventually, regardless of the actual composition of the <code>offsetParent</code> tree, this
+leads to the real coordinates of the element on the screen.</p>
+
+<p>See the <a href="/dom/w3c_cssom.html#offsetParent">W3C CSS Object Model Table</a> for a further
+explanation and a test case.</p>
+
+<h3>Explanation</h3>
+
+<p>The script is very simple. Hand it the object whose position should be calculated and
+set the variables <code>curleft</code> and <code>curtop</code> to 0:</p>
+
+<pre>
+function findPos(obj) {
+	var curleft = curtop = 0;
+</pre>
+
+<p>If the browser supports <code>offsetParent</code> we proceed.</p>
+
+<pre>
+	if (obj.offsetParent) {
+</pre>
+
+<p>Every time we find a new object, we add its <code>offsetLeft</code> and <code>offsetTop</code>
+to <code>curleft</code> and <code>curtop</code>.</p>
+
+<pre>
+	do {
+			curleft += obj.offsetLeft;
+			curtop += obj.offsetTop;
+</pre>
+
+<h4>The tricky bit: return value of the <code>=</code> operator</h4>
+
+<p>Now we get to the tricky bit:</p>
+
+<pre>
+		} while (obj = obj.offsetParent);
+</pre>
+
+<p>No, this is not a syntax error. I don't want to use <code>==</code> to compare <code>obj</code>
+to <code>obj.offsetParent</code> (that doesn't make sense anyhow, since an element is never equal
+to its <code>offsetParent</code>).</p>
+
+<p>Instead, I use the <code>=</code> assignment operator to change the value of <code>obj</code> to
+<code>obj.offsetParent</code>. I explain this trick in more detail in <a href="/blog/archives/2008/01/using_the_assig.html">this blog post</a>.</p>
+
+
+<h4>The simple bits</h4>
+
+<p>The loop continues until the object currently being investigated does not have an <code>offsetParent</code>
+any more. While the <code>offsetParent</code> is still there, it still adds the <code>offsetLeft</code> of the
+object to <code>curleft</code>, and the <code>offsetTop</code> to <code>curtop</code>.</p>
+
+<p>Finally, when the <code>while</code> loop has quit, we return an array with the calculated coordinates to
+whichever script asked for it.</p>
+
+<pre>
+	return [curleft,curtop];
+}
+</pre>
+
+<div id="footer"><a href="/home.html">Home</a> <a href="/sitemap.html">Sitemap</a>
+
+</div>
+
+
+</body>
+</html>

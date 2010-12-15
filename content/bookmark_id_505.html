@@ -1,0 +1,706 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><!-- Welcome to some of the ugliest HTML ever!!! -->
+<meta content="en-us" http-equiv="Content-Language"><meta content="text/html" http-equiv="Content-Type"> 
+<meta content="Irongeek, Iron geek, vulnerabilities, hacking, hacker, zaurus, articles, tutorials" name="keywords"> 
+<meta content="Irongeek's Information Security site with tutorials, articles and other information." name="description">
+<meta content="Irongeek.com" name="author"> <meta content="Irongeek.com" name="copyright">
+<style type="text/css">
+/*I got the idea and main code for the tabs from EXPLODING-BOY.COM */
+body {
+margin:0;
+padding:0;
+font: bold 11px/1.5em Verdana;
+}
+h2 {
+font: bold 14px Verdana, Arial, Helvetica, sans-serif;
+color: #000;
+/* margin: 0px; */
+padding: 0px 0px 0px 15px;
+}
+img {
+border: none;
+} 
+/*- Menu Tabs 1--------------------------- */ 
+#tabs1 {
+width:100%;
+background:#58D60D;
+font-size:75%;
+font-weight: bold;
+line-height:normal;
+border-bottom:0px solid #BCD2E6;
+}
+#tabs1 ul {
+margin:0;
+padding:0px 0px 0 0px;
+list-style:none;
+}
+#tabs1 li {
+float:center;
+display:inline;
+margin:0;
+padding:0;
+}
+#tabs1 a {
+float:left;
+background:url("images/css/tableft1.gif") no-repeat left top;
+margin:0;
+padding:0 0 0 4px;
+text-decoration:none;
+A { text-decoration:none }
+}
+#tabs1 a span {
+float:center;
+display:block;
+background:url("images/css/tabright1.gif") no-repeat right top;
+padding:5px 15px 4px 6px;
+color:#009900;
+}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#tabs1 a span {float:none;}
+/* End IE5-Mac hack */
+#tabs a:hover span {
+color:#00aa00;
+}
+#tabs1 a:hover {
+background-position:0% -42px;
+}
+#tabs1 a:hover span {
+background-position:100% -42px;
+}
+</style><style type="text/css">
+.adHeadline {font: bold 8pt Arial; text-decoration: underline; color: #2BA94F;}
+.adText {font: normal 8pt Arial; text-decoration: none; color: #000000;}
+</style><style type="text/css">
+.adHeadline {font: bold 8pt Arial; text-decoration: underline; color: #2BA94F;}
+.adText {font: normal 8pt Arial; text-decoration: none; color: #000000;}
+</style></head>
+<body style="background-color: rgb(0, 0, 0);" link="#008000" vlink="#002000"><div align="center"><center><p></p>
+<table style="border-collapse: collapse;" bgcolor="#ffffff" border="0" bordercolor="#000000" cellpadding="12" cellspacing="0">
+<tbody> <tr> 
+<td colspan="2"> <a href="http://www.irongeek.com/">
+<!-- <img src="images/topcornermascot-90.png" align="left" border="0" > -->
+<img src="http://irongeek.com/sigs/logo.php" align="left" border="0" >
+</a>
+<div align="left"> <div align="center"> 
+
+
+
+
+<table width="75%">
+<TR>
+<TD align="center">
+<!-- temp section for banners and such -->
+
+</TD><TD align="center">
+
+<small>Help Irongeek.com pay for <BR>bandwidth and research equipment:</small><br>
+<!--------- Donation Code -------------------------->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="irongeek@irongeek.com">
+<input type="hidden" name="item_name" value="Irongeek's Website Bandwidth &amp; Research Fund">
+<input type="hidden" name="buyer_credit_promo_code" value="">
+<input type="hidden" name="buyer_credit_product_category" value="">
+<input type="hidden" name="buyer_credit_shipping_method" value="">
+<input type="hidden" name="buyer_credit_user_address_change" value="">
+<input type="hidden" name="no_shipping" value="0">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="tax" value="0">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="bn" value="PP-DonationsBF">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</TD><TD align="right">
+Web Hosting By:
+</font></b><br> <a href="http://www.dreamhost.com/r.cgi?155413"> <img src="images/dreamhost.gif" border="0"></a>
+
+
+</TD></TR></TABLE>
+
+
+</div></div>
+</td></tr>
+<tr>
+<td  colspan="2"  bgcolor="#58D60D" STYLE="background-image: 
+     url('images/tile_back.gif'); background-repeat:repeat-y;">
+<center>
+<!-- Begin Google Ads -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-3256770407637090";
+//Link Bar
+google_ad_slot = "4488811736";
+google_ad_width = 728;
+google_ad_height = 15;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<!-- End Google Ads -->
+<P>
+<div id="tabs1" >
+<ul>
+<li><a href="i.php"><span>Irongeek Security</span></a></li>
+<li><a href="i.php?page=security/hackingillustrated"><span>Hacking Illustrated Videos</span></a></li>
+<li><a href="i.php?page=security/security"><span>InfoSec Articles</span></a></li>
+<li><a href="i.php?page=mobile-device-hacking"><span>Mobile Pen-testing Tools</span></a></li>
+<li><a href="i.php?page=security/code"><span>Apps/Scripts</span></a></li>
+<li><a href="i.php?page=reviews/reviews"><span>Reviews</span></a></li>
+<li><a href="http://feedproxy.google.com/IrongeeksSecuritySite"><span><img src="/images/rss.png" valign="middle">RSS</span></a></li>
+<li><a href="browserinfo.php"><span>Your IP</span></a></li>
+<li><a href="security-podcasts.php"><span>Podcasts</span></a></li>
+<li><a href="i.php?page=hoosier"><span>Hoosier Hackers</span></a></li>
+<li><a href="newscat.php"><span>Newscat</span></a></li>
+<li><a href="i.php?page=links"><span>Links</span></a></li>
+<li><a href="i.php?page=contact"><span>Contact</span></a></li>
+<li><a href="i.php?page=forum/index"><span>Forums</span></a></li>
+<li><a href="i.php?page=workout/workout"><span>Workout</span></a></li>
+<li><a href="i.php?page=fitness/nutrition"><span>Nutrition</span></a></li>
+<li><a href="i.php?page=fitness/supplements"><span>Supplements</span></a></li>
+<li><a href="i.php?page=humor/humor"><span>Humor</span></a></li>
+<li><a href="i.php?page=advertise"><span>Advertise</span></a></li>
+<li><a href="i.php?page=hire-adrian-for-security-or-tech-work-in-louisville-or-southern-indiana-kentuckiana"><span>Hire Me</span></a></li>
+<li><a href="i.php?page=campuses-that-use-irongeek-for-teaching-infosec-in-higher-education"><span>Irongeek Campuses</span></a></li>
+<li><a href="fed-watch.php"><span>Fed Watch</span></a></li>
+<li><a href="i.php?page=books"><span>Books</span></a></li>
+<li><a href="http://www.printfection.com/irongeek/"><span>Store</span></a></li>
+<li><a href="i.php?page=about"><span>About</span></a></li>
+</ul>
+</div>
+</td></tr> <tr> <td valign="top" width="100" bgcolor="#58D60D" STYLE="background-image: 
+     url('images/tile_back.gif'); background-repeat:repeat-y;">
+<br>Sponsored by:<br>
+<a href="http://www.sans.org/info/34248"><img border="0" width="100" src="/images/buttons/sanslogo.png"></A>
+<p>
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="_top">
+<table border="0" bgcolor="#ffffff">
+<tr><td nowrap="nowrap" valign="top" align="left" " height="32">
+<a href="http://www.google.com/">
+<img src="http://www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+<br/>
+<input type="hidden" name="domains" value="irongeek.com"></input>
+<label for="sbi" style="display: none">Enter your search terms</label>
+<input type="text" name="q" size="10" maxlength="255" value="" id="sbi"></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" id="ss0"></input>
+<label for="ss0" title="Search the Web"><font size="-1" color="#000000">Web</font></label></td>
+<td>
+<input type="radio" name="sitesearch" value="irongeek.com" checked id="ss1"></input>
+ <label for="ss1" title="Search irongeek.com"><font size="-1" color="#000000">IG</font></label> </td>
+</tr>
+</table>
+<label for="sbb" style="display: none">Submit search form</label>
+<input type="submit" name="sa" value="Search" id="sbb"></input>
+<input type="hidden" name="client" value="pub-3256770407637090"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#003324;GL:1;DIV:#80FF00;VLC:FF6600;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:000000;LC:000000;T:330033;GFNT:333300;GIMP:333300;LH:50;LW:48;L:http://irongeek.com/images/topcornermascot-90.png;S:http://;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!--  End SiteSearch Google -->
+Affiliates:<br>
+<a href="http://www.isdpodcast.com/"><img src="images/buttons/isdpodcast.png" border="0" height="31" width="88"></a><br>
+<a href="http://www.hackermedia.org/"><img src="images/buttons/hackermedia-linkbox.gif" border="0" height="31" width="88"></a><br>
+<a href="http://nomicon.info/"><img src="images/buttons/infonomicon.gif" border="0" height="31" width="88"></a><br>
+<a href="http://holisticinfosec.org/"><img src="images/buttons/holisticinfosec.png" border="0" height="31" width="88"></a><br>
+<a href="http://www.pauldotcom.com/"><img src="images/buttons/pdc-button.jpg" border="0" height="31" width="88"></a><br>
+<a href="http://www.packetsniffers.org/"><img src="images/buttons/ps_logo03.jpg" border="0" height="31" width="88"></a><br>
+<a href="http://www.rootsecure.net/"><img src="images/buttons/root_button.gif" border="0" height="31" width="88"></a><br>
+<a href="http://www.binrev.com/"><img src="images/buttons/binrev.gif" border="0" height="31" width="88"></a><br>
+<a href="http://www.ethicalhacker.net/"><img src="images/buttons/ehnet.png" border="0" height="31" width="88"></a><br>
+<a href="http://hak5.org"><img src="images/buttons/hak5.gif" border="0" height="31" width="88"></a><br>
+<a href="http://www.pracdev.org/m0diphyd/m0diphyd.html"><img src="images/buttons/modiphyd_banner.gif" border="0" height="31" width="88"></a><br>
+<a href="http://www.leetupload.com"><img src="images/buttons/leetupload.png" border="0" height="31" width="88"></a><br>
+<a href="http://www.blindhog.net/"><img src="images/buttons/blindhog88x31.png" border="0"></a><br>
+<a href="http://www.devil2005.com/"><img src="images/buttons/devil2005.png" border="0"></a><br>
+<a href="http://www.megapanzer.com"><img border="0" src="images/buttons/megapanzer_icon.jpg"></a><br>
+<a href="http://www.irongeek.com/"><img src="images/irongeekbutton.png" border="0"></a><br>
+<p>
+
+<p><left><font size="2">Irongeek's Featured Links:</font>
+<p><a href="http://www.pickaweb.co.uk" style="color: blue" title="Web Hosting" target="_blank" rel="contact">Web Hosting</a>
+<p><a href="http://www.hostfinder.co.uk" style="color: blue" title="Web Hosting" target="_blank" rel="contact">Web Hosting</a>
+<p><a href="http://www.freevirtualservers.com/free-hosting.htm" style="color: blue" title="Web Hosting" target="_blank" rel="contact">Free Web Hosting hosting</a>
+
+
+<P>
+  <a href="http://www.refog.com"  style="color: blue">Keylogger</a>  <P>
+  <a href="http://www.digitaldocumentsllc.com"  style="color: blue">Document Scanning</a>  <P>
+  <a href="http://www.freezone.co.uk"  style="color: blue">Free Domain Names</a>  <P>
+  <a href="http://www.superwarehouse.com/Notebooks/c2b/3081"  style="color: blue">Notebooks</a>  <P>
+  <a href="http://www.diskdoctors.com/recover-lost-data.html"  style="color: blue">Recover Data</a>  <P>
+  <a href="http://www.freeantivirushelp.com"  style="color: blue">Free Antivirus</a>  <P>
+  <a href="http://www.mailprotector.net/features/hostedmessaging/hostedexchange/"  style="color: blue">hosted exchange 2007</a>  <P>
+EC-Council  <a href="http://www.careeracademy.com/index.asp?PageAction=VIEWPROD&ProdID=415"  style="color: blue">ECSA Training</a>  Videos<P>
+<P>
+</left>
+      
+<p>	 
+
+Web Hosting:</font></b><br> <a href="http://www.dreamhost.com/r.cgi?155413"> <img src="images/dreamhost.gif" border="0"></a>
+
+Help Irongeek.com pay for bandwidth and research equipment:</font></p>
+<!--------- Donation Code -------------------------->
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="irongeek@irongeek.com">
+<input type="hidden" name="item_name" value="Irongeek's Website Bandwidth &amp; Research Fund">
+<input type="hidden" name="buyer_credit_promo_code" value="">
+<input type="hidden" name="buyer_credit_product_category" value="">
+<input type="hidden" name="buyer_credit_shipping_method" value="">
+<input type="hidden" name="buyer_credit_user_address_change" value="">
+<input type="hidden" name="no_shipping" value="0">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="tax" value="0">
+<input type="hidden" name="lc" value="US">
+<input type="hidden" name="bn" value="PP-DonationsBF">
+<input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!">
+<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+
+<!-- <SCRIPT type='text/javascript' language='JavaScript' src='http://xslt.alexa.com/site_stats/js/s/a?amzn_id=irongeekscomp-20&url=www.irongeek.com'> </SCRIPT> -->
+
+</td><td valign="top"> <p align="center">&nbsp;
+<!-- Begin Google Ads -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-3256770407637090";
+//Top Banner
+google_ad_slot = "5139272459";
+google_ad_width = 728;
+google_ad_height = 90;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<!-- End Google Ads -->  
+<BR>
+<DIV STYLE="position:relative; float: right;">
+<!-- Begin Google Ads -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-3256770407637090";
+//Left Banner
+google_ad_slot = "8538484264";
+google_ad_width = 160;
+google_ad_height = 600;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<!-- End Google Ads -->
+</DIV> 
+<div class=”KonaBody”>
+<!--------- Begin Content -------------------------->
+
+<!-- Begin bookmark code -->
+
+<!-- AddThis Button BEGIN -->
+<script type="text/javascript">addthis_pub  = 'irongeek';</script>
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s9.addthis.com/button1-bm.gif" width="125" height="16" border="0" alt="" /></a><script type="text/javascript" src="http://s7.addthis.com/js/152/addthis_widget.js"></script>
+<!-- AddThis Button END -->
+<!-- AddThis Feed Button BEGIN -->
+<a href="http://www.addthis.com/feed.php?pub=irongeek&h1=http%3A%2F%2Ffeeds.feedburner.com%2FIrongeeksSecuritySite&t1=" title="Subscribe using any feed reader!"><img src="http://s9.addthis.com/button1-rss.gif" width="125" height="16" border="0" alt="AddThis Feed Button" /></a>
+<!-- AddThis Feed Button END -->
+<!-- End  bookmark code  -->
+
+<title>A Quick Intro to Sniffers: Wireshark/Ethereal, ARPSpoof, Ettercap, ARP 
+poisoning and other niceties. </title>
+<p align="center">&nbsp;</p>
+<p align="center"><b>A Quick Intro to Sniffers: <br>
+Wireshark/Ethereal, ARPSpoof, Ettercap, ARP poisoning and other niceties. </b></p>
+<p align="left"><br>
+&nbsp;&nbsp;&nbsp;&nbsp; When I tell some of my coworkers that I'm sniffing the network, they have a tendency to look at me funny. A Sniffer (also know as a Network Analyzer) is a piece of software that can look 
+at network traffic, decode it, and give meaningful data that a network 
+administrator can use to diagnose problems on a network. Sniffers are also 
+useful tools for deviant computer users since they can be used to pull plain 
+text passwords off a network. A few popular general purpose Sniffers are NAI 
+Sniffer (commercial), Wireshark (previously know as Ethereal, an Open Source GUI Sniffer for Linux, Windows 
+and other platforms), TCPDump (Open Source command line Sniffer for *nix - any 
+Unix like operating system like Linux or FreeBSD-) and its Windows version 
+called WinDump. <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; First an explanation of some network basics is in 
+order. Most Ethernet networks use to be of a common bus topology, using either 
+coax cable or twisted pair wire and a hub. All of the nodes (computers and other 
+devices) on the network could communicate over the same wires and take turns 
+sending data using a scheme known as carrier sense multiple access with 
+collision detection (CSMA/CD). Think of CSMA/CD as being like a conversation at 
+a loud party, you may have to wait for quite a spell for your chance to get your 
+words in during a lull in everybody else's conversation. All of the nodes on the 
+network have their own unique MAC (media access control) address that they use 
+to send packets of information to each other. Normally a node would only look at 
+the packets that are destined for its MAC address. However, if the network card 
+is put into what is known as "promiscuous mode" it will look at all of the 
+packets on the wires it is hooked to. <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; To cut down on the number of collisions and the 
+possibility of sniffing data that does not belong to a node, most networks use 
+switches. On a network, a hub is a passive device that sends all traffic it 
+receives to all of its ports. A switch on the other hand looks at the MAC 
+address of the nodes hooked to it and what ports they are on then tries to send 
+packets only to the nodes they are intended for. A switch cuts back on the 
+number of collisions on the network, increasing throughput. In theory, on a 
+switched network a node can only see broadcast messages (meant for all computers 
+on the LAN) and packets addresses to its MAC along with the occasional stray 
+packet whose destination is not known. Even with switches in place a LAN can be 
+sniffed using the mirrored port on some switches (put there so administrators 
+can use a Sniffer to diagnose network problems), by confusing the switch into 
+mirroring traffic to all ports or by a technique know as ARP poisoning (more on 
+this later).</p>
+<p align="left">&nbsp;&nbsp;&nbsp; The above is about Ethernet networks, WiFi 
+(802.11a/802.11b/802.11g/802.11n) is a bit different however. Wireless LANs act 
+a lot like Ethernet LANs using hubs. Every computer on the LAN can see the 
+traffic destined to others but normally they just choose to ignore it. (In 
+reality it's a little more complicated than that, but I want this to be an 
+article and not a book on the intricacies of 802.11 networks) However, if a 
+network card is put into what is known as promiscuous mode, it will not ignore 
+traffic going to other computers and will instead look at it, allowing the user 
+of the computer running the sniffer to see the data traveling to other computers 
+attached to the same access point. Promiscuous mode works on pretty much any 
+wired network card in Windows and Linux (or other Unix like Operating System), 
+but not all wireless cards support it properly (like Intel's Centrino 802.11g 
+chipset know as IPW2200). If the sniffer's card does support promiscuous mode it 
+will have to be attached to the wireless networks WAP (Wireless Access Point) to 
+be able to see anything. If the attacker is using Linux (or another Unix like 
+Operating System) the attacker may be able to use what is known as monitor mode 
+if their card supports it. In monitor mode, the wireless network card listens to 
+the raw packets in the radio waves without ever having to attach to a WAP. The 
+nice thing about monitor mode from the attacker's perspective is that they leave 
+no logs of their activities since they don't have to attach to the WAP and don't 
+have to send any packets on the network.</p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp; Sniffing WiFi networks is further 
+complicated by what security protocols they use. If your card support 
+promiscuous mode and you can attach to a wireless network using WEP (in other 
+words, you know the WEP key) you can sniff pretty much anything you want. If the 
+network is using WPA it's not as easy since just knowing the pass phrase won't&nbsp; 
+let you decode all traffic in a network conversation your box is not evolved in. 
+However, it may be possible to ARP poison or use some other MitM (Man in the 
+Middle) attack to get the data routed through you. </p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp; Sniffers have many legitimate uses that system 
+administrators should be aware of. They can be used to find what computers on 
+the network are causing problems such as using too much bandwidth, having the 
+wrong network settings or running malware. I've personally found them useful in 
+the past for finding hack attempts as they were happening by sniffing my own 
+servers for inappropriate traffic. Every system admin would do well to learn 
+about using sniffers to find network problems and I'd recommend starting with 
+Wireshark since it's free, multiplatform and well supported (see the links 
+section of this article of more information).<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Sniffers can also be used by those trying to bypass 
+security. Many popular application protocols pass logon credentials (username 
+and password) in plain text or using weak encryption that's easy for a Sniffer 
+to decode. Common examples of such insecure protocols are FTP, Telnet, POP3, 
+SMTP, and HTTP Basic Authentication. In their place use encrypted protocols like 
+SFTP, SSH (Secure Shell), and HTTPS (SSL) when possible. Protocols like FTP may 
+be hard to switch away from because the clients for more secure protocols like 
+SFTP are not as readily available. FTP clients come with every recent version of 
+Windows (ftp.exe from the command line and Explorer from a GUI), but free 
+clients that support SFTP like FileZilla and PSFTP can be downloaded. A few 
+sniffers that have good password extraction abilities include Cain, Dsniff and 
+Ettercap. All three are free or Open Source. Cain is for Windows only and Dsniff 
+and Ettercap are mostly used in *nix environments but also have Windows versions 
+available. <br>
+<br>
+<b>ARP Spoofing/ARP Poisoning </b><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; ARP stands for Address Resolution Protocol and it 
+allows the network to translate IP addresses into MAC addresses. Basically, ARP 
+works like this: When one host using IP on a LAN is trying to contact another it 
+needs the MAC address of the host it is trying to contact. It first looks in its 
+ARP cache (to see your ARP cache in Windows type in "arp -a" at the command 
+line) to see if it already knows the MAC address, but if not, it broadcasts out 
+an ARP request asking "Yo, who has this IP address I'm looking for?" If the host 
+that has that IP address hears the ARP query it will respond with its own MAC 
+address and a conversation can begin using IP. In common bus networks like 
+Ethernet using a hub or 802.11b all traffic can be seen by all hosts whose NICs 
+(network interface card) are in promiscuous mode, but things are a bit different 
+on switched networks. A switch looks at the data sent to it and tries to only 
+forward packets to its intended recipient based on the MAC address. Switched 
+networks are more secure and help speed up the network by only sending packets 
+where they need to go. There are ways around switches though. Using a program 
+like Arpspoof (part of the Dsniff package), Ettercap or Cain we can lie to other 
+machines on the local area network and tell them we have the IP they are looking 
+for, thus funneling their traffic through us. <br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Even with a switched network it's not hard for an 
+attacker to use Dsniff or Ettercap from the BackTrack boot CD to do some ARP spoofing and redirect traffic through them for the purposes of sniffing. 
+These tools can even parse out usernames and passwords automatically, making the 
+attacker's job easy. If the attacker ARP Spoofs between the gateway and the FTP 
+server he can sniff the traffic and extract user names and passwords as users 
+are trying to get their data from offsite, and the same thing goes for SMTP and 
+POP3. Even with SFTP, SSL, and SSH, passwords can still be sniffed with Ettercap 
+because it has the ability to proxy those types of connections. The user might 
+get a warning that the public key of the server they are trying to get to has 
+changed or may not be valid, but how many of us just click past those kinds of 
+messages without actually reading them? <br>
+<br>
+<img border="0" src="images/mim.png" align="left">&nbsp;&nbsp;&nbsp;&nbsp; The 
+image in figure 1 helps to illustrate how ARP Spoofing/ARP Poisoning works. 
+Basically, the attacker is telling Alan's box that he has the IP that 
+corresponds to Brian's box and vice versa. By doing this the attacker receives 
+all network traffic going between Alan and Brian. Once the attacker has ARP 
+Spoofed his way between two nodes he can sniff the connection with whatever tool 
+he likes (TCPDump, Wireshark, Ngrep, etc.) By ARP Spoofing between a computer 
+and the LAN's gateway an attacker can see all the traffic the computer is 
+sending out and receiving from the Internet. In this article I'm only giving the 
+basics of how these tools are used. <br>
+<br>
+<b>A quick demonstration of ARP Spoofing using Dsniff Tools and Ettercap</b><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Let's start by using Dug Song's Arpspoof program that 
+comes with his Dsniff package. I use the *nix version but if you look around you 
+may be able to find a Win32 version. The easiest way to run Dsniff is to boot 
+from a BackTrack boot CD. The first thing you should do is make sure packet 
+forwarding is turned on, otherwise our machine will drop all traffic between the 
+hosts we are trying to sniff, causing a denial of service. Some of the tools I 
+use do this automatically (Like Ettercap), but to be sure, you may want to do it yourself. Use 
+the following commands, depending on operating system:<br>
+<br>
+Linux:<br>
+<font color="#008000">echo 1 &gt; /proc/sys/net/ipv4/ip_forward</font><br>
+<br>
+BSD:<br>
+<font color="#008000">sysctl -w net.inet.ip.forwarding=1</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; Now that your computer will forward the traffic you can 
+start ARP Spoofing. Let's assume you want to sniff all traffic between a host 
+and the gateway so you can see the traffic it's sending to the Internet. To get 
+traffic in both directions you would use the following two commands:<br>
+<br>
+<font color="#008000">arpspoof -t 192.168.1.1 192.168.1.2 &amp; &gt;/dev/null<br>
+arpspoof -t 192.168.1.2 192.168.1.1 &amp; &gt;/dev/null</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; The &quot;&amp; &gt;/dev/nul&quot; part is there to make it easier to 
+run from one terminal, but you may want to omit it for debugging purposes. Now 
+you can use any package you wish to sniff the connection. To start with I'd 
+recommend using the Sniffer Dsniff that comes along with Arpspoof to sniff for 
+plain text passwords. To start sniffing with Dsniff just drop out to a command 
+shell and type:<br>
+<br>
+<font color="#008000">dsniff</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; As Dsniff finds passwords and usernames it will print 
+them to the screen. To look at all sorts of other traffic I would recommend 
+TCPDump or Wireshark. When you are ready to stop ARP Spoofing issue the following 
+command:<br>
+<br>
+<font color="#008000">killall arpspoof</font><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; This should kill the two instances of Arpspoof started 
+above.</p>
+<p align="left">&nbsp;&nbsp;&nbsp; Another great tool is Ettercap, the Swiss 
+army knife of ARP Poisoning and password sniffing. I usually use it in non-interactive mode, but by default it 
+has a ncurses interface that some may find easier to use. If you would like to 
+use Ettercap for ARP poisoning instead, the following commands should serve as 
+good examples. If we wanted to target all hosts on the network and sniff traffic 
+between every node, we would use the following command: <br>
+<br>
+<font color="#008000">ettercap -T -q -M ARP // //</font><br>
+<br>
+&nbsp;&nbsp;&nbsp; Be careful with the above command, having all of the traffic 
+on a large network going though one slow computer can really bog down network 
+connections. If we had a specific victim in mind, let's say a host with the IP 
+192.168.1.1, we would use this command:<br>
+<br>
+<font color="#008000">ettercap -T -q -M ARP /192.168.1.1/ //</font><br>
+<br>
+If 192.168.1.1 is the gateway, we should be able to see all outgoing traffic. 
+Here are what the command line option flags do:<br>
+<br>
+-T tells Ettercap to use the text interface, I like this option the best as the 
+more GUI modes are rather confusing.<br>
+-q tells Ettercap to be more quiet, in other words less verbose.<br>
+-M tells Ettercap the MITM (Man in the Middle) method we want to use, in this 
+case ARP poisoning.</p>
+<p align="left">For some other things you can do with Ettercap check out my 
+video
+<a href="http://irongeek.com/i.php?page=videos/ettercapfiltervid1">Fun with 
+Ettercap Filters: The Movie</a>.<br>
+<br>
+<b>Other Tools</b><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; There are many other packages I would like to mention 
+as well. The first is Cain, which Windows users will be much more comfortable 
+with. It has some great functionality and a nice interface. I have a video 
+tutorial on how to use it here:</p>
+<p align="left"><a href="http://irongeek.com/i.php?page=videos/cain1">Cain to 
+ARP poison and sniff passwords</a></p>
+<p align="left">&nbsp;&nbsp;&nbsp;
+If you like pretty GUIs, Cain is the way to go. It does not have as many options 
+as Ettercap, but it's still pretty cool and has some other Windows specific 
+extras built in.</p>
+<p align="left">&nbsp;&nbsp;&nbsp; There are also specialized snuffers for 
+certain kinds of content. Driftnet parses out the images people are seeing as 
+they web surf .I've not done a video on Driftnet, but I have done one on 
+NetworkActive which can also parse out images from web traffic:</p>
+<p align="left"><a href="http://irongeek.com/i.php?page=videos/networkactiv">
+Using NetworkActiv to sniff webpages on a Wi-Fi network</a></p>
+<p align="left">&nbsp;&nbsp;&nbsp; These also sniffers like P0f that let you 
+finger the OS of network traffic passively:</p>
+<p align="left">
+<a href="http://irongeek.com/i.php?page=videos/passive-os-fingerprinting">
+Passive OS Fingerprinting With P0f And Ettercap</a></p>
+<p align="left">&nbsp;&nbsp;&nbsp; And that's just the tip of the iceberg when 
+it comes to specialized sniffers.</p>
+<p align="left">
+<br>
+<b>Mitigating Sniffing Attacks</b><br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; There are quite a few ways to mitigate sniffing 
+attacks. <br>
+<br>
+1. Avoid using insecure protocols like Basic HTTP authentication and Telnet. As 
+a matter of fact you should sniff your own network to see what passwords the 
+tools listed above can pick up. <br>
+2. If you have to use an insecure protocol, try tunneling it though something to 
+encrypt the sensitive data. I have a video on
+<a href="http://irongeek.com/i.php?page=videos/sshdynamicportforwarding">SSH 
+Dynamic Port Forwarding</a> that show one way to accomplish this. <br>
+3. Look into using Static ARP tables between critical workstations and servers. 
+They are more trouble to maintain but limit arpspoofing. <br>
+4. Run software like ARPWatch to detect changes in MAC addresses on your network 
+that may point to Sniffers. <br>
+5. Try running tools like Sniffdet and Sentinel to detect network cards in 
+promiscuous mode that may be running sniffing software.<br>
+6. Have outside laptops using Wi-Fi that come into your facility use a VPN to 
+connect to the network.<br>
+7. Lockdown workstations so users can't install sniffing software or boot from a 
+CD like Knoppix.<br>
+8. Keep public terminals on a separate LAN from the staff workstations and 
+servers.<br>
+<br>
+I hope you have found this article useful.<br>
+<br>
+<b>Further research:</b><br>
+<br>
+ARPWatch <br>
+<a href="http://www-nrg.ee.lbl.gov/">http://www-nrg.ee.lbl.gov/</a>&nbsp; </p>
+<p align="left">BackTrack Live CD<br>
+<a href="http://www.remote-exploit.org/backtrack.html">
+http://www.remote-exploit.org/backtrack.html</a> <br>
+<br>
+Cain:<br>
+<a href="http://www.oxid.it/cain.html">http://www.oxid.it/cain.html</a>&nbsp;
+</p>
+<p align="left">Driftnet<br>
+<a href="http://ex-parrot.com/~chris/driftnet/">
+http://ex-parrot.com/~chris/driftnet/</a>
+<br>
+<br>
+Dsniff Package:<br>
+<a href="http://www.monkey.org/~dugsong/dsniff">
+http://www.monkey.org/~dugsong/dsniff</a>&nbsp; <br>
+<br>
+Ethernet Networks:<br>
+<a href="http://en.wikipedia.org/wiki/Ethernet">
+http://en.wikipedia.org/wiki/Ethernet</a>&nbsp; </p>
+<p align="left">Ettercap<br>
+<a href="http://ettercap.sourceforge.net/">http://ettercap.sourceforge.net/</a> <br>
+<br>
+Wireshark <br>
+<a href="http://www.wireshark.org/">http://www.wireshark.org/&nbsp; </a> <br>
+<br>
+Wireshark User's Guide<br>
+<a href="http://www.wireshark.org/docs/wsug_html/">
+http://www.wireshark.org/docs/wsug_html/</a> <br>
+<br>
+Ettercap:<br>
+<a href="http://ettercap.sourceforge.net/">http://ettercap.sourceforge.net/</a>&nbsp;
+<br>
+<br>
+P0f<br>
+<a href="http://lcamtuf.coredump.cx/p0f.shtml">
+http://lcamtuf.coredump.cx/p0f.shtml</a> <br>
+<br>
+Sentinel<br>
+<a href="http://www.packetfactory.net/Projects/sentinel/">
+http://www.packetfactory.net/Projects/sentinel/</a>&nbsp; <br>
+<br>
+Sniffdet <br>
+<a href="http://sniffdet.sourceforge.net/">http://sniffdet.sourceforge.net/</a>&nbsp;
+<br>
+<br>
+TCPDump<br>
+<a href="http://www.tcpdump.org/">http://www.tcpdump.org/</a> <br>
+<br>
+WinDump<br>
+<a href="http://windump.polito.it/">http://windump.polito.it/</a> <br>
+&nbsp;</p>
+<p align="left"><b>Change Log::</b><br>
+<b>02/01/2005: </b>Article first published.<b><br>
+07/30/2007: </b>Update Ethereal to Wireshark, added section on WiFi networks, 
+switched to using BackTrack CD and a lot of other little tweaks. <br>
+<b>04/30/2008: </b>Fixed a stupid error I made where I mistyped 801.11 instead 
+of 802.11.</p>
+
+<!-- Begin Adsense Code -->
+<!-- <DIV STYLE="position:relative; float: right;"> -->
+<CENTER>
+<script type="text/javascript"><!--
+google_ad_client = "pub-3256770407637090";
+//Big Box
+google_ad_slot = "3757979776";
+google_ad_width = 300;
+google_ad_height = 250;
+//--></script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</CENTER>
+<!-- </DIV> -->
+<!-- End Adsense Code -->
+
+<P><A href="http://www.irongeek.com/i.php?page=security/AQuickIntrotoSniffers&mode=print"><img src="/images/printer.png">Printable version of this article</A><!--------- End Content --------------------------> 
+</div>
+
+<!-- disqus code -->
+<p>
+<div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/irongeekscomputersecuritysite/embed.js"></script><noscript><a href="http://disqus.com/forums/irongeekscomputersecuritysite/?url=ref">View the discussion thread.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+<!-- disqus code -->
+<p>
+Ten most recent posts on Irongeek.com:<BR><UL><li><a href="http://www.dojocon.org/">Mr. Irongeek goes to Washington</a></li><li><a href="http://www.irongeek.com/diffie-hellman.php">Dirty Diffie-Hellman Calculator (Like dirty Santa, but geekier)</a></li><li><a href="http://www.unallocatedspace.org/">Unallocated Space, A new Hackerspace in central Maryland</a></li><li><a href="http://www.irongeek.com/security-podcasts.php">Security Podcast Feed Page Fixed and Updated</a></li><li><a href="http://www.irongeek.com/i.php?page=videos/hack3rcon-videos">Hack3rcon 2010 Videos</a></li><li><a href="http://www.irongeek.com/i.php?page=security/hackingillustrated">More Shoecon Videos</a></li><li><a href="http://irongeek.com">First round of Shoecon videos are done:</a></li><li><a href="http://www.irongeek.com/i.php?page=videos/malicious-usb-devices-phreaknic-14">Malicious USB Devices: Is that an attack vector in your pocket or are you just happy to see me?</a></li><li><a href="http://www.irongeek.com/i.php?page=videos/locating-i2p-services-via-leaks-on-the-application-layer-project-proposal">Locating I2P services via Leaks on the Application Layer Project Proposal</a></li><li><a href="http://www.irongeek.com/i.php?page=security/network-king-of-the-hill-write-ups">Network King of the Hill Write-ups</a></li></UL>
+<center>
+</center> </td> </tr></tbody></table><p align="center">
+<br><font color="#ffffff"><b>If
+you would like to republish one of the articles from this site on your
+webpage or print journal please contact <a href="i.php?page=contact"><font color="#ffffff">IronGeek</font></a>.</b></font></p>
+<p><font color="#ffffff"> </font></p><p align="center"><font color="#ffffff">Copyright 2010, IronGeek<br>
+Louisville / Kentuckiana Information Security Enthusiast</font>
+</p></center></div>
+<!-- analytics -->
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script> <script type="text/javascript">
+_uacct = "UA-186935-2";
+urchinTracker();
+</script>
+<!-- analytics -->
+<!-- disqus code -->
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+	var links = document.getElementsByTagName('a');
+	var query = '?';
+	for(var i = 0; i < links.length; i++) {
+	if(links[i].href.indexOf('#disqus_thread') >= 0) {
+		query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+	}
+	}
+	document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/irongeekscomputersecuritysite/get_num_replies.js' + query + '"></' + 'script>');
+})();
+//]]>
+</script>
+<!-- disqus code -->
+
+</body></html>
+xxx

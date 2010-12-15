@@ -23,18 +23,16 @@ def get_bookmark_content(url)
 end
 
 def get_your_bookmarks(username, password)
-  conn = Mysql.new('localhost', 'root', mysql_password, 'delicious_suggestions')
-
   # cleanup tables
-  conn.query("DELETE FROM users")
-  conn.query("DELETE FROM bookmarks")
-  conn.query("DELETE FROM bookmarks_users")
+  $conn.query("DELETE FROM users")
+  $conn.query("DELETE FROM bookmarks")
+  $conn.query("DELETE FROM bookmarks_users")
   # cleanup content directory
 
 
   # insert your name in the users table
-  conn.query("INSERT INTO users (name) VALUES ('#{username}')")
-  your_user_id = conn.insert_id
+  $conn.query("INSERT INTO users (name) VALUES ('#{username}')")
+  your_user_id = $conn.insert_id
 
   # get your bookmarks
   resp = "";
@@ -64,10 +62,10 @@ def get_your_bookmarks(username, password)
       url = elem.attributes['href']
       url_signature = elem.attributes['hash']
       # insert url in bookmarks
-      conn.query("INSERT INTO bookmarks (url, signature) VALUES ('#{url}', '#{url_signature}')")
-      your_bookmark_id = conn.insert_id
+      $conn.query("INSERT INTO bookmarks (url, signature) VALUES ('#{url}', '#{url_signature}')")
+      your_bookmark_id = $conn.insert_id
       # add relation users-bookmarks
-      conn.query("INSERT INTO bookmarks_users (user_id, bookmark_id) VALUES ('#{your_user_id}', '#{your_bookmark_id}')")
+      $conn.query("INSERT INTO bookmarks_users (user_id, bookmark_id) VALUES ('#{your_user_id}', '#{your_bookmark_id}')")
 
       # download content of bookmark
       bookmark_content = get_bookmark_content(url).content
@@ -87,11 +85,10 @@ def get_other_bookmarks(username)
   count = 0
   maxed_out_urls = Array.new
 
-  conn_other = Mysql.new('localhost', 'root', mysql_password, 'delicious_suggestions')
-  your_user_id = conn_other.query("SELECT id FROM users WHERE name='#{username}'").fetch_row[0]
-  your_url_ids = conn_other.query("SELECT bookmark_id FROM bookmarks_users WHERE user_id='#{your_user_id}'")
+  your_user_id = $conn.query("SELECT id FROM users WHERE name='#{username}'").fetch_row[0]
+  your_url_ids = $conn.query("SELECT bookmark_id FROM bookmarks_users WHERE user_id='#{your_user_id}'")
   your_url_ids.each { |your_url_id|
-    url_signature = conn_other.query("SELECT signature FROM bookmarks WHERE id='#{your_url_id}'").fetch_row[0]
+    url_signature = $conn.query("SELECT signature FROM bookmarks WHERE id='#{your_url_id}'").fetch_row[0]
     begin      
       http_feed = HTTPClient.new
       feed_path = "http://feeds.delicious.com/v2/json/url/#{url_signature}?count=100"
@@ -122,18 +119,24 @@ def get_other_bookmarks(username)
       #end
       avoid_throttling
     rescue SocketError
-      raise "Host " + host + " nicht erreichbar"
+      raise "Host #{host} not reachable"
     end
   }
 end
 
-debugger
+#debugger
 
-username = "" # your del.icio.us username
-password = "" # your del.icio.us password
-mysql_password = "" # your local database password
+username = "riccardo.turchetto" # your del.icio.us username
+password = "welcome" # your del.icio.us password
+mysql_password = "welcome" # your local database password
 
-#get_your_bookmarks(username, password)
-get_other_bookmarks(username)
+# open local database
+$conn = Mysql.new('localhost', 'root', mysql_password, 'delicious_suggestions')
+
+get_your_bookmarks(username, password)
+#get_other_bookmarks(username)
+
+# close local database
+$conn.close
 
 puts "done"

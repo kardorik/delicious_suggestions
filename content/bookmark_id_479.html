@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>JavaScript Drag and Drop Tutorial</title>
+	<meta name="robots" content="follow" />
+	<meta name="robots" content="all" />
+	<meta name="revisit-after" content="2 days" />
+	<link href="../css/main_new.css" type="text/css" rel="stylesheet" />
+	<style type="text/css">
+.drag {border: 1px solid black; background-color: rgb(240, 240, 240); position: relative; padding: 0.5em; margin: 0 0 0.5em 1.5em; cursor: move;}
+th, td {text-align: left; padding-right: 1em;}
+table {margin: 0 0 0.4em 1.3em; border: 1px solid rgb(240, 240, 240);}
+	</style>
+</head>
+<body>
+	<div id="pageHeader">
+		<h1>JavaScript Drag and Drop Tutorial</h1><span class="modified">(last updated: 21.02.09 00:19 UTC)</span>
+		<div class="nav"><a href="./"><img src="/images/back_small_blur.gif" alt="navigate back" />back&nbsp;&nbsp;</a></div>
+	</div>
+    <div id="pageContainer">
+		<h3>Try dragging one of the items below:</h3><hr />
+		<div class="drag">Item 1 is &lt;div&gt;</div>
+		<div class="drag">Item 2 is &lt;div&gt;</div>
+		<img class="drag" src="drag_image.png" alt="drag image" />
+		<pre id="debug"> </pre>
+		
+		<h3>Introduction</h3><hr />
+		<p>
+			Because I found no succinct and <em>understandable</em> tutorials on how to implement
+			drag and drop with javascript, I came up with the below.&nbsp; Credit where credit is due:
+			I used a <a href="http://www.devarticles.com/c/a/JavaScript/Building-DragandDrop-DIVs-Developing-a-Basic-Script/">
+				devarticles.com article</a> to generate this single-page tutorial; the article discusses
+			general drag and drop issues.</p>
+		<p>	
+			Drag and drop is a topic that can be explored to great lengths somewhere else; all
+			you need to know about it here is that you left-click-and-hold on one "draggable element",
+			and then move your mouse with the left button down: the element you clicked on follows
+			your mouse.&nbsp; Restrictions on what can be dragged and where it can be dragged are
+			discussed briefly.&nbsp; If you know about a better tutorial on this topic, or have 
+			suggestions, <a href="/../contact.aspx">please let me know</a>!&nbsp; Quirksmode now has
+			a <a href="http://www.quirksmode.org/js/dragdrop.html">drag and drop tutorial</a>, although
+			it is quite a bit longer than this one.&nbsp; Go there for completness, stay here for succinctness.
+		</p>
+		
+		<h3>Draggable Elements</h3><hr />
+		<p>
+			The following javascript will allow dragging html elements with <code>class="drag"</code>.&nbsp;
+			The only required css is:</p>
+		<code class="block">.drag { position: relative; }</code>
+			
+		<h3>Global Variables</h3><hr />
+		<p>
+			Quite a few global variables are required to make things possible:</p>
+		<code class="block">var _startX = 0;            // mouse starting positions
+var _startY = 0;
+var _offsetX = 0;           // current element offset
+var _offsetY = 0;
+var _dragElement;           // needs to be passed from OnMouseDown to OnMouseMove
+var _oldZIndex = 0;         // we temporarily increase the z-index during drag
+var _debug = $(&#039;debug&#039;);    // makes life easier</code>	
+		<h3>JavaScript Events</h3><hr />
+		<p>
+			The relevant events belong to the document: <code>onMouseDown</code>, <code>onMouseMove</code>, 
+			and <code>onMouseUp</code>.&nbsp; Attempting to make drag and drop using <code>onMouseMove</code>
+			of an element will result in buggy operation, as the cursor tends to jump outside of the element
+			when it is moved quickly; when this happens, <code>onMouseMove</code> will stop firing until the
+			mouse moves back over the element.  Clearly, this is not desirable, so the document's mouse events
+			are used.</p>
+		<p>
+			Two events are initialized here:</p>
+		<code class="block">InitDragDrop();
+
+function InitDragDrop()
+{
+    document.onmousedown = OnMouseDown;
+    document.onmouseup = OnMouseUp;
+}</code>
+			
+		<p>We start with <code>onMouseDown</code>:</p>
+		
+		<code class="block">function OnMouseDown(e)
+{
+    // IE is retarded and doesn&#039;t pass the event object
+    if (e == null) 
+        e = window.event; 
+    
+    // IE uses srcElement, others use target
+    var target = e.target != null ? e.target : e.srcElement;
+    
+    _debug.innerHTML = target.className == &#039;drag&#039; 
+        ? &#039;draggable element clicked&#039; 
+        : &#039;NON-draggable element clicked&#039;;
+
+    // for IE, left click == 1
+    // for Firefox, left click == 0
+    if ((e.button == 1 &amp;&amp; window.event != null || 
+        e.button == 0) &amp;&amp; 
+        target.className == &#039;drag&#039;)
+    {
+        // grab the mouse position
+        _startX = e.clientX;
+        _startY = e.clientY;
+        
+        // grab the clicked element&#039;s position
+        _offsetX = ExtractNumber(target.style.left);
+        _offsetY = ExtractNumber(target.style.top);
+        
+        // bring the clicked element to the front while it is being dragged
+        _oldZIndex = target.style.zIndex;
+        target.style.zIndex = 10000;
+        
+        // we need to access the element in OnMouseMove
+        _dragElement = target;
+
+        // tell our code to start moving the element with the mouse
+        document.onmousemove = OnMouseMove;
+        
+        // cancel out any text selections
+        document.body.focus();
+
+        // prevent text selection in IE
+        document.onselectstart = function () { return false; };
+        // prevent IE from trying to drag an image
+        target.ondragstart = function() { return false; };
+        
+        // prevent text selection (except IE)
+        return false;
+    }
+}</code>
+		<p>
+			The comments cover just about everything; the "text selection" stuff exists
+			because we want to avoid selecting text when dragging things around.&nbsp; Once
+			<code>OnMouseMove</code> is wired up, it will fire whenever the mouse moves:			
+			</p>			
+		<code class="block">function OnMouseMove(e)
+{
+    if (e == null) 
+        var e = window.event; 
+
+    // this is the actual &quot;drag code&quot;
+    _dragElement.style.left = (_offsetX + e.clientX - _startX) + &#039;px&#039;;
+    _dragElement.style.top = (_offsetY + e.clientY - _startY) + &#039;px&#039;;
+    
+    _debug.innerHTML = &#039;(&#039; + _dragElement.style.left + &#039;, &#039; + 
+        _dragElement.style.top + &#039;)&#039;;   
+}</code>
+		<p>
+			When the mouse is released, we remove the event handlers and reset <code>_dragElement</code>:</p>
+		<code class="block">function OnMouseUp(e)
+{
+    if (_dragElement != null)
+    {
+        _dragElement.style.zIndex = _oldZIndex;
+
+        // we&#039;re done with these events until the next OnMouseDown
+        document.onmousemove = null;
+        document.onselectstart = null;
+        _dragElement.ondragstart = null;
+
+        // this is how we know we&#039;re not dragging      
+        _dragElement = null;
+        
+        _debug.innerHTML = &#039;mouse up&#039;;
+    }
+}</code>
+				
+		<h3>Utility Functions</h3><hr />
+		<code class="block">function ExtractNumber(value)
+{
+    var n = parseInt(value);
+	
+    return n == null || isNaN(n) ? 0 : n;
+}
+
+// this is simply a shortcut for the eyes and fingers
+function $(id)
+{
+    return document.getElementById(id);
+}</code>
+		<h3>Some Things to Consider</h3><hr />
+		<p>
+			This example only scratches the surface of drag and drop.&nbsp; For example, dragging is
+			often only initiated if the user clicks and drags the mouse more than a pixel for two
+			(to prevent jitter or something, it's a common practice).&nbsp; Moreover, one often wants
+			to drag from one place to another, instead of just randomly.&nbsp; Keep on the lookout
+			for a more advanced drag and drop tutorial covering these sorts of things.&nbsp; Simplicity 
+			first!</p>
+		<p>
+			Determining what elements one is dragging over is tricky, because the <code>onmouseover</code>
+			event does not fire if the cursor is over the element being dragged.&nbsp; The only solution
+			[known to the author] is to look for elements under the cursor by position.&nbsp; 
+			<a href="http://dev.rubyonrails.org/browser/spinoffs/prototype/src/position.js">position.js</a>
+			from the <a href="http://prototype.conio.net">Prototype</a> javascript library demonstrates
+			the requirements for doing this.&nbsp; <a href="http://snook.ca/archives/javascript/determining_the_droppable/">Determining 
+			the Droppable</a> provides a nice overview of this process.
+			</p>
+		<p>
+			The code presented blatantly overwrites any existing event handlers.&nbsp; If other javascript
+			needs to deal with these events, one should investigate <code>attachEvent</code>, or more
+			generally, <a href="http://luke.breuer.com/webmark/Default.aspx?cmd=javascript+event">event handling in Javascript</a>.</p>
+		<h3><pre>&lt;iframe /&gt;</pre></h3><hr />
+		<p>
+			I have not tested this, but apparently <code>event.screenX</code> and <code>event.screenY</code> should be used instead of
+			<code>clientX</code> and <code>clientY</code> if one is using <code>iframes</code>.
+		<h3>Mouse Buttons</h3><hr />
+		<p>
+			Because browser makers love incompatibility, the codes for <code>event.button</code> vary 
+			from browser to browser; see the below table for values and feel free to <a href="/contact.aspx">
+			provide me</a> with additional rows for other browsers.</p>
+		<table>
+			<tr><th>Browser</th><th>Left Click</th><th>Middle Click</th><th>Right Click</th></tr>
+			<tr><td>Firefox</td><td>0</td><td>1</td><td>2</td></tr>
+			<tr><td>Internet Explorer</td><td>1</td><td>4</td><td>2</td></tr>
+		</table>
+		<p>
+			Note that IE uses the values 1, 2, and 4 so that one can determine every mouse button
+			that is pressed; Firefox does not allow this.</p>
+		<h3>Browser compatibility</h3><hr />
+		<p>
+			This example has only been tested in IE6&7, Firefox 3.0.5, Opera 9.2+, and Chrome 2.0; results from testing in other 
+			browsers would be appreciated.</p>
+		<h3>Support Tutorials like This</h3><hr />
+		<p>If you found this tutorial helpful, please link to it.&nbsp; If you <em>really</em> want to show your appreciation... :-)</p>
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			<p>
+				<input type="hidden" name="cmd" value="_xclick" />
+				<input type="hidden" name="business" value="labreuer@breuer.com" />
+				<input type="hidden" name="no_note" value="1" />
+				<input type="hidden" name="currency_code" value="USD" />
+				<input type="hidden" name="tax" value="0" />
+				<input type="hidden" name="lc" value="US" />
+				<input type="image" src="https://www.paypal.com/en_US/i/btn/x-click-but04.gif" style="border: 0;" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" />
+			</p>
+		</form>
+	</div>
+	<div id="pageFooter">Copyright &copy; 2006 <a href="../contact.aspx">Luke Breuer</a></div>
+		
+	<script language="JavaScript" type="text/javascript">
+<!--
+
+// this is simply a shortcut for the eyes and fingers
+function $(id)
+{
+	return document.getElementById(id);
+}
+
+var _startX = 0;			// mouse starting positions
+var _startY = 0;
+var _offsetX = 0;			// current element offset
+var _offsetY = 0;
+var _dragElement;			// needs to be passed from OnMouseDown to OnMouseMove
+var _oldZIndex = 0;			// we temporarily increase the z-index during drag
+var _debug = $('debug');	// makes life easier
+
+
+InitDragDrop();
+
+function InitDragDrop()
+{
+	document.onmousedown = OnMouseDown;
+	document.onmouseup = OnMouseUp;
+}
+
+function OnMouseDown(e)
+{
+	// IE is retarded and doesn't pass the event object
+	if (e == null) 
+		e = window.event; 
+	
+	// IE uses srcElement, others use target
+	var target = e.target != null ? e.target : e.srcElement;
+	
+	_debug.innerHTML = target.className == 'drag' 
+		? 'draggable element clicked' 
+		: 'NON-draggable element clicked';
+
+	// for IE, left click == 1
+	// for Firefox, left click == 0
+	if ((e.button == 1 && window.event != null || 
+		e.button == 0) && 
+		target.className == 'drag')
+	{
+		// grab the mouse position
+		_startX = e.clientX;
+		_startY = e.clientY;
+		
+		// grab the clicked element's position
+		_offsetX = ExtractNumber(target.style.left);
+		_offsetY = ExtractNumber(target.style.top);
+		
+		// bring the clicked element to the front while it is being dragged
+		_oldZIndex = target.style.zIndex;
+		target.style.zIndex = 10000;
+		
+		// we need to access the element in OnMouseMove
+		_dragElement = target;
+
+		// tell our code to start moving the element with the mouse
+		document.onmousemove = OnMouseMove;
+		
+		// cancel out any text selections
+		document.body.focus();
+		
+		// prevent text selection in IE
+		document.onselectstart = function () { return false; };
+		// prevent IE from trying to drag an image
+		target.ondragstart = function() { return false; };
+		
+		// prevent text selection (except IE)
+		return false;
+	}
+}
+
+function ExtractNumber(value)
+{
+	var n = parseInt(value);
+	
+	return n == null || isNaN(n) ? 0 : n;
+}
+
+function OnMouseMove(e)
+{
+	if (e == null) 
+		var e = window.event; 
+
+	// this is the actual "drag code"
+	_dragElement.style.left = (_offsetX + e.clientX - _startX) + 'px';
+	_dragElement.style.top = (_offsetY + e.clientY - _startY) + 'px';
+	
+	_debug.innerHTML = '(' + _dragElement.style.left + ', ' + _dragElement.style.top + ')';	
+}
+
+function OnMouseUp(e)
+{
+	if (_dragElement != null)
+	{
+		_dragElement.style.zIndex = _oldZIndex;
+
+		// we're done with these events until the next OnMouseDown
+		document.onmousemove = null;
+		document.onselectstart = null;
+		_dragElement.ondragstart = null;
+
+		// this is how we know we're not dragging
+		_dragElement = null;
+		
+		_debug.innerHTML = 'mouse up';
+	}
+}
+//-->
+	</script>
+		
+	</body>
+
+</html>

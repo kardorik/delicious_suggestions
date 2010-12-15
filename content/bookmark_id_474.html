@@ -1,0 +1,364 @@
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Ajax Same Origin Policy No More with Firefox 3.5</title>
+	<meta name="keywords" content="ajax,firefox,xmlhttprequest,javascript,http" />
+	
+	<meta name="author" content="Peter Freitag" />
+	<link rel="alternate" type="application/rss+xml" title="RSS Feed for petefreitag.com" href="http://www.petefreitag.com/rss/" />
+	<link rel="stylesheet" href="/themes/pete/pete.css" type="text/css" />
+</head>
+<body>
+<div id="header">
+	<a href="http://foundeo.com/"><img src="/themes/pete/images/foundeo-small.jpg" align="right" border="0" alt="foundeo" /></a>
+	<a href="/"><img src="/themes/pete/images/pete-freitag.jpg" border="0" alt="Pete Freitag's ColdFusion, Java and Web Development Blog" /></a>
+	
+</div>
+<div id="nav">
+	<a href="http://foundeo.com/consulting/" title="Hire Me - ColdFusion, Java, Web Consulting">Consulting</a>
+	<a href="http://foundeo.com/products/" title="Browse Products for ColdFusion Developers">Products</a>
+	<a href="http://www.petefreitag.com/" title="Read Blog Entries">Blog</a>
+	<a href="http://www.petefreitag.com/contact/" rel="nofollow">Contact Me</a>
+</div>
+
+<div id="container">
+
+
+<div id="main">
+
+	<h1></h1>
+	
+
+
+
+
+<h1>Ajax Same Origin Policy No More with Firefox 3.5</h1>
+<div class="entryDate">June 30, 2009</div>
+<div class="entryBody">
+<span class="catImg"><a href="/category/web.cfm" title="Web category"><img src="/themes/pete/images/web.gif" align="right" border="0" alt="web" /></a></span>
+<p>Firefox 3.5 now allows you to make AJAX Requests, or more correctly XMLHttpRequests cross domain (in other words foo.com can make XHR requests to bar.com). When I heard about this, my first is that they would use the <code>cross-domain.xml</code> file that Flash has supported for years to achieve this. They took a different approach, and use a HTTP header instead, which I think makes more sense.</p>
+<p>So how does it work...</p>
+<p>When you make a request using the <code>XMLHttpRequest</code> object it sends an <code>Origin</code> header (this is new, I wrote a <a href="http://www.petefreitag.com/item/702.cfm">blog entry about the Origin header</a> as well) which contains the domain of the requesting page. The HTTP Response can send a HTTP header: <code>Access-Control-Allow-Origin: * </code> which means that any domain can access this page. You could also send a response header like this: <code>Access-Control-Allow-Origin: http://example.com</code> which only allows the example.com as an origin. The <code>Access-Control-Allow-Origin</code> header should contain a comma separated list of acceptable domains or a <code>*</code>.</p>
+<p>For POST requests, and requests that want to read response headers a HTTP <code>OPTIONS</code> request is made first, that sends headers such as <code># Access-Control-Request-Method: POST </code> in the request.</p>
+<p>You can read more about this feature <a href="https://developer.mozilla.org/En/HTTP_access_control">here</a></p>
+</div>
+
+
+<br />
+
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="pfreitag" data-related="foundeo:My Company">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<div class="entryLinks">
+	<a href="/item/703.cfm" class="permalink">Permalink</a> | <a href="#postcomment">Add Comment</a> |	
+	<a href="http://del.icio.us/post?url=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fitem%2F703%2Ecfm&amp;title=Ajax%20Same%20Origin%20Policy%20No%20More%20with%20Firefox%203%2E5" rel="nofollow" title="Bookmark on del.icio.us"><img src="/images/del.icio.us.gif" border="0" style="padding:4px 2px 0px 0px;" alt="" />add to del.icio.us</a>
+	
+	| Tags: <a href="/tag/ajax" rel="tag">ajax</a>, <a href="/tag/firefox" rel="tag">firefox</a>, <a href="/tag/xmlhttprequest" rel="tag">xmlhttprequest</a>, <a href="/tag/javascript" rel="tag">javascript</a>, <a href="/tag/http" rel="tag">http</a>
+	
+</div>
+
+
+
+
+
+
+<br />
+<h3>Related Entries</h3>
+<ul>
+
+	<li><a href="/item/446.cfm" title="AJAX on IE - back to the IFRAME">AJAX on IE - back to the IFRAME</a> - August 17, 2005</li>
+
+	<li><a href="/item/702.cfm" title="Firefox 3.5 Introduces Origin Header, Security Features">Firefox 3.5 Introduces Origin Header, Security Features</a> - June 30, 2009</li>
+
+	<li><a href="/item/514.cfm" title="AJAX Presentation Outline">AJAX Presentation Outline</a> - December 13, 2005</li>
+
+	<li><a href="/item/757.cfm" title="Cross Domain Data Theft using CSS">Cross Domain Data Theft using CSS</a> - July 21, 2010</li>
+
+	<li><a href="/item/736.cfm" title="jQuery UI Sortable Tutorial">jQuery UI Sortable Tutorial</a> - January 7, 2010</li>
+
+</ul>
+
+
+
+
+ 
+ 
+ <div align="right" class="rating">
+5 people found this page useful, what do you think?  <form action="/doRating.cfm" method="post" style="display:inline;"><input type="hidden" name="id" value="703" /><select class="rating" name="rating"><option value="1" selected="selected">Useful</option><option value="2">Very Useful</option><option value="-1">Not Useful</option></select> <input type="submit" value="Rate" class="rating" /></form>
+ </div>
+ 
+
+
+<br />
+
+
+<div style="position:absolute;width:200px;float:left;padding:20px;margin:0px;height:250px;min-height:250px;" align="right" >
+
+
+<a href="http://foundeo.com/security/" title="Web Application Firewall for ColdFusion"><img src="/images/fuseguard-animation.gif" height="250" width="188"  alt="WAF for CF" border="0" /></a>
+
+</div>
+
+<div class="ad" align="right" style="height:250px;">
+
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6020654670144156";
+google_ad_width = 300;
+google_ad_height = 250;
+google_ad_format = "300x250_as";
+google_ad_channel ="";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0098E1";
+google_color_url = "0098E1";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+</div>
+
+
+<h3><a name="trackbacks">Trackbacks</a></h2>
+
+<div class="tbURL">Trackback Address: <em><script language="javascript">document.write('http://www.petefreitag.com/tb/');</script>703/CBECA114C085F10D70A6225B1610C97B</em></div>
+
+
+
+ <h3><a name="comments">Comments</a></h3>
+ 
+	<div class="commentCredit">On 06/30/2009 at 9:21:04 AM EDT <strong>Tom Mollerus</strong> wrote:</div>
+	<div class="commentNumber" align="right">1</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=272dd97871f732ab4992c1fcf3062aa6&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody">Pete, how is the Access-Control-Allow-Origin header enforced? Is it enforced in the client's browser?  <P></div>
+ 
+	<div class="commentCredit">On 06/30/2009 at 10:31:39 AM EDT <strong>Pete Freitag</strong> wrote:</div>
+	<div class="commentNumber" align="right">2</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=947b0c6cb4777c4325dd0a4f724ec737&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody myComment">@Tom - Yes it is enforced in the client's browser, and specified server side in the http response. <P></div>
+ 
+	<div class="commentCredit">On 07/02/2009 at 6:32:05 AM EDT <strong>William from Lagos</strong> wrote:</div>
+	<div class="commentNumber" align="right">3</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=911dca4b25d1dffe300da78a7689c021&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody">Can the value be overwritten by anyone sending a custom header?  <P>
+e:g xhrObject.setRequestHeader(&quot;Origin&quot;,&quot;foo.com&quot;) <P></div>
+ 
+	<div class="commentCredit">On 07/02/2009 at 6:40:07 AM EDT <strong>Pete Freitag</strong> wrote:</div>
+	<div class="commentNumber" align="right">4</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=947b0c6cb4777c4325dd0a4f724ec737&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody myComment">@William - I would hope not, but I haven't tested it. I'll test that when I have a chance. <P></div>
+ 
+	<div class="commentCredit">On 07/05/2009 at 9:56:30 AM EDT <strong>MikeD</strong> wrote:</div>
+	<div class="commentNumber" align="right">5</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=de69e60b8f6e4fb52fb28a4d12e1c5d2&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody">This looks like someone stepped through a lot of issues to get this worked out. It's a great problem to be working on. Using custom request and response headers seems sketchy - with the addition of response headers controlling cacheability of permissions it feels like a separate resource (like cross-domain.xml) would have had more reuse of existing functionality &amp; may have been easier to set up for sites that just want to let their data services be 'public'. I do like the discussion of using http authentication, that also seems like an easy way for data services to be public.  <P></div>
+ 
+	<div class="commentCredit">On 08/04/2009 at 4:10:35 PM EDT <strong>Brook</strong> wrote:</div>
+	<div class="commentNumber" align="right">6</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=1ab967a68edfb8f96a40ec04a7bac12d&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody">2 things about this are driving me nuts. 1 is that with IIS6, (at least) adding a comma delimited list of domains to the Access-Control-Allow-Origin header DOES NOT WORK. 1 domain works fine, * works for requests that don't use allow-credentials. But a comma delimited list does not work. Anybody else tried?  <P>
+2. For Pre-Flighted requests an OPTIONS request is sent to the server and it responds with headers that indicate who and what is allowed.  <P>
+ CF should handle this so some security checks on referer and requested methods can be returned. But how do you get IIS to pass an OPTIONS method request to CF?   <P>
+I can't get that to work either, and I've tried all the verb settings in IE and CF is mapped to respond to all-verbs, but no dice...  <P>
+  <P></div>
+ 
+	<div class="commentCredit">On 08/28/2009 at 11:58:43 PM EDT <strong>Bhaskar</strong> wrote:</div>
+	<div class="commentNumber" align="right">7</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=e302689197239405edb4c9f9a64f964f&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody">Can anyone tell how Access-Control-Allow-Origin header set? and where is it set..is it at server side or client? <P></div>
+ 
+	<div class="commentCredit">On 11/07/2010 at 7:11:59 PM EST <strong>Sandeep</strong> wrote:</div>
+	<div class="commentNumber" align="right">8</div>
+	<img src="http://www.gravatar.com/avatar.php?gravatar_id=20c3754c3c5eceff8f6c524d58274575&amp;rating=PG&amp;size=30&amp;default=http%3A%2F%2Fwww%2Epetefreitag%2Ecom%2Fimages%2Fdefault%5Fgravitar%2Ejpg" align="left" class="gravitar" alt="" />
+	<div class="commentBody">I am looking at fixing this cross-domain issue for so long.... but till now with no success...Can you tell how to fix a cross domain issue. I have a check.html script with XMLHttpRequest and it makes to call on a server where a jsp file i.e. check.jsp is saved.    <P>
+From firefox I can't access the contents of jsp file on the server due to cross-domain issue. Should I set the header in the jsp file and access the contents as I am doing now... kindly suggest.. I am struggling to solve this problem for long... <P></div>
+ 
+
+ 
+ 
+ 	<div align="center" class="ad">
+		<script type="text/javascript"><!--
+		google_ad_client = "pub-6020654670144156";
+		google_ad_width = 468;
+		google_ad_height = 60;
+		google_ad_format = "468x60_as";
+		google_ad_channel ="";
+		google_color_border = "FFFFFF";
+		google_color_bg = "FFFFFF";
+		google_color_link = "BE5BBE";
+		google_color_url = "000000";
+		google_color_text = "000000";
+		//--></script>
+		<script type="text/javascript"
+		  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+		</script>
+	</div>
+ 
+
+
+
+<h3><a name="postcomment">Post a Comment</a></h3>
+<div class="commentForm">
+
+<script language="JavaScript" src="/spellchecker/spell.js" type="text/javascript"></script>
+<form action="/postComment.cfm" method="post" name="commentsForm">
+	<input type="hidden" name="entryid" value="703" />
+	<input type="hidden" name="website" value="http://" />	
+	<label for="name" style="margin:1px;">Name:</label><br />
+	<input type="text" id="name" name="name" maxlength="50" /><br />
+	<label for="email" style="margin:1px;">Email: <small>(optional, not displayed on site, gravatar enabled)</small></label><br />
+	<input type="text" name="email" id="email" maxlength="50" /> &nbsp;&nbsp;<input type="checkbox" name="subscribe" id="sub" value="1" /> <label for="sub">Subscribe to this thread</label> <br /> 
+	<label for="comment" style="margin:1px;">Comments: <small>(html will be escaped)</small></label><br />
+	<textarea name="comment" cols="40" id="comment" rows="6"></textarea><br />
+	<br />
+	<input type="submit" value="Post Comment" />
+	<input type="button" value="Check Spelling" onclick="spell('document.commentsForm.comment.value')" />
+</form>
+<a href="http://foundeo.com/spell-checker/">Spell Checker by Foundeo</a><br /><br />
+
+</div>
+
+
+
+
+
+<h3><a name="recent">Recent Entries</a></h3>
+<ul>
+
+	<li><a href="/item/772.cfm" title="jQueryUI Icon List Cheatsheet">jQueryUI Icon List Cheatsheet</a></li>
+
+	<li><a href="/item/771.cfm" title="Cyber Monday Server Fails">Cyber Monday Server Fails</a></li>
+
+	<li><a href="/item/770.cfm" title="Building a Web Browser App for Blackberry Playbook Simulator">Building a Web Browser App for Blackberry Playbook Simulator</a></li>
+
+	<li><a href="/item/769.cfm" title="Getting Started with Blackberry Playbook App Development">Getting Started with Blackberry Playbook App Development</a></li>
+
+	<li><a href="/item/768.cfm" title="HTML5 Input Type Keyboards on iPhone &amp; Android Devices">HTML5 Input Type Keyboards on iPhone &amp; Android Devices</a></li>
+
+	<li><a href="/item/767.cfm" title="Troubleshooting ColdFusion 9 .NET Integration Issues">Troubleshooting ColdFusion 9 .NET Integration Issues</a></li>
+
+	<li><a href="/item/766.cfm" title="Getting Started with jQuery Mobile">Getting Started with jQuery Mobile</a></li>
+
+	<li><a href="/item/765.cfm" title="HTTP Strict Transport Security">HTTP Strict Transport Security</a></li>
+
+</ul>
+
+<br /><br />
+
+
+
+
+</div>
+
+<div id="side" align="center">
+	<div class="siteSearch">
+		
+		
+		
+		<form method="get" action="http://www.google.com/custom">
+		<input type="text" name="q" class="home" id="homeSearch" maxlength="255" value="" />
+		<input type="submit" class="home" name="sa" value="search" />
+		<input type="hidden" name="client" value="pub-6020654670144156" />
+		<input type="hidden" name="forid" value="1" />
+		<input type="hidden" name="channel" value="1556783522" />
+		<input type="hidden" name="ie" value="ISO-8859-1" />
+		<input type="hidden" name="oe" value="ISO-8859-1" />
+		<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:FFFFFF;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1;" />
+
+		<input type="hidden" name="hl" value="en" />
+		<input type="hidden" name="domains" value="www.petefreitag.com" />
+		<input type="hidden" name="sitesearch" value="www.petefreitag.com" />
+		</form>
+
+	</div>
+	<a href="http://foundeo.com/" title="Consulting and Products for Web Developers"><img src="/images/foundeo-consulting-products.png" border="0" alt="foundeo" /></a><br />
+	<script type="text/javascript"><!--
+	google_ad_client = "pub-6020654670144156";
+	google_ad_width = 300;
+	google_ad_height = 250;
+	google_ad_format = "300x250_as";
+	google_ad_channel ="";
+	google_color_border = "FFFFFF";
+	google_color_bg = "FFFFFF";
+	google_color_link = "0098E1";
+	google_color_url = "0098E1";
+	google_color_text = "000000";
+	//--></script>
+	<script type="text/javascript"
+	  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+	</script>
+
+	
+	
+	<br />
+	<br />
+	
+	
+	<a href="http://hackmycf.com/"><img src="/images/did-you-hack-my-cf.png" alt="did you hack my cf?" border="0" /></a>
+	<br />
+	<a href="http://twitter.com/pfreitag"><img src="http://www.petefreitag.com/images/follow-me-on-twitter.gif" alt="pfreitag on twitter" border="0" /></a>
+	
+	<br />
+	
+	
+	<br /><br />
+	
+	<div class="archives">
+		<strong>Archives:</strong><br />
+	
+	<a href="/archive/2010/0.cfm">2010</a>
+	
+	<a href="/archive/2009/0.cfm">2009</a>
+	
+	<a href="/archive/2008/0.cfm">2008</a>
+	
+	<a href="/archive/2007/0.cfm">2007</a>
+	
+	<a href="/archive/2006/0.cfm">2006</a>
+	
+	<a href="/archive/2005/0.cfm">2005</a>
+	
+	<a href="/archive/2004/0.cfm">2004</a>
+	
+	<a href="/archive/2003/0.cfm">2003</a>
+	
+	<a href="/archive/2002/0.cfm">2002</a>
+	
+	</div>
+	<br />
+</div>
+
+
+
+<div id="footer">	
+	<img src="http://www.petefreitag.com/images/pete_sm.jpg" align="left" title="Thats Me!" style="padding:0px 8px 8px 0px"><div style="font-size:x-large">Pete Freitag</div><br />
+	<div id="desc">
+		Pete is a husband and father located in scenic <a href="http://mvny.org/">Central New York</a> area. He owns a <a href="http://foundeo.com/">ColdFusion Consulting &amp; Products company, Foundeo Inc</a>. 
+		Pete is a frequent speaker at national conferences including Adobe MAX, CFUnited, and CFObjective.
+		He holds a BS in Software Engineering from Clarkson University. Read <a href="/about/">more about pete here</a>.
+	</div>
+		
+	<br />
+	<small>Hosted By: </small><a href="http://www.cfdynamics.com/"><img src="http://www.petefreitag.com/images/cfdynamics.gif" alt="ColdFusion Hosting" style="vertical-align:middle;" border="0" /></a>
+</div>
+
+</div>
+<!-- google_ad_section_end -->
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-82573-6";
+urchinTracker();
+</script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>cp with force overwrite</title>
+<meta name="robots" content="noodp, noydir" />
+<meta name="description" content="I was recently trying to copy a directory over an existing one and kept getting prompted &#8211; asking if I wanted to overwrite existing files &#8211; even though I was using the force option:
+cp -Rf dir1 dir2
+I found the answer" />
+<meta name="keywords" content="cp, Linux" />
+<link rel="stylesheet" href="http://www.javathinking.com/wp-content/themes/thesis_17/style.css?033010-145204" type="text/css" media="screen, projection" />
+<link rel="stylesheet" href="http://www.javathinking.com/wp-content/themes/thesis_17/custom/layout.css?060710-125429" type="text/css" media="screen, projection" />
+<!--[if lte IE 8]><link rel="stylesheet" href="http://www.javathinking.com/wp-content/themes/thesis_17/lib/css/ie.css?090809-235006" type="text/css" media="screen, projection" /><![endif]-->
+<link rel="stylesheet" href="http://www.javathinking.com/wp-content/themes/thesis_17/custom/custom.css?082909-203637" type="text/css" media="screen, projection" />
+<link rel="canonical" href="http://www.javathinking.com/2009/04/cp-with-force-overwrite/" />
+<link rel="alternate" type="application/rss+xml" title="Java Thinking RSS Feed" href="http://www.javathinking.com/feed/" />
+<link rel="pingback" href="http://www.javathinking.com/xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="Java Thinking &raquo; cp with force overwrite Comments Feed" href="http://www.javathinking.com/2009/04/cp-with-force-overwrite/feed/" />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.javathinking.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.javathinking.com/wp-includes/wlwmanifest.xml" /> 
+<link media="screen, projection" type="text/css" href="http://www.javathinking.com/wp-content/themes/thesis_17/custom/skins/straightshooter/base.css" rel="stylesheet" />
+	<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+	<link type="text/css" rel="stylesheet" href="http://www.javathinking.com/wp-content/plugins/syntaxhighlighter/files/SyntaxHighlighter.css"></link>
+
+</head>
+<body class="custom">
+<div id="header_area" class="full_width">
+<div class="page">
+	<div id="header">
+		<p id="logo"><a href="http://www.javathinking.com">Java Thinking</a></p>
+		<p id="tagline">Java and software development related thoughts</p>
+	</div>
+<ul class="menu">
+<li class="tab tab-home"><a href="http://www.javathinking.com">Home</a></li>
+<li class="tab tab-1"><a href="http://www.javathinking.com/project/" title="My projects">My projects</a></li>
+<li class="tab tab-2"><a href="http://www.javathinking.com/hardware/" title="Hardware">Hardware</a></li>
+</ul>
+</div>
+</div>
+<div id="content_area" class="full_width">
+<div class="page">
+	<div id="content_box">
+		<div id="content" class="hfeed">
+
+<div id="tt_breadcrumb"><p class="tt_breadcrumb_content"><a href="http://www.javathinking.com">Home</a> > <a href="http://www.javathinking.com/category/linux/" title="View all posts in Linux" rel="category tag">Linux</a> > cp with force overwrite</p></div>			<div class="post-311 post hentry category-linux tag-cp tag-linux post_box top" id="post-311">
+				<div class="headline_area">
+					<h1 class="entry-title">cp with force overwrite</h1>
+					<p class="headline_meta">by <span class="author vcard fn">paul</span> on <abbr class="published" title="2009-04-13">April 13, 2009</abbr></p>
+				</div>
+				<div class="format_text entry-content">
+<p>I was recently trying to copy a directory over an existing one and kept getting prompted &#8211; asking if I wanted to overwrite existing files &#8211; even though I was using the force option:</p>
+<blockquote><p>cp -Rf dir1 dir2</p></blockquote>
+<p>I found the answer <a href="http://www.wallpaperama.com/forums/cp-command-problems-forcing-overwrite-using-cp-command-t5685.html" target="_blank">here</a> &#8211; it was caused by an alias forcing the interactive mode.</p>
+<p>Quick solution is to bypass the alias by an absolute reference to cp:</p>
+<blockquote><p>/bin/cp -Rf dir1 dir2</p></blockquote>
+					<p class="post_tags">Tagged as:
+						<a href="http://www.javathinking.com/tag/cp/" rel="tag nofollow">cp</a>, 
+						<a href="http://www.javathinking.com/tag/linux/" rel="tag nofollow">Linux</a>
+					</p>
+				</div>
+			</div>
+
+			<div id="comments">
+				<div id="respond">
+					<div id="respond_intro">
+						<p>Leave a Comment</p>
+					</div>
+					<form action="http://www.javathinking.com/wp-comments-post.php" method="post" id="commentform">
+						<p><input class="text_input" type="text" name="author" id="author" value="" tabindex="1" aria-required="true" /><label for="author">Name <span class="required" title="Required">*</span></label></p>
+						<p><input class="text_input" type="text" name="email" id="email" value="" tabindex="2" aria-required="true" /><label for="email">E-mail <span class="required" title="Required">*</span></label></p>
+						<p><input class="text_input" type="text" name="url" id="url" value="" tabindex="3" /><label for="url">Website</label></p>
+						<p class="comment_box">
+							<textarea name="comment" id="comment" tabindex="4" cols="40" rows="8"></textarea>
+						</p>
+						<p class="remove_bottom_margin">
+							<input name="submit" class="form_submit" type="submit" id="submit" tabindex="5" value="Submit" />
+<input type='hidden' name='comment_post_ID' value='311' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+					</form>
+				</div>
+			</div>
+					<div class="prev_next post_nav">
+						<p class="previous">Previous post: <a href="http://www.javathinking.com/2009/04/error-executing-script-war-no-such-property-stagingdir-for-class-_events/" rel="prev">Error executing script War: No such property: stagingDir for class: _Events</a></p>
+						<p>Next post: <a href="http://www.javathinking.com/2009/04/redirecting-javathinkingcom-to-wwwjavathinkingcom/" rel="next">Redirecting javathinking.com to www.javathinking.com</a></p>
+					</div>
+		</div>
+
+		<div id="sidebars">
+			<div id="multimedia_box" class="custom_box">
+				<div id="custom_box">
+<p class="tt_rss"><a href="http://www.javathinking.com/feed/">Subscribe to RSS</a></p>
+<p class="tt_twitter"><a href="http://www.twitter.com/prule">Follow on Twitter</a></p>
+  <form method="get" class="search_form" action="http://www.javathinking.com">
+  	<p>
+  		<input class="text_input" type="text" value="To search, type and hit enter" name="s" id="s" onfocus="if (this.value == 'To search, type and hit enter') {this.value = '';}" onblur="if (this.value == '') {this.value = 'To search, type and hit enter';}" />
+  		<input type="hidden" id="searchsubmit" value="Search" />
+  	</p>
+</form>
+
+    <ul id="tt_sponsors">
+      <li><a href=""><img src="http://www.javathinking.com/wp-content/themes/thesis_17/custom/skins/straightshooter/images/ads/ad1.gif" width="125px" height="125px" alt="" /></a></li>
+      <li><a href="http://www.exmount.com/"><img src="http://www.javathinking.com/wp-content/themes/thesis_17/custom/skins/straightshooter/images/ads/exmount-ad.png" width="125px" height="125px" alt="" /></a></li>
+      <li><a href=""><img src="http://www.javathinking.com/wp-content/themes/thesis_17/custom/skins/straightshooter/images/ads/ad3.gif" width="125px" height="125px" alt="" /></a></li>
+      <li class="tt_last"><a href=""><img src="http://www.javathinking.com/wp-content/themes/thesis_17/custom/skins/straightshooter/images/ads/ad4.gif" width="125px" height="125px" alt="" /></a></li>
+    </ul>
+
+				</div>
+			</div>
+			<div id="sidebar_1" class="sidebar">
+				<ul class="sidebar_list">
+<li class="widget widget_text" id="text-247132801">			<div class="textwidget"><p style="width:180;text-align:center"><script type="text/javascript" src="http://www.ubuntu.com/files/countdown/display.js"></script></p></div>
+		</li>		<li class="widget widget_recent_entries" id="recent-posts-3">		<h3>Recent Posts</h3>		<ul>
+				<li><a href="http://www.javathinking.com/2010/08/week-in-review-2010-33/" title="Week in Review &#8211; 2010-33">Week in Review &#8211; 2010-33 </a></li>
+				<li><a href="http://www.javathinking.com/2010/08/week-in-review-%e2%80%93-2010-31/" title="Week in Review – 2010-31">Week in Review – 2010-31 </a></li>
+				<li><a href="http://www.javathinking.com/2010/08/week-in-review-2010-30/" title="Week in Review &#8211; 2010-30">Week in Review &#8211; 2010-30 </a></li>
+				<li><a href="http://www.javathinking.com/2010/07/week-in-review-2010-29/" title="Week in Review &#8211; 2010-29">Week in Review &#8211; 2010-29 </a></li>
+				<li><a href="http://www.javathinking.com/2010/07/week-28/" title="Week in Review &#8211; 2010-28">Week in Review &#8211; 2010-28 </a></li>
+				</ul>
+		</li><li class="widget widget_tag_cloud" id="tag_cloud-3"><h3>Tags</h3><div><a href='http://www.javathinking.com/tag/add-new-tag/' class='tag-link-16' title='1 topic' style='font-size: 8pt;'>Add new tag</a>
+<a href='http://www.javathinking.com/tag/agile/' class='tag-link-108' title='3 topics' style='font-size: 13.384615384615pt;'>agile</a>
+<a href='http://www.javathinking.com/tag/ant/' class='tag-link-53' title='1 topic' style='font-size: 8pt;'>ant</a>
+<a href='http://www.javathinking.com/tag/apache/' class='tag-link-71' title='2 topics' style='font-size: 11.230769230769pt;'>apache</a>
+<a href='http://www.javathinking.com/tag/appengine/' class='tag-link-29' title='5 topics' style='font-size: 16.615384615385pt;'>appengine</a>
+<a href='http://www.javathinking.com/tag/arcgis/' class='tag-link-27' title='1 topic' style='font-size: 8pt;'>arcgis</a>
+<a href='http://www.javathinking.com/tag/arcsde/' class='tag-link-36' title='1 topic' style='font-size: 8pt;'>arcsde</a>
+<a href='http://www.javathinking.com/tag/commons/' class='tag-link-43' title='1 topic' style='font-size: 8pt;'>commons</a>
+<a href='http://www.javathinking.com/tag/database/' class='tag-link-5' title='4 topics' style='font-size: 15.179487179487pt;'>Database</a>
+<a href='http://www.javathinking.com/tag/environment/' class='tag-link-15' title='1 topic' style='font-size: 8pt;'>environment</a>
+<a href='http://www.javathinking.com/tag/eps/' class='tag-link-39' title='1 topic' style='font-size: 8pt;'>eps</a>
+<a href='http://www.javathinking.com/tag/firefox/' class='tag-link-34' title='2 topics' style='font-size: 11.230769230769pt;'>firefox</a>
+<a href='http://www.javathinking.com/tag/gimp/' class='tag-link-40' title='1 topic' style='font-size: 8pt;'>gimp</a>
+<a href='http://www.javathinking.com/tag/grails/' class='tag-link-17' title='11 topics' style='font-size: 22pt;'>grails</a>
+<a href='http://www.javathinking.com/tag/groovy/' class='tag-link-31' title='2 topics' style='font-size: 11.230769230769pt;'>groovy</a>
+<a href='http://www.javathinking.com/tag/hibernate/' class='tag-link-18' title='2 topics' style='font-size: 11.230769230769pt;'>hibernate</a>
+<a href='http://www.javathinking.com/tag/java/' class='tag-link-4' title='4 topics' style='font-size: 15.179487179487pt;'>Java</a>
+<a href='http://www.javathinking.com/tag/linux/' class='tag-link-3' title='8 topics' style='font-size: 19.666666666667pt;'>Linux</a>
+<a href='http://www.javathinking.com/tag/memory/' class='tag-link-49' title='1 topic' style='font-size: 8pt;'>memory</a>
+<a href='http://www.javathinking.com/tag/mobiusly/' class='tag-link-42' title='1 topic' style='font-size: 8pt;'>mobiusly</a>
+<a href='http://www.javathinking.com/tag/mp3/' class='tag-link-47' title='1 topic' style='font-size: 8pt;'>mp3</a>
+<a href='http://www.javathinking.com/tag/mplayer/' class='tag-link-52' title='1 topic' style='font-size: 8pt;'>mplayer</a>
+<a href='http://www.javathinking.com/tag/music/' class='tag-link-13' title='1 topic' style='font-size: 8pt;'>music</a>
+<a href='http://www.javathinking.com/tag/mysql/' class='tag-link-19' title='2 topics' style='font-size: 11.230769230769pt;'>mysql</a>
+<a href='http://www.javathinking.com/tag/mythbuntu/' class='tag-link-48' title='1 topic' style='font-size: 8pt;'>mythbuntu</a>
+<a href='http://www.javathinking.com/tag/mythtv/' class='tag-link-23' title='9 topics' style='font-size: 20.564102564103pt;'>mythtv</a>
+<a href='http://www.javathinking.com/tag/nuvexport/' class='tag-link-41' title='2 topics' style='font-size: 11.230769230769pt;'>nuvexport</a>
+<a href='http://www.javathinking.com/tag/oracle/' class='tag-link-21' title='5 topics' style='font-size: 16.615384615385pt;'>oracle</a>
+<a href='http://www.javathinking.com/tag/p6spy/' class='tag-link-63' title='2 topics' style='font-size: 11.230769230769pt;'>p6spy</a>
+<a href='http://www.javathinking.com/tag/podcast/' class='tag-link-12' title='2 topics' style='font-size: 11.230769230769pt;'>podcast</a>
+<a href='http://www.javathinking.com/tag/prototype/' class='tag-link-32' title='1 topic' style='font-size: 8pt;'>prototype</a>
+<a href='http://www.javathinking.com/tag/selenium/' class='tag-link-30' title='1 topic' style='font-size: 8pt;'>selenium</a>
+<a href='http://www.javathinking.com/tag/sound/' class='tag-link-50' title='1 topic' style='font-size: 8pt;'>sound</a>
+<a href='http://www.javathinking.com/tag/soundjuicer/' class='tag-link-46' title='1 topic' style='font-size: 8pt;'>soundjuicer</a>
+<a href='http://www.javathinking.com/tag/sql/' class='tag-link-35' title='2 topics' style='font-size: 11.230769230769pt;'>sql</a>
+<a href='http://www.javathinking.com/tag/string/' class='tag-link-44' title='1 topic' style='font-size: 8pt;'>string</a>
+<a href='http://www.javathinking.com/tag/svn/' class='tag-link-55' title='2 topics' style='font-size: 11.230769230769pt;'>svn</a>
+<a href='http://www.javathinking.com/tag/testing/' class='tag-link-66' title='2 topics' style='font-size: 11.230769230769pt;'>testing</a>
+<a href='http://www.javathinking.com/tag/tomcat/' class='tag-link-54' title='1 topic' style='font-size: 8pt;'>tomcat</a>
+<a href='http://www.javathinking.com/tag/ubuntu/' class='tag-link-33' title='7 topics' style='font-size: 18.769230769231pt;'>ubuntu</a>
+<a href='http://www.javathinking.com/tag/video/' class='tag-link-26' title='1 topic' style='font-size: 8pt;'>video</a>
+<a href='http://www.javathinking.com/tag/virtualbox/' class='tag-link-78' title='2 topics' style='font-size: 11.230769230769pt;'>virtualbox</a>
+<a href='http://www.javathinking.com/tag/web/' class='tag-link-9' title='1 topic' style='font-size: 8pt;'>Web</a>
+<a href='http://www.javathinking.com/tag/wordpress/' class='tag-link-45' title='2 topics' style='font-size: 11.230769230769pt;'>wordpress</a>
+<a href='http://www.javathinking.com/tag/work/' class='tag-link-51' title='1 topic' style='font-size: 8pt;'>work</a></div>
+</li><li class="widget widget_text" id="text-557814735">			<div class="textwidget"><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4672070-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></div>
+		</li><li class="widget widget_links" id="linkcat-8"><h3>Software Development</h3>
+	<ul class='xoxo blogroll'>
+<li><a href="http://groups.google.com/group/agile-developer-skills/topics">Agile Developer Skills</a></li>
+<li><a href="http://www.agilerecord.com/">Agile Record</a></li>
+<li><a href="http://www.codinghorror.com/blog/">Coding Horror</a></li>
+<li><a href="http://wso2.org/blog/sumedha/1057">Joel on Software</a></li>
+<li><a href="http://groups.google.com/group/software_craftsmanship/topics?pli=1">Software Craftsmanship</a></li>
+<li><a href="http://stackoverflow.com/">Stack Overflow</a></li>
+
+	</ul>
+</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div id="footer_area" class="full_width">
+<div class="page">
+    <div id="widgetfooter">
+	<div class="col Footer1">
+	<ul class="sidebar_list">
+<li id="text-557814732" class="widget widget_text"><h3>AuctionSieve</h3>			<div class="textwidget">Filter the junk out of eBay. Find the stuff you collect. <a href="http://www.auctionsieve.com/">AuctionSieve</a></div>
+		</li>
+	</ul>
+</div>
+<div class="footer_space"></div>
+<div class="col Footer2">
+	<ul class="sidebar_list">
+<li id="text-557814733" class="widget widget_text"><h3>FilmSuggestions.com</h3>			<div class="textwidget"><a href="http://www.filmsuggestions.com/">FilmSuggestions.com</a> - Catalogue your favourite films.</div>
+		</li>
+	</ul>
+</div>
+<div class="footer_space"></div>
+<div class="col Footer3">
+	<ul class="sidebar_list">
+<li id="text-557814734" class="widget widget_text"><h3>Android Blogs</h3>			<div class="textwidget">Stay up to date with the latest Android news at <a href="http://android-blogs.appspot.com/">Android Blogs</a></div>
+		</li>
+	</ul>
+</div>
+</div>
+<div class="cb"></div>
+		<div id="footer">
+  <p style="float:left">&copy; 2009 <a href="http://www.javathinking.com">Java Thinking</a></p>
+    <p style="float:right">Powered by <a href="http://thesisthemes.com/u.php?1">Thesis</a>, <a href="http://wordpress.org/">Wordpress</a> and <a href="http://www.thesisthemes.com">Thesis Themes</a></p>
+
+<!-- SyntaxHighlighter Stuff -->
+<script type="text/javascript" src="http://www.javathinking.com/wp-content/plugins/syntaxhighlighter/files/shCore.js"></script>
+<script type="text/javascript">
+	dp.SyntaxHighlighter.ClipboardSwf = 'http://www.javathinking.com/wp-content/plugins/syntaxhighlighter/files/clipboard.swf';
+	dp.SyntaxHighlighter.HighlightAll('code');
+</script>
+
+	</div>
+</div>
+</div>
+<!--[if lte IE 8]>
+<div id="ie_clear"></div>
+<![endif]-->
+</body>
+</html>

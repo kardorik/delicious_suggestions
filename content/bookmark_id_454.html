@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <title>Ruby retrieve gmail emails through POP3 [ruby] [gmail]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/stylesheets/snippets.css?1271436580" media="screen" rel="Stylesheet" type="text/css" />
+    <link href="/stylesheets/minitabs.css?1229957682" media="screen" rel="Stylesheet" type="text/css" />
+
+    <!--[if IE]>
+    <link href="/stylesheets/iefixes.css?1229957682" media="screen" rel="Stylesheet" type="text/css" />
+    <![endif]-->
+    <!-- Use this code block to activate a prestitial if there's one to load -->
+<!-- BEGIN ADVERTPRO ADVANCED CODE BLOCK -->
+
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+document.write('<SCR'+'IPT src="http://avpa.javalobby.org/servlet/view/dynamic/javascript/zone?zid=159&pid=0&random='+Math.floor(89999999*Math.random()+10000000)+'&millis='+new Date().getTime()+'" language="JavaScript" type="text/javascript"></SCR'+'IPT>');
+//-->
+</SCRIPT>
+
+<!-- END ADVERTPRO ADVANCED CODE BLOCK -->
+</head>
+
+<body class="post" id="none">
+    <div id="container">
+      <div id="header">
+	<form action="/account/login" method="post">
+	    <div id="functions">
+	    <a href="/account/signup">Create account</a> or Username: <input id="username" name="username" type="text" /> Password: <input id="password" name="password" type="password" /> <input name="commit" type="submit" value="Log In" /><br />
+         <!-- BEGIN ADVERTPRO ADVANCED CODE BLOCK -->
+
+<!-- b style="background-color: #f5f; border-top: solid 1px #660; border-bottom: solid 1px #660; padding: 4px" -->
+<!-- %= link_to 'Get your coding job seen by 130,000 coders', :controller => 'ads', :action => 'new' % -->
+<!-- /b -->
+	    </div>
+	</form>
+	<p id="title"><a href="http://snippets.dzone.com/">DZone Snippets</a></p><p><em>5244 users tagging and storing useful source code snippets</em></p>
+	<!-- p><em>Post code snippets. Sort by tags, people, people and tags, etc..</em></p -->
+</div>
+
+      
+
+
+
+      
+
+
+
+
+    <div class="green box">
+        <h3>Never been to DZone Snippets before?</h3>
+        <p><b>Snippets is a <span class='highlighted'>public source code repository.</span></b> Easily build up your personal collection of code snippets, categorize them with tags / keywords, and share them with the world</p>
+    </div>
+
+
+
+<h1>Ruby retrieve gmail emails through POP3 <span class="related">(<a href="#related">See related posts</a>)</span></h1>
+<div id="sidebar">
+    <div style="padding-left: 18px">
+                   <div id="search_snippets" class="box green">
+            <h3>Search DZone Snippets</h3>
+            <form action="/search/get_results" method="get">
+                <input type="text" name="q" value="" size="20"> <input type="submit" value="Search"/>
+            </form>
+        </div>
+               <div id="mediumRect" class="box">
+            <!-- BEGIN ADVERTPRO ADVANCED CODE BLOCK -->
+
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+document.write('<SCR'+'IPT src="http://avpa.javalobby.org/servlet/view/banner/javascript/zone?zid=83&pid=0&random='+Math.floor(89999999*Math.random()+10000000)+'&millis='+new Date().getTime()+'" language="JavaScript" type="text/javascript"></SCR'+'IPT>');
+//-->
+</SCRIPT>
+<NOSCRIPT>
+<A href="http://avpa.javalobby.org/servlet/click/zone?zid=83&pid=0&lookup=true&position=1" target="_top">
+<IMG src="http://avpa.javalobby.org/servlet/view/banner/image/zone?zid=83&pid=0&position=1" height="250" width="300" hspace="0" vspace="0" border="0" alt="Click Here!">
+</A>
+</NOSCRIPT>
+
+<!-- END ADVERTPRO ADVANCED CODE BLOCK -->
+        </div>
+               
+
+        <div id="dzone_latest" class="box blue">
+            <h3>Popular @ <a href="http://www.dzone.com">dzone.com</a></h3>
+            
+                        <p><a href="http://www.dzone.com/links/rss/facebooks_erlangbased_chat_architecture.html" title="Facebook's Erlang-based Chat Architecture">
+                           Facebook's Erlang-based Chat Architecture</a></p>
+            
+                        <p><a href="http://www.dzone.com/links/rss/step_by_step_tutorial_to_create_keystore_and_trus.html" title="Step by step tutorial to create Keystore and Truststore file">
+                           Step by step tutorial to create Keystore and Tr...</a></p>
+            
+                        <p><a href="http://www.dzone.com/links/rss/ejb_interview_questions.html" title="EJB Interview questions">
+                           EJB Interview questions</a></p>
+            
+                        <p><a href="http://www.dzone.com/links/rss/web_development_is_hard.html" title="Web development is hard">
+                           Web development is hard</a></p>
+            
+                        <p><a href="http://www.dzone.com/links/rss/jackass_it_stunts_idiocy_and_hero_hacks.html" title="Jackass IT: Stunts, idiocy, and hero hacks">
+                           Jackass IT: Stunts, idiocy, and hero hacks</a></p>
+            
+                        <p><a href="http://www.dzone.com/links/rss/youre_deploying_it_wrong_teamcity_subversion_web_4.html" title="You're deploying it wrong! TeamCity, Subversion &amp; Web Deploy part 4: Continuous builds with TeamCity">
+                           You're deploying it wrong! TeamCity, Subversion...</a></p>
+            
+                        <p><a href="http://www.dzone.com/links/rss/massive_collection_of_best_photoshop_tutorials_fr.html" title="Massive Collection of Best Photoshop Tutorials from 2010">
+                           Massive Collection of Best Photoshop Tutorials ...</a></p>
+            
+        </div>
+               					         
+        
+    </div>
+</div>
+<div id="main">
+
+  
+    
+
+ <div id="post4617">
+	<div id="skyscraper" style="float: left;">
+<!-- BEGIN ADVERTPRO ADVANCED CODE BLOCK -->
+
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+document.write('<SCR'+'IPT src="http://avpa.dzone.com/servlet/view/banner/javascript/zone?zid=174&pid=0&random='+Math.floor(89999999*Math.random()+10000000)+'&millis='+new Date().getTime()+'" language="JavaScript" type="text/javascript"></SCR'+'IPT>');
+//-->
+</SCRIPT>
+<NOSCRIPT>
+<A href="http://avpa.dzone.com/servlet/click/zone?zid=174&pid=0&lookup=true&position=1" target="_top">
+<IMG src="http://avpa.dzone.com/servlet/view/banner/image/zone?zid=174&pid=0&position=1" height="600" width="120" hspace="0" vspace="0" border="0" alt="Click Here!">
+</A>
+</NOSCRIPT>
+
+<!-- END ADVERTPRO ADVANCED CODE BLOCK -->
+</div>
+  <div class="post">
+
+	<div class="post-body">Found at <br />http://blog.seagul.co.uk/articles/2006/10/24/connecting-to-gmail-with-ruby-or-connecting-to-pop3-servers-over-ssl-with-ruby<br /><br />pop.rb is the new Ruby 1.9 version<br /><br /><pre>
+<span class="ident">require</span> <span class="punct">'</span><span class="string">pop_ssl</span><span class="punct">'</span> <span class="comment"># I renamed the file from pop.rb to pop_ssl.rb to ensure I was requiring the correct version</span>
+
+<span class="ident">username</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_USERNAME@gmail.com</span><span class="punct">'</span>
+<span class="ident">password</span> <span class="punct">=</span> <span class="punct">'</span><span class="string">YOUR_GMAIL_PASSWORD</span><span class="punct">'</span>
+
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">enable_ssl</span><span class="punct">(</span><span class="constant">OpenSSL</span><span class="punct">::</span><span class="constant">SSL</span><span class="punct">::</span><span class="constant">VERIFY_NONE</span><span class="punct">)</span>
+<span class="constant">Net</span><span class="punct">::</span><span class="constant">POP3</span><span class="punct">.</span><span class="ident">start</span><span class="punct">('</span><span class="string">pop.gmail.com</span><span class="punct">',</span> <span class="number">995</span><span class="punct">,</span> <span class="ident">username</span><span class="punct">,</span> <span class="ident">password</span><span class="punct">)</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">pop</span><span class="punct">|</span>
+  <span class="keyword">if</span> <span class="ident">pop</span><span class="punct">.</span><span class="ident">mails</span><span class="punct">.</span><span class="ident">empty?</span>
+    <span class="ident">puts</span> <span class="punct">'</span><span class="string">No mail.</span><span class="punct">'</span>
+  <span class="keyword">else</span>
+    <span class="ident">pop</span><span class="punct">.</span><span class="ident">each_mail</span> <span class="keyword">do</span> <span class="punct">|</span><span class="ident">mail</span><span class="punct">|</span>
+      <span class="ident">p</span> <span class="ident">mail</span><span class="punct">.</span><span class="ident">header</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre></div>
+	
+	<div class="post-metadata">to <a href="/tag/ruby" class="tag ">ruby</a> <a href="/tag/gmail" class="tag ">gmail</a>  by <a href="/user/tkofol">tkofol</a> on Thu Oct 04 13:30:33 -0400 2007<!-- strftime("%Y-%m-%d") --> 
+	
+	
+    </div><br />
+
+  </div>
+ </div>
+
+ <a name="comments"></a>
+
+ 
+	
+		<p>You need to <a href="/account/signup">create an account</a> or log in to post comments to this site.</p>
+	
+ 
+
+</div>
+        <br />
+
+<center><big><b><a href="/">Click here to browse all 7050 code snippets</a></b></big><br /><br /></center>
+
+        
+	<a name="related"></a>
+	<div class="box green" style="clear: both;">
+	<h3>Related Posts</h3>
+
+	<div id="related-posts">
+    <p>
+	
+	    &raquo;&nbsp;<a href="/posts/show/3961">Empty a Gmail label with FireWatir</a> <span class="post-metadata">in <a href="/tag/ruby" class="tag ">ruby</a> <a href="/tag/gmail" class="tag ">gmail</a> <a href="/tag/firewatir" class="tag ">firewatir</a> <a href="/tag/watir" class="tag ">watir</a> </span><br />
+	
+	    &raquo;&nbsp;<a href="/posts/show/8">custom accessors</a> <span class="post-metadata">in <a href="/tag/ruby" class="tag ">ruby</a> <a href="/tag/classes" class="tag ">classes</a> <a href="/tag/oop" class="tag ">oop</a> </span><br />
+	
+	    &raquo;&nbsp;<a href="/posts/show/13">paginate on custom sql queries in rails</a> <span class="post-metadata">in <a href="/tag/ruby" class="tag ">ruby</a> <a href="/tag/rails" class="tag ">rails</a> <a href="/tag/pagination" class="tag ">pagination</a> <a href="/tag/sql" class="tag ">sql</a> </span><br />
+	
+	    &raquo;&nbsp;<a href="/posts/show/14">creating a select box on a table's contents</a> <span class="post-metadata">in <a href="/tag/ruby" class="tag ">ruby</a> <a href="/tag/rails" class="tag ">rails</a> <a href="/tag/html" class="tag ">html</a> </span><br />
+	
+	    &raquo;&nbsp;<a href="/posts/show/16">dynamic accessors on rails models</a> <span class="post-metadata">in <a href="/tag/ruby" class="tag ">ruby</a> <a href="/tag/rails" class="tag ">rails</a> </span><br />
+	
+	    &raquo;&nbsp;<a href="/posts/show/17">Exceptions to layout usage</a> <span class="post-metadata">in <a href="/tag/ruby" class="tag ">ruby</a> <a href="/tag/rails" class="tag ">rails</a> <a href="/tag/layouts" class="tag ">layouts</a> </span><br />
+	
+
+
+    </p>
+    </div>
+	</div>
+ 
+
+
+
+
+ 	    <br style="clear: both" />
+
+<div id="footer">
+		<p>Snippets originally developed by <a href="http://www.petercooper.co.uk/">Peter Cooper</a> and powered by <a href="http://www.rubyonrails.com/">Ruby On Rails</a>.</p>
+        <p>Copyright &copy; 2007 <a href="http://www.dzone.com">DZone, Inc.</a></p>
+    <!-- Site Meter -->
+	<script type="text/javascript" src="http://sm2.sitemeter.com/js/counter.js?site=sm2snippets">
+	</script>
+	<noscript>
+	<a href="http://sm2.sitemeter.com/stats.asp?site=sm2snippets" target="_top">
+	<img src="http://sm2.sitemeter.com/meter.asp?site=sm2snippets" alt="Site Meter" border="0"/></a>
+	</noscript>
+	<!-- Copyright (c)2006 Site Meter -->
+</div>
+
+    </div>
+<script src="/javascripts/prototype.js?1229957682" type="text/javascript"></script>
+		<script src="/javascripts/effects.js?1229957682" type="text/javascript"></script>
+		<script src="/javascripts/dragdrop.js?1229957682" type="text/javascript"></script>
+		<script src="/javascripts/controls.js?1229957682" type="text/javascript"></script>
+		<script src="/javascripts/general.js?1229957682" type="text/javascript"></script>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-410289-8";
+urchinTracker();
+</script>
+    <!-- Start Quantcast tag -->
+    <script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+    <script type="text/javascript">
+    _qacct="p-ebK_XdQH1HeLo";quantserve();</script>
+    <noscript>
+    <img src="http://pixel.quantserve.com/pixel/p-ebK_XdQH1HeLo.gif" style="display: none" height="1" width="1" alt="Quantcast"/></noscript>
+    <!-- End Quantcast tag -->
+     <script type="text/javascript" language="JavaScript" src="http://certify.alexametrics.com/atrk.js"></script>
+<script type="text/javascript" language="JavaScript">_atrk_opts = {
+atrk_acct: "2Zc291a0g0y12X" }; atrk ();</script>
+<noscript><img src="http://certify.alexametrics.com/atrk.gif?account=2Zc291a0g0y12X&jsv=20080822" style="display:none" height="1" width="1"></noscript>
+</body>
+</html>

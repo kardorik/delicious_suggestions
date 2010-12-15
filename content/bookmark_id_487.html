@@ -1,0 +1,1727 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Basic User Authentication in Rails | aidanf.net</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="alternate" type="application/rss+xml" title="aidanf.net RSS" href="http://www.aidanf.net/node/feed" />
+<link rel="shortcut icon" href="/misc/favicon.ico" type="image/x-icon" />
+
+
+<style type="text/css" media="all">@import "/modules/contrib/codefilter/codefilter.css";</style>
+<style type="text/css" media="all">@import "/modules/contrib/tagadelic/tagadelic.css";</style>
+<style type="text/css" media="all">@import "/modules/node/node.css";</style>
+<style type="text/css" media="all">@import "/modules/system/defaults.css";</style>
+<style type="text/css" media="all">@import "/modules/system/system.css";</style>
+<style type="text/css" media="all">@import "/modules/user/user.css";</style>
+<style type="text/css" media="all">@import "/modules/comment/comment.css";</style>
+<style type="text/css" media="all">@import "/themes/aqueous_light/style.css";</style>
+<script type="text/javascript">
+function doClear(theText) 
+{
+   	if (theText.value == theText.defaultValue)
+ 	{
+         theText.value = ""
+    }
+ }
+</script>
+</head>
+ 
+<body>
+
+<div id="wrapper">
+<div id="innerwrapper">
+
+		<div id="header">
+		
+				<a href="/" title="Home"><img src="/files/logo.gif" alt="Home" /></a>				<h1><a href="/" title="Home">aidanf.net</a></h1>		      			   						
+                  <ul id="nav"><li class="first menu-1-1-60"><a href="/about" class="menu-1-1-60">About</a></li>
+<li class="menu-1-2-60"><a href="/blog_" title="Blog" class="menu-1-2-60">Blog</a></li>
+<li class="menu-1-3-60"><a href="/publications_" title="Publications" class="menu-1-3-60">Publications</a></li>
+<li class="menu-1-4-60"><a href="/software_" title="Software" class="menu-1-4-60">Software</a></li>
+<li class="last menu-1-5-60"><a href="/feedback" class="menu-1-5-60">Contact</a></li>
+</ul>        
+
+		</div>
+				<div id="sidebar">
+		        <div class="block" id="block-block-14">
+    <h2 class="title">This is an archive</h2>
+    <div class="content"><p>You are currently viewing an archive of this site. To view new content and see what I&#8217;ve been up to lately please check the main page at <a href="http://www.aidanf.net">http://www.aidanf.net</a></p>
+</div>
+ </div>
+  <div class="block" id="block-tagadelic-1">
+    <h2 class="title">Tags</h2>
+    <div class="content"><a href="/authentication" class="tagadelic level1">authentication</a> 
+<a href="/barcamp" class="tagadelic level3">barcamp</a> 
+<a href="/barcampgalway" class="tagadelic level1">barcampgalway</a> 
+<a href="/drupal" class="tagadelic level1">drupal</a> 
+<a href="/galway" class="tagadelic level1">Galway</a> 
+<a href="/git" class="tagadelic level1">git</a> 
+<a href="/information-extraction" class="tagadelic level3">information extraction</a> 
+<a href="/ireland" class="tagadelic level6">ireland</a> 
+<a href="/mac" class="tagadelic level1">mac</a> 
+<a href="/machine-learning" class="tagadelic level2">machine learning</a> 
+<a href="/opencoffee" class="tagadelic level1">opencoffee</a> 
+<a href="/publications-0" class="tagadelic level4">publications</a> 
+<a href="/python" class="tagadelic level3">python</a> 
+<a href="/rails" class="tagadelic level6">rails</a> 
+<a href="/ruby" class="tagadelic level6">ruby</a> 
+<a href="/rubyireland" class="tagadelic level3">rubyireland</a> 
+<a href="/semantic-web" class="tagadelic level1">semantic web</a> 
+<a href="/social-networks" class="tagadelic level1">social networks</a> 
+<a href="/software-0" class="tagadelic level3">software</a> 
+<a href="/text-classification" class="tagadelic level2">text classification</a> 
+<div class='more-link'><a href="/tagadelic/chunk/1">more tags</a></div></div>
+ </div>
+		</div>
+		
+		<div id="sidebarright">
+		      <div class="block" id="block-block-6">
+    <h2 class="title">Subscribe</h2>
+    <div class="content"><p><a href="/node/feed"><img style="float:right;" src="/images/feed-icon.png"></a> <a href="/node/feed"><img src="http://feeds.feedburner.com/~fc/aidanf?bg=3388CC&amp;fg=000000&amp;anim=0" height="26" width="88" style="border:0" alt="" /></a> </p>
+<p></div>
+ </div>
+  <div class="block" id="block-block-7">
+    <h2 class="title"></h2>
+    <div class="content"><p><a href="http://workingwithrails.com/recommendation/new/person/4910-aidan-finn">Recommend me on Working With Rails</a><br/><br />
+<a href="http://workingwithrails.com/recommendation/new/person/4910-aidan-finn"><img alt="Recommend Me" src="http://workingwithrails.com/images/tools/compact-small-button.jpg" /></a></p>
+</div>
+ </div>
+		</div>
+		
+		<div id="content">
+<div class="tabs"></div>
+				          <div class="node">
+        <h2 class="title"><a href="/rails/rails_user_authentication_tutorial">Basic User Authentication in Rails</a></h2>
+	<span class="submitted">Posted May 28, 2006</span>    <div class="content"><p>This article walks through creating a basic authentication system in rails.</p>
+
+<p><strong>Update</strong>: If you liked this article <a href="http://digg.com/programming/Basic_User_Authentication_in_Rails">Digg it</a>!</p>
+
+<p>The question of user authentication comes up regularly on the rails mailing list and there are several articles and discussions around the web on whether it should be part of the rails framework. Its not included in rails and it is <a href="http://weblog.rubyonrails.org/articles/2005/11/11/why-engines-and-components-are-not-evil-but-distracting">not likely</a> to be. </p>
+
+<p>The reason given is that its difficult to generalize it to suit everybody. When I started using rails I tried out several different plugins and generators for user authentication. Each time I ended up spending more time installing, figuring out and adapting the code than I would have spent if I wrote it from scratch. Each project I&#8217;ve worked on has had different authentication requirements so now I write the authentication code from scratch every time.</p>
+
+<p>The advantages to writing your own are:</p>
+
+<ul>
+<li>You will fully understand it.</li>
+<li>It will match exactly the needs of your application.</li>
+<li>It will be easier for you to adapt it.</li>
+<li>In many cases its actually quicker than using a plugin.</li>
+<li>You have to write your own tests.</li>
+</ul>
+
+<p>If you&#8217;re not interested in rolling your own, check these out (even if you don&#8217;t use them, reading through the code for each one is a good way to learn different approaches to doing rails authentication):</p>
+
+<ul>
+<li><a href="http://www.rails-engines.org/login_engine">Login Engine</a></li>
+<li><a href="http://wiki.rubyonrails.com/rails/pages/LoginGenerator">Login Generator</a></li>
+<li><a href="http://technoweenie.stikipad.com/plugins/show/Acts+as+Authenticated">Acts_as_authenticated</a></li>
+</ul>
+
+<p>So in this article I will walk through creating a simple user authentication system with rails.  Hopefully this tutorial will be useful to others who are starting to learn rails and need to do some basic authentication. </p>
+
+<p>Its worth taking a moment to discuss how I wrote the code. The sequence for this article is to help explain what&#8217;s going on, but its not really the sequence of how I wrote the code. When writing the code I sketched out the views on paper and used this to figure out what methods I would need in the model and controller. Then I grabbed some tests from login generator and login engine and added some more tests based on the functionality I wanted. Then I implemented the model followed by the controller, one test at a time. When all the tests passed, I coded up the views. This was a bit of an epiphany for me as before I started using rails and for a while after I started to use it I rarely used unit tests. Now they&#8217;re an integral part of my coding process. For the purposes of this tutorial I&#8217;m not going to pay much attention to the tests other than to list them but I have commented them so I would strongly encourage you to go through them.</p>
+
+<p>Lets start by thinking about our views. This gives us an idea of the functionality that we want. We can draw the pages that our app will have. It can be helpful at this stage to draw the views using pen and paper. By forcing ourselves to draw the interface now we force ourselves to think about the functionality we actually need. To signup the user will need to supply a username, a password and confirm their password. When logging in they will provide a username and password. If a user forgets their password they can have it emailed to their account - so we need to get their email when they signup too. When the user changes their password they just need to supply the new password and confirm it.</p>
+
+<p>Users can signup, login and logout.  Users can also change their password and have a password emailed to themselves if they forget it. Access to actions can be restricted depending on whether a user is logged in or not. So from thinking about our views we need to store for each user a username, password and email address. Now lets move on to creating the model.</p>
+
+<pre class="terminal">
+> ruby script/generate model User
+exists  app/models/
+
+exists  test/unit/
+exists  test/fixtures/
+create  app/models/user.rb
+create  test/unit/user_test.rb
+create  test/fixtures/users.yml
+create  db/migrate
+create  db/migrate/001_create_users.rb
+</pre>
+
+<p>This generates the user model and test stubs and creates our initial migration.
+Open your user migration. It has already been created in <code>db/migrate/001_create_users.rb</code></p>
+
+<pre>
+class CreateUsers < ActiveRecord::Migration
+  def self.up
+    create_table :users do |t|
+      t.column :login, :string
+      t.column :hashed_password, :string
+      t.column :email, :string
+      t.column :salt, :string
+      t.column :created_at, :datetime
+    end    
+  end
+
+  def self.down
+    drop_table :users
+  end
+end
+</pre>
+
+<p>This code defines our database table that will store users. <code>login</code> is the user&#8217;s username and <code>email</code> is their email address - we will use this to send them a new password if they forget it. The other thing we need to store is their password so that we can authenticate them and log them into the system. </p>
+
+<p>Its not a good idea to store the password in cleartext in the database. Instead we will store a hashed version of the password. This is stored in the hashed_password field. Before comparing the password to the one stored in the database we encrypt it and then check if the encrypt of the entered password matches the one stored in the database. We will use the <a href="http://en.wikipedia.org/wiki/SHA1">SHA1</a> algorithm to encrypt the password.</p>
+
+<p><em>Note: By default all your post parameters including cleartext passwords will appear in the rails production log. If you dont want this to happen you should take steps to avoid it. E.g. <a href="http://wiki.rubyonrails.org/rails/pages/Filter+Logged+Params+Plugin">Filter Logged Params Plugin</a></em></p>
+
+<p>The other database column is <code>salt</code>. Adding a <a href="http://en.wikipedia.org/wiki/Salt_(cryptography)">salt</a> to the hashed password make it more difficult to <a href="http://en.wikipedia.org/wiki/Password_cracking#Salting">break</a> the password. The salt is a random string that is generated and stored for each user. We then add this salt to the password before encrypting it. Every user has a different salt, but we store each user&#8217;s salt in the database so that we can authenticate the user&#8217;s password.</p>
+
+<p>Running the migration will create the database</p>
+
+<pre class="terminal">
+> rake db:migrate           
+== CreateUsers: migrating =====================================================
+-- create_table("users")
+   -> 0.6538s
+== CreateUsers: migrated (0.6554s) ============================================
+</pre>
+
+<p>and running</p>
+
+<pre class="terminal">
+> rake db:test:clone 
+</pre>
+
+<p>sets up the test database.</p>
+
+<h3>The model</h3>
+
+<p>We need to decide what functionality goes in the model and what goes into the controllers. Rails is based on the MVC pattern and the idea that the business logic goes into the model. This is sometimes confused with the 3-tier architecture where the models are just used to interface with the database and the business logic appears in the controllers. The rails way seems to be to put as much logic as possible into the models. To think of it another way, you should be able to run your application through all its important processes by calling methods on model objects at the console. More concretely core logic such as authentication and sending a new password should be in the model, not the controller.</p>
+
+<pre>
+require 'digest/sha1'
+
+class User < ActiveRecord::Base
+  validates_length_of :login, :within => 3..40
+  validates_length_of :password, :within => 5..40
+  validates_presence_of :login, :email, :password, :password_confirmation, :salt
+  validates_uniqueness_of :login, :email
+  validates_confirmation_of :password
+  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Invalid email"  
+</pre>
+
+<p>We start out by defining validations for the user model. <code>password</code> and <code>login</code> must be within pre-defined length. <code>login</code> and <code>email</code> must be unique. <code>email</code> must match a certain format. <code>validates_confirmation_of</code> ensures that <code>password</code> must be confirmed using <code>password_confirmation</code>. <code>login</code>, <code>email</code>, <code>password</code>, <code>password_confirmation</code> and <code>salt</code> must all be present. When creating a new user or saving an existing one, all these conditions must be met or the save will fail.</p>
+
+<p>Looking back at the database definition we see that we didn&#8217;t have a <code>password</code> or <code>password confirmation</code> field. We had <code>hashed_password</code>. We will store the hashed password in the database but we will create variables to hold the raw text version of <code>password</code> and <code>password_confirmation</code>. These values will not be stored in the database but storing them as variables enables us to take advantages of the rails validation methods.</p>
+
+<pre>
+  attr_protected :id, :salt
+</pre>
+
+<p>We make the <code>id</code> and <code>salt</code> attributes protected. This makes sure that users can&#8217;t set them by sending a post request - you have to update them in the model. For example if you extended this model to include a roles field that specified if a user was an admin or normal user it would be important to specify that field as protected. Any field that you don&#8217;t want to be updatable from your web forms should be protected.</p>
+
+<p>We set the salt for the user to a random string if it hasn&#8217;t already been set. This happens the first time the users password is set. When we set the users password it calls the protected random_string method to generates a random string of digits and numbers of a pre-defined length.</p>
+
+<pre>
+ def self.random_string(len)
+   #generate a random password consisting of strings and digits
+   chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+   newpass = ""
+   1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
+   return newpass
+ end
+</pre>
+
+<p>We now need to make sure that the password that is stored in the database is encrypted. We create an instance method password=. This method gets called whenever a password is assigned to a user e.g. u.password=&#8221;secret&#8221;.</p>
+
+<pre>
+def password=(pass)
+  @password=pass
+  self.salt = User.random_string(10) if !self.salt?
+  self.hashed_password = User.encrypt(@password, self.salt)
+end
+</pre>
+
+<p>This sets the variable @password to the text value of password and stores the hashed version in the database. The password is hashed using the protected encrypt class method. This generates a hash from the password and the users salt. The salt is set to a random value if it hasn&#8217;t already been set. (You could set the salt to a different value every time you change the password if you wanted).</p>
+
+<pre>
+ def self.encrypt(pass, salt)
+   Digest::SHA1.hexdigest(pass+salt)
+ end
+</pre>
+
+<p>So that takes care of encrypting the password. The user model also needs to be able to authenticate a user. The class method authenticate returns a user if they&#8217;re hashed password matches the one stored for that user in the database.</p>
+
+<pre>
+def self.authenticate(login, pass)
+  u=find(:first, :conditions=>["login = ?", login])
+  return nil if u.nil?
+  return u if User.encrypt(pass, u.salt)==u.hashed_password
+  nil
+end  
+</pre>
+
+<p>First we find the user that corresponds to the login. If we didn&#8217;t find the login authentication fails. We then compute the users hashed password using the supplied password and the users salt. Authentication is successful if these values match.</p>
+
+<p>The last piece of functionality for the user is the ability to send them a new password if they forget their password. We can&#8217;t send them their existing password because we don&#8217;t store it - we only store a salted hash of it. Instead we generate a new random password, change the users password to the new random password and email this new password to the user (we will describe the Notifications mailer method later). </p>
+
+<pre>
+def send_new_password
+  new_pass = User.random_string(10)
+  self.password = self.password_confirmation = new_pass
+  self.save
+  Notifications.deliver_forgot_password(self.email, self.login, new_pass)
+end
+</pre>
+
+<p>Here is a full listing of the model:</p>
+
+<pre>
+require 'digest/sha1'
+
+class User < ActiveRecord::Base
+  validates_length_of :login, :within => 3..40
+  validates_length_of :password, :within => 5..40
+  validates_presence_of :login, :email, :password, :password_confirmation, :salt
+  validates_uniqueness_of :login, :email
+  validates_confirmation_of :password
+  validates_format_of :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i, :message => "Invalid email"  
+
+  attr_protected :id, :salt
+
+  attr_accessor :password, :password_confirmation
+
+  def self.authenticate(login, pass)
+    u=find(:first, :conditions=>["login = ?", login])
+    return nil if u.nil?
+    return u if User.encrypt(pass, u.salt)==u.hashed_password
+    nil
+  end  
+
+  def password=(pass)
+    @password=pass
+    self.salt = User.random_string(10) if !self.salt?
+    self.hashed_password = User.encrypt(@password, self.salt)
+  end
+
+  def send_new_password
+    new_pass = User.random_string(10)
+    self.password = self.password_confirmation = new_pass
+    self.save
+    Notifications.deliver_forgot_password(self.email, self.login, new_pass)
+  end
+
+  protected
+
+  def self.encrypt(pass, salt)
+    Digest::SHA1.hexdigest(pass+salt)
+  end
+
+  def self.random_string(len)
+    #generat a random password consisting of strings and digits
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    newpass = ""
+    1.upto(len) { |i| newpass << chars[rand(chars.size-1)] }
+    return newpass
+  end
+
+end
+</pre>
+
+<h3>Testing the model</h3>
+
+<p>With an authentication system the behaviour that you want your code to exhibit and the behaviour you don&#8217;t want it to exhibit are very well defined. Writing tests can be a good way of specifying the behaviour before writing the code. Write unit tests that specify how the model will behave. Write functional tests that specify how the controller will behave. Once these tests pass, you can be fairly confident that your model and controller are working as you expect. More importantly you can be confident that it still works in the future if you make changes to it by running the tests again and adding new ones. In other cases you can develop your code and tests side by side. </p>
+
+<p>I&#8217;ve been harping on about tests so here are the unit tests for the user model. These tests go in the file <code>test/unit/user_test.rb</code></p>
+
+<p>To run the tests we need some fixtures. Our fixtures are in <code>test/fixtures/users.yml</code></p>
+
+<pre>
+bob:
+  id: 1000001
+  login: bob
+  salt: 1000
+  email: bob@mcbob.com
+  hashed_password: 77a0d943cdbace52716a9ef9fae12e45e2788d39 # test
+
+existingbob:
+  id: 1000002
+  salt: 1000
+  login: existingbob
+  email: exbob@mcbob.com
+  hashed_password: 77a0d943cdbace52716a9ef9fae12e45e2788d39 # test
+
+longbob:
+  id: 1000003
+  login: longbob
+  email: lbob@mcbob.com
+  hashed_password: 00728d3362c26746ec25963f71be022b152237a9 # longtest
+  salt: 1000
+</pre>
+
+<p>Here is a listing of tests for the model:</p>
+
+<pre>
+require File.dirname(__FILE__) + '/../test_helper'
+
+class UserTest < Test::Unit::TestCase
+  self.use_instantiated_fixtures  = true
+  fixtures :users
+
+  def test_auth 
+    #check that we can login we a valid user 
+    assert_equal  @bob, User.authenticate("bob", "test")    
+    #wrong username
+    assert_nil    User.authenticate("nonbob", "test")
+    #wrong password
+    assert_nil    User.authenticate("bob", "wrongpass")
+    #wrong login and pass
+    assert_nil    User.authenticate("nonbob", "wrongpass")
+  end
+
+
+  def test_passwordchange
+    # check success
+    assert_equal @longbob, User.authenticate("longbob", "longtest")
+    #change password
+    @longbob.password = @longbob.password_confirmation = "nonbobpasswd"
+    assert @longbob.save
+    #new password works
+    assert_equal @longbob, User.authenticate("longbob", "nonbobpasswd")
+    #old pasword doesn't work anymore
+    assert_nil   User.authenticate("longbob", "longtest")
+    #change back again
+    @longbob.password = @longbob.password_confirmation = "longtest"
+    assert @longbob.save
+    assert_equal @longbob, User.authenticate("longbob", "longtest")
+    assert_nil   User.authenticate("longbob", "nonbobpasswd")
+  end
+
+  def test_disallowed_passwords
+    #check thaat we can't create a user with any of the disallowed paswords
+    u = User.new    
+    u.login = "nonbob"
+    u.email = "nonbob@mcbob.com"
+    #too short
+    u.password = u.password_confirmation = "tiny" 
+    assert !u.save     
+    assert u.errors.invalid?('password')
+    #too long
+    u.password = u.password_confirmation = "hugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehugehuge"
+    assert !u.save     
+    assert u.errors.invalid?('password')
+    #empty
+    u.password = u.password_confirmation = ""
+    assert !u.save    
+    assert u.errors.invalid?('password')
+    #ok
+    u.password = u.password_confirmation = "bobs_secure_password"
+    assert u.save     
+    assert u.errors.empty? 
+  end
+
+  def test_bad_logins
+    #check we cant create a user with an invalid username
+    u = User.new  
+    u.password = u.password_confirmation = "bobs_secure_password"
+    u.email = "okbob@mcbob.com"
+    #too short
+    u.login = "x"
+    assert !u.save     
+    assert u.errors.invalid?('login')
+    #too long
+    u.login = "hugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhugebobhug"
+    assert !u.save     
+    assert u.errors.invalid?('login')
+    #empty
+    u.login = ""
+    assert !u.save
+    assert u.errors.invalid?('login')
+    #ok
+    u.login = "okbob"
+    assert u.save  
+    assert u.errors.empty?
+    #no email
+    u.email=nil   
+    assert !u.save     
+    assert u.errors.invalid?('email')
+    #invalid email
+    u.email='notavalidemail'   
+    assert !u.save     
+    assert u.errors.invalid?('email')
+    #ok
+    u.email="validbob@mcbob.com"
+    assert u.save  
+    assert u.errors.empty?
+  end
+
+
+  def test_collision
+    #check can't create new user with existing username
+    u = User.new
+    u.login = "existingbob"
+    u.password = u.password_confirmation = "bobs_secure_password"
+    assert !u.save
+  end
+
+
+  def test_create
+    #check create works and we can authenticate after creation
+    u = User.new
+    u.login      = "nonexistingbob"
+    u.password = u.password_confirmation = "bobs_secure_password"
+    u.email="nonexistingbob@mcbob.com"  
+    assert_not_nil u.salt
+    assert u.save
+    assert_equal 10, u.salt.length
+    assert_equal u, User.authenticate(u.login, u.password)
+
+    u = User.new(:login => "newbob", :password => "newpassword", :password_confirmation => "newpassword", :email => "newbob@mcbob.com" )
+    assert_not_nil u.salt
+    assert_not_nil u.password
+    assert_not_nil u.hashed_password
+    assert u.save 
+    assert_equal u, User.authenticate(u.login, u.password)
+
+  end
+
+  def test_send_new_password
+    #check user authenticates
+    assert_equal  @bob, User.authenticate("bob", "test")    
+    #send new password
+    sent = @bob.send_new_password
+    assert_not_nil sent
+    #old password no longer workd
+    assert_nil User.authenticate("bob", "test")
+    #email sent...
+    assert_equal "Your password is ...", sent.subject
+    #... to bob
+    assert_equal @bob.email, sent.to[0]
+    assert_match Regexp.new("Your username is bob."), sent.body
+    #can authenticate with the new password
+    new_pass = $1 if Regexp.new("Your new password is (\\w+).") =~ sent.body 
+    assert_not_nil new_pass
+    assert_equal  @bob, User.authenticate("bob", new_pass)    
+  end
+
+  def test_rand_str
+    new_pass = User.random_string(10)
+    assert_not_nil new_pass
+    assert_equal 10, new_pass.length
+  end
+
+  def test_sha1
+    u=User.new
+    u.login      = "nonexistingbob"
+    u.email="nonexistingbob@mcbob.com"  
+    u.salt="1000"
+    u.password = u.password_confirmation = "bobs_secure_password"
+    assert u.save   
+    assert_equal 'b1d27036d59f9499d403f90e0bcf43281adaa844', u.hashed_password
+    assert_equal 'b1d27036d59f9499d403f90e0bcf43281adaa844', User.encrypt("bobs_secure_password", "1000")
+  end
+
+  def test_protected_attributes
+    #check attributes are protected
+    u = User.new(:id=>999999, :salt=>"I-want-to-set-my-salt", :login => "badbob", :password => "newpassword", :password_confirmation => "newpassword", :email => "badbob@mcbob.com" )
+    assert u.save
+    assert_not_equal 999999, u.id
+    assert_not_equal "I-want-to-set-my-salt", u.salt
+
+    u.update_attributes(:id=>999999, :salt=>"I-want-to-set-my-salt", :login => "verybadbob")
+    assert u.save
+    assert_not_equal 999999, u.id
+    assert_not_equal "I-want-to-set-my-salt", u.salt
+    assert_equal "verybadbob", u.login
+  end
+end
+</pre>
+
+<p>Running these tests gives</p>
+
+<pre class="terminal">
+> ruby test/unit/user_test.rb 
+Loaded suite test/unit/user_test
+Started
+..........
+Finished in 4.767613 seconds.
+
+10 tests, 63 assertions, 0 failures, 0 errors
+</pre>
+
+<h3>The controller</h3>
+
+<pre class="terminal">
+
+> ruby script/generate controller User signup login logout delete edit forgot_password
+exists  app/controllers/
+exists  app/helpers/
+create  app/views/user
+exists  test/functional/
+create  app/controllers/user_controller.rb
+create  test/functional/user_controller_test.rb
+create  app/helpers/user_helper.rb
+create  app/views/user/signup.rhtml
+create  app/views/user/login.rhtml
+create  app/views/user/logout.rhtml
+create  app/views/user/delete.rhtml
+create  app/views/user/edit.rhtml
+create  app/views/user/forgot_password.rhtml
+
+</pre>
+
+<p>Since the model contained the business logic, the controller methods are a bit easier. Here is the code for the controller. </p>
+
+<pre>
+class UserController < ApplicationController
+
+  before_filter :login_required, :only=>['welcome', 'change_password', 'hidden']
+
+  def signup
+    @user = User.new(@params[:user])
+    if request.post?  
+      if @user.save
+        session[:user] = User.authenticate(@user.login, @user.password)
+        flash[:message] = "Signup successful"
+        redirect_to :action => "welcome"          
+      else
+        flash[:warning] = "Signup unsuccessful"
+      end
+    end
+  end
+
+  def login
+    if request.post?
+      if session[:user] = User.authenticate(params[:user][:login], params[:user][:password])
+        flash[:message]  = "Login successful"
+        redirect_to_stored
+      else
+        flash[:warning] = "Login unsuccessful"
+      end
+    end
+  end
+
+  def logout
+    session[:user] = nil
+    flash[:message] = 'Logged out'
+    redirect_to :action => 'login'
+  end
+
+  def forgot_password
+    if request.post?
+      u= User.find_by_email(params[:user][:email])
+      if u and u.send_new_password
+        flash[:message]  = "A new password has been sent by email."
+        redirect_to :action=>'login'
+      else
+        flash[:warning]  = "Couldn't send password"
+      end
+    end
+  end
+
+  def change_password
+    @user=session[:user]
+    if request.post?
+      @user.update_attributes(:password=>params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+      if @user.save
+        flash[:message]="Password Changed"
+      end
+    end
+  end
+
+  def welcome
+  end
+  def hidden
+  end
+end
+</pre>
+
+<p>The code for the controller is pretty straight-forward as all the tricky business logic is in the model. In each controller method, it is just a matter of deciding which action to direct to next depending on what input it gets. </p>
+
+<p>For example the signup action creates a new user using the parameters it receives. It it is a post request (the form was submitted) it tries to save the new user. If the save operation was successful the user is authenticated and redirected to the welcome screen. If we fail to save the user (e.g. if validation fails) we add a warning to the flash and the page renders again. </p>
+
+<p>The login action attempts to authenticate the user using the given parameters. If successful it redirects them to a page stored in the session or a default. </p>
+
+<p>The forgot password action finds a user using the email address provided as a parameter and the tries to send them a new password. If successful it redirect them to the login action.</p>
+
+<p>There are also some methods that we would like to be available to all controllers in the application. These are stored in <span class="filename">app/controllers/application.rb</span>. These are </p>
+
+<pre>
+class ApplicationController < ActionController::Base
+
+  def login_required
+    if session[:user]
+      return true
+    end
+    flash[:warning]='Please login to continue'
+    session[:return_to]=request.request_uri
+    redirect_to :controller => "user", :action => "login"
+    return false 
+  end
+
+  def current_user
+    session[:user]
+  end
+
+  def redirect_to_stored
+    if return_to = session[:return_to]
+      session[:return_to]=nil
+      redirect_to_url(return_to)
+    else
+      redirect_to :controller=>'user', :action=>'welcome'
+    end
+  end
+end
+</pre>
+
+<p><code>login_required</code> is a filter that allows us to control access to actions. In the user controller we have three actions, <code>welcome</code>, <code>hidden</code> and <code>forgot_password</code> that can only be accessed by logged in users. 
+The line</p>
+
+<pre>
+before_filter :login_required, :only=>['welcome', 'change_password', 'hidden']
+</pre>
+
+<p>ensures that the <code>login_required</code> method is run before the hidden and welcome actions. Processing of these actions only continues if this filter returns true. The <code>login_required</code> method returns true if <code>session[:user]</code> is set i.e. if the user is logged in. Otherwise it stores the page to return to in the session and redirects to the login page. The <code>redirect_to_stored</code>
+method is used to redirect to a page stored in the session (It redirects to the url stored in the variable <code>session[:return_to]</code>).</p>
+
+<p><code>current_user</code> is a convenience method for accessing the currently-logged-in user. Using this to get the user in our application instead of accessing <code>session[:user]</code> directly will allow us to change this in the future. For example instead of storing the entire user object in the session we might change our implementation to store only the users id and retrieve the user object from the database with a before_filter (see the extensions at the end for more on this).</p>
+
+<h3>Testing the controller</h3>
+
+<p>Here are the controller tests. These specify how each controller method should behave.</p>
+
+<pre>
+require File.dirname(__FILE__) + '/../test_helper'
+require 'user_controller'
+
+# Re-raise errors caught by the controller.
+class UserController; def rescue_action(e) raise e end; end
+
+class UserControllerTest < Test::Unit::TestCase
+
+  self.use_instantiated_fixtures  = true
+
+  fixtures :users
+
+  def setup
+    @controller = UserController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+    @request.host = "localhost"
+  end
+
+
+
+  def test_auth_bob
+    #check we can login
+    post :login, :user=> { :login => "bob", :password => "test" }
+    assert_session_has :user
+    assert_equal @bob, session[:user]
+    assert_response :redirect
+    assert_redirected_to :action=>'welcome'
+  end
+
+  def test_signup
+    #check we can signup and then login
+    post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "newpassword", :email => "newbob@mcbob.com" }
+    assert_response :redirect
+    assert_not_nil session[:user]
+    assert_session_has :user
+    assert_redirected_to :action=>'welcome'
+  end
+
+  def test_bad_signup
+    #check we can't signup without all required fields
+    post :signup, :user => { :login => "newbob", :password => "newpassword", :password_confirmation => "wrong" , :email => "newbob@mcbob.com"}
+    assert_response :success
+    assert_invalid_column_on_record "user", "password"
+    assert_template "user/signup"
+    assert_nil session[:user]
+
+    post :signup, :user => { :login => "yo", :password => "newpassword", :password_confirmation => "newpassword" , :email => "newbob@mcbob.com"}
+    assert_response :success
+    assert_invalid_column_on_record "user", "login"
+    assert_template "user/signup"
+    assert_nil session[:user]
+
+    post :signup, :user => { :login => "yo", :password => "newpassword", :password_confirmation => "wrong" , :email => "newbob@mcbob.com"}
+    assert_response :success
+    assert_invalid_column_on_record "user", ["login", "password"]
+    assert_template "user/signup"
+    assert_nil session[:user]
+  end
+
+  def test_invalid_login
+    #can't login with incorrect password
+    post :login, :user=> { :login => "bob", :password => "not_correct" }
+    assert_response :success
+    assert_session_has_no :user
+    assert flash[:warning]
+    assert_template "user/login"
+  end
+
+  def test_login_logoff
+    #login
+    post :login, :user=>{ :login => "bob", :password => "test"}
+    assert_response :redirect
+    assert_session_has :user
+    #then logoff
+    get :logout
+    assert_response :redirect
+    assert_session_has_no :user
+    assert_redirected_to :action=>'login'
+  end
+
+  def test_forgot_password
+    #we can login
+    post :login, :user=>{ :login => "bob", :password => "test"}
+    assert_response :redirect
+    assert_session_has :user
+    #logout
+    get :logout
+    assert_response :redirect
+    assert_session_has_no :user
+    #enter an email that doesn't exist
+    post :forgot_password, :user => {:email=>"notauser@doesntexist.com"}
+    assert_response :success
+    assert_session_has_no :user
+    assert_template "user/forgot_password"
+    assert flash[:warning]
+    #enter bobs email
+    post :forgot_password, :user => {:email=>"exbob@mcbob.com"}   
+    assert_response :redirect
+    assert flash[:message]
+    assert_redirected_to :action=>'login'
+  end
+
+  def test_login_required
+    #can't access welcome if not logged in
+    get :welcome
+    assert flash[:warning]
+    assert_response :redirect
+    assert_redirected_to :action=>'login'
+    #login
+    post :login, :user=>{ :login => "bob", :password => "test"}
+    assert_response :redirect
+    assert_session_has :user
+    #can access it now
+    get :welcome
+    assert_response :success
+    assert flash.empty?
+    assert_template "user/welcome"
+  end
+
+  def test_change_password
+    #can login
+    post :login, :user=>{ :login => "bob", :password => "test"}
+    assert_response :redirect
+    assert_session_has :user
+    #try to change password
+    #passwords dont match
+    post :change_password, :user=>{ :password => "newpass", :password_confirmation => "newpassdoesntmatch"}
+    assert_response :success
+    assert_invalid_column_on_record "user", "password"
+    #empty password
+    post :change_password, :user=>{ :password => "", :password_confirmation => ""}
+    assert_response :success
+    assert_invalid_column_on_record "user", "password"
+    #success - password changed
+    post :change_password, :user=>{ :password => "newpass", :password_confirmation => "newpass"}
+    assert_response :success
+    assert flash[:message]
+    assert_template "user/change_password"
+    #logout
+    get :logout
+    assert_response :redirect
+    assert_session_has_no :user
+    #old password no longer works
+    post :login, :user=> { :login => "bob", :password => "test" }
+    assert_response :success
+    assert_session_has_no :user
+    assert flash[:warning]
+    assert_template "user/login"
+    #new password works
+    post :login, :user=>{ :login => "bob", :password => "newpass"}
+    assert_response :redirect
+    assert_session_has :user
+  end
+
+  def test_return_to
+    #cant access hidden without being logged in
+    get :hidden
+    assert flash[:warning]
+    assert_response :redirect
+    assert_redirected_to :action=>'login'
+    assert_session_has :return_to
+    #login
+    post :login, :user=>{ :login => "bob", :password => "test"}
+    assert_response :redirect
+    #redirected to hidden instead of default welcome
+    assert_redirected_to 'user/hidden'
+    assert_session_has_no :return_to
+    assert_session_has :user
+    assert flash[:message]
+    #logout and login again
+    get :logout
+    assert_session_has_no :user
+    post :login, :user=>{ :login => "bob", :password => "test"}
+    assert_response :redirect
+    #this time we were redirected to welcome
+    assert_redirected_to :action=>'welcome'
+  end
+end
+
+</pre>
+
+<p>Running these tests gives:</p>
+
+<pre class="terminal">
+> ruby test/functional/user_controller_test.rb 
+Loaded suite test/functional/user_controller_test
+Started
+.........
+Finished in 3.526899 seconds.
+
+9 tests, 97 assertions, 0 failures, 0 errors
+</pre>
+
+<h3>The Mailer</h3>
+
+<p>We need a mailer to send the forgotten password emails.</p>
+
+<pre class="terminal">
+> ruby script/generate mailer Notifications forgot_password
+      exists  app/models/
+      create  app/views/notifications
+      exists  test/unit/
+      create  test/fixtures/notifications
+      create  app/models/notifications.rb
+      create  test/unit/notifications_test.rb
+      create  app/views/notifications/forgot_password.rhtml
+      create  test/fixtures/notifications/forgot_password
+</pre>
+
+<p>We configure the mailer in the environment configuration file. In this case we configure it to use an smtp server.</p>
+
+<pre>
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.server_settings = {
+  :address => "mail.mydomain.com",
+  :port => 25,
+  :domain => "mydomain.com",
+  :user_name => "MyUsername",
+  :password => "MyPassword",
+  :authentication => :login
+}
+</pre>
+
+<p>We referred to the Mailer function earlier. We saw that our model called a method <code>Notifications.deliver_forgot_password(self.email, self.login, new_pass)</code> to send an email with a new password to a user. When rails sees <code>deliver_forgot_password</code> it will look for a method called <code>forgot_password</code> in the mailer to setup the email. This is in the file <code>app/models/notifications.rb</code>. We set the subject and the recipient of the email. We also pass it the users username and password by setting values in the <code>@body</code> variable. These values are then available as local variables in the view for this email. </p>
+
+<pre>
+class Notifications < ActionMailer::Base
+  def forgot_password(to, login, pass, sent_at = Time.now)
+    @subject    = "Your password is ..."
+    @body['login']=login
+    @body['pass']=pass
+    @recipients = to
+    @from       = 'support@yourdomain.com'
+    @sent_on    = sent_at
+    @headers    = {}
+  end
+end
+</pre>
+
+<p>The view used to create the email is stored in <code>app/views/notifications/forgot_password.rhtml</code></p>
+
+<div class="codeblock"><code>_____________<br />Your username is &lt;%= @login %&gt;. Your new password is &lt;%= @pass %&gt;. Please login and change it to something more memorable.<br /><br />-------------</code></div>
+
+<p>This uses the variables from the body hash to construct the email.</p>
+
+<h3>The views</h3>
+
+<p>All thats left is to have a look at our views. The views just use the rails form helpers to construct the forms we need to send the appropriate parameters to each controller method and display messaged and results. These views just use the <code>text_field</code> and <code>password_field</code> methods. For these, the first argument is the model name and the second argument is the field name followed by optional arguments such as :size or :value. So <code>&lt;%= text_field &quot;user&quot;, &quot;login&quot;, :size =&gt; 20 %&gt;</code> indicates that the field is for the login field of the user model.</p>
+
+<p>Here are the views.</p>
+
+<p><code>app/views/user/signup.rhtml</code></p>
+
+<div class="codeblock"><code>&lt;%= start_form_tag :action=&gt; &quot;signup&quot; %&gt;<br /><br />    &lt;%= error_messages_for &#039;user&#039; %&gt;&lt;br/&gt;<br /><br /> &lt;label for=&quot;user_login&quot;&gt;Username&lt;/label&gt;&lt;br/&gt;<br /> &lt;%= text_field &quot;user&quot;, &quot;login&quot;, :size =&gt; 20 %&gt;&lt;br/&gt;<br /><br />  &lt;label for=&quot;user_password&quot;&gt;Password&lt;/label&gt;&lt;br/&gt;<br />  &lt;%= password_field &quot;user&quot;, &quot;password&quot;, :size =&gt; 20 %&gt;&lt;br/&gt;<br /><br />   &lt;label for=&quot;user_password_confirmation&quot;&gt;Password Confirmation&lt;/label&gt;&lt;br/&gt;<br />    &lt;%= password_field &quot;user&quot;, &quot;password_confirmation&quot;, :size =&gt; 20 %&gt;&lt;br/&gt;<br /><br />  &lt;label for=&quot;user_email&quot;&gt;Email&lt;/label&gt;&lt;br/&gt;<br />    &lt;%= text_field &quot;user&quot;, &quot;email&quot;,&nbsp; :size =&gt; 20 %&gt;&lt;br/&gt;<br />  <br />  &lt;%= submit_tag &quot;Signup&quot; %&gt;<br /><br />&lt;%= end_form_tag %&gt;</code></div>
+
+<p><code>app/views/user/login.rhtml</code></p>
+
+<div class="codeblock"><code>&lt;%= start_form_tag :action=&gt; &quot;login&quot; %&gt;<br />&nbsp;&nbsp;&nbsp; &lt;h3&gt;Login&lt;/h3&gt;&nbsp; <br /><br />&nbsp;     &lt;label for=&quot;user_login&quot;&gt;Login:&lt;/label&gt;&lt;br/&gt;<br />&nbsp;     &lt;%= text_field &quot;user&quot;, &quot;login&quot;, :size =&gt; 20 %&gt;&lt;br/&gt;<br /><br />&nbsp;    &lt;label for=&quot;user_password&quot;&gt;Password:&lt;/label&gt;&lt;br/&gt;<br />&nbsp;   &lt;%= password_field &quot;user&quot;, &quot;password&quot;, :size =&gt; 20 %&gt;&lt;br/&gt;<br /><br />   &lt;%= submit_tag &quot;Submit&quot; %&gt;<br /><br />&nbsp;&nbsp;&nbsp; &lt;%= link_to &#039;Register&#039;, :action =&gt; &#039;signup&#039; %&gt; |<br />&nbsp;&nbsp;&nbsp; &lt;%= link_to &#039;Forgot my password&#039;, :action =&gt; &#039;forgot_password&#039; %&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br /><br />&lt;%= end_form_tag %&gt;</code></div>
+
+<p><code>app/views/user/forgot_password.rhtml</code></p>
+
+<div class="codeblock"><code>&lt;%= start_form_tag :action=&gt;&#039;forgot_password&#039;%&gt;<br /><br /> &lt;h3&gt;Forgotten password&lt;/h3&gt;<br /><br /> Email: &lt;%= text_field &quot;user&quot;,&quot;email&quot; %&gt;&lt;br/&gt;<br /><br />    &lt;%= submit_tag &#039;Email password&#039; %&gt;<br /><br />&lt;%= end_form_tag %&gt;</code></div>
+
+<p><code>app/views/user/change_password.rhtml</code></p>
+
+<div class="codeblock"><code>&lt;%= error_messages_for &#039;user&#039; %&gt;<br /><br />&lt;h3&gt;Change password&lt;/h3&gt;<br /><br />&lt;%= start_form_tag :action =&gt; &#039;change_password&#039; %&gt;<br /><br />  &lt;label for=&quot;user_password&quot;&gt;Choose password:&lt;/label&gt;&lt;br/&gt;<br />  &lt;%= password_field &quot;user&quot;, &quot;password&quot;, :size =&gt; 20, :value=&gt;&quot;&quot; %&gt;&lt;br/&gt;<br /><br />  &lt;label for=&quot;user_password_confirmation&quot;&gt;Confirm password:&lt;/label&gt;&lt;br/&gt;<br />    &lt;%= password_field &quot;user&quot;, &quot;password_confirmation&quot;, :size =&gt; 20, :value=&gt;&quot;&quot; %&gt;&lt;br/&gt;<br /><br /> &lt;%= submit_tag &quot;Submit&quot; %&gt;<br /><br />&lt;%= end_form_tag %&gt;</code></div>
+
+<h3>Security</h3>
+
+<p>Since this is an authentication system we should pay attention to security. Here are some things to pay attention to:</p>
+
+<p><strong>Protect attributes.</strong>
+Protect any attributes that you don&#8217;t want to be updated by the user.</p>
+
+<p><strong>Guard against sql injection.</strong>
+<a href="http://www.unixwiz.net/techtips/sql-injection.html">Sql injection</a> is where a malicious user passes sql as a parameter to your application in an attempt to get the sql to run on your database. Rails model methods such as <code>create</code> and <code>update_attributes</code> guard against this. When you passing parameters to your database always contruct your queries like this: </p>
+
+<pre>
+find(:all, :conditions=>["created_on=? and user_id=?",date, uid])
+</pre>
+
+<p>This will take care of quoting uid and date. Never use the ruby string substitution <code>#{date}</code> to construct queries.</p>
+
+<p><strong>Make sure you check ids against users.</strong>
+If you are controlling access to items based on the user, make sure all your find methods include the user_id in the query. E.g. if you have a multi-user blog with an edit method takes the id of the post to edit as a parameter. Dont just use the id to find the post - use the user_id in the query too: </p>
+
+<pre>
+def edit
+  @item=Blog.find(:first, :conditions=>["user_id=? and id=?", current_user.id, params[:id]])
+  ...
+end
+</pre>
+
+<p>See <a href="http://manuals.rubyonrails.com/read/book/8">here</a> for more about securing rails application.</p>
+
+<h3>Enhancements</h3>
+
+<p>This is a pretty basic authentication system but it could be useful for a lot of simple web apps. But your web app probably needs something slightly different. Some ways you might extend it are:</p>
+
+<ul>
+<li><p>Store user_id instead of user.
+We stored the entire user object in the session. If your user has many more attributes than this model or has lots of child objects you could end up with a lot of stuff in the session. In this case you could change it to store the users id in the session and use a <code>before_filter</code> to send a query to the database to get the user.</p></li>
+<li><p>Captcha and email validation.
+This doesn&#8217;t use any validation of users identity. You might want to make it a bit harder for spammers to automate account creation. You could add a captcha to the registration page. Check out rubyforge for some captcha libraries.
+Alternatively you could require users to validate using email. This would mean adding a field to the database with a validation key. Put a random unique hash in this field when the user is created. Don&#8217;t allow a user to login unless this field is null. Add a controller method and view to validate users using this hash key and email them a link to this with their own key as a parameter when they signup. </p></li>
+<li><p>Roles / admin user.
+This approach only controls access based on whether a user is logged in or not. You might need more fine grained access control. You could add a role field to the user table that describes the users role. Then add a before filter the the application controller for each role. E.g. <code>admin_required</code> only returns true if the user is an administrator.</p></li>
+<li><p>Creating a generator.
+If you find yourself using the same code over and over in different applications you could write a generator to automatically generate your basic authentication and start customizing it from there. <em>Update:</em> see my  <a href="/rails/creating-your-own-generators-in-rails">follow tutorial on creating a generator</a>.</p></li>
+</ul>
+
+<h3>Update - Getting the code</h3>
+
+<p>The code from this article is now available as a <a href="/rails/creating-your-own-generators-in-rails">generator</a>.</p>
+
+<h3>Update - deprecation warnings with Rails 1.2</h3>
+
+<p>The code from this tutorial will generate some deprecation warnings when run with Rails 1.2. The updated version of the <a href="/rails/creating-your-own-generators-in-rails">generator</a> has some minor changes to the code to avoid getting deprecation warnings.</p>
+
+<h3>Update - Filtered Parameter logging</h3>
+
+<p>As of <a href="http://weblog.rubyonrails.com/2006/8/21/filtered-parameter-logging">rails 1.1.6</a> you can filter form data that you don&#8217;t want saved in the log, such as passwords or credit card numbers. Adding
+<code>filter_parameter_logging &quot;password&quot;</code> to ApplicationController will prevent any field that matches /password/ from being logged.</p>
+</div>
+        <span class="taxonomy"></span>
+
+  </div>
+<div id="comments"><a id="comment-4"></a>
+  <div class="comment">
+        <div class="content"><p>Good and informative. Do appreciate the effort</p>
+</div>
+    <div class="submitted">Submitted by Anonymous on Mon, 2006-06-05 13:21.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-5"></a>
+  <div class="comment">
+        <div class="content"><p>Your CSS needs some work.  I can barely see this page on a 1400x1050 monitor!</p>
+</div>
+    <div class="submitted">Submitted by FOTA on Tue, 2006-06-06 02:41.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-188"></a>
+  <div class="comment">
+        <div class="content"><p>If the font's too small, just use Ctrl + '+' to increase it, assuming you're using Firefox.  What's so hard about that?</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://fluidscape.co.nz/">Duncan Bayne</a> on Fri, 2006-12-01 23:58.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-8"></a>
+  <div class="comment">
+        <div class="content"><p>This is a very well done tuturial. I like how you've included the functional test as well, and I think you're spot on with the idea of rolling your own.  </p>
+<p>Great job!</p>
+</div>
+    <div class="submitted">Submitted by Brian Hogan on Tue, 2006-06-06 16:50.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-9"></a>
+  <div class="comment">
+        <div class="content"><p>nice tute!</p>
+</div>
+    <div class="submitted">Submitted by Anonymous on Wed, 2006-06-07 09:52.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-11"></a>
+  <div class="comment">
+        <div class="content"><p>I have a system very similar to what you've described.  My problem is - how do you update the property of a user without updating the password?  Let's say they just want to change their last name - if we don't pass a password, it'll throw an error because of the validates_confirmation_of constraint on the password.  If you re-pass the same password, it will re-hash it, changing the password.  Is there a solution to that?</p>
+<p>Thanks!</p>
+</div>
+    <div class="submitted">Submitted by Tom on Thu, 2006-06-15 05:00.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-12"></a>
+  <div class="comment">
+        <div class="content"><p>You could try something like this (example from the <a href="http://weblog.techno-weenie.net/2006/6/12/mephisto-out-in-the-wild">mephisto</a> source):</p>
+
+<p>In the user model:</p>
+
+<pre>
+<tt>
+validates_presence_of     :password,                   :if => :password_required?
+validates_presence_of     :password_confirmation,      :if => :password_required?
+validates_length_of       :password, :within => 5..40, :if => :password_required?
+validates_confirmation_of :password,                   :if => :password_required?
+
+protected
+def password_required?
+  crypted_password.nil? || !password.blank?
+end
+</tt>
+</pre>
+</div>
+    <div class="submitted">Submitted by aidan on Thu, 2006-06-15 10:30.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-296"></a>
+  <div class="comment">
+        <div class="content"><p>I had Problems @  crypted_password.nil? saying that to be unknown method ....  any clues ?</p>
+</div>
+    <div class="submitted">Submitted by Kiran on Tue, 2007-01-30 11:24.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-324"></a>
+  <div class="comment">
+        <div class="content"><p>crypted_password should be hashed_password.<br />
+other than this edit - this implementation works perfectly.</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.arbis.co.nz">rod</a> on Sun, 2007-03-04 06:09.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-352"></a>
+  <div class="comment">
+        <div class="content"><p>Maybe this is a newbie question but should this be self.hashed_password instead of just hashed_password which should be treated as a local variable?</p>
+</div>
+    <div class="submitted">Submitted by Anonymous on Sun, 2007-04-15 23:08.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-389"></a>
+  <div class="comment">
+        <div class="content"><p>You can add a method like this:</p>
+<p><code><br />
+	def skip_password_validation<br />
+	 @password = '-' * 20<br />
+	 @password_confirmation = '-' * 20<br />
+	end<br />
+</code></p>
+<p>and in your controller, something like:</p>
+<p><code><br />
+    if params[:system_user][:password].blank?<br />
+      @newuser.skip_password_validation<br />
+    else<br />
+      @newuser.password              = params[:system_user][:password]<br />
+      @newuser.password_confirmation = params[:system_user][:password_confirmation]<br />
+    end<br />
+</code></p>
+<p>It basically just fills the password/password_confirmation instance variable with something that passes the validation without updating the fields salt and hashed_password.</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.dottut.com/">Gabriel Medina</a> on Sat, 2007-04-28 00:41.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div></div></div></div><a id="comment-32"></a>
+  <div class="comment">
+        <div class="content"><p>use .update_attribute method instead of .save</p>
+</div>
+    <div class="submitted">Submitted by Anonymous on Wed, 2006-07-19 06:14.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-40"></a>
+  <div class="comment">
+        <div class="content"><p>what i used for Conditional validation is the :on option, that is added to the above code for the user model of:<br />
+<code><br />
+  protected<br />
+  def password_required?<br />
+    !password.blank?<br />
+  end<br />
+</code><br />
+changed with the :on (e.g. update user details)<br />
+<code><br />
+  validates_presence_of     :password,:password_confirmation, :on =&gt; :update, :if =&gt; :password_required?<br />
+  validates_length_of       :password, :within =&gt; 5..20, :on =&gt; :update, :if =&gt; :password_required?<br />
+  validates_confirmation_of :password, :on =&gt; :update, :if =&gt; :password_required?<br />
+</code><br />
+and then changed the original validates (e.g. registration) to:<br />
+<code><br />
+validates_length_of :password, :on =&gt; :create, :within =&gt; 5..20<br />
+validates_confirmation_of :password, :on =&gt; :create<br />
+</code><br />
+</code></p>
+</div>
+    <div class="submitted">Submitted by bas on Tue, 2006-08-08 14:35.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-15"></a>
+  <div class="comment">
+        <div class="content"><p>Thanks for writing this up.</p>
+<p>Um...  Suppose that the model knew of the crypted_password and the salt but not of the password and the confirmation_password.  Suppose we left the password and confirmation password to the controller.  This seems to handle the problem raised by Tom, although this approach states that how one confirms a password is a user interface issue, not a data model issue.</p>
+</div>
+    <div class="submitted">Submitted by cesium62 on Mon, 2006-06-19 08:07.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-16"></a>
+  <div class="comment">
+        <div class="content"><p>Great authentication tutorial, could you please post how to include roles and email validation.</p>
+</div>
+    <div class="submitted">Submitted by Victor Rosillo on Mon, 2006-06-19 18:22.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-17"></a>
+  <div class="comment">
+        <div class="content"><p>Also...  Transaction boundaries.  You haven't specified transaction boundaries.  This suggests that in the "forgot password" routine, the user record could be loaded into memory from the database.  Some piece of code somewhere else in the system could then modify the user record in the database.  When the forgot password routine is executed, it will overwrite the user record with stale data from the session.</p>
+<p>Also...  In the signup routine, you wrote "@params[:user]" and in the login routine its more like "params[:user][:password]".  Why does the at-sign appear in the signup routine?</p>
+<p>Also...  Error handling.  This code doesn't look like it does a real precise job of handling errors.  The final generation of the error string should be done in the view -- the error may need to be translated into other languages and the Model probably doesn't want to worry about that.  Additionally, a variety of different kinds of underlying errors look like they could all collapse into a single error.</p>
+<p>I mention this stuff because when I write this kind of thing in C, I am very careful with transaction boundaries, precise error messages, and logging of operations to monitor problems that the web pages may be having.  I'm trying to figure out how one does these sorts of things with Ruby and Rails.</p>
+</div>
+    <div class="submitted">Submitted by cesium62 on Tue, 2006-06-20 02:26.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-19"></a>
+  <div class="comment">
+        <div class="content"><p>I wrote @params out of habit. @params is deprecated but still works. params gives the same result but is the new recommended way of accessing parameters.</p>
+
+<p>If you add an integer column <code>lock_version</code> to your table Activerecord will throw an exception if you try to save an object to the database that has been modified by another part of the system.</p>
+</div>
+    <div class="submitted">Submitted by aidan on Tue, 2006-06-20 18:15.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-25"></a>
+  <div class="comment">
+        <div class="content"><p>Found the solution  in test_return_to<br />
+replace<br />
+    <cite>assert_redirected_to :action=&gt;'hidden'</cite><br />
+with<br />
+    <strong>assert_redirected_to  @controller.url_for( :action =&gt; 'hidden' )</strong></p>
+<p>it's magic ! it works !</p>
+<p>yves</p>
+</div>
+    <div class="submitted">Submitted by yves on Sun, 2006-07-09 12:59.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-165"></a>
+  <div class="comment">
+        <div class="content"><p>Did you mean to replace</p>
+<p>   <code>assert_redirected_to 'user/hidden'</code></p>
+<p>...rather than...</p>
+<p>   <code>assert_redirected_to :action=&gt;'hidden'</code></p>
+<p>(The article may have changed)</p>
+<p>In either case, thanks for the tip.</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://drewnoakes.com">Drew Noakes</a> on Thu, 2006-11-09 10:54.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-27"></a>
+  <div class="comment">
+        <div class="content"><p>re: aidan's reply to Tom's question about updating things other than the password:</p>
+<p>I like the :if qualifications on updating the password, but they miss an important point.  What about the case when a user is trying to change their password, but, say, hits the submit button before entering anything.  This would update the password to "" since the validation hooks would not be fired.</p>
+<p>My question is this:<br />
+Should there be a check for an empty password in the change_password method of UserController?  Coming from a Java background, this seems logical, but it has two drawbacks:<br />
+1.  Validation is now in two places<br />
+2.  ActionControllers don't have a validate method, so there would have to be some sort of call like<br />
+<code>{<br />
+  @user.errors.add("password", "Please enter your new password")<br />
+  @user.validate<br />
+}</code><br />
+but that seems icky, since the ActionController already calls validate in a different place.</p>
+<p>The "better" option would be to validate that something was entered within/before the <code>password=(pass)</code> method of User, but I can't seem to figure out how to add validation that's conditional on what method is called in the ActiveRecord (model).</p>
+<p>Thoughts?</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.myknowledgeinc.com">gcnovus</a> on Tue, 2006-07-11 03:13.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-162"></a>
+  <div class="comment">
+        <div class="content"><p>In addition to adding Aidan's mods from the Mephisto code (comment Submitted by aidan on Thu, 2006-06-15 10:30) and changing crypted_password  to hashed_password, I added a check into the change_password method of the user_controller to look to see if the password field was blank, if so then add an error and redirect back to the change_password action</p>
+<pre>
+<code>
+def change_password
+    @user = session[:user]
+    
+    if request.post?
+
+      # throws an error if the password is blank
+      # other errors are caught by existing validation
+      if params[:user][:password].blank?
+        @user.errors.add 'password', 'field is empty'
+        redirect_to :controller => 'user', :action => 'change_password'
+      else 
+        @user.update_attributes(:password => params[:user][:password], :password_confirmation=> params[:user][:password_confirmation])
+        if @user.save
+          flash[:message] = "Password changed"
+          redirect_to :controller => 'user', :action => 'edit'
+        else
+          flash[:warning] = "Password not changed"
+          redirect_to :controller => 'user', :action => 'change_password'
+        end
+      end
+    end
+  end
+</code>
+</pre><p>It might not be the cleanest solution but at least now I can update other user attributes without the @user.save failing because it doesnt have password and password_confirmation attributes.</p>
+</div>
+    <div class="submitted">Submitted by Simon on Thu, 2006-11-02 05:53.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-164"></a>
+  <div class="comment">
+        <div class="content"><p>I think this is a poor design, you don't want to be carrying around the user's password in their session. Opens your application up to too many security risks.</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://andrewloe.com/">W. Andrew Loe III</a> on Wed, 2006-11-08 17:41.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-331"></a>
+  <div class="comment">
+        <div class="content"><p>I believe I have come up with a much elegant solution to this problem. I have simply added an "if not blank" to the method that creates the hash. (this is in addition to the :if => :password_required? method suggested above).</p>
+<pre><code>
+def password=(pwd)
+    @password = pwd
+    if !@password.blank?
+        create_new_salt
+        self.hashed_password = User.encrypted_password(self.password, self.salt)
+    end
+end
+</code></pre></div>
+    <div class="submitted">Submitted by <a href="http://www.sintaxi.com">Sintaxi</a> on Sun, 2007-04-01 02:15.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div></div><a id="comment-29"></a>
+  <div class="comment">
+        <div class="content"><p>I get errors when I run your tests that I'm not sure how to handle.  Maybe I'm missing some depedencies?</p>
+<p><code><br />
+&gt;ruby test/unit/user_test.rb<br />
+Loaded suite test/unit/user_test<br />
+Started<br />
+........E.<br />
+Finished in 0.453 seconds.</p>
+<p>  1) Error:<br />
+test_send_new_password(UserTest):<br />
+NameError: uninitialized constant Notifications</p>
+<p>  1) Error:<br />
+test_change_password(UserControllerTest):</p>
+<p>  2) Error:<br />
+test_forgot_password(UserControllerTest):<br />
+NameError: uninitialized constant Notifications</p>
+<p></code></p>
+</div>
+    <div class="submitted">Submitted by steven on Sat, 2006-07-15 19:56.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-30"></a>
+  <div class="comment">
+        <div class="content"><p>Looks like you're missing a couple of files. You have to create the mailer (Notifications) as described above before the users tests will pass.</p>
+</div>
+    <div class="submitted">Submitted by aidan on Sun, 2006-07-16 15:45.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-33"></a>
+  <div class="comment">
+        <div class="content"><p>Hey, great walkthrough.  but one question.  you mention a wrapper function<br />
+  def current_user<br />
+    session[:user]<br />
+  end</p>
+<p>however, how can i assign to current_user to maintain the extendability?  i have tried current_user=(value) methods, and it appears that the a simple var current_user var is being created and assigned to as well... any insights for the lowly ruby newb?</p>
+</div>
+    <div class="submitted">Submitted by karina on Thu, 2006-07-20 16:52.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-322"></a>
+  <div class="comment">
+        <div class="content"><p>You need to use "self.current_user= value" to force the method to be called rather than using a local variable.</p>
+</div>
+    <div class="submitted">Submitted by John on Thu, 2007-03-01 16:17.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-52"></a>
+  <div class="comment">
+        <div class="content"><p>The functions in the application.rb file are very useful, but how does one use them in the views?</p>
+<p>For example, if I want to show a link to a user only if logged in, this doesn't work:<br />
+<code><br />
+&lt;% if current_user -%&gt;<br />
+  &lt;a href="/admin"&gt;Admin Functions&lt;/a&gt;<br />
+&lt;% end -%&gt;<br />
+</code><br />
+because current_user is not available to the view.</p>
+</div>
+    <div class="submitted">Submitted by Anonymous on Tue, 2006-09-19 13:56.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-155"></a>
+  <div class="comment">
+        <div class="content"><p>Just add:</p>
+<p><code>helper_method :current_user</code> after the ApplicationController#current_user definition:</p>
+<p><code>def current_user<br />
+    session[:user]<br />
+  end<br />
+  helper_method :current_user</code></p>
+<p>I did this to create a logged_in? method (as in acts_as_authenticated) that is available to the views and the controllers:</p>
+<p><code>def logged_in?<br />
+    return session[:user] ? true : false<br />
+  end<br />
+  helper_method :logged_in?</code></p>
+</div>
+    <div class="submitted">Submitted by Adam B. on Sat, 2006-10-14 23:09.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-53"></a>
+  <div class="comment">
+        <div class="content"><p>Great tutorial, but one question:</p>
+<p>   If the a user fires a request with POST variables (which requires login), the redirect_to_stored method don't seem to restore the POST form after the user had logged in. Any workarounds?</p>
+</div>
+    <div class="submitted">Submitted by Anonymous on Thu, 2006-09-21 06:50.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-58"></a>
+  <div class="comment">
+        <div class="content"><p>Two things:</p>
+<p>- How about cookie'ing the user so that if the session expires they still get logged in? In a secure way, not just cookie'ing their user id. Perhaps cookie'ing a salted hash of their login, then doing lookups that way if it exists.</p>
+<p>- Salt seems pointless. IIRC, the salt is supposed to be stored separately from the passwords (e.g. not even in the same database, but perhaps in a file or somewhere). And if a cracker gets access to the database they'll almost certainly be able to access whatever salt value is used.</p>
+</div>
+    <div class="submitted">Submitted by Joe Ruby on Thu, 2006-09-28 20:40.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-144"></a>
+  <div class="comment">
+        <div class="content"><p>The salt is supposed to be public.</p>
+<p>Its purpose is to prevent dictionary attacks. It makes the storage requirements for a lookup-table prohibitive, and, being unique, also prevents attacking the entire user base in parallel.</p>
+</div>
+    <div class="submitted">Submitted by Isak on Mon, 2006-10-09 21:40.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-203"></a>
+  <div class="comment">
+        <div class="content"><p>Hmm.. "Public" wasn't quite the right word.</p>
+<p>Anyways, my point is that the salt is there to protect the users password, not your site. If someone can read the salts your server is already compromised..</p>
+</div>
+    <div class="submitted">Submitted by Isak on Tue, 2006-12-19 18:05.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div></div><a id="comment-158"></a>
+  <div class="comment">
+        <div class="content"><p>I've used the authentication tutorial from Chad Fowler's Rails Recipes book before, but this was perfect!</p>
+<p>I do have further questions regarding adding an admin, or possibly other types of users. If you're familiar with Fowler's book, can you describe how to tie into his authorization functions, or provide more of an example of how to complete the example you give above. Simply calling the before_filter :admin_required doesn't work--what does the definition of admin_required look like?</p>
+</div>
+    <div class="submitted">Submitted by Jimmy on Thu, 2006-10-26 15:08.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-171"></a>
+  <div class="comment">
+        <div class="content"><p>thanks Jimmy for pointing Chad's Book<br />
+i was looking for Roles and how to set them up</p>
+<p>thanks aidan for this informative tutorial</p>
+</div>
+    <div class="submitted">Submitted by SOD on Mon, 2006-11-20 09:09.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-167"></a>
+  <div class="comment">
+        <div class="content"><p>At which point does is confirmation password compared the the regular password field?  I couldn't see this anywhere.</p>
+<p>Thanks for the article.</p>
+</div>
+    <div class="submitted">Submitted by Drew Noakes on Thu, 2006-11-09 11:01.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-168"></a>
+  <div class="comment">
+        <div class="content"><p>In the user model:</p>
+<p><code>validates_confirmation_of :password</code></p>
+</div>
+    <div class="submitted">Submitted by aidan on Sat, 2006-11-11 20:41.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-184"></a>
+  <div class="comment">
+        <div class="content"><p>Have you ever used ActiveRBAC ? if do what do you think of it ?</p>
+</div>
+    <div class="submitted">Submitted by E Walsh on Tue, 2006-11-28 13:14.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-189"></a>
+  <div class="comment">
+        <div class="content"><p>About the unit_test part?<br />
+Where can I change the default database setting?<br />
+I tried to add<br />
+  adapter: sqlserver<br />
+  database: xxxx<br />
+  username: sa<br />
+  password: xxxx<br />
+  host: .\SQLEXPRESS<br />
+  mode: DBI:ADO<br />
+  provider: SQLNCLI</p>
+<p> in the users_test.yml.<br />
+But it seems not working.<br />
+Anyone using SQL server other with this<br />
+application?</p>
+</div>
+    <div class="submitted">Submitted by Abon on Tue, 2006-12-05 11:37.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-192"></a>
+  <div class="comment">
+        <div class="content"><p>Hi all !<br />
+Nice tutorial !<br />
+Just one thing ...<br />
+It would be a bad idea to store the entire user in the session. Just the id is enough ...</p>
+<p>So, I think login should be :<br />
+<code></p>
+<pre>
+def login
+    if request.post?
+       user = User.authenticate(params[:user][:login], params[:user])
+      if user
+        session[:user] = user.id
+        flash[:message]  = "Login successful"
+        redirect_to_stored
+      else
+        flash[:warning] = "Login unsuccessful"
+      end
+    end
+  end
+</pre><p></code><br />
+That way you only store the user id in the session, and if you want more info about this is user later one then you simply find it using  session[:user].id</p>
+<p>Hope that helps ...</p>
+</div>
+    <div class="submitted">Submitted by Jules on Fri, 2006-12-08 01:22.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-193"></a>
+  <div class="comment">
+        <div class="content"><p>If you decide to store the user_id in the session instead of the user, you could modify the current_user method retrieve the user based on the id stored in the session. Something like this (I haven't tested this):</p>
+<pre><code>def current_user
+  @current_user ||= ((session[:user] && User.find_by_id(session[:user])) || nil)
+end
+</code></pre></div>
+    <div class="submitted">Submitted by aidan on Fri, 2006-12-08 02:07.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-211"></a>
+  <div class="comment">
+        <div class="content"><p>This is the first tutorial on authentication that was straight forward and actually worked for me the first time...thanks!</p>
+<p>I'm hoping someone can help me capture the user name in the user model? Actually, my end goal is to have my other model called link.rb which runs my MySQL query, be able to access the user name so I can add it to the condition of the DB query.</p>
+<p>Here is what I have which only works if I hardcode user_name with an actual user's name in the DB:</p>
+<p>class Link &lt; ActiveRecord::Base<br />
+  def self.return_links<br />
+  @data = find(:all, :conditions<br />
+  =&gt; "username = 'user_name'")<br />
+  end</p>
+<p>I tried puts'ing the current username out in user.rb with this statement but it keeps coming up blank</p>
+<p>puts "#{session[:user].login}" and every variation there of with no luck.</p>
+<p>Any help here would be a Christmas gift :-)<br />
+Thanks,<br />
+John</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.fundwatch.net">Johnny the Sheee</a> on Mon, 2006-12-25 19:49.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-212"></a>
+  <div class="comment">
+        <div class="content"><p>Everything is working Great! Thanks for this tutorial.</p>
+<p>My question is: How do I get the current user variable into my other model called link.rb? I need it in link.rb so I can search the DB by whomever is logged in.<br />
+Here is my code:</p>
+<p>class Link &lt; ActiveRecord::Base<br />
+   def self.return_links<br />
+   @data = find(:all, :conditions =&gt; "username = #{CURRENT USER NAME HERE}")<br />
+  end<br />
+end</p>
+<p>Thanks!</p>
+</div>
+    <div class="submitted">Submitted by John Sheahan on Tue, 2006-12-26 23:27.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-218"></a>
+  <div class="comment">
+        <div class="content"><p>Thanks for the write-up, this was very helpful.<br />
+One comment: In the "change_password" method you are calling both @user.update_attributes and then @user.save, where in fact the first call already does the update for you.  Looking at the log you can see that its actually updating twice in the DB.  The code should be changed to</p>
+<pre>
+<code>
+def change_password
+    @user=session[:user]
+    if request.post?
+      if @user.update_attributes(:password=>params[:user][:password], :password_confirmation => params[:user][:password_confirmation])
+        flash[:message]="Password Changed"
+      end
+    end
+  end
+</code></pre></div>
+    <div class="submitted">Submitted by CySurflex on Tue, 2007-01-02 01:56.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-220"></a>
+  <div class="comment">
+        <div class="content"><p>in test_collision, you need to set the email of the user, otherwise it will fail to save because the email is nil instead of because of the uniqueness.</p>
+<pre><code>
+  def test_collision
+    #check can't create new user with existing username
+    u = User.new
+    u.login = "existingbob"
+    u.password = u.password_confirmation = "bobs_secure_password"
+    <strong>u.email = "bob@mcbob.org"</strong>
+    assert !u.save
+  end
+</code></pre></div>
+    <div class="submitted">Submitted by Doug Bradbury on Wed, 2007-01-03 20:17.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-227"></a>
+  <div class="comment">
+        <div class="content"><p>Aidan,</p>
+<p>Thanks for the article - you thought about approaching O'Reilly and writing for them online?</p>
+<p><A href="http://www.firstpartners.net/blog/technology/2005/08/01/writing-for-oreilly-books/">Paul Browne - Technology in Plain English</a></p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.firstpartners.net/blog/technology/2005/08/01/writing-for-oreilly-books/">Paul Browne</a> on Thu, 2007-01-11 14:40.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-300"></a>
+  <div class="comment">
+        <div class="content"><p>I'm getting an error when I try to use the Forgot Password thing. (ArgumentError (wrong number of arguments (3 for 1))</p>
+<p>It shows up in the controller here:<br />
+<code><br />
+u = User.find_by_email([params[:user][:email]])<br />
+        if u and u.send_new_password<br />
+</code><br />
+Specifically with the .send_new_password, from the model:<br />
+<code><br />
+Notifications.deliver_forgot_password(self.email, self.login, new_pass).<br />
+</code><br />
+Is there a problem somewhere between the model's three arguments (self.email, self.login, new_pass) and the controller? Did anyone else have this problem?</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.cookingfriend.com">Dave</a> on Sat, 2007-02-03 17:43.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-301"></a>
+  <div class="comment">
+        <div class="content"><p>Yeah, Dave, I did have this problem.  Change the line in notification_test.rb to:</p>
+<p><code><br />
+assert_equal @expected.encoded, Notifications.create_forgot_password('to', 'login', 'pass', @expected.date).encoded<br />
+</code></p>
+<p>and all should be well!</p>
+</div>
+    <div class="submitted">Submitted by YAChris on Sat, 2007-02-03 22:09.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-302"></a>
+  <div class="comment">
+        <div class="content"><p>Hi Aidan,</p>
+<p>Thanks for doing this -- it's great!  For those of us in the 1.2 world, I've put together a tar file holding the code (in a Rails project with nothing else) with all the Deprecation warnings banished.  It's here if anyone wants it (just add an 'http://'):</p>
+<p>www.chrissterritt.com/AidanLoginRails2.tar</p>
+</div>
+    <div class="submitted">Submitted by Chris Sterritt on Sat, 2007-02-03 22:25.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-303"></a>
+  <div class="comment">
+        <div class="content"><p>Thanks for that Chris - what changes did you have to make for rails 1.2 compatibility?</p>
+</div>
+    <div class="submitted">Submitted by aidan on Sun, 2007-02-04 13:55.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-314"></a>
+  <div class="comment">
+        <div class="content"><p>Hi Aidan,</p>
+<p>The main things were deprecation warnings for some of the assert variants.  Tracking down what to do instead was challenging sometimes :-).</p>
+<p>Cheers!</p>
+</div>
+    <div class="submitted">Submitted by Chris Sterritt on Fri, 2007-02-16 12:57.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-338"></a>
+  <div class="comment">
+        <div class="content"><p>I&#8217;ve updated the <a href="http://www.aidanf.net/rails-basic-auth-generator">generator</a> for this so that the code it generates doesn&#8217;t give deprecation warnings.</p>
+</div>
+    <div class="submitted">Submitted by aidan on Tue, 2007-04-03 16:54.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div></div></div><a id="comment-306"></a>
+  <div class="comment">
+        <div class="content"><p>Thanks for the great tutorial.  I am havng a bit of trouble getting the mailer to work.  Has anyone else gotten this error?</p>
+<p><code><br />
+  2) Error:<br />
+test_forgot_password(UserControllerTest):<br />
+Errno::EBADF: Bad file descriptor - connect(2)<br />
+</code></p>
+<p>This prevents e-mails from being sent, thereby locking me out of my account as I have no access to the new password.  Any clues?</p>
+</div>
+    <div class="submitted">Submitted by Randland on Mon, 2007-02-05 08:48.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-320"></a>
+  <div class="comment">
+        <div class="content"><p>When I logged out. This message "Logged out" is not displaying as it is redirecting to login page. How can i see that ?</p>
+</div>
+    <div class="submitted">Submitted by sharma chelluri on Tue, 2007-02-27 19:05.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<div class="indented"><a id="comment-321"></a>
+  <div class="comment">
+        <div class="content"><p>Just change your layout template to display flash[:message] and flash[:warning]</p>
+
+<p>E.g.</p>
+
+<pre><div class="codeblock"><code>&lt;% for name in [:warning, :message] %&gt;<br />&nbsp; &lt;% if flash[name] %&gt;<br />&nbsp;&nbsp;&nbsp; &lt;%= &quot;&lt;div id=\&quot;#{name}\&quot;&gt;#{flash[name]}&lt;/div&gt;&quot; %&gt;<br />&nbsp; &lt;% end %&gt;<br />&lt;% end %&gt;  </code></div></pre>
+</div>
+    <div class="submitted">Submitted by aidan on Wed, 2007-02-28 09:25.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div><a id="comment-326"></a>
+  <div class="comment">
+        <div class="content"><p>minor typo inverses the meaning of your sentence:</p>
+<p>"This was a bit of an epiphany for me as before I started using rails and for a while after I started to use it I rarely used unit tests. Not they’re an integral part of my coding process."</p>
+<p>I think you meant "Now they're an integral part..."</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.vaporbase.com">linoj</a> on Mon, 2007-03-05 19:55.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-330"></a>
+  <div class="comment">
+        <div class="content"><p>You might like to replace the "random_string" method with:</p>
+<p><code><br />
+def self.random_string(len)<br />
+	open("/dev/random").read(len)<br />
+end<br />
+</code></p>
+</div>
+    <div class="submitted">Submitted by <a href="http://cosmotron.org">Alex Ross</a> on Fri, 2007-03-23 23:41.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-411"></a>
+  <div class="comment">
+        <div class="content"><p>Hi :-)</p>
+<p>Thanks for this - just used it. Worked perfect!</p>
+</div>
+    <div class="submitted">Submitted by <a href="http://www.bytesurgery.com">Robin Blandford</a> on Thu, 2007-05-03 19:53.</div>
+    <div class="links">&raquo; </div>
+  </div>
+<a id="comment-596"></a>
+  <div class="comment">
+        <div class="content"><p>Hi, would someone be able to quantify the whole storing-user-data-in-the-session thing. I am confused about where to draw the line between user id storage and whole user object  storage. </p>
+<p>Am I right in thinking the session data resides on the users web browser?</p>
+<p>If for example, you wanted (in addition to the above fields) to have just a Name and Admin status available to the app is that enough to warrant the replacement of session[:user] with session[:userid] and do a database query every time you wanted to information about or credentials of a user?</p>
+<p>What is the downside of storing *large* amounts of information in the session object and what constitutes *large* today?</p>
+<p>If session data is stored in the browser rather than on the server, should the number of users accessing the application effect the decision about how much data to store in the session before relieving it with database queries?</p>
+<p>Thanks!</p>
+<p>Nick</p>
+</div>
+    <div class="submitted">Submitted by Nick Adams on Mon, 2007-05-21 08:10.</div>
+    <div class="links">&raquo; </div>
+  </div>
+</div>	        
+		</div>
+		
+		<div id="footer">
+		  This is a <a href="http://www.aidanf.net/archive">archived</a> page. For latest posts visit <a href="http://www.aidanf.net">http://www.aidanf.net</a>
+		</div>
+		
+</div>
+</div>
+
+<script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+<script type="text/javascript"><!--
+_uacct = "UA-539512-1";urchinTracker();
+// --></script><noscript></noscript>
+</body>
+</html>
+<!-- Page cached by Boost at 2008-10-02 09:27:23, expires at 2008-10-02 09:27:23 -->

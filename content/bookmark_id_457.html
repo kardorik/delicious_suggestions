@@ -1,0 +1,305 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+<link rel="alternate" title="Devx: Latest Published Articles" href="http://services.devx.com/outgoing/devxfeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest Java Articles" href="http://services.devx.com/outgoing/javafeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest .NET Content" href="http://services.devx.com/outgoing/dotnet.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest XML Content" href="http://services.devx.com/outgoing/xmlfeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest Database Content" href="http://services.devx.com/outgoing/databasefeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest Enterprise Content" href="http://services.devx.com/outgoing/enterprisefeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest C++ Content" href="http://services.devx.com/outgoing/cplusfeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest Web Development Content" href="http://services.devx.com/outgoing/webdevfeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Latest Wireless Content" href="http://services.devx.com/outgoing/wirelessfeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Recent Tips" href="http://services.devx.com/outgoing/recentTipsFeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Open Source Articles" href="http://services.devx.com/outgoing/openSourceFeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Premier Club Only Content" href="http://services.devx.com/outgoing/PCpreviewFeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Office Professional Developer" href="http://services.devx.com/outgoing/officefeed.xml" type="application/rss+xml">
+<link rel="alternate" title="DevX: Intel Optimizing Center" href="http://services.devx.com/outgoing/intelOptimizingCenterFeed.xml" type="application/rss+xml">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="verify-v1" content="/9rV7xCYeHHdHCIEVkdpwmwtyjgHYKWKu+yeezQHucQ=" />
+<title>Mastering Class Member Initialization</title>
+<link rel="stylesheet" type="text/css" href="/styles/cps.css">
+<link rel="stylesheet" type="text/css" href="/styles/pf.css">
+<meta name="keywords" content="" />
+<meta name="Description" content="You know initialization is imperative for high-performing applications, but class members refuse to follow the standard rules. By learning the rules&#151;and the exceptions&#151;of initialization, you'll always know what methods to use and when." />
+<meta name="Topic" content="815 C++ -- Languages :: Programming Languages :: C++" />
+<script language="javascript" src="/scripts/globalFuncs.js"></script>
+<script language="javascript">
+function forgotPassword(email) {
+var theURL = "/passwordLookup.cfm?emailAddr=" + email;
+popUpWindow(theURL, 300,320);
+}
+</script>
+<script language="javascript">
+d=document.domain.split('.');document.domain = d[d.length-2]+"."+d[d.length-1];
+</script>
+<meta name="verify-v1" content="ELZ51Fh77MWc87+TaubOV8o+m4QF63H+7ASncs+2wWs=" />
+<meta name="verify-v1" content="LNXivCWfc+2KKSf4unKngJ2vyOJAxexIWY3pAyM9Qlo=" />
+</head>
+<body bgcolor=#fafae6>
+
+
+
+<!~-- ************************************************** --->
+<!~-- ************************************************** --->
+
+<script language="javascript">
+function showSupportItem(itemName)
+{
+if( articleSpptItems[itemName] )
+{
+var theURL = 'http://www.devx.com/getHelpOn/10MinuteSolution/17298/1763';
+theURL += '?supportItem='+articleSpptItems[itemName].number;
+popUpWindow(theURL, articleSpptItems[itemName].width, articleSpptItems[itemName].height);
+}
+else
+alert("Sorry, "+itemName+" could not be found.");
+}
+function SupportItem(number, width, height)
+{
+this.number = number;
+this.width = width;
+this.height = height;
+return this;
+}
+articleSpptItems = new Object();
+articleSpptItems.figure1 = new SupportItem(1,700,500);
+articleSpptItems.figure2 = new SupportItem(2,700,500);
+articleSpptItems.talkback = new SupportItem(3,200,300);
+</script>
+<center><div style="width:90%;text-align:left;font-family: Arial, Helvetica, Sans-Serif;font-size:12px;color:000;font-weight:normal;line-height:18px;">
+<a href="http://www.devx.com"><img border="0" alt="DevX HomePage" src="/assets/devx/4055.gif"></a>
+<br>
+<div class="topPrintHeader" style="float:left"><a href="http://www.DevX.com">http://www.devx.com</a></div>
+<div class="topPrintHeader" style="text-align:right;">Printed from <a href="http://www.devx.com/getHelpOn/10MinuteSolution/17298/1954">http://www.devx.com/getHelpOn/10MinuteSolution/17298/1954</a></div>
+<br>
+<div class="articleTitle">Mastering Class Member Initialization</div>
+<div class="articleDek"><br>You know initialization is imperative for high-performing applications, but class members refuse to follow the standard rules. By learning the rules&#151;and the exceptions&#151;of initialization, you'll always know what methods to use and when.</div>
+<div class="articleAuthor">
+by
+Danny Kalev
+</div>
+
+				<img src="/assets/dropcaps/3578.gif">n a previous <a href=http://www.devx.com/getHelpOn/Article/16039>column</a> I explained the rules of <a href=http://archive.devx.com/free/tips/tipview.asp?content_id=1643 target=_blank>POD</a> initialization. The rules of class member initialization are radically different, due to the fact that, in certain contexts, member initialization is mandatory. In addition, class constants have a wide range of initialization forms, depending on their type. The following sections shed some light on the intricate rules of class member initialization and show how to avoid common bugs and inefficiencies.
+<p>
+<img src="/assets/articleicons/3755.gif"><br>
+How do you initialize class members that require explicit initialization? How do you define class constants?
+<p>
+<img src="/assets/articleicons/3756.gif"><br>
+Distinguish between assignment and initialization. Use the appropriate initialization form according to the members type.
+<p><p>
+			
+<br><br>
+<br>
+
+				<b>Distinguishing Between Assignment and Initialization</b><br>
+Some programmers believe that the proper place for initializing data members is inside a constructor. For example:
+<pre><code>
+class Task
+{
+private:
+ int pid;
+ string name;
+public:
+ Task(int num, const string & n) 
+ {
+  pid=num;
+  name=n;  
+ }
+};
+</code></pre>
+This is wrong. The two statements in the constructor assign, rather than initialize, the members pid and name. When dealing with objects, the performance overhead can be noticeable. The object is first constructed and only then is it assigned. To see the difference, replace the type of the member name. Instead of a string, it will be an object of the following class. By the way, notice how the static data member is initialized:
+<pre><code>
+class Test
+{
+public:
+ Test()
+ {
+  ctor_count++;
+  cout&lt;&lt;"ctor "&lt;&lt;ctor_count&lt;&lt;endl;
+ }
+ Test(const Test & r)
+ {
+  ctor_count++;
+  cout&lt;&lt;"copy ctor "&lt;&lt;ctor_count&lt;&lt;endl;
+ }
+ Test & operator= (const Test& r)
+ {
+  ctor_count++;
+  cout&lt;&lt;"assignment op "&lt;&lt;ctor_count&lt;&lt;endl;
+  return *this;
+ }
+private:
+ static int ctor_count; //only a declaration
+};
+int Test::ctor_count=0; // definition + initialization
+</code></pre> 
+ctor_count is a static member thats incremented every time its constructor, copy-constructor, or assignment operator is called. This way, you can track the phases of its construction. Notice that only the definition of a static data member may initialize it (I will discuss the initialization of const static members shortly). Class Task now looks as follows:
+<pre><code>
+class Task
+{
+private:
+ int pid;
+ Test name; // type changed from string to Test
+public:
+ Task (int num, const Test & n) {pid=num; name=n;}
+};
+</code></pre><p>
+			
+<br><br>
+<br>
+
+				<b>Test It</b><br>
+Use the following program to test the code:
+<pre><code>
+int main()
+{
+ Test t;
+ Task task(1, t);
+}
+</code></pre>
+The output from this program (shown in <a href="javascript:showSupportItem('figure1')">Figure 1</a>) shows that the assignment inside Task's constructor takes place after t's construction: 
+<p>
+<table width="175" border="0" cellspacing="2" cellpadding="2" align="LEFT">
+	<tr><td width="20" rowspan="2">&nbsp;</td>
+	<td><a href="javascript:showSupportItem('figure1')"><img src="/assets/articlefigs/6805.gif" border="0" alt="" width="120" height="100"></a></td></tr>
+	<tr>
+	<td class="figtab"><a href="javascript:showSupportItem('figure1')"><B>Figure 1:</b></a> Here, the assignment inside Task's constructor takes place after t's construction.<br><br></td>
+	</tr>
+	</table>
+<p>
+The program constructs the object t which is used as an argument for Task's constructor (line #1). Next, it constructs the sub-object name using its default constructor (line #2). Finally, Task's constructor invokes Test's assignment operator to assign n to name (line #3). The last two phases can be combined into one.
+<p>
+<b>Proper Member Initialization</b><br> 
+A real initialization of a data member uses a special syntactic construct called a <a href="http://archive.devx.com/free/tips/tipview.asp?content_id=4007" target="_blank">member initialization list</a>, which looks like this:
+<pre><code>
+class Task
+{
+//..
+public:
+ Task(int num, const Test & n) : pid (num), name (n)
+ {}
+};
+</code></pre>
+Using Task's modified constructor, the same program now produces the output shown in <a href="javascript:showSupportItem('figure2')">Figure 2</a>.
+<p>
+<table width="175" border="0" cellspacing="2" cellpadding="2" align="RIGHT">
+	<tr><td width="20" rowspan="2">&nbsp;</td>
+	<td><a href="javascript:showSupportItem('figure2')"><img src="/assets/articlefigs/6806.gif" border="0" alt="" width="120" height="100"></a></td></tr>
+	<tr>
+	<td class="figtab"><a href="javascript:showSupportItem('figure2')"><B>Figure 2:</b></a> This is the output using Task's modified constructor.<br><br></td>
+	</tr>
+	</table>
+<p>
+<b>Mandatory Initialization</b><br>
+const members, references, and sub-objects (i.e., embedded objects and base classes) whose constructors take arguments necessitate a member initialization list. For example, a class that has a data member of type <a href="http://www.devx.com/DevX/LegacyLink/9396" target="_blank">std::vector</a> can pass an argument to its constructor like this:
+<pre><code>
+class Thing
+{
+private:
+ int & ref; // reference member
+ const int MAX; // const member 
+ vector<int> arr;
+public:
+ Thing(int& r) : ref(r), MAX(100), arr (MAX) {}
+};
+</code></pre>
+Notice that the member MAX serves as arr's initializer. This is perfectly legal. C++ ensures that members are initialized in the <a href="http://archive.devx.com/free/tips/tipview.asp?content_id=734" target="_blank">order of their declaration</a> in the class. If you change the member initialization list to:
+<pre><code>
+Thing(int& r) : arr(MAX), MAX(100), ref(r) {}
+</code></pre>
+The members will still be initialized in the following order: ref, MAX, and arr. However, pay attention to the members' order inside the class. Doing something like this causes unpredictable results at runtime:
+<pre><code>
+class BadThing
+{
+private:
+ int & ref;
+ Array arr; //wrong, should appear after MAX
+ const int MAX;
+};
+</code></pre>
+The problem is that MAX hasnt been initialized when its value is passed to arr's constructor.
+<p>
+<p>
+			
+<br><br>
+<br>
+
+				<b>Defining Class Constants</b><br>
+Sometimes, you need an internal constant that all instances of the same class share. In earlier stages of C++, an anonymous enum was used for this purpose:
+<pre><code>
+class Allocator
+{
+ enum { PAGE_SIZE=1024 };
+//
+};
+</code></pre>
+Although this form is still in use, standard-compliant compilers offer a preferable method of defining class constants:
+<pre><code>
+class Allocator
+{
+ static const int PAGE_SIZE=1024;
+public:
+ Allocator(int pages){ p=new char[pages*PAGE_SIZE];}
+//
+};
+const int Allocator::PAGE_SIZE; //no initializer here
+</code></pre>
+This kind of initialization is permitted only with const static members of <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/vccelng/htm/basic_42.asp" target="_blank">integral types</a>. For any other type, use a member initialization list:
+<pre><code>
+class Math
+{
+ const static double PI;
+//
+};
+const double Math::PI= 3.14159265358979;
+</code></pre>
+<p>
+<b>Knowing When and How</b><br> 
+The primary form of initializing members is a member initialization list. For const data, references and subobjects whose constructors take arguments, the use of a member initialization list is mandatory. As a special case, const static members of an integral type are initialized inside the class body. Other static data members are initialized when defined, outside the class body.
+<p>
+<p>
+			
+<div class=""><b>Danny Kalev</b> is a system analyst and software engineer with 13 years of experience, specializing in C++ and object-oriented analysis and design. He is a member of the ANSI C++ standardization committee and the author of ANSI/ISO C++ Professional Programmer's Handbook (Que, 1999, ISBN: 0789720221). Reavch him at <a href="mailto:dannykk@inter.net.il">dannykk@inter.net.il</a>.</div>
+<br><br>
+</div></center>
+
+
+
+
+<table border=0 cellspacing=0 cellpadding=0 width=100% style="padding-top: 10px;">
+<tr><td align="center" class="smallFont">DevX is a division of Internet.com. <br>
+&copy; Copyright 2010 Internet.com. All Rights Reserved. <a href="http://www.internet.com/corporate/legal.html">Legal Notices</a></td></tr>
+</table>
+
+<!-- google-analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var ADTestTracker = _gat._getTracker("UA-11417359-1");
+ADTestTracker._trackPageview();
+} catch(err) {}
+</script>
+<!-- start Vibrant Media IntelliTXT script section -->
+<script type="text/javascript" src="http://devx.us.intellitxt.com/intellitxt/front.asp?ipid=26694"></script>
+<!-- end Vibrant Media IntelliTXT script section -->
+</body>
+</html>
+

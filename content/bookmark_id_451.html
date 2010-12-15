@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+
+<head profile="http://gmpg.org/xfn/11">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Sticky Bits  &raquo; Blog Archive   &raquo; Mutex vs. Semaphores – Part 1: Semaphores</title>
+	<meta name="generator" content="WordPress 3.0.1" /> <!-- leave this for stats -->
+	<link rel="stylesheet" href="http://blog.feabhas.com/wp-content/themes/stupidgenius/style.css" type="text/css" media="screen" />
+	<link rel="alternate" type="application/rss+xml" title="Sticky Bits RSS Feed" href="http://blog.feabhas.com/feed/rss2/" />
+	<link rel="pingback" href="http://blog.feabhas.com/xmlrpc.php" />
+	<link rel="alternate" type="application/atom+xml" title="Sticky Bits &raquo; Mutex vs. Semaphores – Part 1: Semaphores Comments Feed" href="http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-1-semaphores/feed/" />
+<script type='text/javascript' src='http://blog.feabhas.com/wp-includes/js/jquery/jquery.js?ver=1.4.2'></script>
+<script type='text/javascript' src='http://blog.feabhas.com/wp-content/plugins/qtwit/jquery.tweet.js?ver=3.0.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.feabhas.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.feabhas.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='Sticky Bits' href='http://blog.feabhas.com/' />
+<link rel='start' title='The Psychology of Everyday Things' href='http://blog.feabhas.com/2010/03/psychology-of-everyday-things/' />
+<link rel='prev' title='Getting started is always the hardest thing&#8230;' href='http://blog.feabhas.com/2009/09/getting-started-is-always-the-hardest-thing/' />
+<link rel='next' title='Mutex vs. Semaphores – Part 2: The Mutex' href='http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-2-the-mutex/' />
+<meta name="generator" content="WordPress 3.0.1" />
+<link rel='canonical' href='http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-1-semaphores/' />
+<link rel='shortlink' href='http://blog.feabhas.com/?p=13' />
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+	<h1><a href="http://blog.feabhas.com/">Sticky Bits</a></h1>
+</div>
+<!-- end header -->
+<div id="content" class="wide">
+
+  	
+		<div class="post" id="post-13">
+			<h1><a href="http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-1-semaphores/" rel="bookmark" title="Permalink to: Mutex vs. Semaphores – Part 1: Semaphores">Mutex vs. Semaphores – Part 1: Semaphores</a></h1>
+
+			<div class="entrytext">
+				<p>It never ceases to amaze me how often I see postings in newsgroups, etc. asking the difference between a semaphore and a mutex. Probably what baffles me more is that over 90% of the time the responses given are either incorrect or missing the key differences. The most often quoted response is that of the “<a href="http://koti.mbnet.fi/niclasw/MutexSemaphore.html">The Toilet Example (c) Copyright 2005, Niclas Winquist</a>” . This summarises the differences as:
+<ul>
+<li><b>A mutex is really a semaphore with value 1</b></li>
+</ul>
+<p>No, no and no again. Unfortunately this kind of talk leads to all sorts of confusion and misunderstanding&nbsp; (not to mention companies like Wind River Systems redefining a mutex as a “Mutual-Exclusion Semaphore” &#8211; now where is that wall to bang my head against?).</p>
+<p>Firstly we need to clarify some terms and this is best done by revisiting the roots of the semaphore. Back in 1965, Edsger Dijkstra, a Dutch computer scientist, introduced the concept of a binary semaphore into modern programming to address possible race conditions in concurrent programs. His very simple idea was to use a pair of function calls to the operating system to indicate entering and leaving a critical region. This was achieved through the acquisition and release of an operating system resource called a semaphore. In his original work, Dijkstra used the notation of P &#038; V, from the Dutch words <i>Prolagen </i>(P), a neologism coming from <i>To try and lower</i>, and <i>Verhogen </i>(V) <i>To raise, To increase</i>.
+<div class="separator" style="clear: both; text-align: center;"><a href="http://www.feabhas.com/blog/uploaded_images/P-and-V-734546.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="71" src="http://www.feabhas.com/blog/uploaded_images/P-and-V-734542.png" width="420" /></a></div>
+<p>With this model the first task arriving at the <b>P(S) </b>[where S is the semaphore] call gains access to the critical region. If a context switch happens while that task is in the critical region, and another task also calls on <b>P(S)</b>, then that second task (and any subsequent tasks) will be blocked from entering the critical region by being put in a waiting state by the operating system. At a later point the first task is rescheduled and calls <b>V(S)</b> to indicate it has left the critical region. The second task will now be allowed access to the critical region.</p>
+<p>A variant of Dijkstra’s semaphore was put forward by another Dutchman, Dr. Carel S. Scholten. In his proposal the semaphore can have an initial value (or count) greater than one. This enables building programs where more than one resource is being managed in a given critical region. For example, a counting semaphore could be used to manage the parking spaces in a robotic parking system. The initial count would be set to the initial free parking places. Each time a place is used the count is decremented. If the count reaches zero then the next task trying to acquire the semaphore would be blocked (i.e. it must wait until a parking space is available). Upon releasing the semaphore (A car leaving the parking system) the count is incremented by one.</p>
+<p>Scholten’s semaphore is referred to as the <b>General or Counting Semaphore</b>, Dijkstra’s being known as the <b>Binary Semaphore</b>.</p>
+<p>Pretty much all modern Real-Time Operating Systems (RTOS) support the semaphore.  For the majority, the actual implementation is based around the <b>counting </b>semaphore concept. Programmers using these RTOSs may use an initial count of 1 (one) to approximate to the binary semaphore. One of the most notable exceptions is probably the leading commercial RTOS VxWorks from Wind River Systems. This has two separate APIs for semaphore creation, one for the Binary semaphore (<i>semBCreate</i>) and another for the Counting semaphore (<i>semCCreate</i>).</p>
+<p>Hopefully we now have a clear understanding of the difference between the binary semaphore and the counting semaphore.  Before moving onto the mutex we need to understand the inherent dangers associated with using the semaphore. These include:
+<ul>
+<li>Accidental release</li>
+<li>Recursive deadlock</li>
+<li>Task-Death deadlock</li>
+<li>Priority inversion</li>
+<li>Semaphore as a signal</li>
+</ul>
+<p>All these problems occur at run-time and can be very difficult to reproduce; making technical support very difficult.</p>
+<div style="color: #0b5394;"></div>
+<div style="color: #0b5394;">Accidental release</div>
+<p>This problem arises mainly due to a bug fix, product enhancement or cut-and-paste mistake. In this case, through a simple programming mistake, a semaphore isn’t correctly acquired but is then released.
+<div class="separator" style="clear: both; text-align: center;"></div>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://www.feabhas.com/blog/uploaded_images/accidental-rel-729824.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="98" src="http://www.feabhas.com/blog/uploaded_images/accidental-rel-729821.png" width="420" /></a></div>
+<p>When the counting semaphore is being used as a binary semaphore (initial count of 1 &#8211; the most common case) this then allows two tasks into the critical region. Each time the buggy code is executed the count is increment and yet another task can enter. This is an inherent weakness of using the counting semaphore as a binary semaphore.</p>
+<div style="color: #0b5394;">Deadlock</div>
+<p>Deadlock occurs when tasks are blocked waiting on some condition that can never become true, e.g. waiting to acquire a semaphore that never becomes free. There are three possible deadlock situations associated with the semaphore:
+<ul>
+<li>Recursive Deadlock</li>
+<li>Deadlock through Death</li>
+<li>Cyclic Deadlock (Deadly Embrace)</li>
+</ul>
+<p>Here we shall address the first two, but shall return to the cyclic deadlock in a later posting.</p>
+<div style="color: #0b5394;">Recursive Deadlock</div>
+<p>Recursive deadlock can occur if a task tries to lock a semaphore it has already locked. This can typically occur in libraries or recursive functions; for example, the simple locking of malloc being called twice within the framework of a library. An example of this appeared in the MySQL database bug reporting system:<i> Bug #24745 InnoDB semaphore wait timeout/crash &#8211; deadlock waiting for itself</i></p>
+<div style="color: #0b5394;">Deadlock through Task Death</div>
+<p>What if a task that is holding a semaphore dies or is terminated? If you can’t detect this condition then all tasks waiting (or may wait in the future) will never acquire the semaphore and deadlock. To partially address this, it is common for the function call that acquires the semaphore to specify an optional timeout value.</p>
+<div style="color: #0b5394;">Priority Inversion</div>
+<p>The majority of RTOSs use a priority-driven pre-emptive scheduling scheme. In this scheme each task has its own assigned priority. The pre-emptive scheme ensures that a higher priority task will force a lower priority task to release the processor so it can run. This is a core concept to building real-time systems using an RTOS. Priority inversion is the case where a high priority task becomes blocked for an indefinite period by a low priority task.  As an example:
+<ul>
+<li>An embedded system contains an &#8220;information bus”</li>
+<li>Sequential access to the bus is protected with a semaphore.</li>
+<li>A bus management task runs frequently with a <b>high priority</b> to move certain kinds of data in and out of the information bus. </li>
+<li>A meteorological data gathering task runs as an infrequent, <b>low priority</b> task, using the information bus to publish its data. When publishing its data, it acquires the semaphore, writes to the bus, and release the semaphore. </li>
+<li>The system also contains a communications task which runs with <b>medium priority</b>.</li>
+<li>Very infrequently it is possible for an interrupt to occur that causes the (medium priority) communications task to be sch<br />
+eduled while the (high priority) information bus task is blocked waiting for the (low priority) meteorological data task. </li>
+<li>In this case, the long-running communications task, having higher priority than the meteorological task, prevents it from running, consequently preventing the blocked information bus task from running. </li>
+<li>After some time has passed, a <b>watchdog timer</b> goes off, notices that the data bus task has not been executed for some time, concludes that something has gone drastically wrong, and initiate a total system reset.</li>
+</ul>
+<p>This well reported event actual sequence of events happened on <a href="http://research.microsoft.com/en-us/um/people/mbj/Mars_Pathfinder/Authoritative_Account.html">NASA JPL’s Mars Pathfinder spacecraft</a>.</p>
+<div style="color: #0b5394;">Semaphore as a Signal</div>
+<p>Unfortunately, the term synchronization is often misused in the context of mutual exclusion. Synchronization is, by definition “To occur at the same time; be simultaneous”. Synchronization between tasks is where, typically, one task waits to be notified by another task before it can continue execution (<i>unilateral rendezvous</i>). A variant of this is either task may wait, called the bidirectional rendezvous. This is quite different to mutual exclusion, which is a protection mechanism. However, this misuse has arisen as the counting semaphore can be used for unidirectional synchronization. For this to work, the semaphore is created with a count of 0 (zero).
+<div class="separator" style="clear: both; text-align: center;"><a href="http://www.feabhas.com/blog/uploaded_images/Sem-as-signal-748851.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="50" src="http://www.feabhas.com/blog/uploaded_images/Sem-as-signal-748850.png" width="420" /></a></div>
+<p>Note that the P and V calls are not used as a pair in the same task. In the example, assuming Task1 calls the <b>P(S)</b> it will block. When Task 2 later calls the <b>V(S) </b>then the unilateral synchronization takes place and both task are ready to run (with the higher priority task actually running).  Unfortunately &#8220;misusing&#8221; the semaphore as synchronization primitive can be problematic in that it makes debugging harder and increase the potential to miss &#8220;accidental release&#8221; type problems, as an <b>V(S)</b> on its own (i.e. not paired with a <b>P(S)</b>) is now considered legal code.</p>
+<p>In the next posting I shall look at how the mutex address most of the weaknesses of the semaphore.</p>
+				<div class="clear"></div>
+			</div>
+		</div>
+
+		<div class="commenti-info">
+	    <p>Posted on September 7th, 2009<!-- by <em>Niall Cooling</em> --><br />
+				&raquo; <a href='http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-1-semaphores/feed/'>Feed to this thread</a><br />
+		&raquo; <a href="http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-1-semaphores/trackback/" rel="trackback">Trackback</a><br />
+		</p>
+		</div>
+		
+	
+	<h3 id="comments">14 Comments a &#8220;Mutex vs. Semaphores – Part 1: Semaphores&#8221;</h3>
+
+	<ol class="commentlist">
+
+	
+		<li id="comment-29">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Anonymous</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-29" title="">September 8th, 2009 at 3:21 pm</a> </small>
+			
+			<p>Can you please enable the rss or atom feed for your blog?  Thanks!</p>
+
+		</li>
+
+		
+		<li id="comment-28">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite><a href='http://netrino.com' rel='external nofollow' class='url'>Michael Barr</a></cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-28" title="">September 8th, 2009 at 6:38 pm</a> </small>
+			
+			<p>Niall,</p>
+<p>Welcome to the blogosphere!  As I would expect from you, you&#39;ve done a nice job above explaining some rather complex (and often misunderstood) issues.</p>
+<p>However, I have a problem with one of the examples.  The robotic parking garage implementation suffers from implementation by a counting semaphore.  Only a mutex is truly needed.  Here&#39;s why&#8230;</p>
+<p>Each of the parking spaces is an individually identifiable object.  In a computer, it is analogous to a fixed-sized memory buffer.  If the buffer contains data, some part of the application code has a pointer to it.  If the buffer is empty, it must be tracked in a &quot;free list&quot; data structure.  One suitable data structure is a linked list maintained within the empty buffers plus a head pointer.  (But the important general point is there is always at least one piece of metadata.)</p>
+<p>The free list data structure must be protected via a mutual exclusion primitive (preferably a mutex).  Gaining access to that data structure will tell the caller if there are any free parking spots. </p>
+<p>The suggested use of a counting semaphore neither (a) gets you deep enough into the implementation to pick a specific parking spot nor (b) is an alternative to the mutex, which must always be used.  Thus the counting semaphore is a waste of space in the solution to that problem.</p>
+<p>Generalizing, I recommend avoiding use of the term &quot;counting semaphore&quot; altogether.  Only mutexes and semaphores are of practical use, for data protection and signaling respectively.</p>
+<p>I&#39;ve blogged a bunch on mutexes and semaphores at <a href="http://www.embeddedgurus.net/barr-code" rel="nofollow">http://www.embeddedgurus.net/barr-code</a> and, on the points you&#39;re discussing, highly recommend the article Mutexes and Semaphores Demystified at <a href="http://www.netrino.com/Embedded-Systems/How-To/RTOS-Mutex-Semaphore" rel="nofollow">http://www.netrino.com/Embedded-Systems/How-To/RTOS-Mutex-Semaphore</a></p>
+<p>Cheers,<br />Michael</p>
+
+		</li>
+
+		
+		<li id="comment-27">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite><a href='http://www.blogger.com/profile/11884998747411796805' rel='external nofollow' class='url'>Rennie Allen</a></cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-27" title="">September 8th, 2009 at 9:39 pm</a> </small>
+			
+			<p>While I think I agree on where you are going with this, the argument is difficult to grasp because you seem to be comparing an implementation with an abstract functional concept.</p>
+<p>From the functional concept perspective, a conceptual mutex (rather than a specific implementation such as pthreads) could be considered to be a semaphore with a count of one.  Because the generic concept of the function of a mutex is ill-defined, I am convinced that I could write a set of cover functions for a mutex, implemented in terms of a semaphore with a count of one; and that you&#39;d be hard pressed to show me why that doesn&#39;t provide all the attributes of a conceptual mutex function (i.e. conceptually, they are the same).</p>
+<p>Certainly, if we consider this question within the constraints of the SysV behavioral model of the semaphore and the pthreads behavioral model of a mutex, then I think we can agree that there are many behavioral details that make a SysV semaphore with a count of 1, and a pthread mutex significantly different.</p>
+<p>I think it is important to make clear though, that you are talking about SysV semaphores and pthread mutexes (you are, aren&#39;t you?) rather than the conceptual model of semaphores and mutexes.</p>
+
+		</li>
+
+		
+		<li id="comment-26">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Dan</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-26" title="">September 8th, 2009 at 11:01 pm</a> </small>
+			
+			<p>Michael Barr (former editor of Embedded Systems Programming, now president of Netrino) has a good article about the differences between mutexes &#038; semaphores at the following location:</p>
+<p><a href="http://www.netrino.com/node/202" rel="nofollow">http://www.netrino.com/node/202</a></p>
+<p>Also another article discusses the &quot;Perils of Preemption&quot; (including issues you covered such as deadlock &#038; priority inversion) at this link:</p>
+<p><a href="http://www.netrino.com/Embedded-Systems/How-To/Preemption-Perils" rel="nofollow">http://www.netrino.com/Embedded-Systems/How-To/Preemption-Perils</a></p>
+<p>Keep up the good work.  More people need to learn about such topics.</p>
+
+		</li>
+
+		
+		<li id="comment-25">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Anonymous</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-25" title="">September 8th, 2009 at 11:05 pm</a> </small>
+			
+			<p>This is a great start for a blog.  Good luck with it.</p>
+
+		</li>
+
+		
+		<li id="comment-24">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite><a href='http://www.quadros.com/products/operating-systems/rtxc-quadros-rtos-advanced' rel='external nofollow' class='url'>Bill Dittmann</a></cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-24" title="">September 9th, 2009 at 3:16 pm</a> </small>
+			
+			<p>Niall,<br />Good article. In the RTXC Quadros RTOS mutex implementation, nesting locks on the same mutex are allowed, supported, and safe. </p>
+<p>We do 2 things to make it safe. First, we remember who locked (owns) the mutex and keep a counter as it is locked and locked. The counter scheme properly tracks the scope of the mutex lock.</p>
+<p>We also make sure that only the owner can release (unlock) the mutex.</p>
+<p>In my experiences, during development phases, it is not uncommon for a task to inadvertently release when it is doesn’t even own the lock.  RTXC Quadros detects this lock underflow or release by non-owner condition, e.g., a program design flaw, during runtime.</p>
+
+		</li>
+
+		
+		<li id="comment-23">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Anonymous</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-23" title="">September 10th, 2009 at 8:36 am</a> </small>
+			
+			<p>Funny how people still seem to want to assign code blocks that need to be executed serially, to different tasks.  Why not assign the resource to one and only one task, and let client tasks send requests and receive replies?  This is easily understood by laymen and easy to debug.</p>
+<p>Alas not many so-called &quot;modern&quot; operating systems support this methodology very well.</p>
+
+		</li>
+
+		
+		<li id="comment-22">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite><a href='http://steve.melnikoff.myopenid.com/' rel='external nofollow' class='url'>steve</a></cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-22" title="">September 10th, 2009 at 3:32 pm</a> </small>
+			
+			<p>Am enjoying the blog so far. There is a shortage of decent blogs that deal specifically with embedded systems.</p>
+<p>Can I echo previous comments, and request that ths RSS/Atom feeds be enabled? Thanks.</p>
+<p>Steve.</p>
+
+		</li>
+
+		
+		<li id="comment-21">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Anonymous</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-21" title="">September 28th, 2009 at 3:17 pm</a> </small>
+			
+			<p>Thank u very much man. This is very helpful for me.</p>
+<p>Waiting for information on MUTEX.</p>
+
+		</li>
+
+		
+		<li id="comment-20">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Anonymous</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-20" title="">October 15th, 2009 at 9:33 pm</a> </small>
+			
+			<p>Thanks. All the information in this discussion were useful for my assignments and exams. I should give you the credit. And would be more than happy if you can provide some information about how ISRs work with reference to device drivers in linux.</p>
+<p>Thanks in advance, <br />Jayaraman Baskar,<br />Student,MS in computer engineering</p>
+
+		</li>
+
+		
+		<li id="comment-19">
+			<img alt='' src='http://0.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=40&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite><a href='http://www.blogger.com/profile/05777981173811362076' rel='external nofollow' class='url'>Solti</a></cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-19" title="">February 1st, 2010 at 3:11 am</a> </small>
+			
+			<p>Hi Niall,</p>
+<p>Can I say when we are dealing with mutual exclusion problems, a binary semaphore is the same to a mutex?</p>
+<p>Suppose we use them correctly, and there is a resource which allows only one user at every time instant.  There must be a get/return pair in &#39;user&#39; if we use mutex, and there must also be a wait/signal pair if we use binary semaphore.  So in this case, can I say they are totally the same?</p>
+<p>Thank you very much, and I really appreciate your articles.</p>
+<p>Solti</p>
+
+		</li>
+
+		
+		<li id="comment-116">
+			<img alt='' src='http://1.gravatar.com/avatar/90638f4aa60c73c0bda79b27447fc296?s=40&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Shreshtha</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-116" title="">May 20th, 2010 at 7:18 am</a> </small>
+			
+			<p>Hi All,<br />
+With such a great quality of information and discussion from industry&#8217;s eminent people, this page should come in top every time mutex   semaphore is searched. Wonderful discussion.</p>
+<p>From Linux perspective here is my understanding about difference of Mutex and Sem &#8211;<br />
+(please correct me if I am wrong anywhere)</p>
+<p>Note &#8211; I find its very important that we are clear about the part of Linux we are discussing this topic &#8211; Kernel Space or User Space.</p>
+<p>i) Scope – The scope of mutex is within a process address space which has created it and is used for synchronization of common resource access. Whereas semaphore can be used across processes space and hence it can be used for interprocess synchronization/signaling. Hence mutex must be released by same thread which is taking it.</p>
+<p>ii) Mutex is lightweight and faster than semaphore</p>
+<p>(only valid for userspace)<br />
+iii) Mutex can be acquired by same thread successfully multiple times with condition that it should release it same number of times. Other thread trying to acquire will block. Whereas in case of semaphore if same process tries to acquire it again it blocks as it can be acquired only once.</p>
+<p>I found this tread very informative in this context &#8211; <a href="http://alinux.tv/Kernel-2.6.29/mutex-design.txt" rel="nofollow">http://alinux.tv/Kernel-2.6.29/mutex-design.txt</a></p>
+<p>Cheers,<br />
+@Shreshtha19</p>
+
+		</li>
+
+		
+		<li id="comment-136">
+			<img alt='' src='http://1.gravatar.com/avatar/90638f4aa60c73c0bda79b27447fc296?s=40&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' />			<cite>Shreshtha</cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-136" title="">July 12th, 2010 at 8:06 am</a> </small>
+			
+			<p>above link is not working. here is working one &#8211;<br />
+<a href="http://www.kernel.org/doc/Documentation/mutex-design.txt" rel="nofollow">http://www.kernel.org/doc/Documentation/mutex-design.txt</a></p>
+
+		</li>
+
+		
+		<li id="comment-373">
+						<cite><a href='http://roshansingh.wordpress.com/2010/11/17/mutex-vs-semaphore/' rel='external nofollow' class='url'>Mutex Vs Semaphore &laquo; Roshan Singh</a></cite> says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-373" title="">November 17th, 2010 at 6:38 am</a> </small>
+			
+			<p>[...] these links to understand the difference: 1. <a href="http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-1-semaphores/" rel="nofollow">http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-1-semaphores/</a> 2. <a href="http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-2-the-mutex/" rel="nofollow">http://blog.feabhas.com/2009/09/mutex-vs-semaphores-%e2%80%93-part-2-the-mutex/</a> 3. [...]</p>
+
+		</li>
+
+		
+		</ol>
+
+ 		
+
+	
+	<h3 id="respond">Leave a Reply</h3>
+
+	
+	<form action="http://blog.feabhas.com/wp-comments-post.php" method="post" id="commentform">
+
+	
+	<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" />
+	<label for="author"><small>Name </small></label></p>
+
+	<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" />
+	<label for="email"><small>E-mail (will not be published) </small></label></p>
+
+	<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+	<label for="url"><small>Website</small></label></p>
+
+	
+	<p><textarea name="comment" id="comment" cols="50" rows="10" tabindex="4"></textarea></p>
+
+	<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+	<input type="hidden" name="comment_post_ID" value="13" />
+	</p>
+	
+	</form>
+
+
+	
+	
+	</div>
+
+</div>
+<div id="footer">
+	<p>Powered by <a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress</a> - <a href="http://www.behindtherabbit.com/wp-themes/genius/">StupidGenius</a> theme by <a href="http://www.behindtherabbit.com/">Cristiano M. Gaston</a>
+	<!-- 28 queries. 0.627 seconds. --></p>
+</div>
+	</body>
+</html>

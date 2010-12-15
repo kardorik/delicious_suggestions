@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+                                                                                                                         
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Using multiple foreign key from same table : Controller and  View (Page 1) - Controllers and Views - Rails Forum - Ruby on Rails Help and Discussion Forum  -  A forum for Ruby on Rails users" />
+<title>Using multiple foreign key from same table : Controller and  View (Page 1) - Controllers and Views - Rails Forum - Ruby on Rails Help and Discussion Forum</title>
+<link rel="alternate" type="application/rss+xml" href="http://railsforum.com/extern.php?action=feed&amp;tid=26542&amp;type=rss" title="RSS" />
+<link rel="alternate" type="application/atom+xml" href="http://railsforum.com/extern.php?action=feed&amp;tid=26542&amp;type=atom" title="ATOM" />
+<link rel="top" href="http://railsforum.com" title="Forum index" />
+<link rel="up" href="http://railsforum.com/viewforum.php?id=30" title="Controllers and Views" />
+<link rel="search" href="http://railsforum.com/search.php" title="Search" />
+<link rel="author" href="http://railsforum.com/userlist.php" title="User list" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://railsforum.com/style/Oxygen/Oxygen.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="http://railsforum.com/style/Oxygen/Oxygen_cs.css" />
+<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="http://railsforum.com/style/Oxygen/Oxygen_ie6.css" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" type="text/css" href="http://railsforum.com/style/Oxygen/Oxygen_ie7.css" /><![endif]-->
+<script type="text/javascript" src="http://railsforum.com/include/js/common.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="http://railsforum.com/extensions/pun_bbcode/styles.css" />
+<script type="text/javascript" src="http://railsforum.com/extensions/pun_bbcode/scripts.js"></script>
+<script type="text/javascript" src="/include/jquery.js"></script> 
+<link type="text/css" rel="stylesheet" href="/include/sh/Styles/SyntaxHighlighter.css"></link>
+<script type="text/javascript"" src="/include/sh/Scripts/shCore.js"></script>
+<script type="text/javascript"" src="/include/sh/Scripts/shBrushRuby.js"></script>
+<script type="text/javascript"" src="/include/sh/Scripts/shBrushXml.js"></script>
+<script type="text/javascript"" src="/include/sh/Scripts/shBrushCss.js"></script>
+<script type="text/javascript"" src="/include/sh/Scripts/shBrushXml.js"></script>
+<script type="text/javascript"" src="/include/bc.js"></script>
+<script type="text/javascript"">
+// $(function(){                                
+// 	dp.SyntaxHighlighter.ClipboardSwf = '/include/sh/clipboard.swf';
+// 	dp.SyntaxHighlighter.HighlightAll('code');
+// });
+</script>
+</head>
+<body>
+
+<div id="brd-wrap" class="brd">
+<div id="brd-viewtopic" class="brd-page paged-page">
+
+<div id="brd-head" class="gen-content">
+	<p id="brd-access"><a href="#brd-main">Skip to forum content</a></p>
+	<a href="http://railsforum.com/index.php"><img src="/mini_logo.png" width="200" height="40" alt="Rails Forum" style="border:none;" /></a></p>
+	<p id="brd-desc">A forum for Ruby on Rails users</p>
+</div>
+
+<div id="brd-navlinks" class="gen-content">
+	<ul>
+		<li id="navindex"><a href="http://railsforum.com/index.php">Index</a></li>
+		<li id="navuserlist"><a href="http://railsforum.com/userlist.php">User list</a></li>
+		<li id="navregister"><a href="http://railsforum.com/register.php">Register</a></li>
+		<li id="navlogin"><a href="http://railsforum.com/login.php">Login</a></li>
+	</ul>
+	
+</div>
+
+<div id="brd-visit" class="gen-content">
+	<p id="welcome"><span>You are not logged in.</span> <span>Please login or register.</span></p>
+	
+</div>
+
+
+
+<div class="hr"><hr /></div>
+
+<div id="brd-main">
+	<h1 class="main-title"><a class="permalink" href="http://railsforum.com/viewtopic.php?id=26542" rel="bookmark" title="Permanent link to this topic">Using multiple foreign key from same table : Controller and  View</a></h1>
+
+	<div id="brd-crumbs-top" class="crumbs gen-content">
+	<p><span class="crumb crumbfirst"><a href="http://railsforum.com/index.php">Rails Forum - Ruby on Rails Help and Discussion Forum</a></span> <span class="crumb"><span> »&#160;</span><a href="http://railsforum.com/viewforum.php?id=30">Controllers and Views</a></span> <span class="crumb crumblast"><span> »&#160;</span><a href="http://railsforum.com/viewtopic.php?id=26542">Using multiple foreign key from same table : Controller and  View</a></span> </p>
+</div>
+	
+	<div id="brd-pagepost-top" class="main-pagepost gen-content">
+	<p class="paging"><span class="pages">Pages</span> <strong class="first-item">1</strong></p>
+	<p class="posting">You must <a href="http://railsforum.com/login.php">login</a> or <a href="http://railsforum.com/register.php">register</a> to post a reply</p>
+</div>
+	<div class="main-head">
+
+		<p class="options"><span class="feed first-item"><a class="feed" href="http://railsforum.com/extern.php?action=feed&amp;tid=26542&amp;type=rss">RSS topic feed</a></span></p>		<h2 class="hn"><span><span class="item-info">Posts [ 5 ]</span></span></h2>
+	</div>
+	<div id="forum30" class="main-content main-topic">
+		<div class="post odd firstpost topicpost">
+			<div id="p86201" class="posthead">
+				<h3 class="hn post-ident"><span class="post-num">1</span> <span class="post-byline"><span>Topic by </span><a title="Go to techy's profile" href="http://railsforum.com/profile.php?id=22042">techy</a></span> <span class="post-link"><a class="permalink" rel="bookmark" title="Permanent link to this post" href="http://railsforum.com/viewtopic.php?pid=86201#p86201">2009-01-27 22:40:55</a></span></h3>
+			</div>
+			<div class="postbody">
+				<div class="post-author">
+					<ul class="author-ident">
+						<li class="username"><a title="Go to techy's profile" href="http://railsforum.com/profile.php?id=22042">techy</a></li>
+						<li class="usertitle"><span>Coach Class</span></li>
+						<li class="userstatus"><span>Offline</span></li>
+					</ul>
+					<ul class="author-info">
+						<li><span>Registered: <strong>2009-01-27</strong></span></li>
+						<li><span>Posts: <strong>61</strong></span></li>
+					</ul>
+				</div>
+				<div class="post-entry">
+					<h4 id="pc86201" class="entry-title hn">Topic: Using multiple foreign key from same table : Controller and  View</h4>
+					<div class="entry-content">
+						<p>Hi to everyone, I am new on this forum and also fairly new to Ruby and Rails.Following are my questions for which I am seeking some guidance: <br />I am building a simple ticket management system where <br />- a user can create a ticket and assign to another user ( technician ) <br />Model Ticket<br />belongs_to :user </p><p>So the challenges that I am facing are <br />1. I am using user table to store all users (technicians and ticket creators )<br />2. In the Tickets table I have two foreign keys create_by_id and assigned_to id both mapping to user:id <br />so I have two foreign keys mapping back to one id in user table </p><p>to resolve this issue I have done following in my user Model <br />&nbsp; #Relationships&nbsp; user<br />&nbsp; has_many :created_tickets, :class_name =&gt; &#039;Ticket&#039;, :foreign_key =&gt; &#039;opened_by_id&#039; <br />&nbsp; has_many :assigned_tickets,:class_name =&gt; &#039;Ticket&#039;, :foreign_key =&gt; &#039;assigned_to_id&#039;</p><p>Q. is this the right way to address the issue <br />Q. Now I need a view where a user can create tickets, I am thinking of using user controller and views for that </p><p>How do I do that using a user controller, in the forum I found few post where I can call the create method from a user view i.e when I am creating a new user </p><p>like <br />def create <br />#&nbsp; &nbsp;@user = User.new(params[:user])<br />#&nbsp; &nbsp;@tickets = tickets.new.build(params[:tickets])</p><p>but how do I create a new ticket record for an existing user please advise</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="post even replypost">
+			<div id="p86272" class="posthead">
+				<h3 class="hn post-ident"><span class="post-num">2</span> <span class="post-byline"><span>Reply by </span><a title="Go to TomK32's profile" href="http://railsforum.com/profile.php?id=21970">TomK32</a></span> <span class="post-link"><a class="permalink" rel="bookmark" title="Permanent link to this post" href="http://railsforum.com/viewtopic.php?pid=86272#p86272">2009-01-28 14:17:23</a></span></h3>
+			</div>
+			<div class="postbody">
+				<div class="post-author">
+					<ul class="author-ident">
+						<li class="useravatar"><img src="http://railsforum.com/img/avatars/21970.jpg" width="80" height="80" alt="" /></li>
+						<li class="username"><a title="Go to TomK32's profile" href="http://railsforum.com/profile.php?id=21970">TomK32</a></li>
+						<li class="usertitle"><span>Passenger</span></li>
+						<li class="userstatus"><span>Offline</span></li>
+					</ul>
+					<ul class="author-info">
+						<li><span>From: <strong>Vienna, Austria</strong></span></li>
+						<li><span>Registered: <strong>2009-01-26</strong></span></li>
+						<li><span>Posts: <strong>27</strong></span></li>
+					</ul>
+				</div>
+				<div class="post-entry">
+					<h4 id="pc86272" class="entry-title hn">Re: Using multiple foreign key from same table : Controller and  View</h4>
+					<div class="entry-content">
+						<p>That&#039;s what I&#039;d write, didn&#039;t debug though. It&#039;s more about the naming convention.</p><p><pre name="code" class="ruby:nogutter">class Ticket &lt;&lt; ActiveRecord::Base<br />&nbsp; belongs_to :user # your creator<br />&nbsp; belongs_to :assigned_user, :class =&gt; &#039;User&#039;<br />end<br />class User &lt;&lt; ActiveRecord::Base<br />&nbsp; has_many :tickets # that the user has created<br />&nbsp; has_many :assigned_tickets, :class =&gt; &#039;Ticket&#039;, :foreign_key =&gt; &#039;assigned_user_id&#039;<br />end</pre><br />About your controller question: NO. Don&#039;t abuse the UserController for this, a TicketController is the usual way here. You can work with your (I hope you have it, again naming convention) current_user helper method.</p><p>So if I create a ticket it&#039;s<br /><pre name="code" class="ruby:nogutter">current_user.tickets.create()</pre><br />If I assign an existing ticket to myself or a user it&#039;s (again I was too lazy to debug)<br /><pre name="code" class="ruby:nogutter">def assign<br />&nbsp; @ticket.find params[:id]<br />&nbsp; if params[:user_id]<br />&nbsp; &nbsp; User.find(params[:user_id]).assigned_tickets &lt;&lt; @ticket<br />&nbsp; else<br />&nbsp; &nbsp; current_user.assigned_tickets &lt;&lt; @ticket<br />&nbsp; end<br />end</pre></p>
+						<div class="sig-content"><span class="sig-line"><!-- --></span>Ruby on Rails developer from Vienna looking for freelance gigs. My <a href="http://ananasblau.com/">Blog</a>. If I answered your questions I&#039;d be happy if you recommend me at <a href="http://www.workingwithrails.com/person/9367-thomas-r-koll">working-with-rails</a></div>
+					</div>
+				</div>
+			</div>
+			<div class="postfoot">
+				<div class="post-options">
+					<p class="post-contacts"><span class="user-url first-item"><a class="external" href="http://ananasblau.com"><span>TomK32's</span> Website</a></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="post odd replypost">
+			<div id="p86286" class="posthead">
+				<h3 class="hn post-ident"><span class="post-num">3</span> <span class="post-byline"><span>Reply by </span><a title="Go to techy's profile" href="http://railsforum.com/profile.php?id=22042">techy</a></span> <span class="post-link"><a class="permalink" rel="bookmark" title="Permanent link to this post" href="http://railsforum.com/viewtopic.php?pid=86286#p86286">2009-01-28 15:46:32</a></span></h3>
+			</div>
+			<div class="postbody">
+				<div class="post-author">
+					<ul class="author-ident">
+						<li class="username"><a title="Go to techy's profile" href="http://railsforum.com/profile.php?id=22042">techy</a></li>
+						<li class="usertitle"><span>Coach Class</span></li>
+						<li class="userstatus"><span>Offline</span></li>
+					</ul>
+					<ul class="author-info">
+						<li><span>Registered: <strong>2009-01-27</strong></span></li>
+						<li><span>Posts: <strong>61</strong></span></li>
+					</ul>
+				</div>
+				<div class="post-entry">
+					<h4 id="pc86286" class="entry-title hn">Re: Using multiple foreign key from same table : Controller and  View</h4>
+					<div class="entry-content">
+						<p>Thank you so much for your help so .. its good to learn what art the best practices in ROR.. As you can tell I am fairly new so I have stuck with another issue of same problem</p><p>So from my tickets show html file I am calling a tickets controller new ticket html file </p><p>In my ticket controller I have done following. Please advise if this is the right way </p><p>I am creating a new ticket for user, to achieve this I have done following <br />nested routes<br />map.resources :user do |user|<br />&nbsp; user.resources :tickets <br />end <br />--------------------<br />questions: is this the right way to define a nested route given that in my user Model I am saying created_tickets and assigned_tickets <br />_______________<br />in my ticket controller to create a new ticket with opened_by user Id. i am doing following<br /><pre name="code" class="ruby:nogutter"> <br />def new<br />&nbsp; &nbsp; @user = User.find(params[:user_id])<br />&nbsp; &nbsp; @ticket = @user.created_tickets.new</pre><br />ticket controller create <br /><pre name="code" class="ruby:nogutter">def create<br />&nbsp; &nbsp;@user =&nbsp; User.find(:first, :conditions =&gt; [&quot;id = ?&quot;, :opened_by_id])<br />&nbsp; &nbsp; @ticket = Ticket.new(params[:ticket])<br />&nbsp; &nbsp; respond_to do |format|<br />&nbsp; &nbsp; &nbsp; if @ticket.save<br />&nbsp; &nbsp; &nbsp; &nbsp; flash[:notice] = &#039;Ticket was successfully created.&#039;<br />&nbsp; &nbsp; &nbsp; &nbsp; format.html { redirect_to user_path(@user)}</pre><br />Question: is this the the right way and for some reason my redirect_to in the ticket controller created method is not working<br />I would like to take the user back to ticket show rhtml .. how do I do that please help</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="post even replypost">
+			<div id="p86291" class="posthead">
+				<h3 class="hn post-ident"><span class="post-num">4</span> <span class="post-byline"><span>Reply by </span><a title="Go to TomK32's profile" href="http://railsforum.com/profile.php?id=21970">TomK32</a></span> <span class="post-link"><a class="permalink" rel="bookmark" title="Permanent link to this post" href="http://railsforum.com/viewtopic.php?pid=86291#p86291">2009-01-28 16:24:16</a></span></h3>
+			</div>
+			<div class="postbody">
+				<div class="post-author">
+					<ul class="author-ident">
+						<li class="useravatar"><img src="http://railsforum.com/img/avatars/21970.jpg" width="80" height="80" alt="" /></li>
+						<li class="username"><a title="Go to TomK32's profile" href="http://railsforum.com/profile.php?id=21970">TomK32</a></li>
+						<li class="usertitle"><span>Passenger</span></li>
+						<li class="userstatus"><span>Offline</span></li>
+					</ul>
+					<ul class="author-info">
+						<li><span>From: <strong>Vienna, Austria</strong></span></li>
+						<li><span>Registered: <strong>2009-01-26</strong></span></li>
+						<li><span>Posts: <strong>27</strong></span></li>
+					</ul>
+				</div>
+				<div class="post-entry">
+					<h4 id="pc86291" class="entry-title hn">Re: Using multiple foreign key from same table : Controller and  View</h4>
+					<div class="entry-content">
+						<p>As I said earlier I wouldn&#039;t write created_tickets but only tickets. Don&#039;t make it complicated if it&#039;s not necessary.</p><p>About the route, on the console a &#039;rake routes&#039; will show you what&#039;s available.</p><p>And I don&#039;t know why you changed the ticket_controller:create, it&#039;s wrong now.</p>
+						<p class="lastedit"><em>Last edited by TomK32 (2009-01-28 17:00:37)</em></p>
+						<div class="sig-content"><span class="sig-line"><!-- --></span>Ruby on Rails developer from Vienna looking for freelance gigs. My <a href="http://ananasblau.com/">Blog</a>. If I answered your questions I&#039;d be happy if you recommend me at <a href="http://www.workingwithrails.com/person/9367-thomas-r-koll">working-with-rails</a></div>
+					</div>
+				</div>
+			</div>
+			<div class="postfoot">
+				<div class="post-options">
+					<p class="post-contacts"><span class="user-url first-item"><a class="external" href="http://ananasblau.com"><span>TomK32's</span> Website</a></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="post odd lastpost replypost">
+			<div id="p86302" class="posthead">
+				<h3 class="hn post-ident"><span class="post-num">5</span> <span class="post-byline"><span>Reply by </span><a title="Go to techy's profile" href="http://railsforum.com/profile.php?id=22042">techy</a></span> <span class="post-link"><a class="permalink" rel="bookmark" title="Permanent link to this post" href="http://railsforum.com/viewtopic.php?pid=86302#p86302">2009-01-28 18:15:43</a></span></h3>
+			</div>
+			<div class="postbody">
+				<div class="post-author">
+					<ul class="author-ident">
+						<li class="username"><a title="Go to techy's profile" href="http://railsforum.com/profile.php?id=22042">techy</a></li>
+						<li class="usertitle"><span>Coach Class</span></li>
+						<li class="userstatus"><span>Offline</span></li>
+					</ul>
+					<ul class="author-info">
+						<li><span>Registered: <strong>2009-01-27</strong></span></li>
+						<li><span>Posts: <strong>61</strong></span></li>
+					</ul>
+				</div>
+				<div class="post-entry">
+					<h4 id="pc86302" class="entry-title hn">Re: Using multiple foreign key from same table : Controller and  View</h4>
+					<div class="entry-content">
+						<p>Thank you for you help here: I will go back and change the model to to following<br /><pre name="code" class="ruby:nogutter">&nbsp; class Ticket &lt;&lt; ActiveRecord::Base<br />&nbsp; &nbsp; &nbsp; belongs_to :user # ticket creator<br />&nbsp; &nbsp; &nbsp; belongs_to :assigned_user, :class =&gt; &#039;User&#039;<br />&nbsp; &nbsp; end<br />&nbsp; &nbsp; class User &lt;&lt; ActiveRecord::Base<br />&nbsp; &nbsp;has_many :tickets # that the user has created<br />&nbsp; &nbsp;has_many :assigned_tickets, :class =&gt; &#039;Ticket&#039;, :foreign_key =&gt; &#039;assigned_user_id&#039;<br />&nbsp; &nbsp; end</pre><br />--------------------------<br />could you help me fix my controller code .. please help what should be the code for Controller Ticket if I want to create a ticket from user -&gt; show html page </p><p>Thank you</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="main-foot">
+		<h2 class="hn"><span><span class="item-info">Posts [ 5 ]</span></span></h2>
+	</div>
+	<div id="brd-pagepost-end" class="main-pagepost gen-content">
+	<p class="paging"><span class="pages">Pages</span> <strong class="first-item">1</strong></p>
+	<p class="posting">You must <a href="http://railsforum.com/login.php">login</a> or <a href="http://railsforum.com/register.php">register</a> to post a reply</p>
+</div>
+	<div id="brd-crumbs-end" class="crumbs gen-content">
+	<p><span class="crumb crumbfirst"><a href="http://railsforum.com/index.php">Rails Forum - Ruby on Rails Help and Discussion Forum</a></span> <span class="crumb"><span> »&#160;</span><a href="http://railsforum.com/viewforum.php?id=30">Controllers and Views</a></span> <span class="crumb crumblast"><span> »&#160;</span><a href="http://railsforum.com/viewtopic.php?id=26542">Using multiple foreign key from same table : Controller and  View</a></span> </p>
+</div>
+</div>
+<!-- forum_qpost -->
+
+<!-- forum_info -->
+
+<div class="hr"><hr /></div>
+
+<!-- forum_debug -->
+
+</div>
+</div>
+
+</body>
+</html>

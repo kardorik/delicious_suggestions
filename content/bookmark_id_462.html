@@ -1,0 +1,796 @@
+<HTML><HEAD>
+<META NAME="date" CONTENT="2005-04-08"> 
+<META NAME="channel" CONTENT="Developer">
+<META NAME="author" CONTENT="Nicholas C. Zakas">
+<meta NAME="description" CONTENT="Creating an Autosuggest Textbox with JavaScript, Part 2">
+<meta NAME="keywords" CONTENT="java script, javascript programming, custom programming, javascript tutorial, javascript tutorials, accessibility, web standards">
+<meta NAME="section" CONTENT="javascript">
+<title>Creating an Autosuggest Textbox with JavaScript, Part 2 - WebReference.com -</title>
+</head>
+
+
+
+<!-- START AD -->
+<div class="WRBannerCenter" align="center"><SCRIPT LANGUAGE=JavaScript>
+<!--
+OAS_url = 'http://mjxads.internet.com/RealMedia/ads/';
+OAS_sitepage = 'intm/webdev/www.webreference.com/programming/javascript/ncz/column2';
+OAS_listpos = 'flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial';
+OAS_query = '';
+OAS_target = '_top';
+OAS_version = 10;
+OAS_rn = '001234567890'; OAS_rns = '1234567890';
+OAS_rn = new String (Math.random()); OAS_rns = OAS_rn.substring (2, 11);
+function OAS_NORMAL(pos) {
+var_a=('<A HREF="' + OAS_url + 'click_nx.cgi/' + OAS_sitepage );
+var_b=(var_a + '/1' + OAS_rns + '@' + OAS_listpos + '!' + pos + '?' );
+var_c=(var_b+ OAS_query + '" TARGET=' + OAS_target + '>');
+document.write(var_c);
+var_aa=('<IMG SRC="' + OAS_url + 'adstream_nx.cgi/' + OAS_sitepage );
+var_bb=( var_aa + '/1' + OAS_rns + '@' + OAS_listpos + '!' + pos + '?');
+var_cc=( var_bb + OAS_query + '" BORDER=0></A>');
+document.write(var_cc);
+}
+//-->
+</SCRIPT>
+
+<SCRIPT LANGUAGE=JavaScript1.1>
+<!--
+OAS_version = 11;
+if (navigator.userAgent.indexOf('Mozilla/3') != -1 )
+OAS_version = 10;
+if (navigator.userAgent.indexOf('Mozilla/4.0 WebTV') != -1)
+OAS_version = 10;
+if (OAS_version >= 11) {
+var_aaa=('<SCRIPT LANGUAGE=JavaScript1.1 SRC="' + OAS_url);
+var_bbb=(var_aaa + 'adstream_mjx.ads/' + OAS_sitepage + '/1');
+var_ccc=(var_bbb + OAS_rns + '@' + OAS_listpos + '?' + OAS_query );
+var_ddd=(var_ccc + '"><\/SCRIPT>');
+document.write(var_ddd);
+}
+//-->
+
+</SCRIPT>
+
+<SCRIPT LANGUAGE=JavaScript>
+<!--
+document.write('');
+
+function OAS_AD(pos) {
+if (OAS_version >= 11)
+OAS_RICH(pos);
+else
+OAS_NORMAL(pos);
+}
+//-->
+</SCRIPT>
+<script type="text/javascript">
+<!--
+OAS_AD('house_ribbon');
+//-->
+</script>
+<noscript>
+<a href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!house_ribbon" >
+<img src="http://63.236.18.118/RealMedia/ads/adstream_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!house_ribbon" border='0' alt=''>
+</a>
+</noscript><br />
+<img src="/art/t.gif" width="1" height="4" alt="spacer" /><br />
+
+<script type="text/javascript">
+<!--
+OAS_AD('468x60-1');
+//-->
+</script>
+<noscript>
+<a href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!468x60-1" >
+<img src="http://63.236.18.118/RealMedia/ads/adstream_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!468x60-1" border='0' alt=''>
+</a>
+</noscript></div>
+
+
+
+
+
+
+<!-- END AD -->
+
+<p align=center><center><form method=get action="/cgi-bin/search.cgi">
+
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR=BLACK WIDTH="100%" CLASS="twidth">
+
+
+<tr><td><TABLE BGCOLOR="#FFCC00" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
+<TR VALIGN="MIDDLE">
+<TD WIDTH="32"><A HREF="/"><IMG SRC="/art/l_webref32x16.gif" WIDTH="32" HEIGHT="16" BORDER="0" alt=Webref></A></td>
+<TD VALIGN="MIDDLE" CLASS="include"><B><A HREF="/">WebRef</A>&#160;</B></td>
+<TD BGCOLOR="#FFFFFF" WIDTH="70%" CLASS="include">&#160;<A HREF="/index2.html">Sitemap</A> &#183; <A HREF="/experts/">Experts</A> &#183; <A HREF="/tools/">Tools</A> &#183; <A href="/services/">Services</A> &#183; <A HREF="/new/">Newsletters</A> &#183; <A HREF="/about.html">About</A></td>
+<TD WIDTH="1%" ALIGN="RIGHT" BGCOLOR="#FFFFFF"><input type=text name=query size=15></td>
+<TD WIDTH="1%" ALIGN="RIGHT" BGCOLOR="#FFFFFF"><INPUT CLASS="SUBMITTER" TYPE=SUBMIT VALUE="Search"></td>
+<TD BGCOLOR="#FFFFFF" ALIGN=RIGHT><A HREF="http://internet.com"><IMG SRC="/i.gif" WIDTH=72 HEIGHT=11 BORDER=0 ALT=i.com></A></td>
+</TR></TABLE>
+</td></TR></TABLE></FORM>
+</center>
+<p>
+ 
+<script type="text/javascript">
+<!--
+OAS_AD('send');
+//-->
+</script>
+<noscript>
+<a href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!send" >
+<img src="http://63.236.18.118/RealMedia/ads/adstream_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!send" border='0' alt=''>
+</a>
+</noscript></p>
+
+<table border="0" align="center" width="100%">
+<tr VALIGN=TOP>
+    <td align="left"> <strong><A HREF="/">home</A> / <A HREF="/programming/">programming</A> 
+      / <A HREF="/programming/javascript">javascript</A> / <A HREF="/programming/javascript/ncz/">ncz</A> / <A HREF="/programming/javascript/ncz/column2">column2</A> / 1</strong></td>
+<td align="right"><a href="index.html"><img 
+     src="/art/b_left.gif" alt="To page 1" width="18" height="18" border="0"></a><img 
+     src="/art/b_center.gif" alt="current page" width="18" height="18" border="0"><a href="3.html"><img
+     src="/art/b_right.gif" alt="To page 3" width="18" height="18" border="0"></a><a href="4.html"><img
+     src="/art/b_right.gif" alt="To page 4" width="18" height="18" border="0"></a><BR>
+      <a href="index.html">[previous]</a><a href="3.html">[next]</a></td>
+</tr></table>
+
+
+
+<div style="margin-left: 30px;">
+
+
+<table cellspacing="0" cellpadding="1" border="0" bgcolor="#000000" style="margin-right:10px;">
+        <tbody><tr>
+          <td>
+            <table cellspacing="0" cellpadding="1" border="0" bgcolor="#eeeeee">
+
+              <tbody><tr> 
+                <td style="padding:5px;"><font size="-2" face="Verdana, Arial, Helvetica, sans-serif"><p style="margin-top:0px; margin-bottom:5px;">
+            <a class="popinsetlink" href="http://webreference.justtechjobs.com/CBJSViewJob.asp?ID={F5074B60-F6A2-4428-A06C-93B9AF2C6C44}">Software Engineer II &#8211; Java &#8211; C++ - Perl &#8211; Python - Ruby (NJ)</a><br />Next Step Systems<br />US-NJ-Newark</p>
+<a href="http://webreference.justtechjobs.com/"><img hspace="0" border="0" align="absmiddle" id="img_openings" alt="Justtechjobs.com" src="http://images.justtechjobs.com/images/webreference.gif"/></a> <a title="Post A Job" href="http://www.justtechjobs.com/CBEmpPostJobLogin.asp?CB=webreference.com"> Post A Job</a> | <a title="Post Your Resume" href="http://webreference.justtechjobs.com/CBJSEditResume.asp">Post A Resume</a>
+
+</font></td>
+
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+</div>
+
+<table cellpadding=0 cellspacing=0 border=0 align=left>
+   <tr><td>
+	<style type="text/css">
+<!--
+#WDinclude {font-size:75%; font-family:verdana, arial, helvetica}
+.WDi {font-family:verdana, arial, helvetica}
+#WDinclude A:link {color: blue}
+.WDi A:link {color:blue}
+#WDinclude A:visited {color: purple}
+.WDi A:visited {color: purple}
+.WRy1{background:#fc0} .WRy2{background:#fff3ac}
+-->
+</style>
+<table align="center" cellpadding=1 cellspacing=0 border=0 class="WRy1" width="120">
+<tr><td align="center" valign="bottom">
+
+<script type="text/javascript">
+<!--
+OAS_AD('125x125-1');
+//-->
+</script>
+<noscript>
+<a href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!125x125-1" >
+<img src="http://63.236.18.118/RealMedia/ads/adstream_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!125x125-1" border='0' alt=''>
+</a>
+</noscript>
+</td></tr>
+<tr><td>
+<table ID="WDinclude" cellpadding=3 cellspacing=0 border=0 class="WRy2">
+<tr class="WRy1"><td align="center" class="WDi"><a href="http://www.internetnews.com/dev-news/"><b>Developer News</b></a></td></tr>
+<tr><td align="left" class="WDi"><a href="http://redir.internet.com/rss/click/www.internetnews.com/dev-news/article.php/3889986">Eclipse Helios Update Brings New PHP Tools</a></td></tr><tr><td align="left" class="WDi"><a href="http://redir.internet.com/rss/click/www.internetnews.com/dev-news/article.php/3889866">Internet Explorer 9 Ups Standards Support</a></td></tr><tr><td align="left" class="WDi"><a href="http://redir.internet.com/rss/click/www.internetnews.com/dev-news/article.php/3889691">JBoss Portal 5 Release Easier to Use</a></td></tr>
+</table></td></tr>
+<tr><td align="center">
+<script type="text/javascript"
+        src="http://jlinks.industrybrains.com/jsct?sid=829&amp;ct=INTERNETCOM_DEVELOPER&amp;tr=WEBREFERENCE&amp;num=5&amp;layt=8&amp;fmt=simp">
+</script>
+<p>
+
+<script type="text/javascript">
+<!--
+OAS_AD('125x800');
+//-->
+</script>
+<noscript>
+<a href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!125x800" >
+<img src="http://63.236.18.118/RealMedia/ads/adstream_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!125x800" border='0' alt=''>
+</a>
+</noscript>
+</td></tr></table>
+<br>
+           <img src="/art/t.gif" width=1 height=9 alt=""></td>
+       <td><img src="/art/t.gif" width=9 height=1 alt=""></td></tr>
+</table>
+
+<!-- content_start -->
+<h3>Creating an Autosuggest Textbox with JavaScript, Part 2</h3>
+
+
+<p>There are three event handlers that need to be assigned: <code>onmouseover</code>, 
+  <code>onmousedown</code> and <code>onmouseup</code>. The <code>onmouseover</code> 
+  event handler is simply used to highlight the current suggestion, the <code>onmousedown</code> 
+  is used to select the given suggestion (place the suggestion in the textbox 
+  and hide the dropdown list) and <code>onmouseup</code> is used to just to set 
+  focus back to the textbox after a selection has been made. Since all of these 
+  event handlers occur on the textbox, it's best just to use a single function 
+  for all of them, as seen below:</p>
+<p><code>AutoSuggestControl.prototype.createDropDown = function () {</code></p>
+<p><code> </code><code>&nbsp;&nbsp;&nbsp;&nbsp;this.layer = document.createElement(&quot;div&quot;);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.className = &quot;suggestions&quot;;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.style.visibility = &quot;hidden&quot;;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.style.width = this.textbox.offsetWidth;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;document.body.appendChild(this.layer);<br>
+  <br>
+  <b>&nbsp;&nbsp;&nbsp;&nbsp;var oThis = this;<br>
+  <br>
+  </b></code><b><code>&nbsp;&nbsp;&nbsp;&nbsp;this.layer.onmousedown = this.layer.onmouseup 
+  = <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.onmouseover = function (oEvent) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oEvent = oEvent || window.event;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oTarget = oEvent.target || oEvent.srcElement;</code></b></p>
+<p><b><code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (oEvent.type == 
+  &quot;mousedown&quot;) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oThis.textbox.value 
+  = oTarget.firstChild.nodeValue;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oThis.hideSuggestions();<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else if (oEvent.type == &quot;mouseover&quot;) 
+  {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oThis.highlightSuggestion(oTarget);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oThis.textbox.focus();<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;};</code></b><code><br>
+  <br>
+  };</code></p>
+<p>The first part of this section is the assignment of <code>oThis</code> equal 
+  to the <code>this</code> object. This is necessary so that a reference to the 
+  <code>AutoSuggestControl</code> object is accessible from within the event handler. 
+  Next, a compound assignment occurs, assigning the same function as an event 
+  handler for <code>onmousedown</code>, <code>onmouseup</code>, and <code>onmouseover</code>. 
+  Inside of the function, the first two lines are used to account for the different 
+  event models (DOM and IE). The <code>event</code> object is stored in <code>oEvent</code> 
+  and the target of the event is stored in <code>oTarget</code> (the target will 
+  always be a <code>&lt;div/&gt;</code> containing a suggestion). </p>
+<p>If the event being handled is <code>mousedown</code>, then you set the value 
+  of the textbox equal to the text inside of the event target. The text is a text 
+  node, retrieved by the <code>firstNode</code> property, and the actual text 
+  is stored in the <code>nodeValue</code> of the text node. After the suggestion 
+  is placed into the textbox, the dropdown list is hidden.</p>
+<p>When the event being handled is <code>mouseover</code>, the event target is 
+  passed into the <code>highlightSuggestion()</code> method to provide the hover 
+  effect. If the event is <code>mouseup</code>, then the focus is set back to 
+  the textbox (this fires immediately after <code>mousedown</code>).</p>
+<h3>Positioning the Dropdown List</h3>
+<p>In order to get the full effect of the dropdown list it's imperative that it 
+  appear immediately below the textbox. If the textbox were absolutely positioned, 
+  this wouldn't be much of an issue. In actual practice, textboxes are rarely 
+  absolutely positioned and more often are placed inline, which presents a problem 
+  in aligning the dropdown list. To do so accurately, you must calculate the location 
+  of the textbox using the <code>offsetLeft</code>, <code>offsetTop</code>, and 
+  <code>offsetParent</code> properties.</p>
+<p>The <code>offsetLeft</code> and <code>offsetTop</code> properties tell you 
+  how many pixels away from the left and top of the <code>offsetParent</code> 
+  an element is placed. The <code>offsetParent</code> is usually, but not always, 
+  the parent node of the element, so to get the left position of the textbox, 
+  you need to add up the <code>offsetLeft</code> properties of the textbox and 
+  all of its ancestor elements (stopping at <code>&lt;body/&gt;</code>), as seen 
+  below:</p>
+<p><code>AutoSuggestControl.prototype.getLeft = function () {</code></p>
+<p><code> &nbsp;&nbsp;&nbsp;&nbsp;var oNode = this.textbox;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;var iLeft = 0;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;while(oNode.tagName != &quot;BODY&quot;) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iLeft += oNode.offsetLeft;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oNode = oNode.offsetParent; 
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;return iLeft;<br>
+  };</code></p>
+<p>The <code>getLeft()</code> method begins by pointing <code>oNode</code> at 
+  the textbox and defining <code>iLeft</code> with an initial value of 0. The 
+  while loop will continue to add <code>oNode.offsetLeft</code> to <code>iLeft</code> 
+  as it traverses up the DOM structure to the <code>&lt;body/&gt;</code> element. 
+  The same algorithm can be used to get the top of the textbox:</p>
+<p><code>AutoSuggestControl.prototype.getTop = function () {</code></p>
+<p><code> &nbsp;&nbsp;&nbsp;&nbsp;var oNode = this.textbox;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;var iTop = 0;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;while(oNode.tagName != &quot;BODY&quot;) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;iTop += oNode.offsetTop;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oNode = oNode.offsetParent; 
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;return iTop;<br>
+  };</code></p>
+<p>These two methods will be used to place the dropdown list in the correct location.</p>
+<h3>Adding and Display Suggestions</h3>
+<p>The next step in this process is to create a method that adds the suggestions 
+  into the dropdown list and then displays it. The <code>showSuggestions()</code> 
+  method accepts an array of suggestions as an argument and then builds up the 
+  DOM necessary to display them. From there, the method positions the dropdown 
+  list and displays it to the user:</p>
+<p><code>AutoSuggestControl.prototype.showSuggestions = function (aSuggestions) 
+  {<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;var oDiv = null;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.innerHTML = &quot;&quot;;<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;for (var i=0; i &lt; aSuggestions.length; i++) {<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oDiv = document.createElement(&quot;div&quot;);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;oDiv.appendChild(document.createTextNode(aSuggestions[i]));<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.layer.appendChild(oDiv);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.style.left = this.getLeft() + &quot;px&quot;;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.style.top = (this.getTop()+this.textbox.offsetHeight) 
+  + &quot;px&quot;;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;this.layer.style.visibility = &quot;visible&quot;;<br>
+  </code><code>};</code></p>
+<p>The first line simply defines the variable <code>oDiv</code> for later use. 
+  The second line clears the contents of the dropdown list by setting the <code>innerHTML</code> 
+  property to an empty string. Then, the <code>for</code> loop creates a <code>&lt;div/&gt;</code> 
+  and a text node for each suggestion before adding it to the dropdown list layer. 
+</p>
+<p>The next section of code starts by setting the left position of the layer using 
+  the <code>getLeft()</code> method. To set the top position, you need to add 
+  the value from <code>getTop()</code> to the height of the textbox (retrieved 
+  by using the <code>offsetHeight</code> property). Lastly, the layer's visibility 
+  is set to &quot;visible&quot; to show it.</p>
+
+
+<!-- content_stop -->
+
+<table border="0" align="center" width="100%">
+<tr VALIGN=TOP>
+    <td align="left"> <strong><A HREF="/">home</A> / <A HREF="/programming/">programming</A> 
+      / <A HREF="/programming/javascript">javascript</A> / <A HREF="/programming/javascript/ncz/">ncz</A> / <A HREF="/programming/javascript/ncz/column2">column2</A> / 1</strong></td>
+<td align="right"><a href="index.html"><img 
+     src="/art/b_left.gif" alt="To page 1" width="18" height="18" border="0"></a><img 
+     src="/art/b_center.gif" alt="current page" width="18" height="18" border="0"><a href="3.html"><img
+     src="/art/b_right.gif" alt="To page 3" width="18" height="18" border="0"></a><a href="4.html"><img
+     src="/art/b_right.gif" alt="To page 4" width="18" height="18" border="0"></a><BR>
+      <a href="index.html">[previous]</a><a href="3.html">[next]</a></td>
+</tr></table>
+
+<!-- START AD -->
+<div class="WRBannerCenter" align="center">
+<script type="text/javascript">
+<!--
+OAS_AD('468x60-2');
+//-->
+</script>
+<noscript>
+<a href="http://63.236.18.118/RealMedia/ads/click_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!468x60-2" >
+<img src="http://63.236.18.118/RealMedia/ads/adstream_nx.ads/intm/webdev/www.webreference.com/programming/javascript/ncz/column2@flex,ciu,336x280,imu-right,house_ribbon,125x125-1,125x800,468x60-1,468x60-2,sitetext-1,sitetext-2,cp1,cp10,cp11,cp12,cp13,cp14,cp2,cp3,cp4,cp5,cp6,cp7,cp8,cp9,send,interstitial!468x60-2" border='0' alt=''>
+</a>
+</noscript></div>
+<!-- start Vibrant Media IntelliTXT script section -->
+<script type="text/javascript" src="http://webreferences.us.intellitxt.com/intellitxt/front.asp?ipid=26016"></script>
+<!-- end Vibrant Media IntelliTXT script section -->
+
+<!-- END AD -->
+<p align="center"> 
+   <!-- Kontera exclusion div starts -->
+<div class="konafilter">
+
+<!-- Default Insight Tag -->
+<script type="text/javascript">
+  var _bizo_data_partner_id = "131";
+  var site_list = new Array("www.serverwatch.com", "www.smallbusinesscomputing.com", "www.hardwarecentral.com",
+                            "www.enterprisenetworkingplanet.com", "www.developer.com", "www.internetnews.com",
+                            "www.codeguru.com", "itmanagement.earthweb.com", "www.databasejournal.com",
+                            "www.esecurityplanet.com", "www.enterprisestorageforum.com", "www.cioupdate.com",
+                            "www.enterprisemobiletoday.com", "www.earthweb.com", "www.htmlgoodies.com",
+                            "www.webdeveloper.com", "www.vbforums.com", "search.internet.com",
+                            "www.linuxtoday.com", "flashkit.com", "e-newsletters.internet.com",
+                            "member.internet.com", "www.webopedia.com", "www.internet.com", "devx.com"
+                           );
+  var do_call = false;
+  for(var i = 0; i < site_list.length; i++) {
+     var txt=new RegExp(site_list[i]);
+     if (txt.test(document.location) == true) do_call = true;
+  }
+  if (do_call) {
+      var _bizo_p = (("https:" == document.location.protocol) ? "https://sjs." : "http://js.");
+      document.write(unescape("%3Cscript src='" + _bizo_p + "bizographics.com/convert_data.js?partner_id=" + _bizo_data_partner_id + "' type='text/javascript'%3E%3C/script%3E"));
+  }
+</script>
+<!-- Google Analytics -->
+<script src="/icom_includes/footers/scripts/ga.js"  type="text/javascript">
+</script>
+<script  type="text/javascript" >
+<!--     hide from no js browsers
+delete Array.prototype.itemValidation;
+delete Array.prototype.isArray;
+var superTracker = _gat._getTracker("UA-2838492-1");
+superTracker._initData();
+superTracker._trackPageview();
+
+-->
+</script>
+<script  type="text/javascript" >
+   var site_name =  location.hostname;
+   if ( site_name.indexOf("www.") != 0 ) {
+     site_name  = "www."+site_name ;
+   }
+   document.write("<SCR" + "IPT LANGUAGE='JavaScript1.2' SRC='/icom_includes/footers/sites/"+ site_name +".js' TYPE='text/javascript'><\/SCR" + "IPT>");
+-->
+</script>
+<script  type="text/javascript" >
+<!--     hide from no js browsers
+   pageTracker._initData();
+   pageTracker._trackPageview();
+   // -->
+</script>
+<!-- End Google Analytics -->
+
+
+<!-- Revenue Science API -->
+<script src="http://js.revsci.net/gateway/gw.js?csid=K08784"></script>
+<script>
+  DM_addEncToLoc("pid","INT");
+  DM_tag();
+
+</script>
+<!-- Revenue Science API -->
+
+<style type="text/css">
+@charset "UTF-8";
+/* CSS Document */
+
+
+/* JOM CSS */
+
+#jomfooter {
+	border: 0;
+	margin: 5px;
+	padding: 5px;
+	}
+
+#jomfooter * {
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 0;
+	margin: 0;
+	}
+
+#jomfooter img {
+	border: 0;
+	behavior: url('/icom_includes/footers/css/iepngfix.htc');
+	padding: 5px;
+	padding: expression('0');
+	}
+
+#jomfooter p {
+	font-size: 11px;
+	line-height: 20px;
+	margin: 10px;
+	}
+
+#jomfooter form b {
+	font-size: 12px;
+	}
+
+#jomfooter a {
+	text-decoration: underline;
+	}
+
+#jomfooter a:hover {
+	text-decoration: none;
+	}
+
+#jomfooter table td {
+	border: 0;
+	}
+
+
+/* GEMS Solutions CSS */
+
+#jomfooter #solsect {
+	margin: 0 auto;
+	padding: 10px 0;
+	width: 720px;
+	}
+
+#jomfooter #solsect .top {
+	background: url('/icom_includes/footers/soltopbg.gif') repeat-x #bbb;
+	height: 26px;
+	margin-bottom: 1px;
+	}
+
+#jomfooter #solsect .top a {
+	font-size: 16px;
+	font-weight: bold;
+	color:#333;
+	text-decoration:none;
+	margin-left: 5px;
+	padding: 0;
+	line-height: 25px;
+	}
+
+#jomfooter #solsect .top a:hover {
+	text-decoration: none;
+	}
+
+#jomfooter #solsect .solsectpad {
+	background: #fff;
+	}
+
+#jomfooter #solsect .solsectpad .main {
+	background:url('/icom_includes/footers/solmidbg.gif') repeat-x #e7e8e3;
+	padding: 5px;
+	margin-bottom: 1px;
+	}
+
+#jomfooter #solsect .solsectpad .main h2 {
+	font-size: 12px;
+	color: #000;
+	font-weight: normal;
+	padding-bottom: 3px;
+	}
+
+#jomfooter #solsect a {
+	color: #333;
+	font-size: 10px;
+	text-decoration: none;
+	line-height: 13px;
+	}
+
+#jomfooter #solsect a:hover {
+	text-decoration: underline;
+	}
+</style>
+
+
+
+
+<!-- Begin JOM Footer -->
+
+
+<div id="jomfooter" align="center">
+<p><a href="http://www.internet.com/"><img src="http://www.internet.com/icom_includes/footers/img/icom_logo_qsfooter.png" alt="Internet.com" width="240" height="40" hspace="0" border="0" /></a><br>
+    The Network for Technology Professionals</p>
+<form method="POST" action="http://search.internet.com/www.jupiterweb.com" target="_top">        
+      <input type="HIDDEN" name="IC_Summary" value="1">
+        <input type="HIDDEN" name="IC_StartNumber" value="0">
+        <input type="HIDDEN" name="IC_BatchSize" value="10">
+        <input type="HIDDEN" name="IC_RelevanceThreshold" value="50">
+        <input type="hidden" name="IC_QueryDatabase" value="all">
+        <strong>Search:</strong> 
+        <input type="text" name="IC_QueryText" size="45">
+
+        <input type="image" border="0" value="Find" name="SUBMIT" src="/icom_includes/footers/but_find.gif" width="41" height="20" align="absmiddle">
+  </form>
+    <p>
+        <a target="_blank" rel="nofollow" href="http://www.internet.com/Internetcom/Door/41188"> About Internet.com</a> 
+        <br>
+      <script type="text/javascript">
+            document.write(' Copyright ');
+            var today = new Date();
+            document.write(  + today.getFullYear());
+            document.write(' QuinStreet Inc. All Rights Reserved.');
+        </script>
+  <noscript>
+        Copyright 2010 QuinStreet Inc. All Rights Reserved.
+  </noscript>
+
+  </p>
+       <p> <a target="_blank" rel="nofollow" href="http://www.internet.com/Internetcom/Door/41187">Legal Notices</a>, <a target="_blank" rel="nofollow" href="http://www.internet.com/Internetcom/Door/41189#Licensing1">Licensing</a>, <a target="_blank" rel="nofollow" href="http://www.internet.com/Internetcom/Door/41189#Permissions">Permissions</a>, <a target="_blank" rel="nofollow" href="http://www.internet.com/Internetcom/Door/41186">Privacy  Policy</a>.
+        <br />
+
+        <a target="_blank" rel="nofollow" href="http://www.internet.com/mediakit/">Advertise</a> | <a target="_blank" rel="nofollow" href="http://e-newsletters.internet.com/">Newsletters</a> |  <a target="_blank" rel="nofollow" href="http://e-newsletters.internet.com/announcement_list.html">E-mail Offers</a>
+  </p>
+
+
+<!-- start solutions links section -->
+    <div id="solsect">
+        <div class="top" align="left"><a href="#">Solutions</a></div>
+        <div class="solsectpad">
+                        <div class="main" align="left">
+                                <h2>Whitepapers and eBooks</h2>
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="50%" valign="top" align="left">
+                                                        <a target="_blank" href="http://www.devx.com/ibm/Link/45076">IBM eBook: Getting Started with Adobe Flex</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/ibm/Link/45952">Development Teams Rejoice:  IBM Rational Team Concert 3.0 is almost here!</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Cloud/Link/44307">IBM Resources: Get up to speed with IBM WebSphere cloud and virtualization technologies</a><br>
+                                                                                                                                 <a target="_blank" href="http://k.klirt.com/cgi/r?;n=203;c=715512;s=9272;x=7936;f=201012011608560;u=j;z=TIMESTAMP;q=1;site=footer">Let Your Sites Shine: Web Content Can Now Come Forward</a><br>
+                                                                                                                                 <a target="_blank" href="http://g.genpy.com/cgi/r?;n=203;c=714363;s=9272;x=7936;f=201011261512170;u=j;z=TIMESTAMP;site=footer">PDF: Bridge the Gap Between Development and Operations for Portal and Web Security</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/MS_PHP/Door/42951">PHP for Windows Showcase</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Competitive_Business/Link/44292">PDF: Economics of Computing - The Internal Combustion Mainframe</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/MS_PHP/Door/42951">Resource: PHP for Windows Showcase</a><br>
+                                                                               </td>
+                        <td width="10"> </td>
+                        <td width="50%" valign="top" align="left">
+                                                                                                                              <a target="_blank" href="http://r.rewku.com/cgi/r?;n=203;c=713691;s=9272;x=7936;f=201011231841070;u=j;z=TIMESTAMP;site=footer">Whitepaper: Five Ways to Fast ROI with Business Rule Management Systems</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Cloud/Door/42153">IBM Cloud Computing Development Center</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Competitive_Business/Link/44216">PDF: IBM Lotus Notes and Lotus Domino Software</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Cloud/Door/42153">Helpful Cloud Computing Resources</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Competitive_Business/Link/44164">PDF: Dispelling the Vapor Around Cloud Computing</a><br>
+                                                                                                                                 <a target="_blank" href="http://j.jopik.com/cgi/r?;n=203;c=714362;s=9272;x=7936;f=201011261448280;u=j;z=TIMESTAMP;q=1;site=footer">Research Brief: How Forward-Thinking Marketing Organizations Deliver Competitive Differentiators</a><br>
+                                                                                                                                 <a target="_blank" href="http://k.klopy.com/cgi/r?;n=203;c=713692;s=9272;x=7936;f=201011231844020;u=j;z=TIMESTAMP;site=footer">Whitepaper: Accelerate ROI for BPM with Rapid Deployment</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/solutions">MORE WHITEPAPERS, EBOOKS, AND ARTICLES</a><br>
+                                                                                                                             </td>
+                    </tr>
+                </table>
+            </div>
+                        <div class="main" align="left">
+                                <h2>Webcasts</h2>
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="50%" valign="top" align="left">
+                                                        <a target="_blank" href="http://www.internet.com/IBM_Cloud/Link/44752">LIVE IBM Event: Managing Application Development in the Cloud--Thursday December 16 at 11am EDT</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/ibm/Link/46012">IBM Webcast: Accelerate Software Delivery with Social Software</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Cloud/Link/43427">IBM Cloud Computing for Developers Virtual Events</a><br>
+                                                                                                                                 <a target="_blank" href="http://k.klopy.com/cgi/r?;n=203;c=715862;s=9272;x=7936;f=201012061415010;u=j;z=TIMESTAMP;q=1;site=footer">Spend Less Time Rewriting Your Sites to Work Across Browsers</a><br>
+                                                                               </td>
+                        <td width="10"> </td>
+                        <td width="50%" valign="top" align="left">
+                                                                                                                              <a target="_blank" href="http://p.pliok.com/cgi/r?;n=203;c=711020;s=9272;x=7936;f=201011221528170;u=j;z=TIMESTAMP;site=footer">Webcast: Information & Analytics: The Secret Weapon of Top-Performing Companies</a><br>
+                                                                                                                                 <a target="_blank" href="http://z.zenaw.com/cgi/r?;n=203;c=717236;s=9272;x=7936;f=201012071406030;u=j;z=TIMESTAMP;site=footer">Software License Operations - Cleaning Up the Backoffice</a><br>
+                                                                                                                                 <a target="_blank" href="http://mjxads.devx.com/RealMedia/ads/click_lx.ads/devx/1112745/45096/x96/WMBrands/CA_Corp_FY11_2H_GEMS_1s/clickimage.gif/<RMID>">All About Cloud Computing</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/solutions">MORE WEBCASTS, PODCASTS, AND VIDEOS</a><br>
+                                                                                                                             </td>
+                    </tr>
+                </table>
+            </div>
+                        <div class="main" align="left">
+                                <h2>Downloads and eKits</h2>
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="50%" valign="top" align="left">
+                                                        <a target="_blank" href="http://www.devx.com/ibm/Link/45305">IBM Rational Doors Mini Skills Kit</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/hotlist-IBM/link/46148">Download: IBM DB2 Express-C</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/hotlist-IBM/link/46145">Evaluate: IBM DB2 for Linux, UNIX, and Windows</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/MS_PHP/Link/45844">Download: The Microsoft Web Platform Installer</a><br>
+                                                                               </td>
+                        <td width="10"> </td>
+                        <td width="50%" valign="top" align="left">
+                                                                                                                              <a target="_blank" href="http://www.internet.com/IE9/Link/43661/Free-Download-Internet-Explorer-9-Beta">New: Internet Explorer 9 Beta -- Download Now!</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Competitive_Business/Link/44296/IBM-System-x-and-BladeCenter-Virtualization-Kit">IBM System x and BladeCenter Virtualization Kit</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/solutions">MORE DOWNLOADS, EKITS, AND FREE TRIALS</a><br>
+                                                                                                                             </td>
+                    </tr>
+                </table>
+            </div>
+                        <div class="main" align="left">
+                                <h2>Tutorials and Demos</h2>
+                <table cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td width="50%" valign="top" align="left">
+                                                        <a target="_blank" href="http://p.plipy.com/cgi/r?;n=203;c=704517;s=9272;x=7936;f=201011041557100;u=j;z=TIMESTAMP;site=footer"> 2011 AT&T Developer Summit</a><br>
+                                                                                                                                 <a target="_blank" href="http://w.warue.com/cgi/r?;n=203;c=704518;s=9272;x=7936;f=201011041603230;u=j;z=TIMESTAMP;site=footer">Intel AppUp Developer Program: New Name, New SDK, New Identifier, and More! Join Now!</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.internet.com/IBM_Competitive_Business/vtBrowser/44167">Build a More Competitive Business with Technology » Product & Service Innovation</a><br>
+                                                                               </td>
+                        <td width="10"> </td>
+                        <td width="50%" valign="top" align="left">
+                                                                                                                              <a target="_blank" href="http://www.devx.com/HotList/Link/40644">Internet.com Hot List: Get the Inside Scoop on IT and Developer Products</a><br>
+                                                                                                                                 <a target="_blank" href="http://www.devx.com/solutions">MORE TUTORIALS, DEMOS AND STEP-BY-STEP GUIDES</a><br>
+                                                                                                                             </td>
+                    </tr>
+                </table>
+            </div>
+                    </div>
+    </div>
+<!-- end solutions links section -->
+
+
+</div>
+<!-- Kontera exclusion div ends -->
+</div>
+<!-- End JOM Footer -->
+
+<center>
+
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#000000" WIDTH="100%" CLASS="twidth">
+
+<TR><TD><TABLE BGCOLOR="#FFCC00" BORDER="0" CELLSPACING="0" CELLPADDING="2" WIDTH="100%">
+
+<TR BGCOLOR="#FFFFFF" VALIGN="top">
+
+<TD ALIGN="left" COLSPAN="2" WIDTH="60%" CLASS="includebig"><A HREF="http://www.webreference.com"><IMG SRC="/art/l_webref32x16.gif" WIDTH="32" HEIGHT="16" BORDER="0" alt="webref"></A>&#160;<B>The latest from <A HREF="http://www.webreference.com">WebReference.com</A></B>
+</TD>
+
+<TD BGCOLOR="#FFFFFF" ALIGN=RIGHT CLASS="include"><SPAN STYLE="color:blue"><A HREF="/index2.html">Browse</A>&#160;&gt;</SPAN></TD>
+
+<TD WIDTH="1%" BGCOLOR="#FFFFFF"><FORM class="tb" NAME="WRmenu" METHOD="POST" ACTION="/cgi-bin/redirect.cgi" onSubmit="return false">
+<TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%"><TR><TD>
+<SELECT class="SUBMITTER" NAME="WRm" onChange="if(this.form.elements[0].options[this.form.elements[0].selectedIndex].value !='#') {window.location.href=this.form.elements[0].options[this.form.elements[0].selectedIndex].value};">
+<OPTION VALUE="/index2.html" SELECTED>Site Contents
+<OPTION VALUE="#">- - - - -
+<OPTION VALUE="/experts/">Experts
+<OPTION VALUE="/3d/">* 3D Animation
+<OPTION VALUE="/dlab/">* Design
+<OPTION VALUE="/dhtml/">* DHTML
+<OPTION VALUE="/graphics/">* Graphics
+<OPTION VALUE="/html/">* HTML
+<OPTION VALUE="/js/">* JavaScript
+<OPTION VALUE="/perl/">* Perl
+<OPTION VALUE="/xml/">* XML
+<OPTION VALUE="#">- - - - -
+<OPTION VALUE="/index2.html">Web Resources
+<OPTION VALUE="/authoring/">* Authoring
+<OPTION VALUE="/authoring/design/">* Design
+<OPTION VALUE="/internet/">* Internet
+<OPTION VALUE="/multimedia/">* Multimedia
+<OPTION VALUE="/programming/">* Programming
+<OPTION VALUE="/promotion/">* Promotion
+<OPTION VALUE="#">- - - - -
+<OPTION VALUE="/services/">Services
+<OPTION VALUE="/interviews/">* Interviews
+<OPTION VALUE="/new/">* Newsletters
+<OPTION VALUE="/reviews/">* Reviews
+<OPTION VALUE="/cgi-bin/search.cgi">* Search
+<OPTION VALUE="/tools/">* Tools
+</SELECT></TD><TD><INPUT TYPE=SUBMIT class="SUBMITTER" VALUE="Go" onClick ="if(this.form.elements[0].options[this.form.elements[0].selectedIndex].value !='#') {window.location.href=this.form.elements[0].options[this.form.elements[0].selectedIndex].value};"></TD></TR></TABLE></FORM></TD></TR>
+
+<TR BGCOLOR="#FFFFFF">
+<TD COLSPAN="4" CLASS="include">
+
+   
+   <A HREF="http://www.webreference.com/programming/dojo/custom-html-widgets/">Using the Dojo Framework to Build Custom HTML Widgets</A>
+
+    &#183; 
+   <A HREF="http://www.webreference.com/programming/jquery/uploadify/">Uploadify: The jQuery Plugin for Customizing File Upload Fields</A>
+
+    &#183; 
+   <A HREF="http://www.webreference.com/programming/jquery/event-handling/">An Introduction to Event Handling in jQuery</A>
+</TD>
+</TR>
+
+<TR BGCOLOR="#FFFFFF" valign="top">
+<TD COLSPAN="2" CLASS="include"><A HREF="/index2.html">Sitemap</A> &#183; <A HREF="/experts/">Experts</A> &#183; <A HREF="/tools/">Tools</A> &#183; <A href="/services/">Services</A> &#183; <A HREF="/_email/email_a_colleague.html">Email a Colleague</A> &#183; <A HREF="/cgi-bin/suggest.cgi">Contact</A>
+</TD>
+
+<TD ALIGN="RIGHT" CLASS="include"><A HREF="/new/"><SPAN STYLE="color:blue"> FREE&#160;Newsletters&#160;</SPAN></A>&gt;&#160;</TD>
+
+<TD><FORM class="tb" method=post action="http://member.internet.com/subscribe.php" TARGET="_new""><TABLE BORDER="0" CELLSPACING="0" CELLPADDING="0" WIDTH="100%"><TR><TD><INPUT TYPE="hidden" NAME="list_names[]" VALUE="webreference-update-html"></TD><TD><INPUT CLASS="SUBMITTER" TYPE="submit" name="Submit" value="Signup"></TD></TR></TABLE></FORM></TD>
+
+</TR>
+
+<TR BGCOLOR="#FFFFFF" VALIGN="top">
+
+<TD ALIGN="left" COLSPAN="4" CLASS="includebig">&#160;<B>The latest from <A HREF="http://www.internet.com">internet.com</A></B>
+</TD></TR>
+
+<TR BGCOLOR="#FFFFFF">
+<TD COLSPAN="4" CLASS="include">
+   
+   <A HREF="http://www.enterpriseitplanet.com/storage/features/article.php/3916631">Virtualization, Storage Closely Linked</A>
+
+    &#183; 
+   <A HREF="http://www.voipplanet.com/solutions/article.php/3916701">Glowpoint & iVision Partner for Global Access to Telepresence</A>
+
+    &#183; 
+   <A HREF="http://www.wi-fiplanet.com/reviews/article.php/3916076">Review: Ekahau Mobile Survey for Android</A>
+
+</TD>
+</TR>
+</TABLE>
+
+</TD></TR>
+</TABLE>
+</center>
+<P ALIGN=CENTER>
+
+
+
+  Created: March 27, 2003<br>
+      Revised: April 08, 2005</p>
+<p align=center style='text-align:center'><span style='font-size:10.0pt'>URL: 
+  http://webreference.com/programming/javascript/ncz/column2/1</span></p>
+</BODY>
+</HTML>

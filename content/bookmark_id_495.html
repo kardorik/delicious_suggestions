@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Ruby on Rails 2.1.x Examples</title>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<meta name="Keywords" content="Learning, Ruby, rails, strengths, framework, installation, examples, RubyGems, resources, Guide, actionpack, actionview, basics, directory, structure, advance, activerecord, libraries, Model, View, Controller, Embeded Ruby, Erb, Rolling, Metaprogramming,Built-in, testing, David, Black, Hansson, Heinemeier, RAA, Scaffolding" />
+<meta name="Description" content="Ruby on Rails 2.1.x Examples - Learn Ruby on Rails in simple and easy steps using this Guide/Book/Reference Manual. You will learn its installation, framework, strengths with examples and you will learn about active resources, actionpack, actionview, activerecord, Heinemeier, Scaffolding, Controller, Heinemeier, Hansson etc." />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<base href="http://www.tutorialspoint.com" />
+<link rel="stylesheet" type="text/css" href="tp.css" />
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-232293-6";
+urchinTracker();
+</script>
+</head>
+<body>
+<center>
+<table border="0" class="main" cellpadding="2" cellspacing="0">
+<tr>
+<td class="content" valign="top" align="left">
+<a href="index.htm"><img src="images/tp-logo.gif" border="0"  alt="Tutorials Point" /></a>
+<br />
+<br />
+<div  class="left">
+<!-- SiteSearch Google -->
+<form method="get" action="http://www.google.com/custom" target="google_window">
+<table border="0">
+<tr><td nowrap="nowrap" valign="top" align="center" height="32">
+<a href="http://www.google.com/">
+<img src="http://www.google.com/logos/Logo_25wht.gif" border="0" alt="Google" align="middle"></img></a>
+</td>
+</tr>
+<tr>
+<td nowrap="nowrap">
+<input type="hidden" name="domains" value="www.tutorialspoint.com"></input>
+<input type="text" name="q" size="20" maxlength="255" value=""></input>
+<input type="submit" name="sa" style="width:20px;font-weight:bold" value="..."></input>
+</td></tr>
+<tr>
+<td nowrap="nowrap">
+<table>
+<tr>
+<td>
+<input type="radio" name="sitesearch" value="" checked="checked"></input>
+<font size="-1" color="#000000">Web</font>
+</td>
+<td>
+<input type="radio" name="sitesearch" value="www.tutorialspoint.com"></input>
+<font size="-1" color="#000000">This Site</font>
+</td>
+</tr>
+</table>
+<input type="hidden" name="client" value="pub-7133395778201029"></input>
+<input type="hidden" name="forid" value="1"></input>
+<input type="hidden" name="ie" value="ISO-8859-1"></input>
+<input type="hidden" name="oe" value="ISO-8859-1"></input>
+<input type="hidden" name="cof" value="GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFFF;LBGC:336699;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;FORID:1"></input>
+<input type="hidden" name="hl" value="en"></input>
+</td></tr></table>
+</form>
+<!-- SiteSearch Google -->
+</div>
+<br />
+&nbsp;&nbsp;<b>Learning Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/index.htm">Rails 2.1 Home</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-preliminary.htm">Rails 2.1 Preliminary</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-introduction.htm">Rails 2.1 Introduction</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-installation.htm">Rails 2.1 Installation</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-framework.htm">Rails 2.1 Framework</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-directory-structure.htm">Rails 2.1 Dir Structure</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-examples.htm"><b>Rails 2.1 Examples</b></a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-database-setup.htm">Rails 2.1 Database Setup</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-active-records.htm">Rails 2.1 Active Records</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-migrations.htm">Rails 2.1 Migrations</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-controllers.htm">Rails 2.1 Controllers</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-views.htm">Rails 2.1 Views</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-layouts.htm">Rails 2.1 Layouts</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-scaffolding.htm">Rails 2.1 Scaffolding</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-and-ajax.htm">Rails 2.1 and AJAX</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-file-uploading.htm">Rails 2.1 Uploads Files</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-send-emails.htm">Rails 2.1 Sends Emails</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Advanced Ruby on Rails 2.1</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-and-rmagick.htm">Rails 2.1 RMagick Guide</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-http-basic-authentication.htm">Rails 2.1 Basic HTTP Auth</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-exception-handling.htm">Rails 2.1 Error Handling</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-routes.htm">Rails 2.1 Routes System</a></li>
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-unit-testing.htm">Rails 2.1 Unit Testing</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Quick Guide</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-quick-guide.htm" >Ruby on Rails Quick Guide</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby Tutorial</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="/ruby" >Ruby Tutorial</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Ruby on Rails Resources</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="/ruby-on-rails-2.1/rails-resources.htm" >Ruby on Rails Resources</a></li>
+</ul>
+</div>
+<br />
+&nbsp;&nbsp;<b>Selected Reading</b>
+<div  class="left">
+<ul class="menu">
+<li><a class="left" target="_top" href="computer_glossary.htm">Computer Glossary</a></li>
+<li><a class="left" target="_top" href="computer_whoiswho.htm">Who is Who</a></li>
+</ul>
+</div>
+<br /><br />
+<small>&copy; 2010 TutorialsPoint.COM </small>
+</td>
+<td valign="top" align="left" width="100%">
+<br /><br />
+<table cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="index.htm">Home</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="references.htm">References</a>&nbsp;&nbsp;
+</td>
+<td  style="width:20px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="/forums/index.php">Discussion Forums</a>&nbsp;&nbsp;
+</td>
+<td  style="width:10px;"></td>
+<td  class="top">
+&nbsp;&nbsp;<a class="top" href="/about/index.htm">About TP</a>&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="middle"  cellpadding="5" cellspacing="0">
+<tr>
+<td align="left">
+<!-- PRINTING STARTS HERE -->
+<h1>Ruby on Rails 2.1.x - Examples</h1>
+<hr />
+<a href="/ruby-on-rails-2.1/rails-directory-structure.htm"><img alt="previous" border="0" src="/images/previous.gif" /></a>
+<a href="/ruby-on-rails-2.1/rails-database-setup.htm"><img alt="next" border="0" src="/images/next.gif" /></a>
+<!-- AddThis Bookmark Button BEGIN -->
+<a href="http://www.addthis.com/bookmark.php" onclick="addthis_url   = location.href; addthis_title = document.title; return addthis_click(this);" target="_blank"><img src="/images/add-this.gif" border="0" alt="AddThis Social Bookmark Button" /></a> <script type="text/javascript">var addthis_pub = 'tutorialspoint';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script>  
+<!-- AddThis Bookmark Button END -->
+<hr />
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "image";
+google_ad_channel = "";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<p>Subsequent chapters are based on the example taken in this chapter. In this example we will create something simple but operational online library system for holding and managing the books.</p>
+<p>Now you have to be patient till you go through next few chapters. I'm sure after completing this tutorial you will have complete understanding on Rails.</p>
+<p>This application has a basic architecture and will be built using two <i>ActiveRecord</i> models to describe the types of data that is stored in your database:</p>
+<ul>
+<li><p><b>Books </b> - They describe an actual listing of the books.</p></li>
+<li><p><b>Subject</b> - This is used to group books together.</p></li>
+</ul>
+<h2>Workflow for creating Rails applications:</h2>
+<p>A recommended workflow for creating a Rails Application is as follows:</p>
+<ul>
+<li><p>Use the <b>rails</b> command to create the basic skeleton of the application.</p></li>
+<li><p>Create a database with necessary definition in the MySQL server to hold your data.</p></li>
+<li><p>Configure the application to know where your database is located and specify the login credentials for it.</p></li>
+<li><p>Create Rails Active Records ( Models ) because they are the business objects you'll be working with in your controllers.</p></li>
+<li><p>Generate Migrations that makes creating and maintaining database tables and columns easy.</p></li>
+<li><p>Write Controller Code to put a life in your application.</p></li>
+<li><p>Create Views to present your data through User Interface.</p></li>
+</ul>
+<p>So lets start with creating our library application.</p>
+<h2>Creating an Empty Rails Application:</h2>
+<p>Rails is both a runtime web application framework and a set of helper scripts that automate many of the things you do when developing a web application. In this step, we will use one such helper script to create the entire directory structure and the initial set of files to start our Library System Application.</p>
+<ol>
+<li>Go into ruby installation directory to create your application.</li>
+<li>Run the following command to create a skeleton for our library application.</li>
+</ol>
+<table cellpadding="5" class="src"><tr><td><pre>
+C:\ruby&gt; rails -d mysql library
+</pre></td></tr></table>
+<p>This will create a subdirectory for the library application containing a complete directory tree of folders and files for an empty Rails application. Check a complete directory structure of the application. Check <a href="/ruby-on-rails/rails-directory-structure.htm">Rails Directory Structure</a> for more detail.</p>
+<p>Here we are using <b>-d mysql</b> option to specify our interest to use MySQL database. We can specify any other database name like <i>oracle</i> or <i>postgress</i> using <b>-d</b> option. By default Rails uses <b>SQLite</b> database.</p>
+<p>Most of our development work will be creating and editing files in the <b>~/library/app</b> subdirectories. Here's a quick rundown of how to use them:</p>
+<ul>
+<li><p>The <i>controllers</i> subdirectory is where Rails looks to find controller classes. A controller handles a web request from the user.</p></li>
+<li><p>The <i>views</i> subdirectory holds the display templates to fill in with data from our application, convert to HTML, and return to the user's browser.</p></li>
+<li><p>The <i>models</i> subdirectory holds the classes that model and wrap the data stored in our application's database. In the most frameworks, this part of the application can grow pretty messy, tedious, verbose, and error-prone. Rails makes it dead simple.</p></li>
+<li><p>The <i>helpers</i> subdirectory holds any helper classes used to assist the model, view, and controller classes. This helps to keep the model, view, and controller code small, focused, and uncluttered.</p></li>
+</ul>
+<h2>Starting Web Server:</h2>
+<p>Rails web application can run under virtually any web server, but the most convenient way to develop and test a Rails web application is to use the built-in WEBrick web server. Let's start this web server and then browse to our empty library application:</p>
+<p>This server will be started from the application directory as follows. This runs on port number 3000.</p>
+<table cellpadding="5" class="src"><tr><td><pre>
+C:\&gt; cd ruby\library 
+C:\ruby\library\&gt; ruby script/server
+</pre></td></tr></table>
+<p>This will start your WEBrick web server listening for Web Requests at port number 3000 at local machine.</p>
+<p>Now open your browser and browse to <b>http://127.0.0.1:3000</b> If everything is gone fine then you should see a greeting message from WEBrick. Following is the screen for a successful setup:</p>
+<center>
+<img src="/images/rails-welcome.jpg" alt="Rails Welcome Message" />
+</center>
+<p>If you do not get a greeting message as above, then it means there is something wrong with your setup and you need to fix it before proceeding ahead.</p>
+<h1>What is next ?</h1>
+<p>Next session will teach you how to create databases for your application and what is the configuration required to access these created databases.</p>
+<p>Further we will see what is Rail Migration and how it is used to maintain database tables.</p>
+<br />
+<hr />
+<a href="/ruby-on-rails-2.1/rails-directory-structure.htm"><img alt="previous" border="0" src="/images/previous.gif" /></a>
+<a href="/ruby-on-rails-2.1/rails-database-setup.htm"><img alt="next" border="0" src="/images/next.gif" /></a>
+<a href='/cgi-bin/printversion.cgi?tutorial=ruby-on-rails-2.1&amp;file=rails-examples.htm' target="_blank">
+<img src="/images/print.gif" alt="Printer Friendly" border="0" /></a>
+<br />
+<hr />
+<!-- PRINTING ENDS HERE -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 336;
+google_ad_height = 280;
+google_ad_format = "336x280_as";
+google_ad_type = "text_image";
+google_ad_channel ="9030538898";
+google_color_border="ffffff";
+google_color_link="900b09";
+google_color_url="000000";
+google_color_text="000000";
+//--></script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</td></tr>
+</table>
+</td>
+<td class="right" align="center" valign="top">
+<br /><br />
+<table width="100%" cellpadding="0" cellspacing="0">
+<tr valign="middle">
+<td  class="top" style="border:0px;">
+&nbsp;&nbsp;
+</td>
+</tr>
+</table>
+<table class="right"  cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" class="right">
+<p>
+<u>Advertisement</u>
+</p>
+<!-- ADVERTISEMENT OIP STARTS HERE -->
+<table class="adv"  cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="top" nowrap="nowrap"  style="font-size:10pt;">
+<center>
+<a class="right" href="http://www.photofuntoos.com" target="_blank" title="Online Image Processing">Online Image Processing</a>
+</center>
+</td>
+</tr>
+</table>
+<br />
+<!-- ADVERTISEMENT IBN STARTS HERE -->
+<table class="adv"  cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td valign="top" nowrap="nowrap"  style="font-size:11pt;">
+<center>
+<a class="right" href="http://www.modernindianbabynames.com/" target="_blank" title="Indian Baby Names">Indian Baby Names</a>
+</center>
+</td>
+</tr>
+</table>
+<br />
+<!-- ADVERTISEMENTS ENDS HERE -->
+<script type="text/javascript"><!--
+google_ad_client = "pub-7133395778201029";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "image";
+google_ad_channel ="";
+//--></script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+<br /><br /></td></tr></table>
+</td></tr></table>
+</center>
+</body>
+</html>

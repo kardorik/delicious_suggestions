@@ -1,0 +1,512 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <title>Mutexes and Semaphores Demystified | Netrino</title>
+  <script type="text/javascript" src="/misc/jquery.js"></script>
+  <script type="text/javascript" src="/themes/netrino/scripts/thickbox.js"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!--[if IE]>
+    <script type="text/javascript" src="/misc/jquery.js"></script>
+    <script type="text/javascript" src="/misc/drupal.js"></script>
+    <script type="text/javascript" src="/modules/nice_menus/nice_menus.js"></script>
+    <![endif]-->
+<meta name="copyright" content="Website contents copyright (c) 1999-2008 by Netrino, LLC. All rights reserved." />
+<meta name="description" content="This first of a series of articles on the proper use of a real-time operating system (RTOS) explains important differences between a mutex and a semaphore." />
+<meta name="keywords" content="Rate Monotonic Algorithm,Priority Inversion,Embedded Software,Operating Systems,Real Time,Critical Section,Semaphore,Signaling,Mutex,RTOS,ISR,RMA,Netrino" />
+<meta name="robots" content="index,follow" />
+<meta name="DC.title" content="Mutexes and Semaphores Demystified" />
+<link rel="shortcut icon" href="/misc/favicon.ico" type="image/x-icon" />
+  <style type="text/css" media="all">@import "/modules/cck/content.css";</style>
+<style type="text/css" media="all">@import "/modules/date/date.css";</style>
+<style type="text/css" media="all">@import "/modules/extlink/extlink.css";</style>
+<style type="text/css" media="all">@import "/modules/graphstat/graphstat.css";</style>
+<style type="text/css" media="all">@import "/modules/nice_menus/nice_menus.css";</style>
+<style type="text/css" media="all">@import "/modules/nice_menus/nice_menus_default.css";</style>
+<style type="text/css" media="all">@import "/modules/node/node.css";</style>
+<style type="text/css" media="all">@import "/modules/quiz/quiz.css";</style>
+<style type="text/css" media="all">@import "/modules/system/defaults.css";</style>
+<style type="text/css" media="all">@import "/modules/system/system.css";</style>
+<style type="text/css" media="all">@import "/modules/user/user.css";</style>
+<style type="text/css" media="all">@import "/modules/comment/comment.css";</style>
+<style type="text/css" media="all">@import "/themes/netrino/style.css";</style>
+  <link type="text/css" rel="stylesheet" href="/themes/netrino/styles/reset-fonts-grids.css">
+  <link type="text/css" rel="stylesheet" href="/themes/netrino/styles/default.css">
+  <link type="text/css" rel="stylesheet" media="print" href="/themes/netrino/styles/print.css">
+  <link type="text/css" rel="stylesheet" href="/themes/netrino/styles/thickbox.css">
+  <script type="text/javascript">
+  <!--
+  	$(document).ready(function(){
+  		$("li.menuparent a").not($("li.menuparent li a")).click(function() { return false; }); 
+  	});
+  -->
+  </script>  
+  
+</head>
+
+<body>
+	
+
+<div id="doc2" class="yui-t2"><!-- "doc" here for example only; use any page width -->			
+	<div id="hd-print"><img src="/themes/netrino/layout/print_logo.gif" alt="Netrino" /></div>
+	<div id="hd">
+		<h1 class='site-name'><a href="/" title="Home">Netrino</a></h1>		<div class="replace">
+      		<a href="/" title="Home"><img src="/themes/netrino/logo.png" alt="Home" /></a>      				</div>
+				<!-- <div id="primary"><ul class="links"><li class="first menu-1-1-2"><a href="/home" class="menu-1-1-2">Home</a></li>
+<li class="menu-1-2-2"><a href="/Products" class="menu-1-2-2">Products</a></li>
+<li class="menu-1-3-2"><a href="/Netrino/About-Us" title="Engineering Services" class="menu-1-3-2">Services</a></li>
+<li class="menu-1-4-2"><a href="/Embedded-Systems/Training-Courses" title="Training Courses" class="menu-1-4-2">Courses</a></li>
+<li class="menu-1-5-2"><a href="/Embedded-Systems/How-To" title="Technical Library" class="menu-1-5-2">How To</a></li>
+<li class="menu-1-6-2"><a href="/Netrino/About-Us" title="Netrino" class="menu-1-6-2">About Us</a></li>
+<li class="menu-1-7-2"><a href="/contact" title="Contact Netrino" class="menu-1-7-2">Contact Us</a></li>
+<li class="last menu-1-8-2"><a href="/user" title="User Login" class="menu-1-8-2">Login</a></li>
+</ul></div> -->
+				  <div class="block block-nice_menus" id="block-nice_menus-1">
+    <h2 class="title"><span class="nice-menu-hide-title">Primary links</span></h2>
+    <div class="content"><ul class="nice-menu nice-menu-down" id="nice-menu-1"><li id="menu-45" class="menu-path-node-1"><a href="/home">Home</a></li><li id="menu-197" class="menuparent menu-path-Products"><a href="/Products">Products</a><ul><!--[if lt IE 7]><iframe></iframe><![endif]--><li id="menu-150" class="menu-path-node-215"><a href="/Coding-Standard" title="Netrino Embedded C Coding Standard">C Coding Standard - $49</a></li><li id="menu-198" class="menu-path-node-274"><a href="/Boot-Camp-Box" title="Embedded Software Boot Camp in a Box">Boot Camp in a Box - $795</a></li></ul></li><li id="menu-48" class="menuparent menu-path-Netrino-About-Us"><a href="/Netrino/About-Us" title="Engineering Services">Services</a><ul><!--[if lt IE 7]><iframe></iframe><![endif]--><li id="menu-199" class="menu-path-node-12"><a href="/Embedded-Systems/Design-Services/Product-Development" title="Product Development">Engineering</a></li><li id="menu-64" class="menu-path-node-14"><a href="/Embedded-Systems/Training-Courses" title="Training Services">Training</a></li><li id="menu-63" class="menu-path-node-13"><a href="/Embedded-Systems/Consulting/Engineering-Guidance" title="Consulting Services">Consulting</a></li><li id="menu-65" class="menu-path-node-15"><a href="/Embedded-Systems/Expert-Witness/Testimony-Research" title="Litigation Support">Expert Witness</a></li></ul></li><li id="menu-49" class="menuparent menu-path-node-14"><a href="/Embedded-Systems/Training-Courses" title="Training Courses">Courses</a><ul><!--[if lt IE 7]><iframe></iframe><![endif]--><li id="menu-145" class="menu-path-node-192"><a href="/Embedded-Systems/Training-Courses/Calendar" title="Training Calendar">Public Course Calendar</a></li><li id="menu-144" class="menu-path-node-184"><a href="/Embedded-Systems/Training-Courses/Boot-Camp">Embedded Software Boot Camp</a></li><li id="menu-66" class="menu-path-node-16"><a href="/Embedded-Systems/Training-Courses/RTOS-Programming" title="Firmware Architecture">Architecture Courses</a></li><li id="menu-67" class="menu-path-node-17"><a href="/Embedded-Systems/Training-Courses/Embedded-Software" title="Embedded Software Courses">Language Courses</a></li><li id="menu-68" class="menu-path-node-18"><a href="/Embedded-Systems/Training-Courses/Development-Tools" title="Development Tools Courses">Tools Courses</a></li><li id="menu-149" class="menu-path-node-210"><a href="/Embedded-Systems/Training-Courses/Development-Processes" title="Development Process Courses">Process Courses</a></li></ul></li><li id="menu-50" class="menuparent menu-path-node-19"><a href="/Embedded-Systems/How-To" title="Technical Library">How To</a><ul><!--[if lt IE 7]><iframe></iframe><![endif]--><li id="menu-69" class="menu-path-node-19"><a href="/Embedded-Systems/How-To" title="Embedded Systems Articles">Articles</a></li><li id="menu-70" class="menu-path-node-20"><a href="/Embedded-Systems/Books" title="Embedded Systems Books">Books</a></li><li id="menu-71" class="menu-path-node-21"><a href="/Embedded-Systems/Glossary" title="Embedded Systems Glossary">Glossary</a></li></ul></li><li id="menu-46" class="menuparent menu-path-Netrino-About-Us"><a href="/Netrino/About-Us" title="Netrino">About Us</a><ul><!--[if lt IE 7]><iframe></iframe><![endif]--><li id="menu-58" class="menu-path-node-8"><a href="/Embedded-Systems/Experts" title="Netrino Team">Our Team</a></li><li id="menu-82" class="menu-path-node-83"><a href="/Netrino/Client-List" title="Netrino Clients">Client List</a></li><li id="menu-61" class="menu-path-node-11"><a href="/Embedded-Systems/Design-Services/Case-Studies" title="Netrino Projects">Case Studies</a></li><li id="menu-146" class="menu-path-node-197"><a href="/Netrino/Testimonials" title="Client Testimonials">Testimonials</a></li><li id="menu-88" class="menu-path-press-releases"><a href="/press-releases" title="Press Releases">Latest News</a></li></ul></li><li id="menu-52" class="menu-path-contact"><a href="/contact" title="Contact Netrino">Contact Us</a></li><li id="menu-60" class="menu-path-user"><a href="/user" title="User Login">Login</a></li></ul></div>
+	<div class="bot">&nbsp;</div>
+ </div>
+  <div class="block block-block" id="block-block-39">
+    <h2 class="title"></h2>
+    <div class="content">Public dates for the <a href="/Embedded-Systems/Training-Courses/Boot-Camp">Embedded Software Boot Camp</a> are now set for Winter and Spring 2011.  See our <a href="/Training-Calendar">training calendar</a> for locations and pricing.  Special offer: <a href="/Training-Calendar">Register by December 31</a> to save an additional $200!</div>
+	<div class="bot">&nbsp;</div>
+ </div>
+		<div class="breadcrumb"><a href="/">Home</a> » <a href="/taxonomy_menu/3">Categories</a> » <a href="/taxonomy_menu/3/6">Real-Time Operating Systems</a></div>	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b middleCol">
+								
+      							
+		        		        <h1 class="title">Mutexes and Semaphores Demystified</h1>
+				<div class="ct">
+			        <div class="tabs"></div>
+			        			        			          <div class="node">
+            <span class="submitted">Submitted by webmaster on Tue, 08/19/2008 - 21:23.</span>
+    <span class="taxonomy"><ul class="links inline"><li class="first last taxonomy_term_6"><a href="/taxonomy/term/6" rel="tag" title="Articles about real-time operating systems and alternative approaches to the design of multithreaded firmware." class="taxonomy_term_6">Real-Time Operating Systems</a></li>
+</ul></span>
+    <div class="content"><p class="byline">
+by Michael Barr
+</p>
+
+<p class="deck">
+The question "What is the difference between a mutex and a semaphore?"
+is short and easily phrased.  Answering it is more difficult.  In
+this first installment of a series of articles on the proper use of a
+real-time operating system (RTOS), we examine the important differences between a
+mutex and a semaphore.
+</p>
+
+<p>
+After conversations with countless embedded software developers over
+many years, I have concluded that even very experienced RTOS users
+have trouble distinguishing the proper uses of mutexes and semaphores.
+This is unfortunate and dangerous, as misuse of either RTOS primitive
+can easily lead to unintended errors in embedded systems that could turn
+them into life-threatening products.
+
+<p>
+In this article, I aim to distinguish these two important RTOS primitives
+once and for all, by debunking a popular myth about their similarity.
+
+<h2>
+Mutex vs. Semaphore
+</h2>
+
+<p>
+<strong>
+The Myth: Mutexes and semaphores are similar or even interchangeable.
+</strong>
+
+<p>
+<strong>
+The Truth: While mutexes and semaphores have similarities in their
+implementation, they should always be used differently.
+</strong>
+
+<p>
+The most common (but nonetheless incorrect) answer to the question posed
+at the top is that mutexes and semaphores are very similar, with the only
+significant difference being that semaphores can count higher than one.
+Nearly all engineers seem to properly understand that a mutex is a binary
+flag used to protect a shared resource by ensuring mutual exclusion
+inside critical sections of code.  But when asked to expand on how to
+use a "counting semaphore," most engineers&mdash;varying only in their
+degree of confidence&mdash;express some flavor of the textbook opinion
+that these are used to protect several equivalent resources.
+<a href="#endnote1" name="1"><sup>1</sup></a>
+
+<p>
+It is easiest to explain why the "multiple resource" scenario is flawed
+by way of an analogy.  If you think of a mutex as a key owned by the
+operating system, it is easy to see that an individual mutex is analogous
+to the bathroom key owned by an urban coffee shop.  At the coffee shop,
+there is one bathroom and one bathroom key.  If you ask to use the
+bathroom when the key is not available, you are asked to wait in a queue
+for the key.  By a very similar protocol, a mutex helps multiple tasks
+serialize their accesses to shared global resources and gives waiting
+tasks a place to wait for their turn.
+
+<p>
+This simple resource protection protocol does not scale to the case of
+two equivalent bathrooms.  If a semaphore were a generalization of a
+mutex able to protect two or more identical shared resources, then in
+our analogy, it would be a basket containing two identical keys (i.e.,
+each of the keys would work in either bathroom door).
+
+<p>
+A semaphore cannot solve a multiple identical resource problem on its
+own. The visitor only knows that he has a key, not yet which bathroom is
+free.  If you try to use a semaphore like this, you’ll find you always
+need other state information&mdash;itself typically a shared resource
+protected via a separate mutex.
+<a href="#endnote2" name="2"><sup>2</sup></a>
+It turns out the best way to design a two-bathroom coffee shop is to
+offer distinct keys to distinct bathrooms (e.g., men’s vs. women’s),
+which is analogous to using two distinct mutexes.
+
+<p>
+The correct use of a semaphore is for signaling from one task to another.
+A mutex is meant to be taken and released, always in that order, by
+each task that uses the shared resource it protects.  By contrast, tasks
+that use semaphores either signal or wait&mdash;not both.  For example,
+Task 1 may contain code to post (i.e., signal or increment) a particular
+semaphore when the "power" button is pressed and Task 2, which wakes
+the display, pends on that same semaphore.  In this scenario, one task
+is the producer of the event signal; the other the consumer.
+
+<p>
+To summarize with an example, here’s how to use a mutex:
+
+<p>
+<pre>
+<font size="-1">
+/* Task 1 */
+   mutexWait(mutex_mens_room);
+      // Safely use shared resource
+   mutexRelease(mutex_mens_room);
+
+/* Task 2 */
+   mutexWait(mutex_mens_room);
+      // Safely use shared resource
+   mutexRelease(mutex_mens_room);
+</font>
+</pre>
+
+
+<p>
+By contrast, you should always use a semaphore like this:
+
+<p>
+<pre>
+<font size="-1">
+/* Task 1 - Producer */
+   semPost(sem_power_btn);   // Send the signal
+
+/* Task 2 - Consumer */
+   semPend(sem_power_btn);   // Wait for signal
+</font>
+</pre>
+
+
+<p>
+Importantly, semaphores can also be used to signal from an interrupt
+service routine (ISR) to a task.  Signaling a semaphore is a non-blocking
+RTOS behavior and thus ISR safe.  Because this technique eliminates
+the error-prone need to disable interrupts at the task level, signaling
+from within an ISR is an excellent way to make embedded software more
+reliable by design.
+
+<h2>
+Priority Inversion
+</h2>
+
+<p>
+Another important distinction between a mutex and a semaphore is that the
+proper use of a mutex to protect a shared resource can have a dangerous
+unintended side effect.  Any two RTOS tasks that operate at different
+priorities and coordinate via a mutex, create the opportunity for
+<a href="http://www.netrino.com/Embedded-Systems/How-To/RTOS-Priority-Inversion">priority inversion</a>.
+The risk is that a third task that does not need that mutex&mdash;but
+operates at a priority between the other tasks&mdash;may from time to
+time interfere with the proper execution of the high priority task.
+
+<p>
+An unbounded priority inversion can spell disaster in a real-time system,
+as it violates one of the critical assumptions underlying the
+<a href="http://www.netrino.com/Embedded-Systems/How-To/RMA-Rate-Monotonic-Algorithm">Rate Monotonic Algorithm</a>
+(RMA).  Since RMA is the optimal method of assigning relative priorities
+to real-time tasks and the only way to ensure multiple tasks with
+deadlines will always meet them, it is a very bad thing to risk breaking
+one of its assumptions.  Additionally, a priority inversion in the
+field is a very difficult type of problem to debug, as it is not easily
+reproducible.
+
+<p>
+Fortunately, the risk of priority inversion can be eliminated by changing
+the operating system’s internal implementation of mutexes.  Of course,
+this adds to the overhead cost of acquiring and releasing mutexes.
+Fortunately, it is not necessary to change the implementation of
+semaphores, which do not cause priority inversion when used for signaling.
+This is a second important reason for having distinct APIs for these
+two very different RTOS primitives.
+
+<h2>
+The History of Semaphores and Mutexes
+</h2>
+
+<p>
+The cause of the widespread modern confusion between mutexes and
+semaphores is historical, as it dates all the way back to the 1974
+invention of the Semaphore (capital ‘S’, in this article) by
+<a href="http://en.wikipedia.org/wiki/Edsger_W._Dijkstra" target="_blank">Djikstra</a>.
+Prior to that date, none of the interrupt-safe task synchronization
+and signaling mechanisms known to computer scientists was efficiently
+scalable for use by more than two tasks.  Dijkstra's revolutionary,
+safe-and-scalable Semaphore was applied in both critical section
+protection and signaling.  And thus the confusion began.
+
+<p>
+However, it later became obvious to operating system developers, after the
+appearance of the priority-based preemptive RTOS (e.g., VRTX, ca. 1980),
+publication of academic papers establishing RMA and the problems caused by
+priority inversion, and a paper on priority inheritance protocols in 1990,
+<a href="#endnote3" name="3"><sup>3</sup></a>
+it became apparent that mutexes must be more than just semaphores with
+a binary counter.
+
+<p>
+Unfortunately, many sources of information, including textbooks, user
+manuals, and wikis, perpetuate the historical confusion and make matters
+worse by introducing the additional names "binary semaphore" (for mutex)
+and "counting semaphore."
+
+<p>
+I hope this article helps you understand, use, and explain mutexes and
+semaphores as distinct tools.
+
+<h2>
+Endnotes
+</h2>
+
+<p>
+1. <a name="endnote1"></a>
+Truth be told, many "textbooks" on operating systems fail to define
+the term mutex (or real-time).  But consider a typical snippet from the
+QSemaphore page in Trolltech’s
+<a href="http://doc.trolltech.com/4.4/qsemaphore.html" target="_blank">Qt Embedded 4.4 Reference Documentation</a>:
+"A semaphore is a generalization of a mutex.  While a mutex can
+only be locked once, it's possible to acquire a semaphore multiple
+times. Semaphores are typically used to protect a certain number of
+identical resources."  The Qt documentation then goes on to elaborate
+(at length and with code snippets) a solution to a theoretical problem
+that lacks critical details (e.g., the need for a second type of RTOS
+primitive) for proper implementation.
+[<a href="#1">back</a>]
+
+<p>
+2. <a name="endnote2"></a>
+Another option is to use an RTOS-provided message queue to eliminate
+the semaphore, the unprotected shared state information, and the mutex.
+[<a href="#2">back</a>]
+
+<p>
+3. <a name="endnote3"></a>
+Sha L., R. Rajkumar, and J.P. Lehoczky.
+"Priority Inheritance Protocols: An Approach to Real-Time Synchronization,"
+IEEE Transactions on Computers, September 1990, p. 1175.
+[<a href="#3">back</a>]
+</div>
+    <div class="links">&raquo; <ul class="links inline"><li class="first blog_usernames_blog"><a href="/blog/1" title="Read webmaster&#039;s latest blog entries." class="blog_usernames_blog">webmaster&#039;s blog</a></li>
+<li class="last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>  </div>
+<div id="comments"><a id="comment-49"></a>
+  <div class="comment">
+    <h3 class="title"><a href="/Embedded-Systems/How-To/RTOS-Mutex-Semaphore#comment-49" class="active">Thank You</a></h3>    <div class="submitted">Submitted by rasheedtel on Tue, 01/19/2010 - 04:28.</div>
+    <div class="content">This is helpful article.  Thank you very much.
+</div>
+    <div class="links">&raquo; <ul class="links"><li class="first last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>
+  </div>
+<a id="comment-51"></a>
+  <div class="comment">
+    <h3 class="title"><a href="/Embedded-Systems/How-To/RTOS-Mutex-Semaphore#comment-51" class="active">Thanks</a></h3>    <div class="submitted">Submitted by mmsreedhar on Wed, 01/27/2010 - 01:42.</div>
+    <div class="content">It was very nice info.
+All your topics are very clear and explainatory.
+Thanks for the information in a nice format.</div>
+    <div class="links">&raquo; <ul class="links"><li class="first last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>
+  </div>
+<a id="comment-54"></a>
+  <div class="comment">
+    <h3 class="title"><a href="/Embedded-Systems/How-To/RTOS-Mutex-Semaphore#comment-54" class="active">good article...........but i</a></h3>    <div class="submitted">Submitted by venkatesh yadav on Thu, 02/18/2010 - 23:35.</div>
+    <div class="content">good article...........but i have a basic doubt is that binary semapore and mutex are same?if not what is the difference.</div>
+    <div class="links">&raquo; <ul class="links"><li class="first last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>
+  </div>
+<div class="indented"><a id="comment-100"></a>
+  <div class="comment">
+    <h3 class="title"><a href="/Embedded-Systems/How-To/RTOS-Mutex-Semaphore#comment-100" class="active">Binary Semaphore vs. Mutex</a></h3>    <div class="submitted">Submitted by webmaster on Thu, 10/21/2010 - 13:54.</div>
+    <div class="content">Generally speaking, a binary semaphore is the same as a mutex except that only the mutex has built into its API a priority inversion workaround, such as priority inheritance protocol.  Thus binary semaphores should not be used in real-time systems that are required to meet task deadlines with certainty.</div>
+    <div class="links">&raquo; <ul class="links"><li class="first last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>
+  </div>
+</div><a id="comment-59"></a>
+  <div class="comment">
+    <h3 class="title"><a href="/Embedded-Systems/How-To/RTOS-Mutex-Semaphore#comment-59" class="active">Very helpful.</a></h3>    <div class="submitted">Submitted by yuwen on Tue, 03/02/2010 - 21:23.</div>
+    <div class="content">Very helpful.</div>
+    <div class="links">&raquo; <ul class="links"><li class="first last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>
+  </div>
+<a id="comment-61"></a>
+  <div class="comment">
+    <h3 class="title"><a href="/Embedded-Systems/How-To/RTOS-Mutex-Semaphore#comment-61" class="active">Mutex Vs Semaphore</a></h3>    <div class="submitted">Submitted by rakshith.amarnath on Tue, 03/16/2010 - 12:38.</div>
+    <div class="content">Hello Barr,
+Yes this is a very insightful explanation.
+
+When I was going through one of the books which discussed RTOS'es, I found the following explanation.
+
+Binary semaphore can be released by any task, even a task that did not originally acquire the semaphore. 
+
+But Mutexes have the task ownership property which allows only the task acquired to release it.
+
+By the statement above, there is a fundamental difference in the way a Mutex and semaphore behaves.
+
+The book mentions Mutex as semaphores however.
+
+Only after perusal of this discussion I am able to rightly make a distinction amongst the two.
+
+In broader sense use semaphore for signaling and use Mutex for locking a shared resource is what you have tried to cover. Please add more details if my understanding is not apt.
+
+Cheers,
+Rakshith</div>
+    <div class="links">&raquo; <ul class="links"><li class="first last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>
+  </div>
+<a id="comment-102"></a>
+  <div class="comment">
+    <h3 class="title"><a href="/Embedded-Systems/How-To/RTOS-Mutex-Semaphore#comment-102" class="active">Date of invention of semaphore</a></h3>    <div class="submitted">Submitted by pmcjones on Sun, 10/24/2010 - 12:11.</div>
+    <div class="content"><p>You say "the 1974 invention of the Semaphore", but it was much earlier than that. For example, Dijkstra's famous "Cooperating Sequential Processes (EWD123) was written in 1965, presented at a 1966 NATO Summer School, and published in a 1968 book <em>Programming Languages</em>, edited by F. Genuys. See <a href="http://www.cs.utexas.edu/users/EWD/ewd01xx/EWD123.PDF" title="http://www.cs.utexas.edu/users/EWD/ewd01xx/EWD123.PDF">http://www.cs.utexas.edu/users/EWD/ewd01xx/EWD123.PDF</a> .</p>
+</div>
+    <div class="links">&raquo; <ul class="links"><li class="first last comment_forbidden"><span class="comment_forbidden"><a href="/user/login?destination=node/202%2523comment-form">Login</a> or <a href="/user/register?destination=node/202%2523comment-form">register</a> to post comments</span></li>
+</ul></div>
+  </div>
+</div>				</div>
+				<div class="bot">&nbsp;</div>
+		
+			    			</div>
+		</div>
+		<div class="yui-b leftCol">
+		    <td id="sidebar-left">
+		        <div class="block block-block" id="block-block-14">
+    <h2 class="title">Glossary</h2>
+    <div class="content"><p>Find definitions for technical terms in our <a href="/Embedded-Systems/Glossary">Embedded Systems Glossary</a>.</p>
+<center>
+<table class="leftTableNav"><tr>
+<td><a href="/Embedded-Systems/Glossary-A">A</a></td>
+<td><a href="/Embedded-Systems/Glossary-B">B</a></td>
+<td><a href="/Embedded-Systems/Glossary-C">C</a></td>
+<td><a href="/Embedded-Systems/Glossary-D">D</a></td>
+<td><a href="/Embedded-Systems/Glossary-E">E</a></td></tr>
+<tr>
+<td><a href="/Embedded-Systems/Glossary-F">F</a></td>
+<td><a href="/Embedded-Systems/Glossary-G">G</a></td>
+<td><a href="/Embedded-Systems/Glossary-H">H</a></td>
+<td><a href="/Embedded-Systems/Glossary-I">I</a></td>
+<td><a href="/Embedded-Systems/Glossary-J">J</a></td></tr>
+<tr>
+<td><a href="/Embedded-Systems/Glossary-K">K</a></td>
+<td><a href="/Embedded-Systems/Glossary-L">L</a></td>
+<td><a href="/Embedded-Systems/Glossary-M">M</a></td>
+<td><a href="/Embedded-Systems/Glossary-N">N</a></td>
+<td><a href="/Embedded-Systems/Glossary-O">O</a></td></tr>
+<tr>
+<td><a href="/Embedded-Systems/Glossary-P">P</a></td>
+<td><a href="/Embedded-Systems/Glossary-Q">Q</a></td>
+<td><a href="/Embedded-Systems/Glossary-R">R</a></td>
+<td><a href="/Embedded-Systems/Glossary-S">S</a></td>
+<td><a href="/Embedded-Systems/Glossary-T">T</a></td></tr>
+<tr>
+<td><a href="/Embedded-Systems/Glossary-U">U</a></td>
+<td><a href="/Embedded-Systems/Glossary-V">V</a></td>
+<td><a href="/Embedded-Systems/Glossary-W">W</a></td>
+<td><a href="/Embedded-Systems/Glossary-X">X</a></td>
+<td><a href="/Embedded-Systems/Glossary-Y">Y</a></td></tr>
+<tr>
+<td><a href="/Embedded-Systems/Glossary-Z">Z</a></td>
+<td colspan="4"><a href="/Embedded-Systems/Glossary-Symbols">Symbols</a></td></tr>
+</table>
+</center></div>
+	<div class="bot">&nbsp;</div>
+ </div>
+  <div class="block block-block" id="block-block-23">
+    <h2 class="title">Take a Quiz</h2>
+    <div class="content"><p>Test your embedded programming skills in our online <a href="/Embedded-Systems/Embedded-C-Quiz">Embedded C Quiz</a> or <a href="/Embedded-Systems/Embedded-C++-Quiz">Embedded C++ Quiz</a> and be entered to win a free <a href="/Boot-Camp-Box">Embedded Software Boot Camp in a Box</a>.</p>
+
+<p align="center"><a href="/Embedded-Systems/Embedded-C-Quiz"><img alt="Test Your Skills" src="/images/testSkills.gif" width="151" height="105"></a></p>
+</div>
+	<div class="bot">&nbsp;</div>
+ </div>
+  <div class="block block-block" id="block-block-38">
+    <h2 class="title">Master Firmware</h2>
+    <div class="content"><p>Registration is now open for the popular hands-on <a href="/Boot-Camp">Embedded Software Boot Camp</a>. Consult our <a href="/Training-Calendar">public training calendar</a> for upcoming dates and locations.</p>
+
+<p align="center"><a href="/Boot-Camp"><img src="/images/bootCamp.gif" alt="Boot Camp"></a></p></div>
+	<div class="bot">&nbsp;</div>
+ </div>
+  <div class="block block-block" id="block-block-26">
+    <h2 class="title">Sign Up Now</h2>
+    <div class="content"><p>Receive Michael Barr's <em>Firmware Update</em> newsletter for free how-to articles and industry news by e-mail.  <a target="_blank" href="http://visitor.constantcontact.com/d.jsp?m=1101728959593&p=oi">Sign up now.</a></p></div>
+	<div class="bot">&nbsp;</div>
+ </div>
+  <div class="block block-menu" id="block-menu-118">
+    <h2 class="title">Articles</h2>
+    <div class="content">
+<ul class="menu">
+<li class="expanded"><a href="/taxonomy_menu/3">Categories</a>
+<ul class="menu">
+<li class="leaf"><a href="/taxonomy_menu/3/3">Embedded C/C++</a></li>
+<li class="leaf"><a href="/taxonomy_menu/3/5">Hardware Interfacing</a></li>
+<li class="leaf"><a href="/taxonomy_menu/3/13">Network Protocols</a></li>
+<li class="leaf"><a href="/taxonomy_menu/3/12">Processes and Tools</a></li>
+<li class="leaf"><a href="/taxonomy_menu/3/10">Programming Algorithms</a></li>
+<li class="leaf"><a href="/taxonomy_menu/3/11">Real-Time Java</a></li>
+<li class="leaf"><a href="/taxonomy_menu/3/6">Real-Time Operating Systems</a></li>
+<li class="leaf"><a href="/taxonomy_menu/3/17">User Interface Design</a></li>
+
+</ul>
+</li>
+
+</ul>
+</div>
+	<div class="bot">&nbsp;</div>
+ </div>
+  <div class="block block-block" id="block-block-20">
+    <h2 class="title">Bookmark It</h2>
+    <div class="content"><p>Bookmark this page or share it with a colleague.</p>
+<p align="center"><!-- AddThis Bookmark Button BEGIN -->
+<script type="text/javascript">
+  addthis_url    = location.href;   
+  addthis_title  = document.title;  
+  addthis_pub    = 'netrino';     
+</script><script type="text/javascript" src="http://s7.addthis.com/js/addthis_widget.php?v=12" ></script>
+<!-- AddThis Bookmark Button END --></p></div>
+	<div class="bot">&nbsp;</div>
+ </div>
+		    </td>		</div>
+	</div>
+	<div id="ft">
+		<p>
+Netrino<sup>&reg;</sup> and The Embedded Systems Experts<sup>sm</sup> are trademarks of Netrino, LLC.<br>
+Website contents copyright &copy; 1999-2009 by Netrino, LLC.  All rights reserved.
+</p>
+        <p>Netrino, LLC &bull; 6030 Marshalee Dr, #355 &bull; Elkridge, Maryland 21075 &bull; 866.78.EMBED<br />
+	</div>
+</div>
+
+<script type="text/javascript" src="/modules/google_analytics/googleanalytics.js"></script>
+<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script>
+<script type="text/javascript">var pageTracker = _gat._getTracker("UA-2016180-1");pageTracker._trackPageview();</script>
+
+</body>
+</html>

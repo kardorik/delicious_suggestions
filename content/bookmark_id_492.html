@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><script src="http://www.google-analytics.com/urchin.js" type="text/javascript"> 
+</script> 
+<script type="text/javascript">
+_uacct = "UA-290307-7";
+urchinTracker();
+</script>
+<title>Login Systems and More with Ruby on Rails</title><meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /><meta name="description" content="Login Systems and More with Ruby on Rails" /><meta name="keywords" content="Login, Systems, and, More, with, Ruby, on, Rails" /><base href="http://www.devarticles.com/" /><script language="JavaScript1.2" src="http://www.devarticles.com/includes/js/rollover.js" type="text/javascript"></script>
+<script language="JavaScript1.2" src="http://www.devarticles.com/includes/js/mambojavascript.js" type="text/javascript"></script>
+<style type="text/css" >
+.smalltitlenew, a.smalltitlenew:link, a.smalltitlenew:visited, a.smalltitlenew:active {
+font-family:  "Trebuchet MS", "Impact", Helvetica,Arial, Verdana, sans-serif  ;
+font-size: 40px;
+color: #000000;
+font-weight: bold;
+text-decoration: none;
+padding:0px;
+margin:0px;
+line-height:42px;
+}
+</style>
+<link href="/templates/devshed/css/fpstyles.css" rel="stylesheet" type="text/css"><link rel="alternate" type="application/rss+xml" title="Dev Articles RSS" href="http://www.devarticles.com/index2.php?option=mos_rss&no_html=1" /><!--<link rel="alternate" type="application/rss+xml" title="Blog RSS" href="http://www.aspfree.com/index2.php?option=mos_rssblog&no_html=1" />--><link rel="alternate" type="application/rss+xml" title="Dev Articles Forum RSS" href="http://forums.devarticles.com/external.php" /></head><body bgcolor="#EFEFEF" link="#000000" vlink="#000000" alink="#000000" leftmargin="0" topmargin="0"><script language="text/javascript">
+window.google_analytics_uacct = "UA-290307-7";
+</script>
+<SCRIPT language=JavaScript1.2>
+<!--
+// Explorer Bookmark and Mozilla Side Panel Script
+var url = "http://www.devarticles.com";
+var moz_url = url + "/index2.php?option=com_mozilla_panel&no_html=1";
+var who = "devarticles.com - Dev Articles";
+var moz_who = "devarticles.com - Side Panel";
+function addMozillaPanel() { 
+if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) 
+{ 
+window.sidebar.addPanel (moz_who, moz_url,""); 
+} else { 
+var rv = window.confirm ("This feature is only available for the Mozilla browser. " + "Would you like to download Mozilla now?"); 
+if (rv) 
+document.location.href = "http://www.mozilla.org";
+} 
+} 
+function BookMark()
+{
+var ver = navigator.appName;
+var num = parseInt(navigator.appVersion);
+if ((ver == "Microsoft Internet Explorer")&&(num >= 4)) {
+window.external.AddFavorite(url,who);
+} else {
+alert("To Bookmark : CTRL + D");
+}
+}
+//-->
+</SCRIPT>
+<div align=center><table width="1003" height="18" border="0" cellpadding="0" cellspacing="0"> <tr> <td bgcolor="#FFFFFF"> <table width="730" border="0" align="right" cellpadding="0" cellspacing="0"> <tr> <td width="20"><img src="http://images.devshed.com/da/devarticles-01.jpg" width="20" height="21" /></td> <td width="35" bgcolor="#FE9900">&nbsp;</td><td width="675" valign="middle" bgcolor="#FE9900"><center><style type="text/css">
+<!--
+#topnavbox { 
+clear: both;
+text-align:center;
+font-size: 0.8em;
+font-family:Arial, Helvetica, sans-serif;
+}
+.topnavtxt {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 11px;
+text-decoration: normal;
+padding: 0;
+margin: 0;
+color: #ffffff;\n}
+-->
+</style>
+<div id="topnavbox" align=center> <div class="topnavtxt"><script type="text/javascript" language="JavaScript">
+<!--
+function ttgo1(url)
+{
+if (url.length > 1)
+{
+document.location.href = "http://" + url + "/";
+}
+}
+function ttfstart1(name)
+{
+document.write('<div style="display: inline; top: 0; padding:0; border: 0px;"><B>' + name + '</b> <form style="display: inline; margin: 0;" name="jumptt"><select style="font-size: 10px; font-family: Verdana, Arial;" name="menutt" onChange="javascript:ttgo(this.options[this.selectedIndex].value);">');
+document.write('<option value="" selected> - Select - </option>'); 
+}
+function ttfend1()
+{
+document.write('</select></form></div>');
+}
+function ttfadd1(name, val)
+{
+document.write('<option value="' + val + '">' + name + '</option>');
+}
+function ttspace1()
+{
+document.write('&nbsp;&nbsp;&nbsp;');
+}
+ttfstart1('Tutorials:');
+ttfadd1('Dev Shed', 'www.devshed.com');
+ttfadd1('ASP Free', 'www.aspfree.com');
+ttfadd1('Dev Articles', 'www.devarticles.com');
+ttfadd1('Dev Hardware', 'www.devhardware.com');
+ttfadd1('SEO Chat', 'www.seochat.com');
+ttfadd1('Web Hosting', 'webhosting.devshed.com');
+ttfadd1('Codewalkers', 'www.codewalkers.com');
+ttfend1();
+ttspace1();
+ttfstart1('Resources:');
+ttfadd1('Scripts', 'www.scripts.com');
+ttfadd1('Tutorialized', 'www.tutorialized.com');
+ttfadd1('Dev Mechanic', 'tools.devshed.com');
+//ttfadd1('iWatchIT', 'www.iwatchit.com');
+//ttfadd1('IT Marketplace', 'www.itmarketplace.com');
+//ttfadd1('igrep', 'www.igrep.com');
+ttfend1();
+ttspace1();
+ttfstart1('Forums:');
+ttfadd1('Dev Shed Forums', 'forums.devshed.com');
+ttfadd1('ASP Free Forums', 'forums.aspfree.com');
+ttfadd1('Dev Articles Forums', 'forums.devarticles.com');
+ttfadd1('Dev Hardware Forums', 'www.devhardware.com/forums');
+ttfadd1('SEO Chat Forums', 'forums.seochat.com');
+ttfadd1('Codewalkers Forums', 'forums.codewalkers.com');
+ttfadd1('Tutorialized Forums', 'forums.tutorialized.com');
+ttfadd1('Dev Archives Forums', 'archives.devshed.com/forums');
+ttfend1();
+//-->
+</script>
+ </div></div></center></td> </tr> </table> <div align="right"></div> </td> </tr> <tr> <td valign="top" background="http://images.devshed.com/da/current/devarticles.jpg"> <table width="1003" border="0" cellspacing="0" cellpadding="0"><tr><td height="20" colspan="3" align=right><table cellpadding=0 cellspacing=0><tr><td><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=392");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=1750969745' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=392&amp;cb=1750969745&amp;n=a72b9207' border='0' alt='' /></a></noscript></td></tr></table></td></tr>
+ <tr> <td width="120" height="50">&nbsp;</td> <td valign="middle" class="pagename"> <h2><a href="/c/b/Ruby-on-Rails/" class="smalltitlenew" title='Ruby-on-Rails'><nobr>Ruby-on-Rails</nobr></a></h2> </td> <td width="409" valign="top"> </td> </tr> </table> </td> </tr> <tr> <td bgcolor="#FFFFFF"> <table width="848" border="0" align="right" cellpadding="0" cellspacing="0"> <tr> <td width="20"><img src="http://images.devshed.com/da/devarticles-02.gif" width="20" height="28" /></td> <td width="1" bgcolor="#FE9900">&nbsp;</td> <td width="545" bgcolor="#FE9900"><nobr><span class="pathwaybg"><a rel=nofollow href="http://www.devarticles.com/" class="pathwaybg"><span class=pathwaybg><u>Home</u></span></a> <img src="images/M_images/arrow_black.png" border="0" alt="arrow" /> <a rel=nofollow href="http://www.devarticles.com/c/b/Ruby-on-Rails/" class="pathwaybg"><span class=pathwaybg><u>Ruby-on-Rails</u></span></a> <img src="images/M_images/arrow_black.png" border="0" alt="arrow" /> Login Systems and More with Ruby on Rails </span></nobr></td> <td height="25" width="362" bgcolor="#FE9900"> <table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td height='25' align='right' style='float:right;width:210px;_width:210px;padding-right:3px;padding-top:3px;_padding-right:3px;_padding-top:2px;'><form style='display:inline;' action='http://www.devarticles.com/googlecse.html' id='cse-search-box'><input type='hidden' name='cx' value='partner-pub-6422417422167576:16y8lrhaz0i' /><input type='hidden' name='cof' value='FORID:11' /><input type='hidden' name='ie' value='ISO-8859-1' /><input type='text' name='q' size='20' /> <input type='image' style='margin-top: -3px;_margin-top:0px;' align='absmiddle' src='http://www.devshed.com/components/com_googlecse/google_search.gif' height='20' width='56' name='sa' value='Search' /><script type='text/javascript' src='http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en'></script></form></td>
+ </tr> </table> </td> </tr> </table> </td> </tr></table></div><table align=center width="1003" border="0" cellspacing="0" cellpadding="0"> <tr valign="top">  <td width=158 bgcolor="#FFFFFF"> <div align=center> <table cellpadding=1> <tr><td align="center"><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=428");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=1522899769' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=428&amp;cb=1522899769&amp;n=a72b9207' border='0' alt='' /></a></noscript></td>
+ </tr> </table> </div> </td> <td align=center height="115" bgcolor="#FFFFFF"> <table width=100% cellpadding=0 cellspacing=0> <tr valign="middle"><td align=center height="115" background="http://images.devshed.com/common/bckg-topbanner.gif"><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=130");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=284668742' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=130&amp;cb=284668742&amp;n=a72b9207' border='0' alt='' /></a></noscript>
+</td></tr> <tr><td></td></tr> </table> </td> </tr></table><div background="#ffffff" align=center> <div id=resultframe> <div id=resultleft bgcolor="#ffffff"> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table class="shrink_td" cellspacing="0" cellpadding="0" width="150"><tr><td class="sidenavgray"><a class="sidenavtxtgray" href="http://forums.devarticles.com/">Dev Articles Forums</a></td><td width="8">&nbsp;</td></tr></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table width="150" border="0" cellpadding="0" cellspacing="0" class="shrink_td"> <!--  <tr>  <td width="8">&nbsp;</td> <td class="txtblack"><b>Programming Help</b></td> <td width="8">&nbsp;</td> </tr> -->  <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/ADO.NET/">ADO.NET</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Apache/">Apache</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/ASP/">ASP</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/ASP.NET/">ASP.NET</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/C-Sharp/">C#</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Cplusplus/">C++</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/ColdFusion/">ColdFusion</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/COM/">COM/COM+</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Delphi-Kylix/">Delphi-Kylix</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Web-Design-Usability/">Design Usability</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Development-Cycles/">Development Cycles</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/DHTML/">DHTML</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Embedded-Tools/">Embedded Tools</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Flash/">Flash</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Web-Graphic-Design/">Graphic Design</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/HTML/">HTML</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/IIS/">IIS</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Interviews/">Interviews</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Java/">Java</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/JavaScript/">JavaScript</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/MySQL/">MySQL</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Oracle/">Oracle</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Photoshop/">Photoshop</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/PHP/">PHP</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Reviews/">Reviews</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Ruby-on-Rails/">Ruby-on-Rails</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/SQL/">SQL</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/SQL-Server/">SQL Server</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Web-Style-Sheets/">Style Sheets</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/VB.Net/">VB.Net</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Visual-Basic/">Visual Basic</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Web-Authoring/">Web Authoring</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Web-Services/">Web Services</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/Web-Design-Standards/">Web Standards</a></td> <td width="8">&nbsp;</td> </tr> <tr>  <td class="sidenavgray"><a class="sidenavtxtgray" href="http://www.devarticles.com/c/b/XML/">XML</a></td> <td width="8">&nbsp;</td> </tr> </table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table cellspacing="0" cellpadding="0" border="0" width="150" class="shrink_td"><tbody><tr><td class="sidenavgray"><a href="http://www.aseohosting.com" target="_blank" class="sidenavtxtgray">Seo hosting - Seo server</a></td><td width="8">&nbsp;</td></tr><tr><td class="sidenavgray"><a href="http://www.ahosting.net" target="_blank" class="sidenavtxtgray">Reseller hosting</a></td><td width="8">&nbsp;</td></tr><tr><td class="sidenavgray"><a href="http://www.ahosting.net" target="_blank" class="sidenavtxtgray">Dedicated server</a></td><td width="8">&nbsp;</td></tr><tr><td class="sidenavgray"><a class="sidenavtxtgray" target="_blank" href="http://www.forumlinkbuilding.com/view/link_building_services&#63;dslink"><span style="color: rgb(255, 0, 0);"><strong>Links From PR9 Sites</strong></span></a></td><td width="8">&nbsp;</td></tr></tbody></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td><script type="text/javascript"><!--
+google_ad_client = "pub-6422417422167576";
+/* DevArticles Article Pages, 120x600, created 1/30/09 */
+google_ad_slot = "2520989064";
+google_ad_width = 120;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>     </td>
+ </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table cellspacing="0" cellpadding="0" border="0" width="150" class="shrink_td"><tbody><form method="post" action="http://newsletter.developershed.com/sendstudio/users/form.php?FormID=4" onsubmit="return CheckwSS()" name="wfrmSS"><tr><td height="36" valign="top" class="sidenavgray"><strong><a rel="nofollow" href="http://www.developershed.com/newsletter.php" class="sidenavtxtgray">Weekly Newsletter</a></strong> <br /><input style="background-color: rgb(255, 255, 160);" type="text" autocomplete="OFF" name="Email" value="Your E-mail" size="16" onfocus="if ((this.value=='') || (this.value=='Your E-mail')) {this.value='';};" title="Your Google Toolbar can fill this in for you. Select AutoFill" onblur="if (this.value=='') {this.value='Your E-mail';}" class="form" /><input type="hidden" name="SelectLists[16]" value="YES" /><input type="hidden" name="Format" value="2" /><input type="hidden" name="FormCode" value="ed2d31d9cdcac5a40f6ff626f4acefa3" /><input type="submit" name="Submit" value="GO" class="form" /></td><td width="8">&nbsp;</td></tr></form><tr><td class="sidenavgray"><a rel="nofollow" href="http://www.developershed.com/devalert.php" class="sidenavtxtgray">Developer Updates</a> </td><td width="8">&nbsp;</td></tr><tr><td class="sidenavgray"><a rel="nofollow" href="http://www.developershed.com/devtext.php" class="sidenavtxtgray">Free Website Content</a></td><td width="8">&nbsp;</td></tr></tbody></table><script language="JavaScript">
+function CheckwSS()
+{
+theFrm = document.wfrmSS;
+hasDot = theFrm.Email.value.indexOf(".");
+hasAt = theFrm.Email.value.indexOf("@");
+if (hasDot == -1 || hasAt == -1)
+{
+alert("Please enter a valid email address.");
+theFrm.Email.focus();
+theFrm.Email.select();
+return false;
+}
+return true;
+}
+</script>     </td>
+ </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table cellspacing="0" cellpadding="0" width="150" border="0"><tbody><tr><td><div align="center" style="margin-top:6px; margin-right:0px; margin-left:0px; margin-bottom:6px;"><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=121");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'></scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=1687210539' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=121&amp;cb=1687210539&amp;n=a72b9207' border='0' alt='' /></a></noscript></div></td></tr></tbody></table>
+ </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table cellspacing="0" cellpadding="0" width="150" border="0"><tbody><tr valign="middle"><td class="sidenavgray2"><table cellspacing="0" cellpadding="0" width="150" border="0"><tr valign="middle"><td align="left">&nbsp;<a class="sidenavtxtgray" href="/rss-feeds.html" rel="nofollow"><img width="15" height="14" border="0" alt="RSS" src="http://images.devshed.com/common/rss.gif" /></a>&nbsp;&nbsp;<a class="sidenavtxtgray" href="/rss-feeds.html" rel="nofollow">Articles</a></td></tr></table></td></tr><tr valign="middle"><td class="sidenavgray2"><table cellspacing="0" cellpadding="0" width="150" border="0"><tr valign="middle"><td align="left">&nbsp;<a class="sidenavtxtgray" href="http://forums.codewalkers.com/rss/" rel="nofollow"><img width="15" height="14" border="0" alt="RSS" src="http://images.devshed.com/common/rss.gif" /></a>&nbsp;&nbsp;<a class="sidenavtxtgray" href="http://forums.devarticles.com/rss/" rel="nofollow">Forums</a></td></tr></table></td></tr><tr valign="middle"><td class="sidenavgray"><table cellspacing="0" cellpadding="0" width="150" border="0"><tr valign="middle"><td align="left">&nbsp;<a class="sidenavtxtgray" href="/rss-reader.html" rel="nofollow"><img width="15" height="14" border="0" alt="RSS" src="http://images.devshed.com/common/rss.gif" /></a>&nbsp;&nbsp;<a class="sidenavtxtgray" href="/rss-reader.html" rel="nofollow">All Feeds</a></td></tr></table></td></tr></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table class="shrink_td" cellspacing="0" cellpadding="0" width="150"><tbody><tr><td class=sidenavgray><a class="sidenavtxtgray" href="http://www.developershed.com/writers.php" rel="nofollow">Write For Us Get Paid</a></td><td width="8">&nbsp;</td></tr></tbody></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table class="shrink_td" cellspacing="0" cellpadding="0" width="150" border="0"><tbody><tr><td class=sidenavgray><a class="sidenavtxtgray" href="http://www.developershed.com/advertise.php" rel="nofollow">Request Media Kit</a></a /></td></tr></tbody></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table class="shrink_td" cellspacing="0" cellpadding="0" width="150"><tbody><tr><td class=sidenavgray><a class="sidenavtxtgray" href="http://www.developershed.com/contact.php" rel="nofollow">Contact Us</a></td><td width="8">&nbsp;</td></tr></tbody></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table class="shrink_td" cellspacing="0" border="0" cellpadding="0" width="150"><tbody><tr><td class=sidenavgray><a class="sidenavtxtgray" href="/sitemap.html">Site Map</a></td><td width="8">&nbsp;</td></tr></tbody></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table class="shrink_td" cellspacing="0" cellpadding="0" width="150" border="0"><tbody><tr><td class=sidenavgray><a class="sidenavtxtgray" href="http://www.developershed.com/privacy.php" rel="nofollow">Privacy Policy</a></td><td width="8">&nbsp;</td></tr><tr><td class=sidenavgray><a class="sidenavtxtgray" href="http://www.developershed.com/esupport/" rel="nofollow">Support</a></td><td width="8">&nbsp;</td></tr></tbody></table> </td> </tr> </table> <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table width="150" border="0" cellpadding="0" cellspacing="0"> <tr>  <TD> <table width="150" border="0" cellspacing="0" cellpadding="0" align="center" class=txtblack> <form action="http://www.devarticles.com/index.php?option=login" method="post" name="login"> <tr> <td class=sidenavgray2>&nbsp;USERNAME</td> </tr> <tr> <td class=sidenavgray2>&nbsp;<input type="text" name="username" class="sidenavtxtgray" size="12" /></td> </tr> <tr>  <td class=sidenavgray2>&nbsp;PASSWORD</td> </tr> <tr>  <td class=sidenavgray2>&nbsp;<input type="password" name="passwd" class="sidenavtxtgray" size="12" /></td> </tr> <tr> <td class=sidenavgray2><input type="hidden" name="op2" value="login" /> <input type="hidden" name="lang" value="english" />  &nbsp;<input type="submit" name="Submit" class="button" value="GO" />  </td> </tr> <tr> <td class=sidenavgray2>&nbsp;&nbsp;<font color=blue>>>></font> <a rel=nofollow class=bot3 href="/index.php?option=com_registration&task=register"><font color=blue><b>SIGN  UP!</b></font></a>&nbsp;&nbsp;</td> </tr> <tr>  <td class=sidenavgray2>&nbsp;&nbsp;<a rel=nofollow class=bot3 href="/index.php?option=com_registration&task=lostPassword"><font color=blue>Lost  Password?</font></a>&nbsp;</td> </tr> <!-- <tr align="right">  <td width="8">&nbsp;</td>  <td class=sidenavgray2 colspan="4" valign=middle><a rel=nofollow class=bot3 href="/past-technology-news/"><font color="blue">Past  Technology News</font></a>&nbsp;&nbsp;</td> </tr>--> </form> </table></td></tr></table> </td> </tr> </table> </div> <div id=resultcontent> <table width=100% cellpadding=0 cellspacing=0> <tr><td valign=top><table align="center" width="98%" bgcolor="#FFFFFF" cellpadding="0" cellspacing="0"><TR><TD class="whitebg"><script language="JavaScript" type="text/javascript">
+var addtoMethod=1;
+var AddURL = document.location.href;
+var AddTitle = escape(document.title);
+</script>
+<script language="JavaScript" src="/includes/js/add2.js" type="text/javascript"></script>
+<style type="text/css">
+<!--
+.add2small {
+font-size: 11px;
+cursor:pointer;
+}
+.add2head {
+font-size: 11px;
+font-weight: bold;
+}
+-->
+</style> 
+ <table cellpadding="0" cellspacing="1" border="0" width="100%"> <tr> <td width=100% valign=top> <table cellspacing="0" cellpadding="0" width="100%"> <tr> <td class="site-bckgtit"> <table cellspacing="0" cellpadding="0" width="332" border="0"> <tr> <td style="font-size:11px;">RUBY-ON-RAILS</td> <td width="34"> <div align="right"><a class="sidenav" href="/rss-feeds.html">RSS</a></div></td> <td width="27"> <div align="center"><a href="/rss-feeds.html"><img height="28" alt="" src="http://images.devshed.com/da/rss.gif" width="27" border="0" /></a></div> </td> </tr> </table> </td> </tr> </table><br> <a class='site-tit1' rel=nofollow href="http://www.devarticles.com/c/a/Ruby-on-Rails/Login-Systems-and-More-with-Ruby-on-Rails/">Login Systems and More with Ruby on Rails</a> <BR> <table width=100% cellpading=0 cellspacing=0> <tr><td width=50%> <span class="subtitblack">By: <a href="http://www.devarticles.com/cp/bio/O%27Reilly-Media/">O'Reilly Media</a></span> </td><td rowspan=3> <li class ="txtplain"><a rel=nofollow href='http://www.devarticles.com/googlecse.html?cx=partner-pub-6422417422167576%3A16y8lrhaz0i&cof=FORID%3A11&ie=ISO-8859-1&q=search+now#1383'>Search For More Articles!</a></li><li class ="txtplain"><a rel=nofollow href="javascript:void window.open('/html_templates/disclaimer.html', 'win2', 'status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=800,height=210,directories=no,location=no');">Disclaimer</a></li><li class ="txtplain"><a rel=nofollow href='http://www.developershed.com/terms.php'>Author Terms</a></li> </td> </tr> <tr> <td width=50%> <span class="subtitblack"> Rating: <img src="http://images.devshed.com/da/M_images/newstar.gif" width="11" height="10" border="0" alt="4 stars" valign="middle" /><img src="http://images.devshed.com/da/M_images/newstar.gif" width="11" height="10" border="0" alt="4 stars" valign="middle" /><img src="http://images.devshed.com/da/M_images/newstar.gif" width="11" height="10" border="0" alt="4 stars" valign="middle" /><img src="http://images.devshed.com/da/M_images/newstar.gif" width="11" height="10" border="0" alt="4 stars" valign="middle" /><img src="http://images.devshed.com/da/M_images/rating_star_blank.png" width="11" height="10" border="0" alt="4 stars" valign="middle" />&nbsp;/&nbsp;17 </span> </td> </tr> <tr> <td width=50%>  <span class="subtitblack"> 2007-04-05</span> </td> </tr> </table> <br> <table width="332" border="0" cellspacing="0" cellpadding="0"> <tr>  <td width="100%" height="20" align="left" class="article_toc"> Table of Contents:<br /> </td> </tr> <tr>  <td class="site-index" valign="top" align=left>  <li class="txt"><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Login-Systems-and-More-with-Ruby-on-Rails/" class="site-index">Login Systems and More with Ruby on Rails</a></li><li class="txt"><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Login-Systems-and-More-with-Ruby-on-Rails/1/" class="site-index">15.9 Storing Hashed User Passwords in the Database</a></li><li class="txt"><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Login-Systems-and-More-with-Ruby-on-Rails/2/" class="site-index">15.10 Escaping HTML and JavaScript for Display</a></li><li class="txt"><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Login-Systems-and-More-with-Ruby-on-Rails/3/" class="site-index">15.11 Setting and Retrieving Session Information</a></li> </td> </tr> </table><br> <table width="322" height="155" border="0" cellpadding="0" cellspacing="0" background="http://images.devshed.com/common/bckg-table1.gif"> <tr> <td height="26" colspan="2"><div align="center" class="footergray"> <table> <form method="post" action="http://www.devarticles.com/"> <tr><td class=footerblack>Rate this Article: Poor <input type="radio" name="user_rating" value="1" /><input type="radio" name="user_rating" value="2"/><input type="radio" name="user_rating" value="3"/><input type="radio" name="user_rating" value="4"/><input type="radio" name="user_rating" value="5" checked /> Best&nbsp;<input type="submit" class=footerblack name="submit_vote" value="Rate" /><input type="hidden" name="task" value="vote" /> <input type="hidden" name="pop" value="0" /><input type="hidden" name="option" value="content" /><input type="hidden" name="Itemid" value="2" /><input type="hidden" name="cid" value="1393" /><input type="hidden" name="url" value="/index.php?option=content&task=view&id=1393&Itemid=2&limit=&limitstart=" /> </td></tr> </form> </table></div></td> </tr> <tr> <td width="170" valign="top"><table width="170" border="0" cellspacing="0" cellpadding="0"> <tr> <td>&nbsp;</td> <td height="30" colspan=2 class="footerblack">ADD THIS ARTICLE TO:</td> </tr> <tr> <td width="6">&nbsp;</td> <td width="87"><span class="add2small" title="Add this page to Delicious" onclick="addto(2)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Delicious.gif" width="16" height="16" border="0" /> <span class=footergray>Del.ici.ous</span></span></td> <td width="67"><span class="add2small" title="Add this page to Digg" onclick="addto(3)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Digg.gif" width="16" height="16" border="0" /> <span class=footergray>Digg</span></span></td> </tr> <tr> <td width="6">&nbsp;</td> <td width="87"><span class="add2small" title="Add this page to Blink" onclick="addto(1)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Blink.gif" width="16" height="16" border="0" /> <span class=footergray>Blink</span></span></td> <td width="67"><span class="add2small" title="Add this page to Simpy" onclick="addto(6)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Simpy.gif" width="16" height="16" border="0" /> <span class=footergray>Simpy</span></span></td> </tr> <tr> <td width="6">&nbsp;</td> <td width="87"><span class="add2small" title="Add this page to Google" onclick="addto(5)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Google.gif" width="16" height="16" border="0" /> <span class=footergray>Google</span></span></td> <td width="67"><span class="add2small" title="Add this page to Spurl" onclick="addto(8)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Spurl.gif" width="16" height="16" border="0" /> <span class=footergray>Spurl</span></span></td> </tr> <tr> <td width="6">&nbsp;</td> <td width="87"><span class="add2small" title="Add this page to Yahoo! MyWeb" onclick="addto(7)" ><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Yahoo.gif" width="16" height="16" border="0" /> <span class=footergray>Y! MyWeb</span></span></td> <td width="67"><span class="add2small" title="Add this page to Furl" onclick="addto(4)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Furl.gif" width="16" height="16" border="0" /> <span class=footergray>Furl</span></span></td> </tr> </table></td> <td width="162" valign=top><table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td height="30"><a rel="nofollow" href="http://www.developershed.com/devalert.php" target="_blank" class="footergray">Email Me Similar Content When Posted</a><br></td> </tr> <tr> <td height="30"><a rel="nofollow" href="http://www.developershed.com/devtext.php" target="_blank" class="footergray">Add Developer Shed Article Feed To Your Site</a></td> </tr> <tr> <td height="18"><a rel=nofollow href="javascript:void window.open('http://www.devarticles.com/index2.php?option=content&task=emailform&id= 1393', 'win2', 'status=no,toolbar=no,scrollbars=no,titlebar=no,menubar=no,resizable=yes,width=400,height=200,directories=no,location=no');" class="footergray">Email Article To Friend</a></td> </tr> <tr> <td height="18"><a rel=nofollow href="javascript:void window.open('http://www.devarticles.com/index2.php?option=content&task=view&id=1393&pop=1&hide_ads=1&page=0&hide_js=1', 'win2', 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=640,height=480,directories=no,location=no');" class="footergray">Print Version Of Article</a></td> </tr> <tr> <td height="18"><a rel=nofollow href="javascript:void window.open('http://www.devarticles.com/index2.php?option=content&do_pdf=1&id=1393', 'win2', 'status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no');" class="footergray">PDF Version Of Article</a></td> </tr> </table> </td> </tr> </table><!-- <table width="300" border="0" cellspacing="0" cellpadding="0"> <tr>  <td colspan="4" class="add2head" bgcolor="#FFCC66" height="20">&nbsp;Add This Article To:</td> </tr> <tr bgcolor="#FFFFCC">  <td height="20" valign="middle">&nbsp;<span class="add2small" title="Add this page to Delicious" onclick="addto(2)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Delicious.gif" width="16" height="16" border="0" /> <u>Del.icio.us</u></span></td> <td valign="middle">&nbsp;<span class="add2small" title="Add this page to Digg" onclick="addto(3)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Digg.gif" width="16" height="16" border="0" /> <u>Digg</u></span></td> <td valign="middle">&nbsp;<span class="add2small" title="Add this page to Google" onclick="addto(5)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Google.gif" width="16" height="16" border="0" /> <u>Google</u></span></td> <td valign="middle">&nbsp;<span class="add2small" title="Add this page to Spurl" onclick="addto(8)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Spurl.gif" width="16" height="16" border="0" /> <u>Spurl</u></span></td> </tr> <tr bgcolor="#FFFFCC">  <td height="20" valign="middle">&nbsp;<span class="add2small" title="Add this page to Blink" onclick="addto(1)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Blink.gif" width="16" height="16" border="0" /> <u>Blink</u></span></td> <td valign="middle">&nbsp;<span class="add2small" title="Add this page to Furl" onclick="addto(4)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Furl.gif" width="16" height="16" border="0" /> <u>Furl</u></span></td> <td valign="middle">&nbsp;<span class="add2small" title="Add this page to Simpy" onclick="addto(6)"><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Simpy.gif" width="16" height="16" border="0" /> <u>Simpy</u></span></td> <td valign="middle">&nbsp;<span class="add2small" title="Add this page to Yahoo! MyWeb" onclick="addto(7)" ><img align="absmiddle" src="http://images.devshed.com/cmn/add2/AddTo_Yahoo.gif" width="16" height="16" border="0" /> <u>Y! MyWeb</u></span>&nbsp;</td> </tr> </table> <br /> &nbsp;&diams;&nbsp;<a rel="nofollow" href="http://www.developershed.com/devalert.php" target="_blank">Email Me Similar Content When Posted</a><br /> &nbsp;&diams;&nbsp;<a rel="nofollow" href="http://www.developershed.com/devtext.php" target="_blank">Add Developer Shed Article Feed To Your Site</a><br /> &nbsp;&diams;&nbsp;<a rel=nofollow href="javascript:void window.open('http://www.devarticles.com/index2.php?option=content&task=emailform&id= 1393', 'win2', 'status=no,toolbar=no,scrollbars=no,titlebar=no,menubar=no,resizable=yes,width=400,height=200,directories=no,location=no');">Email Article To Friend</a><br /> &nbsp;&diams;&nbsp;<a rel=nofollow href="javascript:void window.open('http://www.devarticles.com/index2.php?option=content&task=view&id=1393&pop=1&hide_ads=1&page=0&hide_js=1', 'win2', 'status=no,toolbar=yes,scrollbars=yes,titlebar=no,menubar=yes,resizable=yes,width=640,height=480,directories=no,location=no');">Print Version Of Article</a><br /> &nbsp;&diams;&nbsp;<a rel=nofollow href="javascript:void window.open('http://www.devarticles.com/index2.php?option=content&do_pdf=1&id=1393', 'win2', 'status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no');">PDF Version Of Article</a><br /> <br /> --> </td> <td width=16>&nbsp</td> <td width=336 valign=top> <table width=100% cellpadding=0 cellspacing=0 border=0> <tr> <td><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=133");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=267878299' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=133&amp;cb=267878299&amp;n=a72b9207' border='0' alt='' /></a></noscript><!-- End Article Box -->
+</td> </tr> <tr> <td height="4">&nbsp;</td> </tr> <tr> <td> <table width="336" border="0" cellspacing="0" cellpadding="0"> <tr> <td><img src="http://images.devshed.com/common/ad-top.gif" width="336" height="8" /></td> </tr> <tr> <td background="http://images.devshed.com/common/ad-bckg.gif"> <table><tr><td> <span class="ad">ADVERTISEMENT<br/><br/> <span class="abblue"><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=135");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'><\/scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=1742222636' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=135&amp;cb=1742222636&amp;n=a72b9207' border='0' alt='' /></a></noscript><!-- End Article paragraph -->
+</span> </span></td></tr></table> </td> </tr> <tr> <td><img src="http://images.devshed.com/common/ad-bottom.gif" width="336" height="8" /></td> </tr> </table></td> </tr> </table> </td> </tr> <tr>  <td height="1"><img src="/images/frontpage/spacer.gif" width="1" height="2"></td> </tr></table><br /><table cellpadding=0 cellspacing=0 border=0><tr><td valign=top> <span class="txtplain1"> <div class="intel" id='intelliTxt'>  <div id="related-content"> <div id="related-content-header"> <h4> </h4> <div id="related-content-body"> <div> <ol style="visibility: visible;" id="articles_579"> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Caching-and-Performance-Optimization/"><img title="Dev Articles News: Caching and Performance Optimization" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Caching-and-Performance-Optimization/" title="Caching and Performance Optimization">Caching and Performance Optimization<br/>(2010-12-07)</a></div></li> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/The-Action-Profiler-and-Performance-Optimization/"><img title="Dev Articles News: The Action Profiler and Performance Optimization" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/The-Action-Profiler-and-Performance-Optimization/" title="The Action Profiler and Performance Optimization">The Action Profiler and Performance Optimization<br/>(2010-12-03)</a></div></li> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Memcached-and-Performance-Optimization/"><img title="Dev Articles News: Memcached and Performance Optimization" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Memcached-and-Performance-Optimization/" title="Memcached and Performance Optimization">Memcached and Performance Optimization<br/>(2010-12-08)</a></div></li> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Using-Rails-Analyzer-for-Performance-Optimization/"><img title="Dev Articles News: Using Rails Analyzer for Performance Optimization" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Using-Rails-Analyzer-for-Performance-Optimization/" title="Using Rails Analyzer for Performance Optimization">Using Rails Analyzer for Performance Optimization<br/>(2010-12-03)</a></div></li> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Callbacks-and-the-Active-Record/"><img title="Dev Articles News: Callbacks and the Active Record" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Callbacks-and-the-Active-Record/" title="Callbacks and the Active Record">Callbacks and the Active Record<br/>(2010-02-24)</a></div></li> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Web-Development-Ruby-on-Rails/"><img title="Dev Articles News: Web Development: Ruby on Rails" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Web-Development-Ruby-on-Rails/" title="Web Development: Ruby on Rails">Web Development: Ruby on Rails<br/>(2007-03-21)</a></div></li> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Performance-Optimization/"><img title="Dev Articles News: Performance Optimization" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Performance-Optimization/" title="Performance Optimization">Performance Optimization<br/>(2010-11-30)</a></div></li> <li><div><span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Options-for-Web-Applications-with-Ruby-on-Rails/"><img title="Dev Articles News: Options for Web Applications with Ruby on Rails" src="http://images.devshed.com/cmn/devarticles_2.png" height="20" border="0" /></a></span><a href="http://www.devarticles.com/c/a/Ruby-on-Rails/Options-for-Web-Applications-with-Ruby-on-Rails/" title="Options for Web Applications with Ruby on Rails">Options for Web Applications with Ruby on Rails<br/>(2007-03-26)</a></div></li> </ol> </div> </div></div></div><span class="contentpagetitle"><h1 class=contentpagetitle><B>Login Systems and More with Ruby on Rails</b></h1></span> <BR>(Page 1 of 4 )<BR><BR>In this third article of a six-part series covering web development and Ruby on Rails, you'll learn how to add some very desirable features to your web application. This article is excerpted from chapter 15 of the <em>Ruby Cookbook</em>, written by Lucas Carlson and Leonard Richardson (O'Reilly, 2006; ISBN: 0596523696). Copyright © 2006 O'Reilly Media, Inc. All rights reserved. Used with permission from the publisher. Available from booksellers or direct from O'Reilly Media.<p><strong><a rel=nofollow href="http://www.amazon.com/gp/product/0596523696/102-4097062-5706514?ie=UTF8&amp;tag=develshedinc-20&amp;linkCode=xm2&amp;camp=1789&amp;creativeASIN=0596523696" target="_blank"><img title="" height="121" alt="" src="http://images.devshed.com/da/stories/cover116.jpg" width="92" align="left" border="0" /></a>15.8 Creating a Login System</strong> </p><p><strong>Problem </strong></p><p align="left">You want your application to support a login system based on user accounts. Users will log in with a unique username and password, as in most commercial and community web sites. </p><p><strong>Solution </strong></p><p align="left">Create a <font face="Courier">users</font> table that contains nonnull username and password fields. The SQL to create this table should look something like this MySQL example: </p><p align="left"><font face="Courier">&nbsp; use mywebapp_development;<br />&nbsp; DROP TABLE IF EXISTS `users`;<br />&nbsp; CREATE TABLE `users` ( <br />&nbsp;&nbsp;&nbsp; </font><font face="Courier">`id` INT(11) NOT NULL AUTO_INCREMENT,<br />&nbsp;&nbsp;&nbsp; </font><font face="Courier">`username` VARCHAR(255) NOT NULL, </font><font face="Courier"><br />&nbsp;&nbsp;&nbsp; `password` VARCHAR(40) NOT NULL,<br />&nbsp;&nbsp;&nbsp; PRIMARY KEY (`id`)<br />&nbsp; );</font> </p><p align="left">Enter the main directory of the application and generate a <font face="Courier">User</font> model corresponding to this table: </p><p><font face="Courier">&nbsp; $ ./script/generate model User<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exists &nbsp;app/models/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exists&nbsp; test/unit/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exists&nbsp; test/fixtures/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; app/models/user.rb<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; test/unit/user_test.rb&nbsp; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; test/fixtures/users.yml</font> </p><p align="left">Open the generated file <i>app/models/user.rb</i> and edit it to look like this: </p><p><font face="Courier">&nbsp; class User &lt; ActiveRecord::Base&nbsp; <br />&nbsp;&nbsp;&nbsp; validates_uniqueness_of :username&nbsp;<br />&nbsp;&nbsp;&nbsp; validates_confirmation_of :password, :on =&gt; :create <br />&nbsp;&nbsp;&nbsp; validates_length_of :password, :within =&gt; 5..40 </font></p><p><font face="Courier">&nbsp;&nbsp;&nbsp; # If a user matching the credentials is found, returns the User object.<br />&nbsp;&nbsp;&nbsp; # If no matching user is found, returns nil.<br />&nbsp;&nbsp;&nbsp; def self.authenticate(user_info)</font><font face="Courier"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; find_by_username_and_password(user_info[:username],<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; user_info[:password])<br />&nbsp;&nbsp;&nbsp; end<br />&nbsp; end</font> </p><p align="left">Now you've got a <font face="Courier">User</font> class that represents a user account, and a way of validating a username and password against the one stored in the database. </p><p align="left"><strong>Discussion </strong></p><p align="left">The simple <font face="Courier">User </font>model given in the Solution defines a method for doing username/password validation, and some validation rules that impose limitations on the data to be stored in the <font face="Courier">users</font> table. These validation rules tell <font face="Courier">User </font>to: </p><ul type="disc"><li>Ensure that each username is unique. No two users can have the same username. <br /></li><li>Ensure that, whenever the <font face="Courier">password </font>attribute is being set, the <font face="Courier">password_confirmation</font> attribute has the same value. <br /></li><li>Ensure that the value of the <font face="Courier">password </font>attribute is between 5 and 40 characters long. </li></ul><p>Now let's create a controller for this model. It'll have a <font face="Courier">login</font> action to display the login page, a <font face="Courier">process_login</font> action to check the username and password, and a<font face="Courier"> logout</font> action to deauthenticate a logged-in session. So that the user accounts will actually do something, well also add a <font face="Courier">my_account</font> action: </p><p><font face="Courier">&nbsp; $ ./script/generate controller user login process_login logout my_account<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exists &nbsp;app/controllers/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exists&nbsp; app/helpers/<br /></font><font face="Courier">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; app/views/user<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; exists&nbsp; test/functional/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; app/controllers/ user_controller.rb<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; test/functional/ user_controller_test.rb<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; app/helpers/user_helper.rb <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; app/views/user/login.rhtml <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; app/views/user/ process_login.rhtml<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; create&nbsp; app/views/user/logout.rhtml</font> </p><p align="left">Edit <i>app/controllers/user_controller.rb</i> to define the three actions: </p><p><font face="Courier">&nbsp; class UserController &lt; ApplicationController<br />&nbsp;&nbsp;&nbsp; </font><font face="Courier">def login<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @user = User.new<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @user.username = params[:username]<br /></font><font face="Courier">&nbsp;&nbsp;&nbsp; end</font></p><p><font face="Courier">&nbsp;&nbsp;&nbsp; def process_login<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font face="Courier">if user = User.authenticate(params[:user])<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; session[:id] = user.id # Remember the user's id during this session <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; redirect_to session[:return_to] || '/'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font face="Courier">else<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flash[:error] = 'Invalid login.' <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; redirect_to :action =&gt; 'login', :username =&gt; params[:user][:username]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font face="Courier">end<br />&nbsp;&nbsp;&nbsp; end </font></p><p><font face="Courier">&nbsp;&nbsp;&nbsp; def logout<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; reset_session<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flash[:message] = 'Logged out.' <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; redirect_to :action =&gt; 'login' <br />&nbsp;&nbsp;&nbsp; </font><font face="Courier">end</font></p><p><font face="Courier">&nbsp;&nbsp;&nbsp; def my_account<br />&nbsp;&nbsp;&nbsp; end<br />&nbsp; end</font> </p><p align="left">Now for the views. The <font face="Courier">process_login</font> and<font face="Courier"> logout</font> actions just redirect to other actions, so we only need views for<font face="Courier"> login</font> and <font face="Courier">my_account</font>. Here's a view for <font face="Courier">login</font>: </p><p><font face="Courier">&nbsp; &lt;!-- app/views/user/login.rhtml --&gt;<br />&nbsp; &lt;% if @flash[:message] %&gt;&lt;div&gt;&lt;%= @flash[:message]&nbsp;%&gt;&lt;/div&gt;&lt;% end&nbsp;%&gt;<br />&nbsp; &lt;% if @flash[:error]&nbsp;%&gt;&lt;div&gt;&lt;%= @flash[:error] %&gt;&lt;/div&gt;&lt;% end %&gt; </font></p><p><font face="Courier">&nbsp; &lt;%= form_tag :action =&gt; 'process_login'<br />%&gt;<br />&nbsp;&nbsp; </font><font face="Courier">Username: &lt;%= text_field &quot;user&quot;, &quot;username&quot; %&gt;&amp;#x00A;<br />&nbsp;&nbsp; &nbsp;Password: &lt;%= password_field &quot;user&quot;, &quot;password&quot; %&gt;&amp;#x00A;<br />&nbsp;&nbsp;&nbsp; &lt;%= submit_tag %&gt; <br />&nbsp; </font><font face="Courier">&lt;%= end_form_tag&nbsp;%&gt;</font> </p><p align="left">The <font face="Courier">@flash</font> instance variable is a hashlike object used to store temporary messages for the user between actions. When the <font face="Courier">logout </font>action sets <font face="Courier">flash[:message]</font> and redirects to <font face="Courier">login</font>, or <font face="Courier">process_login</font> sets <font face="Courier">flash[:error]</font> and redirects to <font face="Courier">login</font>, the results are available to the view of the <font face="Courier">login</font> action. Then they get cleared out. </p><p align="left">Here's a very simple view for <font face="Courier">my_account</font>: </p><p><font face="Courier">&nbsp; &lt;!-- app/views/user/my_account.rhtml --&gt;<br />&nbsp; &lt;h1&gt;Account Info&lt;/h1&gt; </font></p><p><font face="Courier">&nbsp; &lt;p&gt;Your username is &lt;%= User.find(session[:id]).username&nbsp;%&gt;</font> </p><p align="left">Create an entry in the <font face="Courier">users</font> table, start the server, and you'll find that you can log in from <i>http://localhost:3000/user/login</i>, and view your account information from <i>http:// localhost:3000/user/my_account</i>. </p><p><font face="Courier">&nbsp; $ ./script/runner 'User.create(:username =&gt; &quot;johndoe&quot;, \<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :password =&gt; &quot;changeme&quot;)'</font> </p><p align="left">There's just one missing piece: you can visit the <font face="Courier">my_account</font> action even if you're not logged in. We don't have a way to close off an action to unauthenticated users. Add the following code to your <i>app/controllers/application.rb</i> file: </p><p><font face="Courier">&nbsp; class ApplicationController &lt; ActionController::Base <br />&nbsp;&nbsp;&nbsp; before_filter :set_user </font></p><p><font face="Courier">&nbsp; protected<br />&nbsp;&nbsp;&nbsp; def set_user<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @user = User.find(session[:id]) if @user.nil? &amp;&amp; session[:id]<br />&nbsp;&nbsp;&nbsp; end </font></p><p><font face="Courier">&nbsp;&nbsp;&nbsp; def login_required<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true if @user<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; access_denied<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false<br /></font><font face="Courier">&nbsp;&nbsp;&nbsp; end</font></p><p><font face="Courier">&nbsp;&nbsp;&nbsp; def access_denied<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; session[:return_to] = request.request_uri<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flash[:error] = 'Oops. You need to login before you can view that page.' <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; redirect_to :controller =&gt; 'user', :action =&gt; 'login'<br />&nbsp;&nbsp;&nbsp; </font><font face="Courier">end<br />&nbsp; end</font> </p><p align="left">This code defines two filters, <font face="Courier">set_user</font> and <font face="Courier">login_required</font>, which you can apply to actions or controllers. The <font face="Courier">set_user</font> filter is run on every action (because we pass it into <font face="Courier">before_filter</font> in <font face="Courier">ApplicationController</font>, the superclass of all our controllers). The <font face="Courier">set_user</font> method sets the instance variable<font face="Courier"> @user</font> if the user is logged in. Now information about the logged-in user (if any) is available throughout your application. Action methods and views can use this instance variable like any other. This is useful even for actions that don't require login: for instance, your main layout view might display the name of the logged-in user (if any) on every page. </p><p align="left">You can prohibit unauthenticated users from using a specific action or controller by passing the symbol for the <font face="Courier">login_required</font> method into <font face="Courier">before_filter</font>. Here's how to protect the <font face="Courier">my_account</font> action defined in <i>app/controllers/user_controller.rb</i>: </p><p><font face="Courier">&nbsp; class UserController &lt; ApplicationController <br />&nbsp;&nbsp;&nbsp; before_filter :login_required, :only =&gt; :my_account<br />&nbsp; end</font> </p><p align="left">Now if you try to use the <font face="Courier">my_account</font> action without being logged in, you'll be redirected to the login page. </p><p><strong>See Also </strong></p><ol type="disc"><li>Recipe 13.14, &quot;Validating Data with ActiveRecord&quot; <br /></li><li>Recipe 15.6, &quot;Integrating a Database with Your Rails Application&quot; <br /></li><li>Recipe 15.9, &quot;Storing Hashed User Passwords in the Database&quot; <br /></li><li>Recipe 15.11, &quot;Setting and Retrieving Session Information&quot; <br /></li><li>Rather than doing this work yourself, you can install the <font face="Courier">login_generator</font> gem and use its <font face="Courier">login</font> generator: it will give your application a <font face="Courier">User</font> model and a controller that implements a password-based authentication system; see <i>http://wiki. rubyonrails.com/rails/pages/LoginGenerator</i>; also see <i>http://wiki.rubyonrails.com/ rails/pages/AvailableGenerators </i>for other generators (including the more sophisticated <font face="Courier">model_security_generator</font>) </li></ol><p><p class="pagenavbar"><a rel=nofollow class="morearticles" rel=nofollow href="http://www.devarticles.com/c/a/Ruby-on-Rails/Login-Systems-and-More-with-Ruby-on-Rails/1/">Next: 15.9 Storing Hashed User Passwords in the Database &gt;&gt;</a><br/>&nbsp;<br/><p align="right" class="totalarticles"><a rel=nofollow class="totalarticles" rel=nofollow href=http://www.devarticles.com/c/b/Ruby-on-Rails/>More Ruby-on-Rails Articles</a><br/><a rel=nofollow class="totalarticles" rel=nofollow href='http://www.devarticles.com/cp/bio/O%27Reilly-Media/'>More By O'Reilly Media</a></p></p><BR><p class="comments_block"><table width="99%" cellspacing="0" cellpadding="0" bordercolor="#edf0f7" border="1" align="center"><tr><td height="24" bgcolor="#f5f5f5"><div align="center"><a rel=nofollow rel="nofollow" class="art_titblack" href="/showblog/33596/Login-Systems-and-More-with-Ruby-on-Rails/">Comments On: Login Systems and More with Ruby on Rails</a></div></td></tr><tr><td height="40" bgcolor="#ffffff" class="txtplain1"><table width="99%" border="0" align="center"><tr bgcolor=#EEEEEE><td align=left>&nbsp;&nbsp;&nbsp;&#0183;&nbsp;<a rel=nofollow rel=nofollow href=/showblog/33596/Login-Systems-and-More-with-Ruby-on-Rails/ class="comments_link">This article is an excerpt from the "Ruby Cookbook," published by O'Reilly. We hope...</a></td></tr><tr><td> </td></tr><tr><td><div align="left" class="txtplain1">>>> <a rel=nofollow rel="nofollow" class="txtplain1" href="/showblog/33596/Login-Systems-and-More-with-Ruby-on-Rails/"><u><strong>Post your comment now!</strong></u></a></div></td></tr><tr><td></td></tr></table></td></tr></table></p><p class="comments_block"><table width="99%" cellspacing="0" cellpadding="0" bordercolor="#edf0f7" border="1" align="center"><tr><td height="24" bgcolor="#f5f5f5"><div align="center"><a rel=nofollow rel="nofollow" class="art_titblack" href="http://www.amazon.com/gp/product/0596523696/102-4097062-5706514?ie=UTF8&tag=develshedinc-20&linkCode=xm2&camp=1789&creativeASIN=0596523696">Buy this book...</a></div></td></tr><tr><td height="40" bgcolor="#ffffff" class="txtplain1"><table width="99%" border="0" align="center" class="txtplain1"><TD><P><a rel=nofollow rel=nofollow href="http://www.amazon.com/gp/product/0596523696/102-4097062-5706514?ie=UTF8&tag=develshedinc-20&linkCode=xm2&camp=1789&creativeASIN=0596523696"><EM><IMG style="WIDTH: 90px; HEIGHT: 68px" alt="Buy this book now." hspace=5 src="http://images.devshed.com/cmn/amazon_icon.gif" align=left vspace=3 border=0></EM></A> This article is excerpted from chapter 15 of the <em>Ruby Cookbook</em>, written by Lucas Carlson and Leonard Richardson (O'Reilly, 2006; ISBN: 0596523696). Check it out today at your favorite bookstore. <a rel=nofollow rel=nofollow href="http://www.amazon.com/gp/product/0596523696/102-4097062-5706514?ie=UTF8&tag=develshedinc-20&linkCode=xm2&camp=1789&creativeASIN=0596523696">Buy this book now</A>.</P></TD> </TR></table></td></tr></table></p>  </div> </span></td></tr></table><table width="668" border="0" cellspacing="0" cellpadding="0"> <tr>  <td width="334" height="1" valign="top" bgcolor="#FFFFFF"></td> <td height="1" bgcolor="#FFFFFF"></td> <td width="333" height="1" valign="top" bgcolor="#FFFFFF"></td> </tr> <tr>  <td width="334" valign="top"></td> <td bgcolor="#FFFFFF"></td> <td width="333" valign="top"></td> </tr> <tr>  <td width="334" valign="top"> <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <p class="comments_block"><table width="99%" cellspacing="3" cellpadding="0" bordercolor="#edf0f7" border="0" align="center" class="site-moreart"><tr><td height="24" class="site-bckgtit">RUBY-ON-RAILS ARTICLES</a></td></tr><tr><td bgcolor="#ffffff" class="txtplain1"><br/><table width="99%" border="0" align="center"><td><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Caching-and-Performance-Optimization/' class='linkscolor'>- Caching and Performance Optimization</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/The-Action-Profiler-and-Performance-Optimization/' class='linkscolor'>- The Action Profiler and Performance Optimiza...</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Using-Rails-Analyzer-for-Performance-Optimization/' class='linkscolor'>- Using Rails Analyzer for Performance Optimiz...</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Performance-Optimization/' class='linkscolor'>- Performance Optimization</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Application-Deployment-with-Capistranao/' class='linkscolor'>- Application Deployment with Capistrano</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Deploying-an-Application-to-the-Server/' class='linkscolor'>- Deploying an Application to the Server</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Secure-Application-Deployment-with-Ruby-on-Rails/' class='linkscolor'>- Secure Application Deployment with Ruby on R...</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Installing-the-Database-for-Application-Deployment/' class='linkscolor'>- Installing the Database for Application Depl...</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Application-Deployment/' class='linkscolor'>- Application Deployment</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Recording-Acceptance-Tests/' class='linkscolor'>- Recording Acceptance Tests</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Commands-for-Acceptance-Testing/' class='linkscolor'>- Commands for Acceptance Testing</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Acceptance-Testing/' class='linkscolor'>- Acceptance Testing</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Checkout-and-Order-Processing-the-User-Side/' class='linkscolor'>- Checkout and Order Processing: the User Side</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Checkout-and-Order-Processing-the-Administrative-Side/' class='linkscolor'>- Checkout and Order Processing: the Administr...</a><BR><a href='http://www.devarticles.com/c/a/Ruby-on-Rails/Online-Order-Processing-Using-PayPal/' class='linkscolor'>- Online Order Processing: Using PayPal</a><BR></tr></table><div class="moreart_span"><a href='http://www.devarticles.com/c/b/Ruby-on-Rails/'>Find More Ruby-on-Rails Articles</a></div></td></tr></table> </td> </tr> </table> </td> <td width="1" bgcolor="#FFFFFF"><img src="images/spacer.gif" width="1" height="10"></td> <td width="333" valign="top"> <div align="right">  <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td><div align="center"><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=742");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'></scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=1409151188' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=742&amp;cb=1409151188&amp;n=a72b9207' border='0' alt='' /></a></noscript></div><br />     </td>
+ </tr> </table> </td> </tr> </table></TD></TR></table> </td></tr> </table> </div> <div id=resultright> <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table cellspacing="0" cellpadding="0" width="160" align="center" border="0"><tbody><tr><td><!-- Skyscraper --><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=142");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'></scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=243572975' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=142&amp;cb=243572975&amp;n=a72b9207' border='0' alt='' /></a></noscript></td></tr></tbody></table>     </td>
+ </tr> </table> <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td><script type="text/javascript"
+src="http://www.dinclinx.com/?s=1469&e=0&t=1001&f=javascript"></script>     </td>
+ </tr> </table> <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <table cellspacing="0" cellpadding="0" width="100%" border="0"><tbody><tr><td><script type='text/javascript'><!--//<![CDATA[
+var m3_u = (location.protocol=='https:'?'https://otto.developershed.com/www/delivery/ajs.php':'http://otto.developershed.com/www/delivery/ajs.php');
+var m3_r = Math.floor(Math.random()*99999999999);
+if (!document.MAX_used) document.MAX_used = ',';
+document.write ("<scr"+"ipt type='text/javascript' src='"+m3_u);
+document.write ("?zoneid=368");
+document.write ('&amp;cb=' + m3_r);
+if (document.MAX_used != ',') document.write ("&amp;exclude=" + document.MAX_used);
+document.write ("&amp;loc=" + escape(window.location));
+if (document.referrer) document.write ("&amp;referer=" + escape(document.referrer));
+if (document.context) document.write ("&context=" + escape(document.context));
+if (document.mmm_fo) document.write ("&amp;mmm_fo=1");
+document.write ("'></scr"+"ipt>");
+//]]>--></script><noscript><a rel=nofollow href='http://otto.developershed.com/www/delivery/ck.php?n=a72b9207&amp;cb=1481256655' target='_blank'><img src='http://otto.developershed.com/www/delivery/avw.php?zoneid=368&amp;cb=1481256655&amp;n=a72b9207' border='0' alt='' /></a></noscript></td></tr></tbody></table>     </td>
+ </tr> </table> <table width="95%" border="0" cellspacing="0" cellpadding="0" align="center"> <tr> <td> <BR> </td> </tr> </table> </div> </div></div><div id=clear></div> <table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr>  <td bgcolor="#FE9900"><BR></td> </tr> </table></div><BR>1<!-- OVERLAY NOT SHOWN STATUS OFF--><style type="text/css">
+<!--
+#botfooter { 
+clear: both;
+text-align:center;
+font-size: 0.8em;
+background-color:#f1f1f1;
+font-family:Arial, Helvetica, sans-serif;
+width: 100%;
+}
+.bottxt {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 11px;
+color: #333333;
+text-decoration: none;
+line-height: 20px;
+padding: 0;
+margin: 0;
+}
+A.botnetwork:link, A.botnetwork:visited, A.botnetwork:active { 
+font-family: Verdana,Arial,Helvetica; 
+font-size: 9px; 
+color: #000000; 
+text-decoration: none;
+}
+A.botnetwork:hover { 
+color:blue; 
+text-decoration: underline;
+}
+.botoverlink {
+cursor:pointer; 
+cursor:hand;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 10px;
+color: #FFFFFF;
+text-decoration: underline;
+}
+-->
+</style>
+<br/><div id="botfooter" align=center><table width="100%" class=contentpaneopen cellpadding=3 cellspacing=0 border=0><tr><td width="50"></td><div class="bottxt"><script type="text/javascript" language="JavaScript">
+<!--
+function ttgo(url)
+{
+if (url.length > 1)
+{
+document.location.href = "http://" + url + "/";
+}
+}
+function ttfstart(name)
+{
+document.write('<td width=\'125\'><div style="display: inline;"><b>' + name + '</b></div></td><td width=\'40\'><div style="display: inline;"><form style="display: inline; margin: 0;" name="jumptt"><select style="font-size: 10px;font-family: Verdana, Arial;" name="menutt" onChange="javascript:ttgo(this.options[this.selectedIndex].value);">');
+document.write('<option value="" selected> - Select - </option>'); 
+}
+function ttfend()
+{
+document.write('</select></form></div></td>');
+}
+function ttfadd(name, val)
+{
+document.write('<option value="' + val + '">' + name + '</option>');
+}
+function ttspace()
+{
+document.write('&nbsp;&nbsp;&nbsp;');
+}
+ttfstart('Developer&nbsp;Tutorials:');
+ttfadd('Dev Shed', 'www.devshed.com');
+ttfadd('ASP Free', 'www.aspfree.com');
+ttfadd('Dev Articles', 'www.devarticles.com');
+ttfadd('Dev Hardware', 'www.devhardware.com');
+ttfadd('SEO Chat', 'www.seochat.com');
+ttfadd('Web Hosting', 'webhosting.devshed.com');
+ttfadd('Codewalkers', 'www.codewalkers.com');
+ttfend();
+//ttspace();
+ttfstart('Developer&nbsp;Resources:');
+ttfadd('Scripts', 'www.scripts.com');
+ttfadd('Tutorialized', 'www.tutorialized.com');
+ttfadd('Dev Mechanic', 'tools.devshed.com');
+//ttfadd('iWatchIT', 'www.iwatchit.com');
+//ttfadd('IT Marketplace', 'www.itmarketplace.com');
+//ttfadd('igrep', 'www.igrep.com');
+ttfend();
+//ttspace();
+ttfstart('Developer&nbsp;Forums:');
+ttfadd('Dev Shed Forums', 'forums.devshed.com');
+ttfadd('ASP Free Forums', 'forums.aspfree.com');
+ttfadd('Dev Articles Forums', 'forums.devarticles.com');
+ttfadd('Dev Hardware Forums', 'www.devhardware.com/forums');
+ttfadd('SEO Chat Forums', 'forums.seochat.com');
+ttfadd('Codewalkers Forums', 'forums.codewalkers.com');
+ttfadd('Tutorialized Forums', 'forums.tutorialized.com');
+ttfadd('Dev Archives Forums', 'archives.devshed.com/forums');
+ttfend();
+//-->
+</script>
+</tr><tr><td width="50"></td><div class="bottxt"><script type="text/javascript" language="JavaScript">
+<!--
+function ttgo(url)
+{
+if (url.length > 1)
+{
+document.location.href = "http://" + url + "/";
+}
+}
+function ttfstart(name)
+{
+document.write('<td width=\'125\'><div style="display: inline;"><b>' + name + '</b></div></td><td width=\'40\'><div style="display: inline;"><form style="display: inline; margin: 0;" name="jumptt"><select style="font-size: 10px;font-family: Verdana, Arial;" name="menutt" onChange="javascript:ttgo(this.options[this.selectedIndex].value);"><option value="" selected> - Select - </option>'); 
+}
+function ttfend()
+{
+document.write('</select></form></div></td>');
+}
+function ttfadd(name, val)
+{
+document.write('<option value="' + val + '">' + name + '</option>');
+}
+function ttspace()
+{
+document.write('&nbsp;&nbsp;&nbsp;');
+}
+ttfstart('IT Professionals:');
+ttfadd('Baseline', 'www.baselinemag.com');
+ttfadd('Careers', 'careers.eweek.com');
+ttfadd('CIO Insight', 'www.cioinsight.com');
+ttfadd('eWeek', 'www.eweek.com');
+ttfadd('Networking', 'networking.eweek.com');
+ttfadd('Publish', 'www.publish.com');
+ttfadd('Security IT Hub', 'security.ithub.com');
+ttfadd('Web Buyers Guide', 'www.webbuyersguide.com');
+ttfend();
+//ttspace();
+ttfstart('IT Marketing:');
+ttfadd('Channel Insider', 'www.channelinsider.com');
+ttfadd('eSeminars', 'www.eseminarslive.com');
+ttfadd('Mid-market', 'midmarket.eweek.com');
+ttfadd('Strategic Partner', 'esp.eweek.com');
+ttfend();
+//ttspace();
+ttfstart('Open&nbsp;Source&nbsp;/&nbsp;Microsoft:');
+ttfadd('Desktoplinux', 'www.desktoplinux.com');
+ttfadd('DeviceForge', 'www.deviceforge.com');
+ttfadd('DevSource', 'www.devsource.com');
+ttfadd('LinuxDevices', 'www.linuxdevices.com');
+ttfadd('Linux Watch', 'www.linux-watch.com');
+ttfadd('Microsoft Watch', 'www.microsoft-watch.com');
+ttfadd('PDF Zone', 'www.pdfzone.com');
+ttfadd('Windows for Devices', 'www.windowsfordevices.com');
+ttfend();
+//-->
+</script><td width="50"></td></tr></table><br>
+<span class="bottxt">&copy; 2003-2010 by <a href="http://www.developershed.com"><font color=blue>Developer Shed</font></a>. All rights reserved. DS Cluster 1</span> </div></div><STYLE type="text/css">
+.iTt{
+FONT-FAMILY:       Verdana, Arial, Helvetica;
+FONT-SIZE:         11px;
+FONT-STYLE:        normal;
+FONT-WEIGHT:       normal;
+COLOR:             black;
+BACKGROUND-COLOR:  lightyellow;
+BORDER:            black 1px solid;
+PADDING:           2px;
+}
+</STYLE>
+<SCRIPT language="javascript" src="http://devshed.us.intellitxt.com/intellitxt/front.asp?IPID=194&MK=6&FG=blue"></SCRIPT>
+</body></html>
+
+
+<!-- Generated by new in 1.372548 sec. --> 
+
+
+
+

@@ -1,0 +1,858 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    
+    <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=7"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="alexaVerifyID" content="dkPrlrocB3BLvlvyocBIdCgG_ik" /> <!-- this line is temporary. remove it in 73rd or 74th release -->
+    <title>big_bad_al: How to swap two integers in C++</title>
+    <link rel="home" title="Home" href="http://www.livejournal.com/" />
+    <link rel="contents" title="Site Map" href="http://www.livejournal.com/site/" />
+    <link rel="help" title="Technical Support" href="http://www.livejournal.com/support/" />
+    <link rel="apple-touch-icon" href="http://l-stat.livejournal.com/img/apple-touch-icon.png" />
+    
+    
+        
+
+    <script>
+    
+    </script>
+     
+    
+        <script type="text/javascript">
+            Site = window.Site || {};
+
+            (function(){
+                var p = {"media_embed_enabled":1,"inbox_update_poll":0,"has_remote":0,"statprefix":"http://l-stat.livejournal.com","server_time":1292397040,"ctx_popup":1,"remote_is_suspended":0,"imgprefix":"http://l-stat.livejournal.com/img","esn_async":1,"remote_can_track_threads":null,"currentJournal":"big_bad_al","siteroot":"http://www.livejournal.com","currentJournalBase":"http://big-bad-al.livejournal.com"}, i;
+                for (i in p) Site[i] = p[i];
+            })();
+       </script>
+    <link rel="stylesheet" type="text/css" href="http://l-stat.livejournal.com/??lj_base.css,esn.css,contextualhover.css,lj_base-app.css,ad_base.css,horizon/screen.css,horizon/layout.css,widget.css,statistics/un_stats.css,horizon/un_rblocks.css,horizon/loggedout.css,reskining/november2010/november2010.css?v=1291149814" />
+<!--[if IE]><link rel="stylesheet" type="text/css" href="http://l-stat.livejournal.com/??ie.css?v=1291434721" /><![endif]-->
+<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="http://l-stat.livejournal.com/??lj_base-ie.css,horizon/ie.css?v=1277844792" /><![endif]-->
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="http://l-stat.livejournal.com/??interstitial_banner_us.css?v=1263499801" /><![endif]-->
+<script type="text/javascript" src="http://l-stat.livejournal.com/js/??jquery.js,jquery_fn.js,basic.js,livejournal.js,esn.js,ippu.js,lj_ippu.js,ljwidget.js,ljwidget_ippu.js,journal.js,hourglass.js,contextualhover.js,livejournal-local.js,thread_expander.js,thread_expander.ex.js,quickreply.js,md5.js?v=1289552505"></script>
+<script type="text/javascript" src="http://l-stat.livejournal.com/js/??commentmanage.js,horizon.js?v=1291149813"></script>
+
+    <script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#publisher=1483b796-4406-4000-98db-019c32f6059e&amp;type=website&amp;embeds=true&amp;post_services=livejournal%2Cfacebook%2Ctwitter%2Cmyspace%2Cdigg%2Cdelicious%2Clinkedin%2Cfriendfeed%2Cwordpress%2Cblogger%2Cgoogle_bmarks%2Ctechnorati&amp;onmouseover=false"></script><link href='http://www.livejournal.com/go.bml?journal=big_bad_al&amp;itemid=98093&amp;dir=prev' rel='Previous' />
+<link href='http://www.livejournal.com/go.bml?journal=big_bad_al&amp;itemid=98093&amp;dir=next' rel='Next' />
+<script type="text/javascript">var LJ_cmtinfo = {"194349":{"u":"big_bad_al","rc":[194605],"has_link":0,"depth":3,"full":1,"username":"big_bad_al"},"193581":{"u":"big_bad_al","rc":[193837],"has_link":0,"depth":1,"full":1,"username":"big_bad_al"},"191789":{"u":"kitty_tape","rc":[192301],"has_link":0,"depth":0,"full":1,"username":"kitty_tape"},"194605":{"u":"macdaddyfrosh","rc":[],"has_link":0,"depth":4,"full":1,"username":"macdaddyfrosh"},"remote":"","192301":{"u":"big_bad_al","rc":[193069],"has_link":0,"depth":1,"full":1,"username":"big_bad_al"},"276781":{"u":"","rc":[],"has_link":0,"depth":2,"full":1},"journal":"big_bad_al","canAdmin":0,"194861":{"u":"dhalps","rc":[195117],"has_link":0,"depth":0,"full":1,"username":"dhalps"},"form_auth":"c0:1292396400:640:86400:ZtNqh9AUif-0-uow9sauZCIhweHw:14de6083f4a24fd4fb8889a5518b89d0","263981":{"u":"big_bad_al","rc":[276781],"has_link":0,"depth":1,"full":1,"username":"big_bad_al"},"is_s1":1,"194093":{"u":"big_bad_al","rc":[],"has_link":0,"depth":1,"full":1,"username":"big_bad_al"},"276013":{"u":"","rc":[],"has_link":0,"depth":1,"full":1},"195117":{"u":"big_bad_al","rc":[],"has_link":0,"depth":1,"full":1,"username":"big_bad_al"},"191533":{"u":"muddernh","rc":[],"has_link":0,"depth":0,"full":1,"username":"muddernh"},"193325":{"u":"macdaddyfrosh","rc":[193581,194093,276013],"has_link":0,"depth":0,"full":1,"username":"macdaddyfrosh"},"193069":{"u":"big_bad_al","rc":[],"has_link":0,"depth":2,"full":1,"username":"big_bad_al"},"193837":{"u":"macdaddyfrosh","rc":[194349],"has_link":0,"depth":2,"full":1,"username":"macdaddyfrosh"},"263725":{"u":"","rc":[263981],"has_link":0,"depth":0,"full":1},"269101":{"u":"","rc":[],"has_link":0,"depth":0,"full":1}};
+function userhook_screen_comment_ARG (dIid) { setStyle('cmtbar'+dIid, 'background', "#cccccc"); }
+function userhook_unscreen_comment_ARG (dIid) { setStyle('cmtbar'+dIid, 'background', "#bbddff"); }
+</script>
+
+    
+
+  </head>
+
+
+    <body class='logged-out' >
+    <div id="big-content-wrapper">
+	
+    <div id="content">
+    
+    <div id="content-inner">
+      
+      
+
+      
+      
+
+      
+
+      
+      <h1 class='logged-out'></h1>
+
+      <div id='content-wrapper' class='' style='margin-right: ; height: 1%'>
+        
+
+        
+
+        <!-- Content -->
+        <p><table><tr valign='middle'><td><img src='http://l-userpic.livejournal.com/17048293/3658933' width='80' height='80' align='absmiddle' hspace='3' title='Alan' alt=''></td><td>Alan (<span class='ljuser ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>) wrote,<br /><font size='-1'>@ <a href="http://big-bad-al.livejournal.com/2008/">2008</a>-<a href="http://big-bad-al.livejournal.com/2008/07/">07</a>-<a href="http://big-bad-al.livejournal.com/2008/07/03/">03</a> 20:39:00</font></td></tr></table><div class="standout"><table class="container"><tr><td>
+<table><tr><td valign='middle'><a href="http://www.livejournal.com/go.bml?journal=big_bad_al&amp;itemid=98093&amp;dir=prev"><img src="http://l-stat.livejournal.com/img/btn_prev.gif?v=1" width="24" height="24" alt="Previous Entry" title="Previous Entry" border='0' align="absmiddle" /></a>&nbsp;&nbsp;<a href="http://www.livejournal.com/tools/memadd.bml?journal=big_bad_al&amp;itemid=98093"><img src="http://l-stat.livejournal.com/img/memadd.gif?v=1" width="24" height="24" alt="Add to memories!" title="Add to memories!" border='0' align="absmiddle" /></a>&nbsp;&nbsp;<a href="javascript:void(0)"><img src="http://l-stat.livejournal.com/img/btn_sharethis.gif?v=1" width="24" height="24" alt="Share this!" title="Share this!" border='0' align="absmiddle" /></a><script type="text/javascript">
+            SHARETHIS.addEntry({url:'http://big-bad-al.livejournal.com/98093.html', title: 'How to swap two integers in C++'}, {button: false})
+                .attachButton(jQuery('a:last')[0]);
+            </script>&nbsp;&nbsp;<a href="http://www.livejournal.com/go.bml?journal=big_bad_al&amp;itemid=98093&amp;dir=next"><img src="http://l-stat.livejournal.com/img/btn_next.gif?v=1" width="24" height="24" alt="Next Entry" title="Next Entry" border='0' align="absmiddle" /></a></td></tr></table>
+</td></tr></table></div>
+<div style='margin-left: 30px'><table border=0>
+<tr><td align=right><b>Entry tags:</b></td><td><a href='http://big-bad-al.livejournal.com/tag/assembly'>assembly</a>, <a href='http://big-bad-al.livejournal.com/tag/code'>code</a>, <a href='http://big-bad-al.livejournal.com/tag/coding'>coding</a>, <a href='http://big-bad-al.livejournal.com/tag/compilers'>compilers</a>, <a href='http://big-bad-al.livejournal.com/tag/computer%20science'>computer science</a>, <a href='http://big-bad-al.livejournal.com/tag/computers'>computers</a>, <a href='http://big-bad-al.livejournal.com/tag/cpp'>cpp</a>, <a href='http://big-bad-al.livejournal.com/tag/cs'>cs</a>, <a href='http://big-bad-al.livejournal.com/tag/integer%20swap'>integer swap</a>, <a href='http://big-bad-al.livejournal.com/tag/optimization'>optimization</a>, <a href='http://big-bad-al.livejournal.com/tag/software'>software</a>, <a href='http://big-bad-al.livejournal.com/tag/software%20engineering'>software engineering</a>, <a href='http://big-bad-al.livejournal.com/tag/swap'>swap</a>, <a href='http://big-bad-al.livejournal.com/tag/xchg'>xchg</a>, <a href='http://big-bad-al.livejournal.com/tag/xor'>xor</a></td></tr>
+</table><p>
+<font face='Arial,Helvetica' size='+1'><i><b>How to swap two integers in C++</b></i></font><br />
+Warning: this post got embarrassingly long. For the short version, read up through the paragraph that starts with "If you use."<br /><br />This is something that's been bugging me for a while, and I'd like to lay it to rest. If you've done any work in C++, you've probably heard the riddle about how to swap two integers without using a temporary variable. The question is exactly what it sounds like: you have two integers (call them <code>x</code> and <code>y</code>), you want to swap their values, and you may or may not want to use a third, temporary variable while doing it. Here are some ways of swapping integers that I have actually seen in professional code written by professional coders:<br /><br /><table border="1"><tr><td><b>Method Name</b></td><td><b>Code</b></td></tr><tr><td>Method A</td><td><code>{&nbsp;&nbsp;// Limit the scope of t<br>&nbsp;&nbsp;int t = x;<br>&nbsp;&nbsp;x = y;<br>&nbsp;&nbsp;y = t;<br>}</code></td></tr><tr><td>Method B</td><td><code>x ^= y;<br>y ^= x;<br>x ^= y;</code></td></tr><tr><td>Method C</td><td><code>x ^= y ^= x ^= y;</code></td></tr><tr><td>Method D</td><td><code>x = x + y;<br>y = x - y;<br>x = x - y;</code></td></tr><tr><td>Method E</td><td><code>std::swap(x, y);</code></td></tr></table><br />Which of these is the fastest way to swap integers? Which way is the fastest method that doesn't require extra memory? When will you want to use a different method? What is the overall best method?<br /><br /><br /><br />Try to come up with some answers before reading further.<img style="display:none" src="http://www.cs.hmc.edu/~adavidso/cgi-bin/lj.cgi?label=qf1acxn4mRWl22L4OaJHvsJSxlIQBg08jAsZu1awHPk"><br /><br /><br /><br />When you've decided on your answers, let's take a closer look. No, on second thought, this got really long. For those of you who don't want to read all the way to the end, let me just get my main point out of the way. After that, we'll take a closer look. If you don't want to spoil the ending, skip the next paragraph.<br /><br />If you use <a name="cutid1"></a>the xor trick to swap integers, STOP IT! Unless you have a brain-dead compiler, the naive swap with a temporary integer doesn't use any more space than the xor swap, but it is easier to read and often requires less CPU time. On top of this, the xor swap may actually have incorrect behavior if you do it all on one line (a la Method C). You're not being cute or clever by using this trick; you're actually making your code worse. Yes, the xor swap is an interesting mathematical curiosity, but it should never be used in real code. Just write what you mean (i.e. use either Method A or E) and let the compiler handle it, because it can compile things better than you can. and in the (far-fetched) event that it can't do this right and you really do need those extra couple bytes of stack space, either get a better compiler or write it in assembly. but stop propagating the myth that the xor swap is a good coding trick. <a name='cutid1-end'></a><br /><br />Now that I've gotten that out of my system, we can continue. <a name="cutid2"></a>Throughout this post, I'll be using g++ 4 to compile stuff for a 32-bit x86 Linux distribution, because that's what I happen to have on hand at the moment. This post applies to many other compilers for most other architectures and all other OSes, too, but now you have a way of verifying my work. The g++ command line flags I will use are <code>-Wall</code> (to turn on all warnings) and <code>-g</code> (to add in debugging strings so I can more easily see what's going on when I disassemble the binaries). I will also be using <code>objdump -S</code> to look at the disassembled machine code. We'll start out with something simple and straightforward, and compile in the simple and straightforward way:<pre><tt>username@computername$cat swap.cc
+#include &lt;iostream&gt;  // Contains std::cout and std::endl
+#include &lt;algorithm&gt;  // Contains std::swap
+
+void PrintValues(int x, int y) {
+  std::cout &lt;&lt; "x is " &lt;&lt; x &lt;&lt; std::endl;
+  std::cout &lt;&lt; "y is " &lt;&lt; y &lt;&lt; std::endl;
+}
+
+int main() {
+  int x = 3;
+  int y = 5;
+
+  PrintValues(x, y);
+
+  {
+    int t = x;  // Method A
+    x = y;
+    y = t;
+  }
+
+  PrintValues(x, y);
+
+  x ^= y;  // Method B
+  y ^= x;
+  x ^= y;
+
+  PrintValues(x, y);
+
+  x ^= y ^= x ^= y;  // Method C
+
+  PrintValues(x, y);
+
+  x = x + y;  // Method D
+  y = x - y;
+  x = x - y;
+
+  PrintValues(x, y);
+
+  std::swap(x, y);  // Method E
+
+  PrintValues(x, y);
+}
+username@computername$g++ -Wall -g swap.cc
+swap.cc: In function 'int main()':
+swap.cc:29: warning: operation on 'x' may be undefined
+username@computername$</tt></pre>Well, there's our first snafu&mdash;Method C is not actually valid C++! From the fourth paragraph of Section 5 of <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2005/n1905.pdf">the C++ standard</a>, "[b]etween the previous and next sequence point a scalar object shall have its stored value modified at most once...; otherwise the behavior is undefined." In case you're not familiar with sequence points, they're defined in Section 1.9 Paragraph 7 as the points where "all side effects of previous evaluations shall be complete and no side effects of subsequent evaluations shall have taken place." In this code, the important sequence points are all the semicolons (there are some others, but they don't have any effect in this example, so I will ignore them). In particular, the one-line xor swap modifies the value of <code>x</code> twice without a sequence point in between, so the behavior isn't well-defined. One way to think about it is that we can't know the value of <code>x</code> after that statement: without any internal sequence points, we can't tell whether the store on the left or the right happens last. In practice, Method C usually does swap the integers correctly, but the standard has no such guarantees. Indeed, the <a href="http://xkcd.com/293/">behavior is <i>undefined</i></a>, which technically means that running this code could very well wipe your hard drive and then start downloading kiddie porn. It's unlikely that anyone will write a compiler which, when faced with this code, creates a program with that behavior, but such a malicious compiler would totally conform to the C++ standard. So Method C is definitely out, and will be deleted from all further analysis.<br /><br />With that removed, everything else compiles fine and runs fine and has the expected behavior. Let's disassemble the binary we just compiled and take a look at exactly what it's doing:<pre><tt>  int x = 3;
+ 80486da: c7 45 f8 03 00 00 00  movl   $0x3,-0x8(%ebp)
+  int y = 5;
+ 80486e1: c7 45 f4 05 00 00 00  movl   $0x5,-0xc(%ebp)
+
+  PrintValues(x, y);
+ 80486e8: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 80486eb: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 80486ee: 89 44 24 04           mov    %eax,0x4(%esp)
+ 80486f2: 89 14 24              mov    %edx,(%esp)
+ 80486f5: e8 52 ff ff ff        call   804864c &lt;_Z11PrintValuesii&gt;
+
+  {
+    int t = x;  // Method A
+ 80486fa: 8b 45 f8              mov    -0x8(%ebp),%eax
+ 80486fd: 89 45 fc              mov    %eax,-0x4(%ebp)
+    x = y;
+ 8048700: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 8048703: 89 45 f8              mov    %eax,-0x8(%ebp)
+    y = t;
+ 8048706: 8b 45 fc              mov    -0x4(%ebp),%eax
+ 8048709: 89 45 f4              mov    %eax,-0xc(%ebp)
+  }
+
+  PrintValues(x, y);
+ 804870c: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 804870f: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 8048712: 89 44 24 04           mov    %eax,0x4(%esp)
+ 8048716: 89 14 24              mov    %edx,(%esp)
+ 8048719: e8 2e ff ff ff        call   804864c &lt;_Z11PrintValuesii&gt;
+
+  x ^= y;  // Method B
+ 804871e: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 8048721: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 8048724: 31 d0                 xor    %edx,%eax
+ 8048726: 89 45 f8              mov    %eax,-0x8(%ebp)
+  y ^= x;
+ 8048729: 8b 55 f4              mov    -0xc(%ebp),%edx
+ 804872c: 8b 45 f8              mov    -0x8(%ebp),%eax
+ 804872f: 31 d0                 xor    %edx,%eax
+ 8048731: 89 45 f4              mov    %eax,-0xc(%ebp)
+  x ^= y;
+ 8048734: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 8048737: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 804873a: 31 d0                 xor    %edx,%eax
+ 804873c: 89 45 f8              mov    %eax,-0x8(%ebp)
+
+  PrintValues(x, y);
+ 804873f: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 8048742: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 8048745: 89 44 24 04           mov    %eax,0x4(%esp)
+ 8048749: 89 14 24              mov    %edx,(%esp)
+ 804874c: e8 fb fe ff ff        call   804864c &lt;_Z11PrintValuesii&gt;
+
+  x = x + y;  // Method D
+ 8048751: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 8048754: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 8048757: 8d 04 02              lea    (%edx,%eax,1),%eax
+ 804875a: 89 45 f8              mov    %eax,-0x8(%ebp)
+  y = x - y;
+ 804875d: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 8048760: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 8048763: 89 d1                 mov    %edx,%ecx
+ 8048765: 29 c1                 sub    %eax,%ecx
+ 8048767: 89 c8                 mov    %ecx,%eax
+ 8048769: 89 45 f4              mov    %eax,-0xc(%ebp)
+  x = x - y;
+ 804876c: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 804876f: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 8048772: 89 d1                 mov    %edx,%ecx
+ 8048774: 29 c1                 sub    %eax,%ecx
+ 8048776: 89 c8                 mov    %ecx,%eax
+ 8048778: 89 45 f8              mov    %eax,-0x8(%ebp)
+
+  PrintValues(x, y);
+ 804877b: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 804877e: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 8048781: 89 44 24 04           mov    %eax,0x4(%esp)
+ 8048785: 89 14 24              mov    %edx,(%esp)
+ 8048788: e8 bf fe ff ff        call   804864c &lt;_Z11PrintValuesii&gt;
+
+  std::swap(x, y);  // Method E
+ 804878d: 8d 45 f4              lea    -0xc(%ebp),%eax
+ 8048790: 89 44 24 04           mov    %eax,0x4(%esp)
+ 8048794: 8d 45 f8              lea    -0x8(%ebp),%eax
+ 8048797: 89 04 24              mov    %eax,(%esp)
+ 804879a: e8 8b 00 00 00        call   804882a &lt;_ZSt4swapIiEvRT_S1_&gt;
+
+  PrintValues(x, y);
+ 804879f: 8b 45 f4              mov    -0xc(%ebp),%eax
+ 80487a2: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 80487a5: 89 44 24 04           mov    %eax,0x4(%esp)
+ 80487a9: 89 14 24              mov    %edx,(%esp)
+ 80487ac: e8 9b fe ff ff        call   804864c &lt;_Z11PrintValuesii&gt;</tt></pre>In case you're not familiar with assembly code, let me give a quick explanation of what's going on here (if you're already comfortable with it, skip this paragraph). The leftmost column is the position of this code within the program; you can ignore it. The bytes that come after it are the actual machine code generated by the compiler; you can ignore them. Then there is a column of the assembly instructions that correspond to the machine code we're ignoring, followed by the arguments to those instructions. These last two columns are the important part, because they're nearly readable and they describe exactly what the computer is doing. Interspersed throughout are the lines of C++ that were compiled to get the machine code just below them. Things that start with % are registers, which are the locations in the processor that store the data you're working with. Parentheses around registers denote that the register contains a pointer to somewhere in memory, and it's talking about that memory location instead of the value in the register itself. The assembly instructions used here can move data from memory to registers and back again (the <code>mov</code> and <code>movl</code> instructions), call other functions (the <code>call</code> instruction), take the exclusive or of two values (the <code>xor</code> instruction), load and add values (<code>lea</code>, which admittedly is confusing because it is used here both to add numbers together and to pass references into <code>std::swap</code>), and subtract values (<code>sub</code>). If you're not very comfortable with this, don't worry; I'll walk you through the important parts.<img style="display:none" src="http://www.cs.hmc.edu/~adavidso/cgi-bin/lj.cgi?label=eNTzxXP4HderAAPpZrlc3fh_M87QjeKHuGTKcxXb71g"><br /><br />The compiled instructions are pretty straightforward here. <code>x</code> is stored 8 bytes below the pointer stored in register <code>%ebp</code>, and <code>y</code> is stored 12 (0xc) bytes below that same pointer. To call <code>PrintValues</code>, we push <code>y</code> and then <code>x</code> onto the top of the stack (by loading them into registers <code>%eax</code> and <code>%edx</code> and then putting them near where the stack pointer register, <code>%esp</code>, points) and then we call <code>PrintValues</code> (whose name has been changed slightly but is still recognizable). Note that the arguments are pushed onto the stack in the reverse order that we listed them in the code. Method A loads <code>x</code> into the register <code>%eax</code>, then stores it again 4 bytes before <code>%ebp</code> (presumably this is <code>t</code>). It then loads <code>y</code> and stores it where <code>x</code> goes, etc, just the way you'd expect. For Method B, we first load the variables into registers <code>%edx</code> and <code>%eax</code>, we xor them together so that the result is in <code>%eax</code>, and we store that value back into memory. We then repeat this twice more for the other two xors. The rest of the code should be equally straightforward (maybe not counting the <code>lea</code> instructions, but trust me that it's doing what you'd expect there).<br /><br />If this were our final compiled program, I would totally agree that the naive swap requires an extra 4 bytes of memory in the stack frame, and therefore truly does require an extra temporary variable that the rest of the methods don't need. However, we compiled with the default optimization level, which has absolutely no optimizations at all whatsoever. If you use g++ and/or GCC, you should really <a href="http://www.network-theory.co.uk/docs/gccintro/gccintro_49.html">use optimization level 2</a> for any release-worthy code, and only use level 0 for debugging purposes. So let's try this again with the <code>-O2</code> flag passed to g++ as well, and see what machine code we get this time:<pre><tt>  int x = 3;
+  int y = 5;
+
+  PrintValues(x, y);
+ 80486dc: c7 44 24 04 05 00 00  movl   $0x5,0x4(%esp)
+ 80486e3: 00
+ 80486e4: c7 04 24 03 00 00 00  movl   $0x3,(%esp)
+ 80486eb: e8 7c ff ff ff        call   804866c <_z11printvaluesii>
+
+  {
+    int t = x;  // Method A
+    x = y;
+    y = t;
+  }
+
+  PrintValues(x, y);
+ 80486f0: c7 44 24 04 03 00 00  movl   $0x3,0x4(%esp)
+ 80486f7: 00
+ 80486f8: c7 04 24 05 00 00 00  movl   $0x5,(%esp)
+ 80486ff: e8 68 ff ff ff        call   804866c <_z11printvaluesii>
+
+  x ^= y;  // Method B
+  y ^= x;
+  x ^= y;
+
+  PrintValues(x, y);
+ 8048704: c7 44 24 04 05 00 00  movl   $0x5,0x4(%esp)
+ 804870b: 00
+ 804870c: c7 04 24 03 00 00 00  movl   $0x3,(%esp)
+ 8048713: e8 54 ff ff ff        call   804866c <_z11printvaluesii>
+
+  x = x + y;  // Method D
+  y = x - y;
+  x = x - y;
+
+  PrintValues(x, y);
+ 8048718: c7 44 24 04 03 00 00  movl   $0x3,0x4(%esp)
+ 804871f: 00
+ 8048720: c7 04 24 05 00 00 00  movl   $0x5,(%esp)
+ 8048727: e8 40 ff ff ff        call   804866c <_z11printvaluesii>
+
+  swap(x, y);  // Method E
+
+  PrintValues(x, y);
+ 804872c: c7 44 24 04 05 00 00  movl   $0x5,0x4(%esp)
+ 8048733: 00
+ 8048734: c7 04 24 03 00 00 00  movl   $0x3,(%esp)
+ 804873b: e8 2c ff ff ff        call   804866c <_z11printvaluesii></tt></pre>Whoops! Here, all the variables have been completely optimized away! We just push the values 3 and 5 onto the stack when we want to call <code>PrintValues</code>, and continually swap their order. In this case, all four swapping methods have the same performance: none of them take any CPU cycles at all, and none of them take any memory at all. Clearly, this is not what people have in mind when they ask about swapping integers. So, I need a way to force the values to be stored somewhere,  and an easy way to do that is to conditionally modify their values. I'll make some test that the compiler hopefully can't figure out, and set <code>x</code> and <code>y</code> to 0 if the test turns out true. The complier won't know that the result is always false and no variables are modified, so it will need to store their values somewhere just in case we do modify them. To accomplish this, I'll use the following function:<pre><tt>bool NontrivialFunction(int x, int y, int base) {
+  // I need a way to force x and y to be stored instead of completely optimized
+  // away. So, here's the plan: if either of them are not prime, I will return
+  // true and set them to zero.
+  if (x &lt; base * base && y &lt; base * base)
+    return false;
+  if (x % base == 0)
+    return true;
+  if (y % base == 0)
+    return true;
+  return NontrivialFunction(x, y, base + 1);
+}
+...
+  // and this part is added to main() just after defining x and y
+  if (NontrivialFunction(x, y, 2)) {
+    x = 0;
+    y = 0;
+  }</tt></pre><code>NontrivialFunction</code> is reminiscent of a recursive primality checker, and because it's recursive, the compiler can't inline it (and probably won't try to precompute it). Since <code>x</code> and <code>y</code> may change depending on the result, the compiler will need to store them somewhere so that it's possible to set them to zero if necessary. So now let's compile again (with <code>-O2</code> for optimization again), and look at the result:<pre><tt>  int x = 3;
+  int y = 5;
+  if (NontrivialFunction(x, y, 2)) {
+ 8048739: c7 44 24 08 02 00 00  movl   $0x2,0x8(%esp)
+ 8048740: 00
+ 8048741: c7 44 24 04 05 00 00  movl   $0x5,0x4(%esp)
+ 8048748: 00
+ 8048749: c7 04 24 03 00 00 00  movl   $0x3,(%esp)
+ 8048750: e8 b7 fe ff ff        call   804860c &lt;_Z18NontrivialFunctioniii&gt;
+ 8048755: 84 c0                 test   %al,%al
+ 8048757: 74 52                 je     80487ab &lt;main+0x81&gt;
+ 8048759: 31 db                 xor    %ebx,%ebx
+ 804875b: 31 f6                 xor    %esi,%esi
+ 804875d: 31 ff                 xor    %edi,%edi
+    x = 0;
+    y = 0;
+  }
+
+  PrintValues(x, y);
+ 804875f: 89 74 24 04           mov    %esi,0x4(%esp)
+ 8048763: 89 1c 24              mov    %ebx,(%esp)
+ 8048766: e8 5b ff ff ff        call   80486c6 &lt;_Z11PrintValuesii&gt;
+
+  {
+    int t = x;  // Method A
+    x = y;
+    y = t;
+  }
+
+  PrintValues(x, y);
+ 804876b: 89 5c 24 04           mov    %ebx,0x4(%esp)
+ 804876f: 89 34 24              mov    %esi,(%esp)
+ 8048772: e8 4f ff ff ff        call   80486c6 &lt;_Z11PrintValuesii&gt;
+
+  x ^= y;  // Method B
+  y ^= x;
+ 8048777: 31 fb                 xor    %edi,%ebx
+  x ^= y;
+ 8048779: 89 de                 mov    %ebx,%esi
+ 804877b: 31 fe                 xor    %edi,%esi
+
+  PrintValues(x, y);
+ 804877d: 89 5c 24 04           mov    %ebx,0x4(%esp)
+ 8048781: 89 34 24              mov    %esi,(%esp)
+ 8048784: e8 3d ff ff ff        call   80486c6 &lt;_Z11PrintValuesii&gt;
+
+  x = x + y;  // Method D
+  y = x - y;
+  x = x - y;
+
+  PrintValues(x, y);
+ 8048789: 89 74 24 04           mov    %esi,0x4(%esp)
+ 804878d: 89 1c 24              mov    %ebx,(%esp)
+ 8048790: e8 31 ff ff ff        call   80486c6 &lt;_Z11PrintValuesii&gt;
+
+  std::swap(x, y);  // Method E
+
+  PrintValues(x, y);
+ 8048795: 89 5c 24 04           mov    %ebx,0x4(%esp)
+ 8048799: 89 34 24              mov    %esi,(%esp)
+ 804879c: e8 25 ff ff ff        call   80486c6 &lt;_Z11PrintValuesii&gt;
+
+}
+ 80487a1: 31 c0                 xor    %eax,%eax
+ 80487a3: 8d 65 f4              lea    -0xc(%ebp),%esp
+ 80487a6: 5b                    pop    %ebx
+ 80487a7: 5e                    pop    %esi
+ 80487a8: 5f                    pop    %edi
+ 80487a9: 5d                    pop    %ebp
+ 80487aa: c3                    ret
+  int x = 3;
+  int y = 5;
+  if (NontrivialFunction(x, y, 2)) {
+ 80487ab: bb 03 00 00 00        mov    $0x3,%ebx
+ 80487b0: be 05 00 00 00        mov    $0x5,%esi
+ 80487b5: bf 06 00 00 00        mov    $0x6,%edi
+ 80487ba: eb a3                 jmp    804875f &lt;main+0x35&gt;</tt></pre>This assembly is a bit harder to read, so let's start at the top: We push 2, then 5, then 3 onto the stack and call <code>NontrivialFunction</code> (remember that arguments on the stack are in reverse order, so this is really calling <code>NontrivialFunction(3, 5, 2)</code>) without yet assigning any of those values to anything you could call <code>x</code> or <code>y</code>. Once that is done, the result is stored in register <code>%al</code>, and we <code>test</code> whether it's zero (it looks like we're comparing it to itself, but it's actually just checking the sign of <code>%al</code>). If it's zero (false), we jump (<code>je</code>) down to the bottom (to line 80487ab). Once there, we store the values 3 and 5 into registers <code>%ebx</code> and <code>%esi</code> (and the value 6, which is the precomputed value of <code>x ^ y</code>, into register <code>%edi</code>; this will be used in Method B). Then we jump (<code>jmp</code>) back up to the first call to <code>PrintValues</code>, and continue on. If we had wanted to go through the if statement (i.e. if the result had been nonzero/true), we wouldn't have jumped and instead we'd have gone through the three <code>xor</code>'s and zeroed out the values (a number xor'ed with itself is 0). Don't worry about the <code>pop</code>'s and <code>ret</code> at the end; that's just some clean-up done as the <code>main</code> function finishes up, and we can safely ignore it.<br /><br />So at this point, our trick has worked: <code>x</code> is stored in register <code>%ebx</code> and <code>y</code> is in <code>%esi</code>. but now take a look at the rest of the code: for most of it, the swapping code is removed completely, and we just call <code>PrintValues(x, y)</code> and then <code>PrintValues(y, x)</code> to "swap" them! Most of these swaps take absolutely no CPU time or extra memory. The one exception, however, is Method B, which only got half-optimized away (that first xor is precomputed, but the rest is still there). so in this case, all methods can be completely optimized away by the compiler except for the xor swap, which is slower and unambiguously worse. <br /><br />"but surely this isn't what real code looks like either," I hear the defenders of xor say. "Surely real code stores the variables in memory instead of directly in registers, since the registers are presumably used for much more than just storing our two piddly little integers." Fair enough; let's take a look! To get the variables stored in memory, we'll need something that makes use of these locations, or in other words something that requires references to the variables and something that the compiler doesn't inline and/or optimize away. The primality tester worked before, so let's just adapt that a little:<pre><tt>void NontrivialReferenceFunction(int& x, int& y) {
+  // This is really just a fancy no-op, but the compiler doesn't know that.
+  if (NontrivialFunction(x, y, 2)) {
+    NontrivialReferenceFunction(x, y);
+  }
+}
+...
+  // In main replacing the part about NontrivialFunction that we added in last time
+  NontrivialReferenceFunction(x, y);</tt></pre>We re-compile, and re-dump the assembly to get this:<pre><tt>  int x = 3;
+ 8048768: c7 45 fc 03 00 00 00  movl   $0x3,-0x4(%ebp)
+  int y = 5;
+ 804876f: c7 45 f8 05 00 00 00  movl   $0x5,-0x8(%ebp)
+
+  NontrivialReferenceFunction(x, y);
+ 8048776: 8d 45 f8              lea    -0x8(%ebp),%eax
+ 8048779: 89 44 24 04           mov    %eax,0x4(%esp)
+ 804877d: 8d 45 fc              lea    -0x4(%ebp),%eax
+ 8048780: 89 04 24              mov    %eax,(%esp)
+ 8048783: e8 de fe ff ff        call   8048666 &lt;_Z27NontrivialReferenceFunctionRiS_&gt;
+
+  PrintValues(x, y);
+ 8048788: 8b 45 f8              mov    -0x8(%ebp),%eax
+ 804878b: 89 44 24 04           mov    %eax,0x4(%esp)
+ 804878f: 8b 45 fc              mov    -0x4(%ebp),%eax
+ 8048792: 89 04 24              mov    %eax,(%esp)
+ 8048795: e8 5e ff ff ff        call   80486f8 &lt;_Z11PrintValuesii&gt;
+
+  {
+    int t = x;  // Method A
+ 804879a: 8b 45 fc              mov    -0x4(%ebp),%eax
+    x = y;
+ 804879d: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 80487a0: 89 55 fc              mov    %edx,-0x4(%ebp)
+    y = t;
+ 80487a3: 89 45 f8              mov    %eax,-0x8(%ebp)
+  }
+
+  PrintValues(x, y);
+ 80487a6: 89 44 24 04           mov    %eax,0x4(%esp)
+ 80487aa: 89 14 24              mov    %edx,(%esp)
+ 80487ad: e8 46 ff ff ff        call   80486f8 &lt;_Z11PrintValuesii&gt;
+
+  x ^= y;  // Method B
+ 80487b2: 8b 45 f8              mov    -0x8(%ebp),%eax
+ 80487b5: 8b 55 fc              mov    -0x4(%ebp),%edx
+ 80487b8: 31 c2                 xor    %eax,%edx
+  y ^= x;
+ 80487ba: 31 d0                 xor    %edx,%eax
+ 80487bc: 89 45 f8              mov    %eax,-0x8(%ebp)
+  x ^= y;
+ 80487bf: 31 c2                 xor    %eax,%edx
+ 80487c1: 89 55 fc              mov    %edx,-0x4(%ebp)
+
+  PrintValues(x, y);
+ 80487c4: 89 44 24 04           mov    %eax,0x4(%esp)
+ 80487c8: 89 14 24              mov    %edx,(%esp)
+ 80487cb: e8 28 ff ff ff        call   80486f8 &lt;_Z11PrintValuesii&gt;
+  
+  x = x + y;  // Method D
+ 80487d0: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 80487d3: 8b 45 fc              mov    -0x4(%ebp),%eax
+ 80487d6: 01 d0                 add    %edx,%eax
+  y = x - y;
+ 80487d8: 89 c1                 mov    %eax,%ecx
+ 80487da: 29 d1                 sub    %edx,%ecx
+ 80487dc: 89 4d f8              mov    %ecx,-0x8(%ebp)
+  x = x - y;
+ 80487df: 29 c8                 sub    %ecx,%eax
+ 80487e1: 89 45 fc              mov    %eax,-0x4(%ebp)
+
+  PrintValues(x, y);
+ 80487e4: 89 4c 24 04           mov    %ecx,0x4(%esp)
+ 80487e8: 89 04 24              mov    %eax,(%esp)
+ 80487eb: e8 08 ff ff ff        call   80486f8 &lt;_Z11PrintValuesii&gt;
+    swap(_Tp& __a, _Tp& __b)
+    {
+      // concept requirements
+      __glibcxx_function_requires(_SGIAssignableConcept&lt;_Tp&gt;)
+
+      _Tp __tmp = __a;
+ 80487f0: 8b 45 fc              mov    -0x4(%ebp),%eax
+      __a = __b;
+ 80487f3: 8b 55 f8              mov    -0x8(%ebp),%edx
+ 80487f6: 89 55 fc              mov    %edx,-0x4(%ebp)
+      __b = __tmp;
+ 80487f9: 89 45 f8              mov    %eax,-0x8(%ebp)
+
+  std::swap(x, y);  // Method E
+
+  PrintValues(x, y);
+ 80487fc: 89 44 24 04           mov    %eax,0x4(%esp)
+ 8048800: 89 14 24              mov    %edx,(%esp)
+ 8048803: e8 f0 fe ff ff        call   80486f8 &lt;_Z11PrintValuesii&gt;</tt></pre>Now we're getting somewhere! This time our variables are stored in memory (4 and 8 bytes before the place that <code>%ebp</code> points to), and this time they really are loaded into registers, swapped by various means, and then stored back into memory, just like we wanted. Like the previous calls to <code>std::swap</code>, the <code>lea</code> command is used to get the address of (reference to) variables to pass to <code>NontrivialReferenceFunction</code>. We also now have an instance of the <code>add</code> command, which does just what you'd expect. Other than that, though, no new commands are used here. This looks like it's exactly what we wanted, so let's examine this in detail.<br /><br />Method A loads both variables into registers, and then stores them back in the opposite locations. We don't actually allocate any memory at all for the temporary variable, which has been optimized away yet again. In Method B, we load the variables into registers, xor them, xor them again, store that result in memory (as <code>y</code>), xor them a final time, and stick that result back into memory as <code>x</code>. Like Method A, this requires two registers and four <code>mov</code> commands (two for loading and two for storing the data). Unlike Method A, Method B requires three extra <code>xor</code> commands to get the same result. Method D is a lot like Method B, in that it requires the same 4 <code>mov</code>'s, but also requires some extra addition and subtraction work that Method A didn't need. On top of that, it uses a third register, <code>%ecx</code>, while the previous two methods only used two registers. Method E is barely recognizeable because it's got all these strange pieces of code and variables with underscores in their names. The compiler has inlined <code>std::swap</code>, which turns out to be a templated function. Its two arguments have type <code>_Tp</code> (for our purposes, <code>_Tp</code> is <code>int</code>), and are called <code>__a</code> and <code>__b</code>. If you read the C++ code, it creates a temporary <code>_Tp</code> called <code>__tmp</code> and basically just does Method A. The assembly does the same 4 <code>mov</code>'s as Method A with nothing extra. <br /><br />So to sum up, Methods A and E were the same, Method B took more time, and Method D took more time and an extra register to accomplish the same thing. In other words, when we got down to it, the naive swap didn't use a temporary variable, and still ran faster than the xor swap. It turns out the same result happens if you make your variables <code>volatile</code> (provided that you remove the call to <code>NontrivialReferenceFunction</code>, because you can't take references of volatile data). For kicks, I tried the same thing on a 64-bit x86 Linux architecture with g++ 4.1, and found that everything was optimized away into the alternating calls to <code>PrintValues(x, y)</code> and <code>PrintValues(y, x)</code>, with no actual swaps, even if I called <code>NontrivialReferenceFunction</code>. If I made the variables <code>volatile</code>, I could actually get the values to swap, but the result was the same: Methods A and E were by far the best, Method B took the same amount of space but more time, and Method D took extra space and extra time. <br /><br />So now that we've beaten this code to death, I have one final tangent: there is an assembly instruction called XCHG (or EXCH, or something like that, depending on what architecture you're on) which swaps the values of two words. Unfortunately, it's generally a bad idea to use it because if you use it on a location in memory, the processor considers it a memory fence and messes up all sorts of pipelining and slows down all the code around it. So the only time you should consider using XCHG is if you want to swap two registers, and in that case, it's probably better just to remap the registers in the rest of the program (like in the assembly example I showed for the <code>NontrivialFunction</code> version), rather than explicitly swapping them.<br /><br />To bring this full circle, here are my answers to the original questions: Methods A and E are the fastest way to swap two integers. Methods A and E are also the fastest way to do it without using any extra memory (even though you write C++ with a temporary variable, it gets optimized away). I can't think of a realistic situation where I'd want to use a different method, and the only unrealistic situation I can come up with is when your compiler can't optimize anything at all and makes assembler instructions like the original version we examined, and you really, truly need those extra couple bytes of stack space. However, my first course of action there would be to get a better compiler. Only after I've found that I can't get a good compiler and I can't improve the compiler I already have and I can't easily write it in assembly would I consider using Method B. I'm inclined to call Method A the best because unlike Method E it explicitly shows you what it's doing and it doesn't require linking in the entire <code>algorithm</code> library. However, there are definitely arguments for Method E, for instance that someone who knows what they're doing wrote the standard libraries and if there's a better way to do it then the standard library will probably be updated before your code. Another reason to pick Method E is that there is a whole system you can implement around <code>std::swap</code> that <a href="http://en.wikibooks.org/wiki/Optimizing_C%2B%2B/Code_optimization/Allocations_and_deallocations#swap_function_overload">optimizes the swapping of larger objects</a>, though I personally have never yet needed that optimization. but regardless, in this day and age there isn't a good excuse for using Methods B or D, despite any claims by <a href="http://www.gamedev.net/reference/articles/article1563.asp">GameDev</a> and others to the contrary (and I strongly suspect that there wasn't any good excuse for the xor swap when that article was written in 2001, either). and under no circumstances should anyone ever use Method C because it isn't guaranteed to do what you want.<br /><br />If you've actually gotten this far, thank you for reading my rant.<a name='cutid2-end'></a></div><br style='clear: both' /><hr width='100%' size='2' align='center' />            
+            <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+            <!-- Hide from old browsers
+
+	    // ********* ATTENTION *********
+	    // Adv code wrapped in function below!
+            function fullscreenAShow()
+            {
+            	// ********* CODE START *********
+		    // Cache-busting and pageid values
+		    if (!pageNum) var pageNum = Math.round(Math.random() * 10000000000);
+		    document.write('<SCR');
+		    document.write('IPT LANGUAGE="JavaScript" SRC="http://ad.doubleclick.net/adj/lj.servicepages/fullscreenadsbml;'
+		        + 'a=1;r=0;w=1;wg=1;wa=26;wc=US;wi=alternative;wi=music;wi=bridge;wi=claremont;wi=colleges;wi=classic;wi=rock;wi=computer;wi=science;wi=engineering;ra=26;rg=1;jid=3658933;kw=compilers;kw=integer;kw=swap;kw=software;kw=engineering;kw=code;kw=computers;kw=cpp;kw=assembly;kw=xchg;c=jo;pt=jo;' + 'a=1;r=0;w=0;c=se;pt=se' + ';dcopt=ist;fs=1;sz=1x1,pos=r;tile=1;ord=' + pageNum + '?" TYPE="text/javascript">');
+		    document.write('</SCR');
+		    document.write('IPT>');
+            	// ********* CODE FINISH *********
+            }
+            
+            
+            var fullscreenAName = 'ljfsads_client',
+                fullscreenACook = document.cookie.split(';'),
+                fullscreenAAllow = true,
+                fullscreenADomain = Site.siteroot,
+                fullscreenARef = document.referrer;
+            
+            fullscreenADomain = fullscreenADomain.split('.');
+            fullscreenADomain.shift();
+            fullscreenADomain = fullscreenADomain.join('.');
+            
+            for(var i = 0, l = fullscreenACook.length; i < l; i++) if(fullscreenACook[i].indexOf(fullscreenAName) > -1) fullscreenAAllow = false;
+            
+            if(fullscreenAAllow && fullscreenARef.indexOf(fullscreenADomain) > -1 && !document.location.pathname.match(/(\/shop\/|login\.bml|create\.bml)/))
+            {
+            	fullscreenAShow();
+            	var expires = new Date();
+                expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+                expires = '; expires=' + expires.toUTCString();
+            	document.cookie = [fullscreenAName, '=1', expires, '; path=/', '; domain=.', fullscreenADomain].join('');
+            }
+            
+            // End Hide -->
+            </SCRIPT>
+            <NOSCRIPT>
+                <A rel="nofollow" HREF="http://ad.doubleclick.net/jump/lj.servicepages/fullscreenadsbml;dcopt=ist;fs=1;tile=1;ord=8934157304?" target="_blank">
+                <img src="http://ad.doubleclick.net/ad/lj.servicepages/fullscreenadsbml;dcopt=ist;fs=1;sz=1x1;tile=1;ord=8934157304?"
+                  width="" height="" border="0" alt=""></A>
+            </NOSCRIPT>
+        
+            <!--[if IE]><script type="text/javascript">
+            if (liverailads1 = $('adContainer')) {
+                window.liverailads_insert = document.body.lastChild;
+                liverailads2 = document.getElementById('takeoverDiv');
+                ;(function(t){ t.insertAdjacentHTML('beforeBegin','<iframe id="takeoverFrame" src="about:blank" style="position:absolute;filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);opacity:0;padding:0;margin:0;border:0;width:100%;height:400px;background:#fff;z-index:1499;top:0"></iframe>') }
+                )(liverailads_insert);
+                document.body.insertBefore(liverailads2, liverailads_insert);
+            }
+            function onLiveRailAdEnd() {
+                document.getElementById('takeoverFrame').style.display = 'none';
+            }
+            </script><![endif]-->
+            <script type="text/javascript">
+                $('lr-close-btn') && ($('lr-close-btn').onclick = function()
+                {
+                    var liverailObject = $('liverailSWF');
+                    if (liverailObject && liverailObject.destroy) {
+                        try{liverailObject.destroy();}catch(e){}
+                    }
+                    // innerHTML for IE
+                    jQuery('#adContainer, #takeoverDiv').remove();
+                });
+            </script>
+                <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+                <!-- Hide from old browsers
+                // Cache-busting and pageid values
+                if (!pageNum) var pageNum = Math.round(Math.random() * 10000000000);
+                document.write('<SCR');
+                document.write('IPT LANGUAGE="JavaScript" SRC="http://ad.doubleclick.net/adj/lj.ugc.entry/;'
+                    + 'a=1;r=0;w=1;wg=1;wa=26;wc=US;wi=alternative;wi=music;wi=bridge;wi=claremont;wi=colleges;wi=classic;wi=rock;wi=computer;wi=science;wi=engineering;ra=26;rg=1;jid=3658933;kw=compilers;kw=integer;kw=swap;kw=software;kw=engineering;kw=code;kw=computers;kw=cpp;kw=assembly;kw=xchg;c=jo;pt=jo;' + 'sz=728x90;pos=r;tile=1;ord=' + pageNum + '?" TYPE="text/javascript">');
+                document.write('</SCR');
+                document.write('IPT>');
+                // End Hide -->
+                </SCRIPT>
+                <NOSCRIPT>
+                    <A rel="nofollow" HREF="http://ad.doubleclick.net/jump/lj.ugc.entry/;sz=728x90;tile=1;ord=6568057397?" target="_blank">
+                    <img src="http://ad.doubleclick.net/ad/lj.ugc.entry/;sz=728x90;tile=1;ord=6568057397?"
+                      width="728" height="90" border="0" alt=""></A>
+                </NOSCRIPT>
+<hr width='100%' size='2' align='center' /><div id='Comments'><a name='comments'></a><form style='display: inline' method='post' action='http://www.livejournal.com/talkmulti.bml' name='multiform' onsubmit='return multiformSubmit(this, {no_action: "You have not selected one of the actions",no_comments: "You have not selected any comments",conf_delete: "Are you sure you wish to delete the selected comments?"})'><p class='lesstop' align='center'><b>(17 comments) - (<a href='http://big-bad-al.livejournal.com/98093.html?mode=reply'>Post a new comment</a>)</b></p><input type='hidden' name="ditemid" value="98093" /><input type='hidden' name="journal" value="big_bad_al" /><div id='ljcmt191533'><a name='t191533'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='0'></td><td id='ljcmtxt191533' width='100%'><div id='cmtbar191533' class='talk-comment-head' style='background-color:#bbddff'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/29506097/5401920' width='97' title='ear' alt='' height='95' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='muddernh' style='white-space:nowrap'><a href='http://muddernh.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://muddernh.livejournal.com/'><b>muddernh</b></a></span>
+<br /><font size='-1'>2008-07-04 04:12 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=191533#t191533'>link</a>)</font> </div><div class='talk-comment-box'>I didn't read the whole thing, but the variable swapping I did was always using method A.  I didn't know what B or C would even do at first glance, although it's possible that syntax is somewhere back there under cobwebs...<br /><br />but it's nice to know that the simple method I know is decently good. (c=<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=191533'>Reply to this</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt191789'><a name='t191789'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='0'></td><td id='ljcmtxt191789' width='100%'><div id='cmtbar191789' class='talk-comment-head' style='background-color:#bbddff'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/6974589/1263290' width='100' title='Erika Rice Scherpelz' alt='' height='100' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='kitty_tape' style='white-space:nowrap'><a href='http://kitty-tape.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://kitty-tape.livejournal.com/'><b>kitty_tape</b></a></span>
+<br /><font size='-1'>2008-07-04 04:58 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=191789#t191789'>link</a>)</font> </div><div class='talk-comment-box'>But you do have to admit D has the cute property of making you think about int addition as addition in an abelian group to convince yourself that it works in the face of overflow.<br /><br />And, for no reason other than it's been awhile since I have written a proof...<br /><br />Let x' and y' represent the original values in x and y.  After x = x + y, x == x' + y'.<br /><br />After y = x - y, y == (x' + y') + (-y') == x' + (y' + (-y')) == x' + 0 == x'.<br /><br />After x = x - y, x == (x' + y') + (-x') == (y' + x') + (-x') == y' + (x' + (-x')) == y' + 0 == y'.<br /><br />Admittedly, a real proof would have provided a proper semantics for addition, subtraction, and assignment, but I am not that bored.  =)<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=191789'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=191789#t191789'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt192301'><a name='t192301'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='25'></td><td id='ljcmtxt192301' width='100%'><div id='cmtbar192301' class='talk-comment-head' style='background-color:#aaccee'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/17048293/3658933' width='80' title='Alan' alt='' height='80' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>
+<br /><font size='-1'>2008-07-04 07:35 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=192301#t192301'>link</a>)</font> </div><div class='talk-comment-box'>Oh, I totally agree! It's interesting that both Methods B and D rely solely on operators that define groups over the integers (note that subtraction isn't abelian, but it's still a group). I wonder if we can make a swapping mechanism that doesn't require the semblance of a temporary variable and only uses operators which don't form groups over the integers? I think we'd be limited to multiplication, division, modulo, bitwise and, bitwise or, and the 3 different shifts (and unary operators like negation and stuff). Any ideas? To make this more interesting, you aren't allowed to implement the xor swap again by just using lots and lots of NAND gates. :-)<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=192301'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=191789#t191789'>Parent</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=192301#t192301'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt193069'><a name='t193069'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='50'></td><td id='ljcmtxt193069' width='100%'><div id='cmtbar193069' class='talk-comment-head' style='background-color:#bbddff'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/17048293/3658933' width='80' title='Alan' alt='' height='80' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>
+<br /><font size='-1'>2008-07-04 07:49 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=193069#t193069'>link</a>)</font> </div><div class='talk-comment-box'>Wait, I'm being an idiot. Subtraction over the integers is not a group because it's not associative. However, it would almost count as an abelian group if we defined it as addition with a few unary negations thrown in at opportune times.<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=193069'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=192301#t192301'>Parent</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt193325'><a name='t193325'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='0'></td><td id='ljcmtxt193325' width='100%'><div id='cmtbar193325' class='talk-comment-head' style='background-color:#bbddff'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/23730178/5545579' width='100' title='macdaddyfrosh' alt='' height='79' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='macdaddyfrosh' style='white-space:nowrap'><a href='http://macdaddyfrosh.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://macdaddyfrosh.livejournal.com/'><b>macdaddyfrosh</b></a></span>
+<br /><font size='-1'>2008-07-04 12:15 pm UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=193325#t193325'>link</a>)</font> </div><div class='talk-comment-box'>Seems to me like that's a lot of effort to double-check that the Compiler Is Smarter Than You, which we already knew.<br /><br />Also, have you really seen the x ^= y ^= x ^= y in code? There's no way that's allowed in the style guide.<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=193325'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193325#t193325'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt193581'><a name='t193581'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='25'></td><td id='ljcmtxt193581' width='100%'><div id='cmtbar193581' class='talk-comment-head' style='background-color:#aaccee'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/17048293/3658933' width='80' title='Alan' alt='' height='80' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>
+<br /><font size='-1'>2008-07-05 06:25 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=193581#t193581'>link</a>)</font> </div><div class='talk-comment-box'>I agree that it was a lot of effort, but there are still lots of people out there who don't yet seem to realize that the compiler is better at compiling than they are. <br /><br />What is it with you harping on the style guide all the time? There is code written by other companies and organizations that either have different style guides or don't have one at all, and I've seen Method C used in their code.<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=193581'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193325#t193325'>Parent</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193581#t193581'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt193837'><a name='t193837'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='50'></td><td id='ljcmtxt193837' width='100%'><div id='cmtbar193837' class='talk-comment-head' style='background-color:#bbddff'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/23730178/5545579' width='100' title='macdaddyfrosh' alt='' height='79' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='macdaddyfrosh' style='white-space:nowrap'><a href='http://macdaddyfrosh.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://macdaddyfrosh.livejournal.com/'><b>macdaddyfrosh</b></a></span>
+<br /><font size='-1'>2008-07-05 02:55 pm UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=193837#t193837'>link</a>)</font> </div><div class='talk-comment-box'>It's certainly an interesting piece of analysis; I never realized it wasted space; I just figured it was unreadable, and should be skipped on that account.<br /><br />Besides, I liked the style guide! There's a lot of high-density coding wisdom in there.<br /><br />Also, I kept seeing "Method C" and thinking you'd found some new programming language that I'd never heard of. :-D<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=193837'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193581#t193581'>Parent</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193837#t193837'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt194349'><a name='t194349'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='75'></td><td id='ljcmtxt194349' width='100%'><div id='cmtbar194349' class='talk-comment-head' style='background-color:#aaccee'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/17048293/3658933' width='80' title='Alan' alt='' height='80' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>
+<br /><font size='-1'>2008-07-06 01:13 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=194349#t194349'>link</a>)</font> </div><div class='talk-comment-box'><i>I never realized it wasted space; I just figured it was unreadable</i><br /><br />Wait, what? The point of the post is that none of these methods use any extra memory (and only method D uses any extra registers), and that the naive swap is just as space efficient as the xor swap because it doesn't actually allocate the temporary variable you write in the code. I've edited the paragraph that starts with "if you use" to make that clearer.<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=194349'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193837#t193837'>Parent</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=194349#t194349'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt194605'><a name='t194605'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='100'></td><td id='ljcmtxt194605' width='100%'><div id='cmtbar194605' class='talk-comment-head' style='background-color:#bbddff'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/23730178/5545579' width='100' title='macdaddyfrosh' alt='' height='79' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='macdaddyfrosh' style='white-space:nowrap'><a href='http://macdaddyfrosh.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://macdaddyfrosh.livejournal.com/'><b>macdaddyfrosh</b></a></span>
+<br /><font size='-1'>2008-07-06 03:15 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=194605#t194605'>link</a>)</font> </div><div class='talk-comment-box'>Well, now you've thoroughly shamed me for not reading the post closely enough. <br />:-) I'll have to go through it in more detail. <p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=194605'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=194349#t194349'>Parent</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt194093'><a name='t194093'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='25'></td><td id='ljcmtxt194093' width='100%'><div id='cmtbar194093' class='talk-comment-head' style='background-color:#aaccee'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/17048293/3658933' width='80' title='Alan' alt='' height='80' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>
+<br /><font size='-1'>2008-07-05 09:21 pm UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=194093#t194093'>link</a>)</font> </div><div class='talk-comment-box'><i>have you really seen the x ^= y ^= x ^= y in code?</i><br /><br />Cases in point: it is (hopefully was?) in the source code for <a href="http://www.google.com/codesearch?hl=en&amp;q=(..*)%5C+*%5C%5E%3D%5C+*(..*)%5C+*%5C%5E%3D%5C+*(..*)%5C+*%5C%5E%3D%5C+*(..*)+show:SXQulMYDln4:pT6GDUaaArk:5aG4-R5Q1D4&amp;sa=N&amp;cd=1&amp;ct=rc&amp;cs_p=http://ftp.mozilla.org/pub/mozilla.org/mozilla/releases/mozilla1.7.5/source/mozilla-source-1.7.5.tar.bz2&amp;cs_f=mozilla/security/nss/lib/freebl/sha512.c#l548">Mozilla's SHA implementation</a> and <a href="http://www.google.com/codesearch?hl=en&amp;q=%22x+%5E%3D+y+%5E%3D+x+%5E%3D+y%22+show:OqSapuSV9zQ:frjWzTrI0ik:24st15rm6e8&amp;sa=N&amp;cd=2&amp;ct=rc&amp;cs_p=http://ftp5.ru.freebsd.org/pub/FreeBSD/distfiles/bsd-airtools-v0.3.tgz&amp;cs_f=bsd-airtools/wnet/libwnet/build_data.c#l119">BSD Airtools</a>. I wish I could get a real count of how often Google Code Search can find it, but either I can't escape the regex right or GCS doesn't actually support all of the POSIX extended regex expressions (in particular, I can't get \(...\) and \1 to work). <p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=194093'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193325#t193325'>Parent</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt276013'><a name='t276013'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='25'></td><td id='ljcmtxt276013' width='100%'><div id='cmtbar276013' class='talk-comment-head' style='background-color:#aaccee'><font size='+1' face='Arial,Helvetica'><b>I have seen &#39;x ^= y ^= x ^= y&#39; in code</b></font> <br /><i>(Anonymous)</i>
+<br /><font size='-1'>2010-09-13 10:50 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=276013#t276013'>link</a>)</font> </div><div class='talk-comment-box'>&gt; Also, have you really seen the x ^= y ^= x ^= y in code?<br />I stumbled upon it in the source code of Meritous (http://asceai.nfshost.com/meritous).<br /><br />Bilderbikkel (http://www.richelbilderbeek.nl)<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=276013'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=193325#t193325'>Parent</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt194861'><a name='t194861'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='0'></td><td id='ljcmtxt194861' width='100%'><div id='cmtbar194861' class='talk-comment-head' style='background-color:#bbddff'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/21892219/1385301' width='75' title='Dan' alt='' height='95' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='dhalps' style='white-space:nowrap'><a href='http://dhalps.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://dhalps.livejournal.com/'><b>dhalps</b></a></span>
+<br /><font size='-1'>2008-07-07 06:39 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=194861#t194861'>link</a>)</font> </div><div class='talk-comment-box'>I ran the same test a few years back, and yes, the obvious thing to do is the best. Wheeee!<br /><br />FYI, I'd recommend you don't generalize the conclusion this post implies that Method E is as good as Method A. As an example, here's some C++ pseudocode:<br /><pre>complex array a;
+complex array b;
+complex array c;
+for i in 1..k
+   c[i] = a[i] * b[i]; // choice 1
+   d[i] = a[i].mag(); // choice 2; note that mag is a function in the complex data type
+   e[i] = a[i].conj() * b[i]; // choice 3; note that conj is a function in the complex data type
+end for</pre><br />In my experience, versions 2 and 3 of this function are much slower than the typed-out expansions thereof, because g++ isn't smart enough to vectorize over (even inline) std library calls. Or something like that. This was a few months back on a 64 bit Intel machine running 64 bit linux. This is true even if you apply manual loop unrolling.<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=194861'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=194861#t194861'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt195117'><a name='t195117'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='25'></td><td id='ljcmtxt195117' width='100%'><div id='cmtbar195117' class='talk-comment-head' style='background-color:#aaccee'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/17048293/3658933' width='80' title='Alan' alt='' height='80' /><font size='+1' face='Arial,Helvetica'><b></b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>
+<br /><font size='-1'>2008-07-07 08:55 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=195117#t195117'>link</a>)</font> </div><div class='talk-comment-box'>Interesting! I hadn't realized that; thanks for pointing it out.<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=195117'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=194861#t194861'>Parent</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt263725'><a name='t263725'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='0'></td><td id='ljcmtxt263725' width='100%'><div id='cmtbar263725' class='talk-comment-head' style='background-color:#bbddff'><font size='+1' face='Arial,Helvetica'><b>Method D has undefined behavior, also</b></font> <br /><i>(Anonymous)</i>
+<br /><font size='-1'>2009-09-22 11:39 pm UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=263725#t263725'>link</a>)</font> </div><div class='talk-comment-box'>Method D also has undefined behavior: signed overflow in C++ is undefined.  From the 1998 c++ standard: Chapter 5 -5-: "If during the evaluation of an expression, the result is not mathematically defined or not in the range of representable values for its type, the behavior is undefined, unless such an expression is a constant expression (5.19) in which case the program is ill-formed."<br /><br />-- mec<br /><br /><p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=263725'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=263725#t263725'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt263981'><a name='t263981'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='25'></td><td id='ljcmtxt263981' width='100%'><div id='cmtbar263981' class='talk-comment-head' style='background-color:#aaccee'><img align='left' hspace='3' src='http://l-userpic.livejournal.com/17048293/3658933' width='80' title='Alan' alt='' height='80' /><font size='+1' face='Arial,Helvetica'><b>Re: Method D has undefined behavior, also</b></font> <br /><span class='ljuser with-alias-value ljuser-name_' lj:user='big_bad_al' style='white-space:nowrap'><a href='http://big-bad-al.livejournal.com/profile'><img src='http://l-stat.livejournal.com/img/userinfo.gif?v=1' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://big-bad-al.livejournal.com/'><b>big_bad_al</b></a></span>
+<br /><font size='-1'>2009-09-23 12:45 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=263981#t263981'>link</a>)</font> </div><div class='talk-comment-box'>Nice call! I had thought that all integers were supposed to be 2's complement (in which case it works despite the overflow/underflow), but according to paragraph 3.9.1-7, integral types can also have 1's complement or signed magnitude representations. Thanks for pointing this out!<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=263981'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=263725#t263725'>Parent</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=263981#t263981'>Thread</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt276781'><a name='t276781'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='50'></td><td id='ljcmtxt276781' width='100%'><div id='cmtbar276781' class='talk-comment-head' style='background-color:#bbddff'><font size='+1' face='Arial,Helvetica'><b>Re: Method D has undefined behavior, also</b></font> <br /><i>(Anonymous)</i>
+<br /><font size='-1'>2010-11-16 01:04 am UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=276781#t276781'>link</a>)</font> </div><div class='talk-comment-box'>It's defined for unsigned integers, but not for signed ones.<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=276781'>Reply to this</a>) (<a href='http://big-bad-al.livejournal.com/98093.html?thread=263981#t263981'>Parent</a>) </font></p></div></td></tr></table></div>
+<div id='ljcmt269101'><a name='t269101'></a><table width='100%' class='talk-comment'><tr><td><img src='http://l-stat.livejournal.com/img/dot.gif' height='1' width='0'></td><td id='ljcmtxt269101' width='100%'><div id='cmtbar269101' class='talk-comment-head' style='background-color:#bbddff'><font size='+1' face='Arial,Helvetica'><b>Nice analysis</b></font> <br /><i>(Anonymous)</i>
+<br /><font size='-1'>2010-01-23 08:21 pm UTC</font>
+ <font size='-1'>(<a href='http://big-bad-al.livejournal.com/98093.html?thread=269101#t269101'>link</a>)</font> </div><div class='talk-comment-box'>I did a similar analysis long back and concluded the same (using temp var for swapping is better than others)..  <br /><br />Thanks<br />Padmakumar<p style='margin: 0.7em 0 0.2em 0'><font size='-2'>(<a href='http://big-bad-al.livejournal.com/98093.html?replyto=269101'>Reply to this</a>) </font></p></div></td></tr></table></div>
+<hr /><p class='lesstop' align='center'><b>(17 comments) - (<a href='http://big-bad-al.livejournal.com/98093.html?mode=reply'>Post a new comment</a>)</b></p></form></div>
+
+        <div class='clear'></div>
+      
+      </div>
+
+      
+
+    </div>
+    </div>
+    <div class="push"></div>
+    </div>
+    <!-- End \#content -->
+
+    
+        <div id="footer">
+            <div id="footer-links">
+                <table><tr>
+                    <td>
+                        <h3>About</h3>
+                        <ul id="footer-links-col1">
+                            <li><a href="http://www.livejournal.com/contact/">Contact</a></li>
+                            <li><a href="http://livejournalinc.com/sales.php">Advertise</a></li>
+                            <li><a href="http://www.livejournalinc.com/jobs/">Jobs</a></li>
+                            <li><a href="http://www.livejournal.com/news.bml">Site News</a></li>
+                            <li><a href="http://www.livejournalinc.com/">More...</a></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <h3>Help</h3>
+                        <ul id="footer-links-col2">
+                            <li><a href="http://www.livejournal.com/support/">Support</a> /
+                            <a href="http://www.livejournal.com/support/faq.bml">FAQs</a></li>
+                            <li><a href="http://www.livejournal.com/site/safetytips.bml">Safety Tips</a></li>
+                        </ul>
+                        <h3>Get Involved</h3>
+                        <ul>
+                            <li><a href="http://www.livejournal.com/support/faqbrowse.bml?faqid=57">Volunteer</a></li>
+                            <li><a href="http://community.livejournal.com/lj_dev/">Developers</a></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <h3>Legal</h3>
+                        <ul id="footer-links-col3">
+                            <li><a href="http://www.livejournal.com/legal/tos.bml">Terms of Service</a></li>
+                            <li><a href="http://www.livejournal.com/legal/privacy.bml">Privacy Policy</a></li>
+                            <li><a href="http://www.livejournal.com/legal/dmca.bml">Copyright</a></li>
+                            <li><a href="http://www.livejournal.com/abuse/policy.bml">Abuse Policy</a></li>
+                        </ul>
+                      	<h3>LJ Labs</h3>
+                        <ul class="footer-links-col" id="footer-links-col5">
+                            <li><a href="http://aqua.livejournal.ru/">LJ Aqua</a></li>
+                            <li><a href="http://www.livejournal.com/labs.bml">More...</a></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <h3>Store</h3>
+                        <ul id="footer-links-col4">
+                            <li><a href="http://www.livejournal.com/manage/account/">Upgrade Account</a></li>
+                            <li><a href="http://www.livejournal.com/shop/vgift.bml">Virtual Gifts</a></li>
+                            <li><a href="https://www.zazzle.com/livejournal*">Merchandise</a></li>
+                            <li><a href="http://www.livejournal.com/shop/">More...</a></li>
+                        </ul>
+                    </td>
+                     <td class="last">
+                        <ul id="footer-links-col6">
+                            <li>Change language:</li>
+                            <li><select name="lang" id="footer_lang_list">
+<option value="en_LJ" selected='selected'>English</option>
+<option value="en_GB">English (UK)</option>
+<option value="de">Deutsch</option>
+<option value="da">Dansk</option>
+<option value="es">español</option>
+<option value="fr">Français</option>
+<option value="it">Italiano</option>
+<option value="ru">Русский</option>
+<option value="uk">Українська</option>
+<option value="be">Беларуская</option>
+<option value="ja">日本語</option>
+<option value="pt">Português</option>
+<option value="eo">Esperanto</option>
+<option value="he">עברית</option>
+<option value="nl">Nederlands</option>
+<option value="hu">Magyar</option>
+<option value="ga">Gaeilge</option>
+<option value="is">íslenska</option>
+<option value="fi">suomi</option>
+<option value="gr">Ελληνικά</option>
+<option value="nb">Norsk bokmål</option>
+<option value="sv">Svenska</option>
+<option value="pl">polski</option>
+<option value="zh">简体中文</option>
+<option value="lv">Latviešu</option>
+<option value="tr">Türkçe</option>
+<option value="ms">Bahasa Melayu</option>
+<option value="hi">हिन्दी</option>
+<option value="pt_BR">Português Brasileiro</option>
+<option value="zh_TR">繁體中文</option>
+<option value="lt">Lietuvių</option>
+<option value="nn">Norsk nynorsk</option>
+</select></li>
+                        </ul>
+						<dl class="current-version"><dt><a href="http://news.livejournal.com/"><a href="http://lj-releases.livejournal.com">Current version</a></a>:</dt><dd>v.73.2</dd></dl>
+                    </td>
+                </tr><tr>
+                    <td colspan="5">
+                        <p class="more_lj"><a href="http://www.livejournal.com/site/">&raquo; View Full Sitemap</a></p>
+                    </td>
+                </tr></table>
+            </div>
+            <div id="footer-copyright">Copyright &copy; 1999-2010 LiveJournal, Inc.  All rights reserved.</div>
+        </div>
+        <!-- end footer -->
+    
+
+
+    <div id="navigation">
+    <div id='Userpic'></div><!-- end #Userpic -->
+      <div id="NavigationWelcomeLogo">
+      
+
+      </div>
+      <!-- End Navigation and Welcome -->
+
+            <div id='NavBar'>
+      <ul id='NavMenu'>
+      <li class='NavMenuItem' id='NavMenuItem1'><a href='http://www.livejournal.com/'>Home</a></li>
+<li class='NavMenuItem' id='NavMenuItem2'><a href='http://www.livejournal.com/create.bml'>Create an account</a></li>
+<li class='NavMenuItem' id='NavMenuItem3'><a href='http://www.livejournal.com/search/'>Explore</a><ul class='NavMenuSubNav' id='NavMenu3'>
+<li class='NavMenuSubNavBack'><iframe src='about:blank' frameborder='0' class='NavMenuSubNavBack'></iframe></li><li class=''><a href='http://www.livejournal.com/interests.bml'>Search by Interest</a></li>
+<li class=''><a href='http://www.livejournal.com/schools/'>Search by School</a></li>
+<li class=''><a href='http://www.livejournal.com/browse/'>Community Directory</a></li>
+<li class=''><a href='http://www.livejournal.com/syn/'>Feeds</a></li>
+<li class=''><a href='http://www.livejournal.com/misc/qotdarchive.bml'>Question of the Day</a></li>
+<li class=''><a href='http://www.livejournal.com/radio/'>FRNK Radio</a></li>
+</ul>
+</li>
+<li class='NavMenuItem' id='NavMenuItem4'><a href='http://www.livejournal.com/shop/'>Shop</a><ul class='NavMenuSubNav' id='NavMenu4'>
+<li class='NavMenuSubNavBack'><iframe src='about:blank' frameborder='0' class='NavMenuSubNavBack'></iframe></li><li class=''><a href='http://www.livejournal.com/shop/paidaccount.bml?form=3'>Gift Paid Account</a></li>
+<li class=''><a href='http://www.livejournal.com/shop/vgift.bml'>Virtual Gifts</a></li>
+<li class=''><a href='http://www.zazzle.com/livejournal'>Merchandise</a></li>
+</ul>
+</li>
+<li class='NavMenuItem' id='NavMenuItem5'><a href='http://www.livejournal.com/extra/'>LJ Extras</a><ul class='NavMenuSubNav' id='NavMenu5'>
+<li class='NavMenuSubNavBack'><iframe src='about:blank' frameborder='0' class='NavMenuSubNavBack'></iframe></li><li class=''><a href='http://www.livejournal.com/devices'>Mobile</a></li>
+<li class=''><a href='http://www.livejournal.com/chat/'>LJ Talk</a></li>
+<li class=''><a href='http://www.livejournal.com/download/'>Downloads</a></li>
+<li class=''><a href='http://www.livejournal.com/classifieds'>Classifieds</a></li>
+</ul>
+</li>
+
+        <li id="NavMenuSearch">
+          <form action="http://www.livejournal.com/search/" method="get">
+          
+            <input type="text" value="Find" size="12" name="q" id='SearchText' onfocus="if(this.value=='Find')this.value='';" onblur="if(this.value=='')this.value='Find';" />
+          
+                <select name="area">
+                    <option value='default'>All</option>
+                    <option value='posts'>Entries</option>
+                    <option value='comments'>Comments</option>
+                    <option value='journals'>Journals</option>
+                    <option value='faq'>FAQ</option>
+                </select>
+            
+            <input type="submit" value="Search" />
+          </form>
+        </li>
+      </ul>
+      </div>
+      <!-- End navbar -->
+
+
+      
+
+    </div>
+    <!-- End #navigation -->
+    <dl class="b-reskining-about"><dt></dt><dd>The Leonids meteor shower reaches its peak in mid-November. Image by <span class='ljuser ljuser-name_marspathfinder' lj:user='marspathfinder' style='white-space:nowrap'><a href='http://marspathfinder.livejournal.com/profile'><img src='http://files.livejournal.com/userhead/54' alt='[info]' width='17' height='17' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://marspathfinder.livejournal.com/'><b>marspathfinder</b></a></span>. Enter the next header contest in <span class='ljuser ljuser-name_remixed' lj:user='remixed' style='white-space:nowrap'><a href='http://community.livejournal.com/remixed/profile'><img src='http://l-stat.livejournal.com/img/community.gif?v=1' alt='[info]' width='16' height='16' style='vertical-align: bottom; border: 0; padding-right: 1px;'/></a><a href='http://community.livejournal.com/remixed/'><b>remixed</b></a></span>!</dd></dl>
+
+    <!-- Login -->
+            <div class="lj_loginform" id="Login">
+          <form style='margin: 0; padding: 0;' method="post" action="https://www.livejournal.com/login.bml?ret=1" id="login" class="lj_login_form">
+            
+            <input type='hidden' name='mode' value='login' />
+            
+            <table cellspacing="2" cellpadding="0">
+              <tr>
+                <th class="desc"><label for='login_user'>Username:</label></th>
+                <td><input type="text" name="user" size="24" id='login_user' tabindex="1" /></td>
+                <td rowspan="3" style="padding-left: 10px; vertical-align: top;">
+                  <a href="http://www.livejournal.com/create.bml">Create an Account</a><br />
+                  <a href="http://www.livejournal.com/lostinfo.bml">Forgot your login or password?</a><br/>
+                  <a href="http://www.livejournal.com/identity/login.bml?type=openid" title="Log in with OpenID" class="i-auth"><img src="http://l-stat.livejournal.com/img/icons/openid-16.gif" width="16" height="16" alt="Log in with OpenID" /></a> <a href="http://www.livejournal.com/identity/login.bml?type=facebook" title="Login with Facebook" class="i-auth"><img src="http://l-stat.livejournal.com/img/icons/facebook-16.gif" width="16" height="16" alt="Login with Facebook" /></a> <a href="http://www.livejournal.com/identity/login.bml?type=twitter" title="Login with Twitter" class="i-auth"><img src="http://l-stat.livejournal.com/img/icons/twitter-16.gif" width="16" height="16" alt="Login with Twitter" /></a><br />
+                </td>
+              </tr>
+              <tr>
+                <th class="desc"><label for='login_password'>Password:</label></th>
+                <td style='white-space: nowrap;'><input type="password" name="password" size="15" class="lj_login_password" tabindex="2" />
+                <input type='submit' value="Log in" tabindex='3' />
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><label><input type="checkbox" name="remember_me" value="1" tabindex="4"  /> Remember Me</label></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td colspan="2" style='font-size: .8em; white-space: nowrap'>
+                    <a href="http://www.livejournal.com/manage/settings/?cat=display">English &bull; Español &bull; Deutsch &bull; Русский&hellip;</a>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+
+    <!-- End Login -->
+
+    <!-- Logo -->
+    <div id="Logo">
+    <a href='http://www.livejournal.com' style='border: 0'><img src='http://l-stat.livejournal.com/horizon/logo.png' style='width: 83px; height: 86px' alt='' class='transparentpng' />
+</a><div id='SiteName'><a href='http://www.livejournal.com' style='border: 0'><img src='http://l-stat.livejournal.com/horizon/livejournal.png' style='width: 189px; height: 27px' alt='' class='transparentpng' />
+</a></div>
+    </div>
+    <!-- End Logo -->
+
+
+    <!-- Extra block to read style from and call to initialize Horizon which reads style -->
+    <div id='Alpha' style='display: none !important'>&nbsp;</div>
+    <!--[if lt IE 7]><script>Horizon.scheme_init();</script><![endif]-->
+
+    <div id='hello-world' style='text-align: left; font-size:0; line-height:0; height:0; overflow:hidden;'><script src="http://l-stat.livejournal.com/js/pagestats/sa1102.js" type="text/javascript"></script>
+<script type="text/javascript"> var DR_id = 1111; </script>
+<script src="http://l-stat.livejournal.com/js/pagestats/DR_v4u3.js?v=1" type="text/javascript"></script>
+    <!-- Begin comScore Tag -->
+<script>
+    document.write(unescape("%3Cscript src='" + (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js' %3E%3C/script%3E"));
+</script>
+
+<script>
+  COMSCORE.beacon({
+    c1:2,
+    c2:7602110,
+    c3:"",
+    c4:"",
+    c5:"",
+    c6:"",
+    c15:""
+  });
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/p?c1=2&c2=7602110&c3=&c4=&c5=&c6=&c15=&cj=1" />
+</noscript>
+<!-- End comScore Tag -->
+</div>
+
+    
+    
+  </body>
+</html>
+
